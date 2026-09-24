@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Schema-Memo — Digitales Therapietagebuch</title>
+
+  <!-- PWA & Mobile Web App -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e293b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SchemaMemo">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Cpath d='M25 22h50a5 5 0 0 1 5 5v46a5 5 0 0 1-5 5H25a5 5 0 0 1-5-5V27a5 5 0 0 1 5-5z' fill='white' fill-opacity='0.95'/%3E%3Cpath d='M32 34h36M32 44h36M32 54h26' stroke='%232563eb' stroke-width='4' stroke-linecap='round' stroke-dasharray='1 6'/%3E%3Ccircle cx='70' cy='66' r='10' fill='%2310b981'/%3E%3Cpath d='M66 66l3 3 6-6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter (UI & Printed Sheet) + Kalam & Caveat (Handwritten Ink Look) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            sheet: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            handKalam: ['Kalam', 'cursive'],
+            handCaveat: ['Caveat', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+
+    /* Worksheet Paper Styling */
+    .sheet-paper {
+      background-color: #ffffff;
+      color: #000000;
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.12), 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    /* Authentic Dotted Line Rule */
+    .dotted-rule {
+      border-bottom: 1.5px dotted #64748b;
+      min-height: 24px;
+    }
+
+    /* Print Styles: Exact Din A4 Output */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 14mm 15mm 12mm 15mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .sheet-paper {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .dotted-rule {
+        border-bottom: 1.5px dotted #000000 !important;
+      }
+      .sheet-scroll-wrapper {
+        overflow: visible !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+  <!-- Header Navigation (hidden in print) -->
+  <header class="no-print sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-2.5 sm:px-6">
+    <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchView('edit')">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Nach J. Young 1996/2002 • Schematherapie</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center gap-1 sm:gap-2">
+        <button id="nav-btn-edit" onclick="switchView('edit')" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+          </svg>
+          <span>Eingabe</span>
+        </button>
+
+        <button id="nav-btn-sheet" onclick="switchView('sheet')" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <span>Blattansicht</span>
+        </button>
+
+        <button id="nav-btn-archive" onclick="switchView('archive')" class="nav-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+          <span>Memos (<span id="archive-count-badge">0</span>)</span>
+        </button>
+
+        <button id="nav-btn-help" onclick="switchView('help')" class="nav-tab px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800" title="Schema-Hilfen">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="hidden md:inline">Spickzettel</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition ml-1" title="Design umschalten">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 md:p-8">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: EINGABE-FORMULAR (Ausfüllen)      -->
+    <!-- ========================================== -->
+    <div id="view-edit" class="space-y-6">
+
+      <!-- Top Banner / Title & Date -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300 mb-1">
+              ✨ Neues Schema-Memo ausfüllen
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Emotionales Schema reflektieren</h2>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="loadExampleMemo()" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+              💡 Beispiel laden
+            </button>
+            <button type="button" onclick="resetFormWithConfirm()" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition">
+              🗑️ Zurücksetzen
+            </button>
+          </div>
+        </div>
+
+        <!-- Memo Metadata: Titel & Datum -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+              Titel des Memos <span class="text-sky-500">*</span>
+            </label>
+            <input type="text" id="input-title" placeholder="z. B. Konflikt im Meeting, Absage von Freunden, Gefühl von Einsamkeit..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition font-medium">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+              Datum
+            </label>
+            <input type="date" id="input-date" class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition font-medium">
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 1 CARD -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold flex items-center justify-center text-sm">
+            1
+          </span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+            1. Benennen des aktualisierten Gefühls
+          </h3>
+        </div>
+
+        <!-- Field 1.1: Emotion -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+              Im Augenblick fühle ich <span class="text-sky-600 dark:text-sky-400">(Emotion)</span>
+            </label>
+          </div>
+          
+          <!-- Emotion quick-chips -->
+          <div class="flex flex-wrap gap-1.5 py-1">
+            <button type="button" onclick="appendTag('input-emotion', 'Wut')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Wut</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Traurigkeit')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Traurigkeit</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Angst')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Angst</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Scham')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Scham</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Schuld')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Schuld</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Einsamkeit')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Einsamkeit</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Hilflosigkeit')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Hilflosigkeit</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Überforderung')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Überforderung</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Enttäuschung')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Enttäuschung</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Kränkung')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-600 dark:text-slate-300 hover:text-sky-700 transition">Kränkung</button>
+          </div>
+
+          <textarea id="input-emotion" rows="2" placeholder="z. B. eine tiefe Traurigkeit, Angst vor Ablehnung und das Gefühl von Hilflosigkeit..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 1.2: Auslösesituation -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Weil <span class="text-sky-600 dark:text-sky-400">(aktuelle Auslösesituation)</span>
+          </label>
+          <textarea id="input-situation" rows="2" placeholder="z. B. mein Partner/Chef mir heute morgen nur kurz und kühl geantwortet hat und ich mich sofort ignoriert gefühlt habe..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition leading-relaxed"></textarea>
+        </div>
+      </section>
+
+      <!-- STEP 2 CARD -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-center text-sm">
+            2
+          </span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+            2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
+          </h3>
+        </div>
+
+        <!-- Field 2.1: Schema / Modus -->
+        <div class="space-y-1.5">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Ich weiß, dass das wahrscheinlich mein <span class="text-indigo-600 dark:text-indigo-400">(Schema/Modus)</span> ... ist,
+          </label>
+
+          <!-- Quick chips for Young Schemas/Modes -->
+          <div class="flex flex-wrap gap-1.5 py-1">
+            <button type="button" onclick="setFieldValue('input-schema', 'Verlassenheit / Instabilität (Verletztes Kind)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Verlassenheit / Verletztes Kind</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Unzulänglichkeit / Scham (Strafender Modus)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Unzulänglichkeit / Scham</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Misstrauen / Missbrauch')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Misstrauen</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Überhöhte Standards (Fordernder Elternmodus)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Überhöhte Standards</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Unterwerfung / Aufopferung')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Unterwerfung</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Emotionale Vernachlässigung')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Emotionale Vernachlässigung</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Distanzierter Beschützer (Rückzug)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Distanzierter Beschützer</button>
+          </div>
+
+          <textarea id="input-schema" rows="2" placeholder="z. B. Verlassenheits-Schema und der Modus des verletzten Kindes..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 2.2: Kindheitssituation -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            das/den ich durch <span class="text-indigo-600 dark:text-indigo-400">(Kindheitssituation)</span> ... erlernt habe.
+          </label>
+          <textarea id="input-childhood" rows="2" placeholder="z. B. frühere Erfahrungen, in denen meine Eltern plötzlich emotional distanziert waren oder ich mich allein gelassen fühlte..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 2.3: Altes Bewältigungsverhalten -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Diese Aktivierung löst bei mir <span class="text-indigo-600 dark:text-indigo-400">(altes Bewältigungsverhalten)</span> ... aus.
+          </label>
+          <div class="flex flex-wrap gap-1.5 py-1">
+            <button type="button" onclick="appendTag('input-coping', 'Rückzug & Schweigen (Mauern)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Rückzug & Mauern</button>
+            <button type="button" onclick="appendTag('input-coping', 'Überanpassung & People-Pleasing')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Überanpassung</button>
+            <button type="button" onclick="appendTag('input-coping', 'Angriff, Vorwürfe & Sarkasmus')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Vorwürfe & Wutausbruch</button>
+            <button type="button" onclick="appendTag('input-coping', 'Ablenkung & Gefühle betäuben')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-600 dark:text-slate-300 hover:text-indigo-700 transition">Betäubung / Ablenkung</button>
+          </div>
+          <textarea id="input-coping" rows="2" placeholder="z. B. innerer Rückzug, tagelanges Schweigen oder passiv-aggressives Verhalten..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition leading-relaxed"></textarea>
+        </div>
+      </section>
+
+      <!-- STEP 3 CARD -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-bold flex items-center justify-center text-sm">
+            3
+          </span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+            3. Anerkennen der Dysfunktionalität / Realitätsprüfung
+          </h3>
+        </div>
+
+        <!-- Field 3.1: Negativer Gedanke / Innere-Eltern-Stimme -->
+        <div class="space-y-1.5">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Obwohl ich glaube <span class="text-amber-600 dark:text-amber-400">(negativer Gedanke/ Innere-Eltern-Stimme)</span>,
+          </label>
+          <textarea id="input-thought" rows="2" placeholder="z. B. dass ich nicht wichtig bin und die Person mich bald komplett fallen lassen wird..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 3.2: Rationale Sichtweise / Gesunder Erwachsener -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Ist die Realität, dass <span class="text-amber-600 dark:text-amber-400">(rationale Sichtweise/ Gesunder Erwachsener)</span>
+          </label>
+          <textarea id="input-reality" rows="2" placeholder="z. B. eine kurze Nachricht nicht bedeutet, dass kein Interesse da ist. Die Person hatte schlicht viel Stress und Zeitdruck..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 3.3: Beweise (konkrete Beispiele) -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Beweise <span class="text-amber-600 dark:text-amber-400">(konkrete Beispiele)</span>
+          </label>
+          <textarea id="input-evidence" rows="2" placeholder="z. B. gestern hat sie mir noch herzlich geschrieben; letzte Woche haben wir viel gelacht; auch ich antworte manchmal kurz an stressigen Tagen..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
+        </div>
+      </section>
+
+      <!-- STEP 4 CARD -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold flex items-center justify-center text-sm">
+            4
+          </span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+            4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
+          </h3>
+        </div>
+
+        <!-- Field 4.1: Obwohl ich bisher immer (altes Bewältigungsverhalten) -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+              Obwohl ich bisher immer <span class="text-emerald-600 dark:text-emerald-400">(altes Bewältigungsverhalten)</span>
+            </label>
+            <button type="button" onclick="syncCopingToStep4()" class="text-xs text-emerald-600 dark:text-emerald-400 hover:underline">
+              Aus Schritt 2 übernehmen ⤓
+            </button>
+          </div>
+          <textarea id="input-old-behavior" rows="2" placeholder="z. B. gekränkt geschwiegen habe und mich tagelang zurückgezogen habe..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field 4.2: Könnte ich stattdessen (alternative Lösungen) -->
+        <div class="space-y-1.5 pt-2">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Könnte ich stattdessen <span class="text-emerald-600 dark:text-emerald-400">(alternative Lösungen)</span>
+          </label>
+          <div class="flex flex-wrap gap-1.5 py-1">
+            <button type="button" onclick="appendTag('input-new-action', 'Einmal tief durchatmen und mich erden')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-600 dark:text-slate-300 hover:text-emerald-700 transition">Durchatmen & Erden</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Freundlich nachfragen oder Bedürfnis ansprechen')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-600 dark:text-slate-300 hover:text-emerald-700 transition">Bedürfnis ansprechen</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Selbstfürsorge betreiben (Spaziergang, Tee, Ruhe)')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-600 dark:text-slate-300 hover:text-emerald-700 transition">Selbstfürsorge</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Den Gesunden Erwachsenen liebevoll bestärken')" class="chip-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-600 dark:text-slate-300 hover:text-emerald-700 transition">Gesunden Erwachsenen stärken</button>
+          </div>
+          <textarea id="input-new-action" rows="2" placeholder="z. B. tief durchatmen, mir liebevoll sagen 'Ich bin sicher und wertvoll', und am Abend in Ruhe offen nachfragen..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition leading-relaxed"></textarea>
+        </div>
+      </section>
+
+      <!-- Bottom Floating / Sticky Save Bar -->
+      <div class="sticky bottom-4 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
+          <span id="save-status-indicator" class="font-medium text-emerald-600 dark:text-emerald-400">● Alle Änderungen bereit</span>
+        </div>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button type="button" onclick="previewCurrentSheet()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-sm transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <span>Vorschau</span>
+          </button>
+
+          <button type="button" onclick="saveCurrentMemo()" class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold text-sm shadow-lg shadow-sky-500/25 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+            <span>Speichern & Blatt ansehen</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: BLATTANSICHT (Originalgetreues Blatt)-->
+    <!-- ========================================== -->
+    <div id="view-sheet" class="hidden space-y-6">
+
+      <!-- Sheet Toolbar (hidden in print) -->
+      <div class="no-print bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <button onclick="switchView('edit')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <span>Bearbeiten</span>
+          </button>
+
+          <button onclick="printSheet()" class="px-3.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm shadow-sky-500/20">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>Drucken / Als PDF speichern</span>
+          </button>
+        </div>
+
+        <!-- Typography / Ink switcher -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:inline">Schriftstil:</span>
+          <select id="font-style-select" onchange="changeSheetFont(this.value)" class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
+            <option value="kalam-blue" selected>🖋️ Handschrift Blau (Tinte)</option>
+            <option value="caveat-black">✒️ Handschrift Schwarz</option>
+            <option value="clean-sans">⌨️ Druckschrift (Clean)</option>
+          </select>
+
+          <!-- Toggle Blank Template -->
+          <button type="button" id="btn-toggle-blank" onclick="toggleBlankMode()" class="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            📄 Leere Vorlage
+          </button>
+        </div>
+      </div>
+
+      <!-- THE WORKSHEET (Matches the exact physical therapy sheet from images) -->
+      <div class="sheet-scroll-wrapper overflow-x-auto pb-4">
+        <div class="sheet-print-container flex justify-center min-w-[620px] sm:min-w-0">
+          <div id="worksheet-paper" class="sheet-paper w-full max-w-[800px] rounded-lg sm:rounded-xl p-8 sm:p-12 md:p-14 text-black font-sheet transition-all">
+
+            <!-- Optional Header Metadata (Titel & Datum) -->
+            <div id="sheet-header-meta" class="mb-6 pb-2.5 border-b border-slate-200 flex items-center justify-between text-xs text-slate-500">
+              <div>
+                <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Schema-Memo</span>
+                <span id="sheet-meta-title" class="ml-2 font-medium text-slate-700"></span>
+              </div>
+              <div id="sheet-meta-date" class="font-medium text-slate-500"></div>
+            </div>
+
+            <!-- SECTION 1 -->
+            <div class="mb-7">
+              <h2 class="text-[16px] sm:text-[17px] font-bold text-black mb-3">
+                1. Benennen des aktualisierten Gefühls
+              </h2>
+
+              <!-- Field 1.1: Emotion -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Im Augenblick fühle ich (Emotion)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-emotion"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-emotion-extra"></span>
+                </div>
+              </div>
+
+              <!-- Field 1.2: Auslösesituation -->
+              <div>
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Weil (aktuelle Auslösesituation)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-situation"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-situation-extra"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <div class="mb-7">
+              <h2 class="text-[16px] sm:text-[17px] font-bold text-black mb-3">
+                2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
+              </h2>
+
+              <!-- Field 2.1: Schema/Modus ... ist, -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Ich weiß, dass das wahrscheinlich mein (Schema/Modus)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-schema"></span>
+                  </div>
+                </div>
+                <div class="flex items-end gap-1.5 mt-1">
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-schema-extra"></span>
+                  </div>
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">ist,</span>
+                </div>
+              </div>
+
+              <!-- Field 2.2: Kindheitssituation ... erlernt habe. -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">das/den ich durch (Kindheitssituation)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-childhood"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-childhood-extra"></span>
+                </div>
+                <div class="flex items-end gap-1.5 mt-1">
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l3 leading-tight" id="sheet-val-childhood-extra2"></span>
+                  </div>
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">erlernt habe.</span>
+                </div>
+              </div>
+
+              <!-- Field 2.3: Altes Bewältigungsverhalten ... aus. -->
+              <div>
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Diese Aktivierung löst bei mir (altes Bewältigungsverhalten)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-coping"></span>
+                  </div>
+                </div>
+                <div class="flex items-end gap-1.5 mt-1">
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-coping-extra"></span>
+                  </div>
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">aus.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="mb-7">
+              <h2 class="text-[16px] sm:text-[17px] font-bold text-black mb-3">
+                3. Anerkennen der Dysfunktionalität / Realitätsprüfung
+              </h2>
+
+              <!-- Field 3.1: Negativer Gedanke -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Obwohl ich glaube (negativer Gedanke/ Innere-Eltern-Stimme),</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-thought"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-thought-extra"></span>
+                </div>
+              </div>
+
+              <!-- Field 3.2: Rationale Sichtweise -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Ist die Realität, dass (rationale Sichtweise/ Gesunder Erwachsener)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-reality"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-reality-extra"></span>
+                </div>
+              </div>
+
+              <!-- Field 3.3: Beweise -->
+              <div>
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Beweise (konkrete Beispiele)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-evidence"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-evidence-extra"></span>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l3 leading-tight" id="sheet-val-evidence-extra2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <div class="mb-10">
+              <h2 class="text-[16px] sm:text-[17px] font-bold text-black mb-3">
+                4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
+              </h2>
+
+              <!-- Field 4.1: Altes Verhalten -->
+              <div class="mb-3.5">
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Obwohl ich bisher immer (altes Bewältigungsverhalten)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-old-behavior"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-old-behavior-extra"></span>
+                </div>
+              </div>
+
+              <!-- Field 4.2: Alternative Lösungen -->
+              <div>
+                <div class="flex items-end gap-1.5">
+                  <span class="font-bold text-black whitespace-nowrap text-[14px] sm:text-[14.5px]">Könnte ich stattdessen (alternative Lösungen)</span>
+                  <div class="flex-1 dotted-rule px-1 flex items-end">
+                    <span class="sheet-user-content sheet-val-l1 leading-tight" id="sheet-val-new-action"></span>
+                  </div>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l2 leading-tight" id="sheet-val-new-action-extra"></span>
+                </div>
+                <div class="w-full dotted-rule mt-1 px-1 flex items-end">
+                  <span class="sheet-user-content sheet-val-l3 leading-tight" id="sheet-val-new-action-extra2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exact Copyright Footer from Image -->
+            <div class="pt-6 border-t border-slate-100 text-[11px] sm:text-[12px] text-slate-500 text-left font-normal leading-normal">
+              Modifiziert nach J. Young 1996/2002 . Das Original ist urheberrechtlich geschützt
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: ARCHIV / GESPEICHERTE MEMOS        -->
+    <!-- ========================================== -->
+    <div id="view-archive" class="hidden space-y-6">
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Gespeicherte Schema-Memos</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Alle deine reflektierten Situationen sicher lokal in deinem Browser gespeichert.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="exportMemosJSON()" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Backup (JSON)</span>
+          </button>
+          
+          <label class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            <span>Wiederherstellen</span>
+            <input type="file" id="import-file-input" onchange="importMemosJSON(event)" accept=".json" class="hidden">
+          </label>
+
+          <button onclick="createNewMemo()" class="px-3.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm shadow-sky-500/20">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span>+ Neues Memo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="relative">
+        <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="archive-search" oninput="renderArchiveList()" placeholder="Memos nach Titel, Gefühl, Schema oder Lösung durchsuchen..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+      </div>
+
+      <!-- Archive Cards List -->
+      <div id="archive-list-container" class="space-y-3">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: SPICKZETTEL / HILFEN (Schema-Guide)-->
+    <!-- ========================================== -->
+    <div id="view-help" class="hidden space-y-6">
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300">
+          💡 Schematherapie Spickzettel
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Das Schema-Memo richtig nutzen</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Das Schema-Memo nach Jeffrey Young ist ein erprobtes Werkzeug, um in Momenten starker emotionaler Aktivierung aus alten Mustern auszusteigen und den <strong>Gesunden Erwachsenen</strong> zu stärken.
+        </p>
+      </div>
+
+      <!-- 4 Steps Explanation -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center">1</span>
+            <h3 class="font-bold text-slate-900 dark:text-white">Gefühl & Auslöser benennen</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Nimm wahr, was du im Körper und emotional spürst (z. B. Wut, Ohnmacht, Scham). Halte die konkrete Situation fest, ohne sie sofort zu bewerten.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center">2</span>
+            <h3 class="font-bold text-slate-900 dark:text-white">Alte Schemata erkennen</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Verstehe, dass die intensive Reaktion nicht rein an der Gegenwart liegt, sondern ein altes Kindheitsmuster berührt wurde. Erkenne dein altes automatisches Bewältigungsverhalten (z. B. Rückzug oder Wut).
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-bold text-xs flex items-center justify-center">3</span>
+            <h3 class="font-bold text-slate-900 dark:text-white">Realitätsprüfung (Gesunder Erwachsener)</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Entlarve die innere Kritiker-Stimme ("Ich bin nichts wert", "Jeder verlässt mich"). Sammle reale Beweise und formuliere eine realistische, wohlwollende Sichtweise.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center">4</span>
+            <h3 class="font-bold text-slate-900 dark:text-white">Neuen Verhaltensimpuls einbrennen</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Entscheide dich bewusst gegen das alte automatische Verhalten und wähle eine gesunde Handlungsalternative (z. B. Gespräch suchen, Grenzen setzen, Pause machen).
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Quick Reference Schemata & Modi -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">Häufige Schemata & Modi nach Jeffrey Young</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Verlassenheit / Instabilität</span>
+            <p class="text-slate-500 dark:text-slate-400">Angst davor, dass wichtige Bezugspersonen einen plötzlich verlassen oder nicht verlässlich sind.</p>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Unzulänglichkeit / Scham</span>
+            <p class="text-slate-500 dark:text-slate-400">Das tief sitzende Gefühl, fehlerhaft, unvollständig, ungeliebt oder minderwertig zu sein.</p>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Überhöhte Standards</span>
+            <p class="text-slate-500 dark:text-slate-400">Druck, immer perfekt sein zu müssen; ständige Anspannung, Fehler unbedingt zu vermeiden.</p>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Unterwerfung / Aufopferung</span>
+            <p class="text-slate-500 dark:text-slate-400">Eigene Bedürfnisse komplett zurückstellen, um Konflikte oder Zurückweisung zu verhindern.</p>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Distanzierter Beschützer</span>
+            <p class="text-slate-500 dark:text-slate-400">Abschalten von Gefühlen, sozialer Rückzug oder Zynismus, um sich vor Schmerz zu schützen.</p>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+            <span class="font-bold text-slate-900 dark:text-white block mb-1">Gesunder Erwachsener</span>
+            <p class="text-slate-500 dark:text-slate-400">Die mitfühlende, vernünftige innere Instanz, die für das innere Kind sorgt und Grenzen setzt.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="no-print fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
+    <div id="toast-icon" class="text-emerald-400 font-bold">✓</div>
+    <span id="toast-message" class="text-xs sm:text-sm font-medium">Gespeichert</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    // State management
+    const STORAGE_KEY = 'schema_therapy_memos_v1';
+    let currentMemoId = null;
+    let isBlankMode = false;
+
+    // Load initial data
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      initDefaultDate();
+      ensureInitialMemos();
+      renderArchiveList();
+      registerServiceWorker();
+    });
+
+    // Theme Management
+    function initTheme() {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon-sun')?.classList.remove('hidden');
+        document.getElementById('theme-icon-moon')?.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon-sun')?.classList.add('hidden');
+        document.getElementById('theme-icon-moon')?.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+        document.getElementById('theme-icon-sun')?.classList.add('hidden');
+        document.getElementById('theme-icon-moon')?.classList.remove('hidden');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+        document.getElementById('theme-icon-sun')?.classList.remove('hidden');
+        document.getElementById('theme-icon-moon')?.classList.add('hidden');
+      }
+    }
+
+    // Default Date to Today
+    function initDefaultDate() {
+      const today = new Date().toISOString().split('T')[0];
+      const dateEl = document.getElementById('input-date');
+      if (dateEl && !dateEl.value) {
+        dateEl.value = today;
+      }
+    }
+
+    // Switch between views: 'edit', 'sheet', 'archive', 'help'
+    function switchView(viewName) {
+      const views = ['edit', 'sheet', 'archive', 'help'];
+      views.forEach(v => {
+        const el = document.getElementById('view-' + v);
+        const btn = document.getElementById('nav-btn-' + v);
+        if (el) el.classList.add('hidden');
+        if (btn) {
+          btn.classList.remove('bg-sky-50', 'dark:bg-sky-950/60', 'text-sky-700', 'dark:text-sky-300');
+          btn.classList.add('text-slate-600', 'dark:text-slate-400');
+        }
+      });
+
+      const activeEl = document.getElementById('view-' + viewName);
+      const activeBtn = document.getElementById('nav-btn-' + viewName);
+      if (activeEl) activeEl.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-sky-50', 'dark:bg-sky-950/60', 'text-sky-700', 'dark:text-sky-300');
+        activeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
+      }
+
+      if (viewName === 'sheet') {
+        populateSheetView();
+      } else if (viewName === 'archive') {
+        renderArchiveList();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Quick helper buttons
+    function appendTag(elementId, tagText) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      if (el.value.trim().length === 0) {
+        el.value = tagText;
+      } else {
+        el.value += ', ' + tagText;
+      }
+      el.focus();
+    }
+
+    function setFieldValue(elementId, val) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      el.value = val;
+      el.focus();
+    }
+
+    function syncCopingToStep4() {
+      const coping = document.getElementById('input-coping').value;
+      if (coping) {
+        document.getElementById('input-old-behavior').value = coping;
+        showToast('Bewältigungsverhalten aus Schritt 2 übernommen');
+      } else {
+        showToast('Schritt 2 "altes Bewältigungsverhalten" ist noch leer');
+      }
+    }
+
+    // Collect data from form
+    function getFormData() {
+      return {
+        id: currentMemoId || ('memo_' + Date.now()),
+        title: document.getElementById('input-title').value.trim() || 'Unbenanntes Schema-Memo',
+        date: document.getElementById('input-date').value || new Date().toISOString().split('T')[0],
+        updatedAt: new Date().toISOString(),
+        emotion: document.getElementById('input-emotion').value.trim(),
+        situation: document.getElementById('input-situation').value.trim(),
+        schema: document.getElementById('input-schema').value.trim(),
+        childhood: document.getElementById('input-childhood').value.trim(),
+        coping: document.getElementById('input-coping').value.trim(),
+        thought: document.getElementById('input-thought').value.trim(),
+        reality: document.getElementById('input-reality').value.trim(),
+        evidence: document.getElementById('input-evidence').value.trim(),
+        oldBehavior: document.getElementById('input-old-behavior').value.trim(),
+        newAction: document.getElementById('input-new-action').value.trim()
+      };
+    }
+
+    // Populate form with data
+    function setFormData(data) {
+      currentMemoId = data.id || null;
+      document.getElementById('input-title').value = data.title || '';
+      document.getElementById('input-date').value = data.date || new Date().toISOString().split('T')[0];
+      document.getElementById('input-emotion').value = data.emotion || '';
+      document.getElementById('input-situation').value = data.situation || '';
+      document.getElementById('input-schema').value = data.schema || '';
+      document.getElementById('input-childhood').value = data.childhood || '';
+      document.getElementById('input-coping').value = data.coping || '';
+      document.getElementById('input-thought').value = data.thought || '';
+      document.getElementById('input-reality').value = data.reality || '';
+      document.getElementById('input-evidence').value = data.evidence || '';
+      document.getElementById('input-old-behavior').value = data.oldBehavior || '';
+      document.getElementById('input-new-action').value = data.newAction || '';
+    }
+
+    // Save Memo to LocalStorage
+    function saveCurrentMemo() {
+      const data = getFormData();
+      const memos = getStoredMemos();
+
+      const existingIndex = memos.findIndex(m => m.id === data.id);
+      if (existingIndex >= 0) {
+        memos[existingIndex] = data;
+      } else {
+        memos.unshift(data);
+      }
+
+      saveStoredMemos(memos);
+      currentMemoId = data.id;
+      showToast('Schema-Memo gespeichert!');
+      switchView('sheet');
+    }
+
+    // Preview current sheet without saving to list
+    function previewCurrentSheet() {
+      switchView('sheet');
+    }
+
+    // Intelligent Text Line Splitter for Authentic Worksheet Filling
+    function splitTextForWorksheet(text, line1Max = 48, line2Max = 72) {
+      if (!text || text.trim().length === 0) {
+        return { l1: '', l2: '', l3: '' };
+      }
+      text = text.trim();
+      if (text.length <= line1Max) {
+        return { l1: text, l2: '', l3: '' };
+      }
+
+      const words = text.split(/\s+/);
+      let l1 = '', l2 = '', l3 = '';
+
+      for (const word of words) {
+        if (!l2 && (l1 + ' ' + word).trim().length <= line1Max) {
+          l1 = (l1 + ' ' + word).trim();
+        } else if (!l3 && (l2 + ' ' + word).trim().length <= line2Max) {
+          l2 = (l2 + ' ' + word).trim();
+        } else {
+          l3 = (l3 + ' ' + word).trim();
+        }
+      }
+
+      return { l1, l2, l3 };
+    }
+
+    // Populate Sheet View to look identical to printed worksheet
+    function populateSheetView() {
+      const data = isBlankMode ? {
+        title: '', date: '', emotion: '', situation: '', schema: '', childhood: '',
+        coping: '', thought: '', reality: '', evidence: '', oldBehavior: '', newAction: ''
+      } : getFormData();
+
+      // Metadata
+      document.getElementById('sheet-meta-title').innerText = data.title ? '— ' + data.title : '';
+      document.getElementById('sheet-meta-date').innerText = data.date ? 'Datum: ' + formatDateDE(data.date) : '';
+
+      // Helper to render into line 1, line 2, line 3
+      function renderField(l1Id, l2Id, l3Id, text, l1Limit = 48, l2Limit = 72) {
+        const split = splitTextForWorksheet(text, l1Limit, l2Limit);
+        const el1 = document.getElementById(l1Id);
+        const el2 = l2Id ? document.getElementById(l2Id) : null;
+        const el3 = l3Id ? document.getElementById(l3Id) : null;
+
+        if (el1) el1.innerText = split.l1;
+        if (el2) el2.innerText = split.l2;
+        if (el3) el3.innerText = split.l3;
+      }
+
+      // Step 1
+      renderField('sheet-val-emotion', 'sheet-val-emotion-extra', null, data.emotion, 44, 75);
+      renderField('sheet-val-situation', 'sheet-val-situation-extra', null, data.situation, 40, 75);
+
+      // Step 2
+      renderField('sheet-val-schema', 'sheet-val-schema-extra', null, data.schema, 26, 68);
+      renderField('sheet-val-childhood', 'sheet-val-childhood-extra', 'sheet-val-childhood-extra2', data.childhood, 34, 75);
+      renderField('sheet-val-coping', 'sheet-val-coping-extra', null, data.coping, 22, 68);
+
+      // Step 3
+      renderField('sheet-val-thought', 'sheet-val-thought-extra', null, data.thought, 26, 75);
+      renderField('sheet-val-reality', 'sheet-val-reality-extra', null, data.reality, 20, 75);
+      renderField('sheet-val-evidence', 'sheet-val-evidence-extra', 'sheet-val-evidence-extra2', data.evidence, 44, 75);
+
+      // Step 4
+      renderField('sheet-val-old-behavior', 'sheet-val-old-behavior-extra', null, data.oldBehavior, 24, 75);
+      renderField('sheet-val-new-action', 'sheet-val-new-action-extra', 'sheet-val-new-action-extra2', data.newAction, 34, 75);
+
+      // Re-apply selected handwriting/print typography
+      const fontSelect = document.getElementById('font-style-select');
+      if (fontSelect) changeSheetFont(fontSelect.value);
+    }
+
+    // Change sheet typography (Kalam, Caveat, Clean Sans)
+    function changeSheetFont(style) {
+      const filledSpans = document.querySelectorAll('.sheet-user-content');
+      filledSpans.forEach(el => {
+        el.classList.remove('font-handKalam', 'font-handCaveat', 'font-sheet', 'text-blue-900', 'text-slate-900', 'text-base', 'text-lg', 'text-xl', 'text-sm', 'font-bold', 'font-semibold', 'font-medium');
+
+        if (style === 'kalam-blue') {
+          el.classList.add('font-handKalam', 'text-blue-900', 'text-lg', 'font-bold');
+        } else if (style === 'caveat-black') {
+          el.classList.add('font-handCaveat', 'text-slate-900', 'text-xl', 'font-bold');
+        } else if (style === 'clean-sans') {
+          el.classList.add('font-sheet', 'text-slate-900', 'text-sm', 'sm:text-base', 'font-semibold');
+        }
+      });
+    }
+
+    // Toggle Blank Template
+    function toggleBlankMode() {
+      isBlankMode = !isBlankMode;
+      const btn = document.getElementById('btn-toggle-blank');
+      if (isBlankMode) {
+        btn.innerText = '✏️ Mit Daten füllen';
+        btn.classList.add('bg-sky-100', 'text-sky-800');
+      } else {
+        btn.innerText = '📄 Leere Vorlage';
+        btn.classList.remove('bg-sky-100', 'text-sky-800');
+      }
+      populateSheetView();
+    }
+
+    // Print
+    function printSheet() {
+      window.print();
+    }
+
+    // Local Storage helpers
+    function getStoredMemos() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        console.error('Error reading localStorage', e);
+        return [];
+      }
+    }
+
+    function saveStoredMemos(memos) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
+        updateBadge(memos.length);
+      } catch (e) {
+        console.error('Error writing localStorage', e);
+      }
+    }
+
+    function updateBadge(count) {
+      const badge = document.getElementById('archive-count-badge');
+      if (badge) badge.innerText = count;
+    }
+
+    // Create New Memo
+    function createNewMemo() {
+      currentMemoId = null;
+      document.getElementById('input-title').value = '';
+      initDefaultDate();
+      document.getElementById('input-emotion').value = '';
+      document.getElementById('input-situation').value = '';
+      document.getElementById('input-schema').value = '';
+      document.getElementById('input-childhood').value = '';
+      document.getElementById('input-coping').value = '';
+      document.getElementById('input-thought').value = '';
+      document.getElementById('input-reality').value = '';
+      document.getElementById('input-evidence').value = '';
+      document.getElementById('input-old-behavior').value = '';
+      document.getElementById('input-new-action').value = '';
+      switchView('edit');
+      showToast('Neues leeres Schema-Memo bereit');
+    }
+
+    function resetFormWithConfirm() {
+      if (confirm('Möchtest du die Eingaben wirklich zurücksetzen?')) {
+        createNewMemo();
+      }
+    }
+
+    // Render Saved Archive List
+    function renderArchiveList() {
+      const memos = getStoredMemos();
+      updateBadge(memos.length);
+
+      const searchTerm = (document.getElementById('archive-search')?.value || '').toLowerCase().trim();
+      const container = document.getElementById('archive-list-container');
+      if (!container) return;
+
+      const filtered = memos.filter(m => {
+        if (!searchTerm) return true;
+        return (m.title && m.title.toLowerCase().includes(searchTerm)) ||
+               (m.emotion && m.emotion.toLowerCase().includes(searchTerm)) ||
+               (m.schema && m.schema.toLowerCase().includes(searchTerm)) ||
+               (m.situation && m.situation.toLowerCase().includes(searchTerm)) ||
+               (m.newAction && m.newAction.toLowerCase().includes(searchTerm));
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center space-y-3">
+            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Keine Memos gefunden</p>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto">Fülle jetzt dein erstes Schema-Memo aus, um deine Gefühle und Schemata bewusst zu verarbeiten.</p>
+            <button onclick="createNewMemo()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition">
+              + Neues Memo anlegen
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(memo => `
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-300 dark:hover:border-sky-700 transition space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">${escapeHtml(memo.title)}</h4>
+                <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${formatDateDE(memo.date)}</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
+                <strong>Gefühl:</strong> ${escapeHtml(memo.emotion || '—')} • <strong>Schema:</strong> ${escapeHtml(memo.schema || '—')}
+              </p>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex items-center gap-1.5 self-end sm:self-center">
+              <button onclick="openMemoSheet('${memo.id}')" class="px-3 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-semibold transition flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                <span>Blatt</span>
+              </button>
+              <button onclick="editMemo('${memo.id}')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <span>Bearbeiten</span>
+              </button>
+              <button onclick="duplicateMemo('${memo.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="Duplizieren">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </button>
+              <button onclick="deleteMemo('${memo.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="Löschen">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight preview of Step 4 new Action -->
+          ${memo.newAction ? `
+            <div class="bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/50 rounded-xl px-3 py-2 text-xs text-emerald-800 dark:text-emerald-300">
+              <span class="font-bold">🌱 Neue Lösung:</span> ${escapeHtml(memo.newAction)}
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function openMemoSheet(id) {
+      const memos = getStoredMemos();
+      const item = memos.find(m => m.id === id);
+      if (!item) return;
+      setFormData(item);
+      isBlankMode = false;
+      switchView('sheet');
+    }
+
+    function editMemo(id) {
+      const memos = getStoredMemos();
+      const item = memos.find(m => m.id === id);
+      if (!item) return;
+      setFormData(item);
+      switchView('edit');
+    }
+
+    function duplicateMemo(id) {
+      const memos = getStoredMemos();
+      const item = memos.find(m => m.id === id);
+      if (!item) return;
+      const copy = { ...item, id: 'memo_' + Date.now(), title: item.title + ' (Kopie)' };
+      memos.unshift(copy);
+      saveStoredMemos(memos);
+      renderArchiveList();
+      showToast('Memo dupliziert!');
+    }
+
+    function deleteMemo(id) {
+      if (!confirm('Dieses Schema-Memo wirklich unwiderruflich löschen?')) return;
+      let memos = getStoredMemos();
+      memos = memos.filter(m => m.id !== id);
+      saveStoredMemos(memos);
+      if (currentMemoId === id) currentMemoId = null;
+      renderArchiveList();
+      showToast('Memo gelöscht');
+    }
+
+    // Backup & Restore
+    function exportMemosJSON() {
+      const memos = getStoredMemos();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(memos, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "schema_memos_backup_" + new Date().toISOString().split('T')[0] + ".json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Backup-Datei heruntergeladen');
+    }
+
+    function importMemosJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            const current = getStoredMemos();
+            // Merge by ID
+            const existingIds = new Set(current.map(m => m.id));
+            imported.forEach(item => {
+              if (item.id && !existingIds.has(item.id)) {
+                current.push(item);
+              }
+            });
+            saveStoredMemos(current);
+            renderArchiveList();
+            showToast(`${imported.length} Memos erfolgreich importiert!`);
+          } else {
+            alert('Ungültiges Format der JSON-Datei.');
+          }
+        } catch (err) {
+          alert('Fehler beim Einlesen der Datei: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    // Default Pre-filled Therapy Example
+    function loadExampleMemo() {
+      const example = {
+        title: "Kritik im Teammeeting",
+        date: new Date().toISOString().split('T')[0],
+        emotion: "starke Scham, Angst vor Ablehnung, Kloß im Hals",
+        situation: "Mein Kollege hat im Meeting vor allen gesagt, dass mein Bericht noch einige Fehler enthält.",
+        schema: "Unzulänglichkeit / Scham (Modus: Verletztes Kind & Strafende Eltern)",
+        childhood: "In der Schulzeit wurde ich vor der ganzen Klasse ausgelacht, wenn ich an der Tafel etwas falsch gerechnet habe.",
+        coping: "sofortiger Rückzug, Kopf senken, bis zum Feierabend kein Wort mehr mit dem Team sprechen (Mauern)",
+        thought: "Ich bin inkompetent, alle denken jetzt schlecht über mich und ich werde meinen Job verlieren.",
+        reality: "Ein sachlicher Fehler in einem Entwurf bedeutet nicht, dass ich unfähig bin. Fast alle Berichte werden korrigiert. Mein Kollege wollte nur helfen.",
+        evidence: "Mein Chef hat mir letzte Woche für ein anderes Projekt gedankt; ich habe schon viele gute Aufgaben gelöst; niemand hat gelacht.",
+        oldBehavior: "mich tagelang kränken, innerlich kündigen und den Kollegen ignorieren",
+        newAction: "Tief ausatmen, die Kritik sachlich prüfen, mich für den Hinweis bedanken und den Gesunden Erwachsenen aktivieren."
+      };
+      setFormData(example);
+      showToast('Beispiel-Memo geladen!');
+    }
+
+    // If first time user, load example into storage
+    function ensureInitialMemos() {
+      const memos = getStoredMemos();
+      if (memos.length === 0) {
+        const initial = {
+          id: 'memo_initial_example',
+          title: "Kritik im Teammeeting",
+          date: new Date().toISOString().split('T')[0],
+          updatedAt: new Date().toISOString(),
+          emotion: "starke Scham, Angst vor Ablehnung, Kloß im Hals",
+          situation: "Mein Kollege hat im Meeting vor allen gesagt, dass mein Bericht noch einige Fehler enthält.",
+          schema: "Unzulänglichkeit / Scham (Modus: Verletztes Kind & Strafende Eltern)",
+          childhood: "In der Schulzeit wurde ich vor der ganzen Klasse ausgelacht, wenn ich an der Tafel etwas falsch gerechnet habe.",
+          coping: "sofortiger Rückzug, Kopf senken, bis zum Feierabend kein Wort mehr mit dem Team sprechen (Mauern)",
+          thought: "Ich bin inkompetent, alle denken jetzt schlecht über mich und ich werde meinen Job verlieren.",
+          reality: "Ein sachlicher Fehler in einem Entwurf bedeutet nicht, dass ich unfähig bin. Fast alle Berichte werden korrigiert. Mein Kollege wollte nur helfen.",
+          evidence: "Mein Chef hat mir letzte Woche für ein anderes Projekt gedankt; ich habe schon viele gute Aufgaben gelöst; niemand hat gelacht.",
+          oldBehavior: "mich tagelang kränken, innerlich kündigen und den Kollegen ignorieren",
+          newAction: "Tief ausatmen, die Kritik sachlich prüfen, mich für den Hinweis bedanken und den Gesunden Erwachsenen aktivieren."
+        };
+        saveStoredMemos([initial]);
+        setFormData(initial);
+      } else {
+        // Load the latest memo into edit view
+        setFormData(memos[0]);
+      }
+    }
+
+    // Formatting Helpers
+    function formatDateDE(dateStr) {
+      if (!dateStr) return '';
+      try {
+        const [year, month, day] = dateStr.split('-');
+        return `${day}.${month}.${year}`;
+      } catch (e) {
+        return dateStr;
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+
+    // Toast
+    let toastTimeout = null;
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      const iconEl = document.getElementById('toast-icon');
+
+      if (!toast) return;
+      msgEl.innerText = message;
+      iconEl.innerText = isSuccess ? '✓' : 'ℹ';
+      iconEl.className = isSuccess ? 'text-emerald-400 font-bold' : 'text-sky-400 font-bold';
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    // Service Worker Registration for PWA
+    function registerServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration skipped:', err);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

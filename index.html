@@ -1391,8 +1391,10 @@
     // Service Worker Registration for PWA
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
-          console.log('SW registration skipped:', err);
+        navigator.serviceWorker.register('sw.js').then((reg) => {
+          reg.update().catch(() => {});
+        }).catch(err => {
+          console.log('SW registration notice:', err);
         });
       }
     }

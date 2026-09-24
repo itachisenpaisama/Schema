@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Schema-Memo — Digitales Therapietagebuch</title>
 
-  <!-- PWA & Mobile Web App -->
+  <!-- PWA & Mobile Web App Manifest & Real PNG Icons -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f172a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="SchemaMemo">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Cpath d='M25 22h50a5 5 0 0 1 5 5v46a5 5 0 0 1-5 5H25a5 5 0 0 1-5-5V27a5 5 0 0 1 5-5z' fill='white' fill-opacity='0.95'/%3E%3Cpath d='M32 34h36M32 44h36M32 54h26' stroke='%232563eb' stroke-width='4' stroke-linecap='round' stroke-dasharray='1 6'/%3E%3Ccircle cx='70' cy='66' r='10' fill='%2310b981'/%3E%3Cpath d='M66 66l3 3 6-6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -164,6 +166,13 @@
 
       <!-- Header Quick Actions -->
       <div class="flex items-center gap-1.5">
+        <!-- PWA Install Button (Visible when installable) -->
+        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm shadow-emerald-500/20" title="Als echte App installieren">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span class="hidden sm:inline">App installieren</span>
+          <span class="sm:hidden">Installieren</span>
+        </button>
+
         <button type="button" onclick="createNewMemo()" class="px-2.5 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-semibold transition flex items-center gap-1" title="Neues Memo">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           <span class="hidden sm:inline">Neues Memo</span>
@@ -756,6 +765,33 @@
             <p class="text-slate-500 dark:text-slate-400">Die mitfühlende, vernünftige innere Instanz, die für dich sorgt.</p>
           </div>
         </div>
+      <!-- App Installation Guide for Android -->
+      <div class="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 rounded-2xl p-4 sm:p-5 border border-sky-200 dark:border-slate-700 shadow-sm space-y-2.5">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📲</span>
+          <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Als echte App auf dem Handy installieren</h3>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          Diese Web-App kann als <strong>vollwertige App (WebAPK)</strong> auf deinem Android-Gerät installiert werden. Sie läuft dann im Vollbild ohne Browser-Adressleiste, hat ein eigenes App-Icon im Startmenü und funktioniert 100% offline.
+        </p>
+        <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-950/60 p-3 rounded-xl border border-slate-200/60 dark:border-slate-800">
+          <div class="flex items-start gap-2">
+            <span class="font-bold text-sky-600 dark:text-sky-400">1.</span>
+            <span>In Google Chrome oben rechts auf das <strong>Dreipunkt-Menü (⋮)</strong> tippen.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="font-bold text-sky-600 dark:text-sky-400">2.</span>
+            <span>Auf <strong>„App installieren“</strong> (oder „Zum Startbildschirm hinzufügen“) tippen.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="font-bold text-sky-600 dark:text-sky-400">3.</span>
+            <span>Bestätigen. Android installiert die App direkt im App-Drawer (ohne störendes Browser-Symbol).</span>
+          </div>
+        </div>
+        <button type="button" onclick="triggerPwaInstall()" class="w-full py-2.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-[0.99] text-white font-bold text-xs shadow-md shadow-sky-500/20 transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>App-Installation anfordern</span>
+        </button>
       </div>
 
     </div>
@@ -1360,6 +1396,40 @@
         });
       }
     }
+
+    // Android WebAPK / PWA Installation Handling
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show install buttons
+      const installBtn = document.getElementById('btn-pwa-install');
+      if (installBtn) installBtn.classList.remove('hidden');
+    });
+
+    function triggerPwaInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('Installation gestartet...');
+          }
+          deferredPrompt = null;
+          const installBtn = document.getElementById('btn-pwa-install');
+          if (installBtn) installBtn.classList.add('hidden');
+        });
+      } else {
+        alert('Tippe in Chrome oben rechts auf das Dreipunkt-Menü (⋮) und wähle "App installieren" oder "Zum Startbildschirm hinzufügen". Android installiert die App dann als eigenständiges WebAPK!');
+      }
+    }
+
+    window.addEventListener('appinstalled', () => {
+      showToast('Erfolgreich als App installiert!');
+      const installBtn = document.getElementById('btn-pwa-install');
+      if (installBtn) installBtn.classList.add('hidden');
+      deferredPrompt = null;
+    });
   </script>
 </body>
 </html>

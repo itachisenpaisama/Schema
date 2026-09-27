@@ -126,6 +126,88 @@
       box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.3);
     }
 
+    /* Interactive Notebook Styling */
+    .notebook-container {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .dark .notebook-container {
+      background: #0f172a;
+      border-color: #1e293b;
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Notebook Margin Rule (authentic journal feel) */
+    .notebook-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 1.5rem;
+      width: 2px;
+      background: #fca5a5;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 10;
+    }
+    @media (max-width: 640px) {
+      .notebook-container::before {
+        left: 0.85rem;
+      }
+    }
+
+    /* Notebook Segments inside the large notebook */
+    .notebook-segment {
+      padding: 1.25rem 1.25rem 1.25rem 2.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      position: relative;
+      transition: background-color 0.2s ease;
+    }
+    .dark .notebook-segment {
+      border-bottom-color: #1e293b;
+    }
+    .notebook-segment:last-child {
+      border-bottom: none;
+    }
+    @media (max-width: 640px) {
+      .notebook-segment {
+        padding: 1rem 0.875rem 1rem 1.45rem;
+      }
+    }
+
+    /* Spacious Notebook Input & Textarea */
+    .notebook-input-area {
+      width: 100%;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 0.875rem;
+      padding: 0.875rem 1rem;
+      font-size: 0.925rem;
+      line-height: 1.6;
+      color: #0f172a;
+      transition: all 0.2s ease;
+    }
+    .dark .notebook-input-area {
+      background: #0b1120;
+      border-color: #334155;
+      color: #f1f5f9;
+    }
+    .notebook-input-area:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: #059669;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+    .dark .notebook-input-area:focus {
+      background: #0f172a;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    }
+
     /* Print Styles: Exact Din A4 Output */
     @media print {
       @page {
@@ -217,7 +299,7 @@
   <!-- ======================================================== -->
   <!-- MAIN APP CONTAINER                                        -->
   <!-- ======================================================== -->
-  <main class="max-w-4xl w-full mx-auto px-3 sm:px-6 py-4">
+  <main class="max-w-4xl w-full mx-auto px-3 sm:px-6 pt-4 pb-32 sm:pb-36">
 
     <!-- ======================================================== -->
     <!-- MODULE A: SCHEMA-MEMO VIEWS                               -->
@@ -804,180 +886,234 @@
     <!-- VIEW B1: TAGES-CHECK-IN (Mood & Journal Formular) -->
     <div id="view-diary-entry" class="hidden space-y-4">
 
-      <!-- Header Card with Date -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-        <div class="flex items-center justify-between gap-2">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
-            🌱 Daily Mood & Journal Check-in
-          </span>
-          <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition">
-            Leeren
-          </button>
+      <!-- TOP CONTROL CARD: DATE, MOOD (1-10) & EMOTION SELECTION -->
+      <section class="bg-white dark:bg-slate-900 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        
+        <!-- Header Row: Date & Reset -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 gap-3">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
+              🌱 Daily Check-in
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 hidden sm:inline">Stimmung & Gefühle erfassen</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-1">
+              <span class="text-xs text-slate-400">📅</span>
+              <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-transparent text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
+            </div>
+            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-xs font-semibold px-2.5 py-1 rounded-xl border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition">
+              Leeren
+            </button>
+          </div>
         </div>
 
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-            Datum für diesen Tagebucheintrag
-          </label>
-          <input type="date" id="input-diary-date" class="w-full sm:w-auto bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition font-medium">
-        </div>
-      </div>
+        <!-- 1. MOOD RATING (1 - 10) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>📊</span> Wie ging es dir heute? (Skala 1 - 10)
+            </h3>
+            <span id="diary-mood-badge" class="px-3 py-0.5 rounded-full text-xs font-bold transition shadow-xs">
+              8 / 10 • Gut
+            </span>
+          </div>
 
-      <!-- SECTION 1: MOOD SLIDER (1 - 10) -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-        <div class="flex items-center justify-between">
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>📊</span> Wie ging es dir heute? (Skala 1 - 10)
-          </h3>
-          <span id="diary-mood-badge" class="px-3 py-1 rounded-full text-xs font-bold transition shadow-sm">
-            8 / 10 • Gut
-          </span>
-        </div>
+          <!-- Visual Mood Banner -->
+          <div id="diary-mood-banner" class="rounded-2xl p-3.5 flex items-center justify-between transition-colors duration-200">
+            <div class="flex items-center gap-3">
+              <span id="diary-mood-emoji" class="text-3xl sm:text-4xl">☀️</span>
+              <div>
+                <div id="diary-mood-title" class="text-sm sm:text-base font-extrabold">Zufrieden & Gut</div>
+                <div id="diary-mood-desc" class="text-xs opacity-90">Der Tag war überwiegend stabil, angenehm und positiv.</div>
+              </div>
+            </div>
+            <div id="diary-mood-number" class="text-2xl sm:text-3xl font-black">8</div>
+          </div>
 
-        <!-- Big Visual Mood Banner -->
-        <div id="diary-mood-banner" class="rounded-xl p-3.5 flex items-center justify-between transition-colors duration-200">
-          <div class="flex items-center gap-3">
-            <span id="diary-mood-emoji" class="text-3xl sm:text-4xl">☀️</span>
-            <div>
-              <div id="diary-mood-title" class="text-sm sm:text-base font-extrabold">Zufrieden & Gut</div>
-              <div id="diary-mood-desc" class="text-xs opacity-90">Der Tag war überwiegend stabil, angenehm und positiv.</div>
+          <!-- Slider & Buttons -->
+          <div class="space-y-2 pt-0.5">
+            <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+            
+            <div class="grid grid-cols-10 gap-1 pt-0.5">
+              <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
+              <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
+              <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
+              <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
+              <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
+              <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
+              <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
+              <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
+              <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
+              <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
             </div>
           </div>
-          <div id="diary-mood-number" class="text-2xl sm:text-3xl font-black">8</div>
         </div>
 
-        <!-- Interactive 1-10 Slider & Buttons -->
-        <div class="space-y-2 pt-1">
-          <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-600">
-          
-          <!-- Discrete 1-10 Pill Buttons -->
-          <div class="grid grid-cols-10 gap-1 pt-1">
-            <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
-            <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
-            <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
-            <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
-            <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
-            <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
-            <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
-            <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
-            <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
-            <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
+        <!-- 2. EMOTIONEN CHIPS SELECTOR -->
+        <div class="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>🎭</span> Welche Emotionen hast du heute gefühlt?
+            </h3>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Tippe deine Gefühle an. Im Notizbuch unten wird dafür automatisch ein eigener Reflexions-Abschnitt erstellt.</p>
+          </div>
+
+          <!-- Pleasant Emotions -->
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm & Stärkend:</span>
+            <div class="flex flex-wrap gap-1.5" id="pleasant-emotions-chips">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Challenging Emotions -->
+          <div class="space-y-1.5 pt-0.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Belastend & Fordernd:</span>
+            <div class="flex flex-wrap gap-1.5" id="challenging-emotions-chips">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Add Custom Emotion Input -->
+          <div class="flex items-center gap-2 pt-1">
+            <input type="text" id="input-custom-emotion" placeholder="Eigene Emotion ergänzen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <button type="button" onclick="addCustomEmotionFromInput()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl transition">
+              + Hinzufügen
+            </button>
           </div>
         </div>
+
       </section>
 
-      <!-- SECTION 2: EMOTIONEN DES TAGES -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-        <div>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🎭</span> Welche Emotionen hast du heute gefühlt?
-          </h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tippe deine Gefühle an. Für jede ausgewählte Emotion wird automatisch ein Notiz-Abschnitt erstellt.</p>
-        </div>
+      <!-- ======================================================== -->
+      <!-- UNIFIED INTERACTIVE NOTEBOOK CONTAINER (GROSSES NOTIZBUCH) -->
+      <!-- ======================================================== -->
+      <section class="notebook-container">
 
-        <!-- Pleasant Emotions -->
-        <div class="space-y-1.5">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm & Kraftvoll:</span>
-          <div class="flex flex-wrap gap-1.5" id="pleasant-emotions-chips">
-            <!-- Dynamically rendered or static with click handler -->
+        <!-- Notebook Binder Header -->
+        <div class="bg-slate-100/90 dark:bg-slate-800/90 px-4 sm:px-6 py-3 border-b border-slate-200 dark:border-slate-700/80 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl">📓</span>
+            <div>
+              <h2 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                Mein Tages-Journal
+              </h2>
+              <div id="diary-notebook-date-label" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                Heute
+              </div>
+            </div>
+          </div>
+
+          <div id="diary-notebook-mood-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 shadow-xs">
+            <span id="diary-notebook-mood-emoji">☀️</span>
+            <span id="diary-notebook-mood-text">8 / 10 • Gut</span>
           </div>
         </div>
 
-        <!-- Challenging Emotions -->
-        <div class="space-y-1.5 pt-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Belastend & Fordernd:</span>
-          <div class="flex flex-wrap gap-1.5" id="challenging-emotions-chips">
-            <!-- Dynamically rendered -->
+        <!-- NOTEBOOK SEGMENT 1: KEY HIGHLIGHTS -->
+        <div class="notebook-segment space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg text-amber-500">⭐</span>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                Key Highlights & Schlüsselmomente
+              </h3>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full">Hauptfokus</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Was waren heute die wichtigsten Schlüsselmomente, Erlebnisse, Wendepunkte oder Erkenntnisse deines Tages?
+          </p>
+          <textarea id="input-diary-highlights" rows="4" placeholder="z. B. Ein sehr inspirierendes Gespräch geführt; nachmittags draußen in der Sonne Energie getankt; ein wichtiges Problem ruhig gelöst..." class="notebook-input-area min-h-[110px]"></textarea>
+        </div>
+
+        <!-- NOTEBOOK SEGMENT 2: EMOTIONS REFLECTION -->
+        <div class="notebook-segment space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg text-sky-500">💡</span>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                Reflexion deiner Emotionen
+              </h3>
+            </div>
+            <span id="emotion-notes-count-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">0 ausgewählt</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Vertiefe die ausgewählten Gefühle: Was hat sie ausgelöst und wie bist du damit umgegangen?
+          </p>
+          <div id="diary-emotion-notes-container" class="space-y-3 pt-1">
+            <!-- Dynamically injected emotion note cards -->
           </div>
         </div>
 
-        <!-- Add Custom Emotion Input -->
-        <div class="flex items-center gap-2 pt-1">
-          <input type="text" id="input-custom-emotion" placeholder="Eigene Emotion ergänzen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-          <button type="button" onclick="addCustomEmotionFromInput()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl transition">
-            + Hinzufügen
+        <!-- NOTEBOOK SEGMENT 3: 3 POSITIVE THINGS -->
+        <div class="notebook-segment space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg text-emerald-500">🌱</span>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                3 Positive Dinge des Tages
+              </h3>
+            </div>
+            <span id="positive-things-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+              0 / 3 notiert
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Dankbarkeit stärkt nachweislich die Psyche: Halte mindestens drei positive Momente oder Gesten fest.
+          </p>
+          <div class="space-y-2.5 pt-1" id="positive-things-inputs-container">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">1</span>
+              <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein ruhiger, wärmender Morgenkaffee..." class="notebook-input-area py-2.5">
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">2</span>
+              <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein unerwartetes Lächeln oder schönes Feedback..." class="notebook-input-area py-2.5">
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">3</span>
+              <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Zeit genommen für mich und durchgeatmet..." class="notebook-input-area py-2.5">
+            </div>
+          </div>
+          <button type="button" onclick="addAnotherPositiveThingInput()" class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1.5 pt-1">
+            <span class="text-sm font-bold">+</span>
+            <span>Weiteren positiven Moment ergänzen</span>
           </button>
         </div>
-      </section>
 
-      <!-- SECTION 3: AUTOMATED EMOTION NOTES SEGMENTS -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>💡</span> Notizen zu deinen ausgewählten Emotionen
-          </h3>
-          <span id="emotion-notes-count-badge" class="text-xs text-slate-500">0 ausgewählt</span>
-        </div>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Hier kannst du direkt zu den einzelnen Gefühlen reflektieren, was der Auslöser war oder wie du damit umgegangen bist.</p>
-
-        <!-- Dynamically injected note segments -->
-        <div id="diary-emotion-notes-container" class="space-y-3 pt-1">
-          <!-- Injected via JavaScript -->
-        </div>
-      </section>
-
-      <!-- SECTION 4: KEY HIGHLIGHTS (Hauptmomente des Tages) -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
-        <div class="flex items-center gap-2">
-          <span class="text-amber-500 text-lg">⭐</span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-            Key Highlights (Hauptmomente des Tages)
-          </h3>
-        </div>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Was waren die wichtigsten Schlüsselmomente, Erlebnisse oder Erkenntnisse deines Tages?</p>
-        <textarea id="input-diary-highlights" rows="2" placeholder="z. B. Tolles Feedback im Meeting; Nachmittag entspannt spazieren gewesen; gutes Gespräch mit Freund..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
-      </section>
-
-      <!-- SECTION 5: 3 POSITIVE DINGE (Dankbarkeit) -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="text-emerald-500 text-lg">🌱</span>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-              3 Positive Dinge des Tages
-            </h3>
+        <!-- NOTEBOOK SEGMENT 4: FREE THOUGHTS / NOTES -->
+        <div class="notebook-segment space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg text-indigo-500">📝</span>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                Freie Tagebuch-Gedanken & Notizen
+              </h3>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full">Freies Schreiben</span>
           </div>
-          <span id="positive-things-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-            0 / 3 notiert
-          </span>
-        </div>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Trainiere deinen Blick für das Gute: Notiere mindestens drei erfreuliche Momente oder Dinge, für die du dankbar bist.</p>
-
-        <div class="space-y-2" id="positive-things-inputs-container">
-          <div class="flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
-            <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
-            <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
-            <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich von der To-Do-Liste gestrichen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Dein geschützter Raum: Schreibe ungefiltert auf, was dich beschäftigt hat, Sorgen, Learnings oder Wünsche für morgen.
+          </p>
+          <textarea id="input-diary-notes" rows="6" placeholder="Hier ist dein freier Platz im Notizbuch. Lass deine Gedanken einfach fließen..." class="notebook-input-area min-h-[160px]"></textarea>
         </div>
 
-        <button type="button" onclick="addAnotherPositiveThingInput()" class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1 pt-1">
-          <span>+ Weiteren positiven Moment ergänzen</span>
-        </button>
-      </section>
+        <!-- NOTEBOOK FOOTER: SAVE BUTTON -->
+        <div class="p-4 sm:p-5 bg-slate-50/80 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span>100% lokal & privat auf deinem Gerät gesichert</span>
+          </div>
+          <button type="button" onclick="saveCurrentDiaryEntry()" class="w-full sm:w-auto py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+            <span>Eintrag im Tagebuch speichern</span>
+          </button>
+        </div>
 
-      <!-- SECTION 6: FREIE NOTIZEN / TAGEBUCH -->
-      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
-        <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📝</span> Zusätzliche Gedanken & Tagebuch-Notizen
-        </h3>
-        <textarea id="input-diary-notes" rows="3" placeholder="Alles, was dir heute sonst noch auf dem Herzen liegt..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition leading-relaxed"></textarea>
       </section>
-
-      <!-- Save Button -->
-      <div class="pt-2">
-        <button type="button" onclick="saveCurrentDiaryEntry()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-          <span>Eintrag im Tagebuch speichern</span>
-        </button>
-      </div>
 
     </div>
 
@@ -1228,6 +1364,8 @@
 
       const diaryDate = document.getElementById('input-diary-date');
       if (diaryDate && !diaryDate.value) diaryDate.value = today;
+
+      updateDiaryDateDisplay();
     }
 
     // ==========================================
@@ -1833,15 +1971,38 @@
       renderEmotionNoteSegments();
     }
 
-    // Dynamic Emotion Note Blocks
+    // Update Date Display in Notebook Header
+    function updateDiaryDateDisplay() {
+      const input = document.getElementById('input-diary-date');
+      const label = document.getElementById('diary-notebook-date-label');
+      if (!input || !label) return;
+      const val = input.value;
+      if (!val) {
+        label.innerText = 'Heute';
+        return;
+      }
+      try {
+        const parts = val.split('-');
+        if (parts.length === 3) {
+          const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+          label.innerText = d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        }
+      } catch(e) {
+        label.innerText = val;
+      }
+    }
+
+    // Dynamic Emotion Note Blocks inside the Notebook
     function renderEmotionNoteSegments() {
       const container = document.getElementById('diary-emotion-notes-container');
       if (!container) return;
 
       if (selectedDiaryEmotions.size === 0) {
         container.innerHTML = `
-          <div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 text-center">
-            Wähle oben Emotionen aus, um automatische Reflexions-Segmente dafür freizuschalten.
+          <div class="p-5 sm:p-6 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 text-center space-y-1.5">
+            <span class="text-2xl">🎭</span>
+            <p class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">Noch keine Emotionen für heute gewählt</p>
+            <p class="text-[11px] text-slate-500 max-w-sm mx-auto">Wähle oben in der Schnellauswahl deine Gefühle an. Für jede ausgewählte Emotion öffnet sich hier im Notizbuch automatisch ein eigener Reflexions-Abschnitt.</p>
           </div>
         `;
         return;
@@ -1849,16 +2010,18 @@
 
       container.innerHTML = Array.from(selectedDiaryEmotions).map(emo => {
         const val = diaryEmotionNotes[emo] || '';
+        const isPleasant = PLEASANT_EMOTIONS.includes(emo);
         return `
-          <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-200 dark:border-slate-700/80 space-y-1.5 transition">
+          <div class="bg-slate-50/90 dark:bg-slate-800/60 p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 transition">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                Gedanken & Auslöser zu: <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">${escapeHtml(emo)}</span>
+              <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full ${isPleasant ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
+                Gedanken & Auslöser zu: <span class="${isPleasant ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'} font-extrabold text-sm sm:text-base">${escapeHtml(emo)}</span>
               </span>
-              <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-[10px] text-slate-400 hover:text-rose-500 transition">Entfernen ×</button>
+              <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-xs text-slate-400 hover:text-rose-500 transition px-2 py-0.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40">× Entfernen</button>
             </div>
-            <textarea oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" rows="2" placeholder="Was hat dieses Gefühl ausgelöst? Wie hast du es erlebt?..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">${escapeHtml(val)}</textarea>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">Was genau hat dieses Gefühl ausgelöst? Wie hast du es körperlich und mental wahrgenommen?</p>
+            <textarea oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" rows="3" placeholder="Schreibe deine Gedanken zu '${escapeHtml(emo)}' hier auf..." class="notebook-input-area">${escapeHtml(val)}</textarea>
           </div>
         `;
       }).join('');
@@ -1893,19 +2056,25 @@
       const numEl = document.getElementById('diary-mood-number');
 
       badge.innerText = `${val} / 10 • ${conf.title.split('/')[0].trim()}`;
-      banner.className = `rounded-xl p-3.5 flex items-center justify-between transition-colors duration-200 ${conf.bg}`;
+      banner.className = `rounded-2xl p-3.5 flex items-center justify-between transition-colors duration-200 ${conf.bg}`;
       emojiEl.innerText = conf.emoji;
       titleEl.innerText = conf.title;
       descEl.innerText = conf.desc;
       numEl.innerText = val;
 
+      // Also update Notebook header mood tag
+      const nbMoodEmoji = document.getElementById('diary-notebook-mood-emoji');
+      const nbMoodText = document.getElementById('diary-notebook-mood-text');
+      if (nbMoodEmoji) nbMoodEmoji.innerText = conf.emoji;
+      if (nbMoodText) nbMoodText.innerText = `${val} / 10 • ${conf.title.split('/')[0].trim()}`;
+
       // Update pill buttons active state
       document.querySelectorAll('.mood-num-btn').forEach(btn => {
         const score = parseInt(btn.getAttribute('data-score'));
         if (score === val) {
-          btn.className = 'mood-num-btn py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm ring-2 ring-emerald-500 transition';
+          btn.className = 'mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-500 transition';
         } else {
-          btn.className = 'mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 text-slate-700 dark:text-slate-300 transition';
+          btn.className = 'mood-num-btn py-1.5 sm:py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 text-slate-700 dark:text-slate-300 transition';
         }
       });
     }
@@ -1929,10 +2098,10 @@
       const container = document.getElementById('positive-things-inputs-container');
       const count = container.querySelectorAll('input').length + 1;
       const row = document.createElement('div');
-      row.className = 'flex items-center gap-2';
+      row.className = 'flex items-center gap-2.5';
       row.innerHTML = `
-        <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">${count}</span>
-        <input type="text" oninput="updatePositiveThingsCounter()" placeholder="Ein weiterer schöner Moment..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">${count}</span>
+        <input type="text" oninput="updatePositiveThingsCounter()" placeholder="Ein weiterer positiver Moment..." class="notebook-input-area py-2.5">
       `;
       container.appendChild(row);
       row.querySelector('input').focus();
@@ -1966,6 +2135,7 @@
     function setDiaryFormData(data) {
       currentDiaryEntryId = data.id || null;
       document.getElementById('input-diary-date').value = data.date || new Date().toISOString().split('T')[0];
+      updateDiaryDateDisplay();
       updateMoodScore(data.mood || 8);
 
       selectedDiaryEmotions = new Set(data.emotions || []);
@@ -1980,27 +2150,27 @@
       const container = document.getElementById('positive-things-inputs-container');
       const pts = data.positiveThings || [];
       container.innerHTML = `
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
-          <input type="text" id="input-pos-1" value="${escapeHtml(pts[0] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">1</span>
+          <input type="text" id="input-pos-1" value="${escapeHtml(pts[0] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein ruhiger, wärmender Morgenkaffee..." class="notebook-input-area py-2.5">
         </div>
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
-          <input type="text" id="input-pos-2" value="${escapeHtml(pts[1] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">2</span>
+          <input type="text" id="input-pos-2" value="${escapeHtml(pts[1] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein unerwartetes Lächeln oder schönes Feedback..." class="notebook-input-area py-2.5">
         </div>
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
-          <input type="text" id="input-pos-3" value="${escapeHtml(pts[2] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich gelöst..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">3</span>
+          <input type="text" id="input-pos-3" value="${escapeHtml(pts[2] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Zeit genommen für mich und durchgeatmet..." class="notebook-input-area py-2.5">
         </div>
       `;
 
       if (pts.length > 3) {
         for (let i = 3; i < pts.length; i++) {
           const row = document.createElement('div');
-          row.className = 'flex items-center gap-2';
+          row.className = 'flex items-center gap-2.5';
           row.innerHTML = `
-            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">${i+1}</span>
-            <input type="text" value="${escapeHtml(pts[i])}" oninput="updatePositiveThingsCounter()" class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">${i+1}</span>
+            <input type="text" value="${escapeHtml(pts[i])}" oninput="updatePositiveThingsCounter()" class="notebook-input-area py-2.5">
           `;
           container.appendChild(row);
         }
@@ -2026,6 +2196,7 @@
     function createNewDiaryEntry() {
       currentDiaryEntryId = null;
       initDefaultDates();
+      updateDiaryDateDisplay();
       updateMoodScore(8);
       selectedDiaryEmotions.clear();
       diaryEmotionNotes = {};
@@ -2036,17 +2207,17 @@
 
       const container = document.getElementById('positive-things-inputs-container');
       container.innerHTML = `
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
-          <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">1</span>
+          <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein ruhiger, wärmender Morgenkaffee..." class="notebook-input-area py-2.5">
         </div>
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
-          <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">2</span>
+          <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein unerwartetes Lächeln oder schönes Feedback..." class="notebook-input-area py-2.5">
         </div>
-        <div class="flex items-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
-          <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich gelöst..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">3</span>
+          <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Zeit genommen für mich und durchgeatmet..." class="notebook-input-area py-2.5">
         </div>
       `;
       updatePositiveThingsCounter();

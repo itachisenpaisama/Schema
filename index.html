@@ -977,15 +977,13 @@
             </div>
           </div>
 
-          <!-- Add Custom Emotion Input - Unified capsule -->
-          <div class="pt-1">
-            <div class="flex items-center bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-1 focus-within:ring-2 focus-within:ring-emerald-500 transition">
-              <span class="pl-3 text-xs text-slate-400">✏️</span>
-              <input type="text" id="input-custom-emotion" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomEmotionFromInput();}" placeholder="Eigene Emotion ergänzen..." class="flex-1 bg-transparent px-2.5 py-2 text-xs text-slate-900 dark:text-white focus:outline-none">
-              <button type="button" onclick="addCustomEmotionFromInput()" class="px-4 py-2 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 font-bold text-xs rounded-xl transition shadow-xs shrink-0">
-                + Hinzufügen
-              </button>
-            </div>
+          <!-- Add Custom Emotion Input -->
+          <div class="flex items-center gap-1.5 pt-1 w-full max-w-full">
+            <input type="text" id="input-custom-emotion" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomEmotionFromInput();}" placeholder="Eigene Emotion..." class="min-w-0 flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-full px-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <button type="button" onclick="addCustomEmotionFromInput()" class="shrink-0 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition flex items-center gap-1">
+              <span>+</span>
+              <span>Hinzufügen</span>
+            </button>
           </div>
         </div>
 
@@ -2797,7 +2795,7 @@
     // Service Worker Registration for PWA & Instant Update Handling
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=9').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=10').then((reg) => {
           // Check for background updates immediately
           reg.update().catch(() => {});
 

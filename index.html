@@ -274,6 +274,11 @@
           <span id="header-btn-new-text" class="hidden sm:inline">+ Neu</span>
         </button>
 
+        <!-- Quick Update / Cache Clear Button -->
+        <button type="button" onclick="forceAppUpdate()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </button>
+
         <!-- Dark Mode Toggle -->
         <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Design umschalten">
           <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -874,6 +879,21 @@
         <button type="button" onclick="triggerPwaInstall()" class="w-full py-2.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-[0.99] text-white font-bold text-xs shadow-md shadow-sky-500/20 transition flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span>App-Installation anfordern</span>
+        </button>
+      </div>
+
+      <!-- App Updates & Cache -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🔄</span>
+          <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">App aktualisieren / Cache erneuern</h3>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          Falls dein Smartphone noch eine ältere Version anzeigt oder neue Funktionen nicht sofort sichtbar sind:
+        </p>
+        <button type="button" onclick="forceAppUpdate()" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 active:scale-[0.99] text-slate-800 dark:text-slate-200 font-bold text-xs transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>App jetzt aktualisieren & Cache leeren</span>
         </button>
       </div>
 
@@ -2775,15 +2795,58 @@
       }, 2200);
     }
 
-    // Service Worker Registration for PWA
+    // Service Worker Registration for PWA & Instant Update Handling
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=8').then((reg) => {
+          // Check for background updates immediately
           reg.update().catch(() => {});
+
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  showToast('App aktualisiert! Lade neu...');
+                  setTimeout(() => window.location.reload(), 1000);
+                }
+              });
+            }
+          });
         }).catch(err => {
           console.log('SW registration notice:', err);
         });
+
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
       }
+    }
+
+    // Force clear caches and reload latest app version
+    async function forceAppUpdate() {
+      showToast('Cache wird bereinigt...');
+      try {
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (let reg of regs) {
+            await reg.unregister();
+          }
+        }
+      } catch (e) {
+        console.error('Update cleanup error:', e);
+      }
+      setTimeout(() => {
+        window.location.href = window.location.pathname + '?v=' + Date.now();
+      }, 500);
     }
 
     // Android WebAPK / PWA Installation Handling

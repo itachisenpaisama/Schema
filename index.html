@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Schema-Memo — Digitales Therapietagebuch</title>
+  <title>Schema-Memo & Daily Diary — Digitales Therapietagebuch</title>
 
   <!-- PWA & Mobile Web App Manifest & Real PNG Icons -->
   <link rel="manifest" href="manifest.json">
@@ -19,7 +19,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Ink Look) -->
+  <!-- Google Fonts: Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Look) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -59,7 +59,6 @@
 
     body {
       overflow-x: hidden;
-      /* Leave room for bottom navigation bar on mobile + safe area */
       padding-bottom: calc(76px + env(safe-area-inset-bottom, 12px));
     }
 
@@ -90,7 +89,7 @@
       position: relative;
     }
 
-    /* Authentic Dotted Line Rule */
+    /* Dotted Line Rule */
     .dotted-rule {
       border-bottom: 1.5px dotted #64748b;
       min-height: 26px;
@@ -114,6 +113,19 @@
       background-color: rgba(14, 165, 233, 0.2);
     }
 
+    /* Diary Book Entry Styling */
+    .diary-page-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .dark .diary-page-card {
+      background: #0f172a;
+      border-color: #1e293b;
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.3);
+    }
+
     /* Print Styles: Exact Din A4 Output */
     @media print {
       @page {
@@ -129,11 +141,12 @@
       .no-print {
         display: none !important;
       }
-      .sheet-paper {
+      .sheet-paper, .diary-page-card {
         box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 16px !important;
+        margin-bottom: 24px !important;
+        page-break-inside: avoid;
         width: 100% !important;
         max-width: 100% !important;
       }
@@ -146,36 +159,37 @@
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-200">
 
   <!-- ======================================================== -->
-  <!-- TOP APP HEADER (Mobile-friendly, single-row, compact)     -->
+  <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
   <!-- ======================================================== -->
   <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-3.5 sm:px-6 py-2.5">
     <div class="max-w-4xl mx-auto flex items-center justify-between">
       
       <!-- Brand Logo & Title -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchView('edit')">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20">
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="handleBrandClick()">
+        <div id="brand-logo-icon" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
         </div>
         <div>
-          <h1 class="text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
-          <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Nach J. Young 1996/2002 • Schematherapie</p>
+          <h1 id="app-main-title" class="text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
+          <p id="app-main-subtitle" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Nach J. Young • Schematherapie</p>
         </div>
       </div>
 
       <!-- Header Quick Actions -->
       <div class="flex items-center gap-1.5">
-        <!-- PWA Install Button (Visible when installable) -->
+        <!-- PWA Install Button -->
         <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm shadow-emerald-500/20" title="Als echte App installieren">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span class="hidden sm:inline">App installieren</span>
           <span class="sm:hidden">Installieren</span>
         </button>
 
-        <button type="button" onclick="createNewMemo()" class="px-2.5 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-semibold transition flex items-center gap-1" title="Neues Memo">
+        <!-- New Item Quick Button -->
+        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2.5 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-semibold transition flex items-center gap-1" title="Neu anlegen">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          <span class="hidden sm:inline">Neues Memo</span>
+          <span id="header-btn-new-text" class="hidden sm:inline">+ Neu</span>
         </button>
 
         <!-- Dark Mode Toggle -->
@@ -186,6 +200,18 @@
       </div>
 
     </div>
+
+    <!-- PRIMARY MODULE SWITCHER: Schema-Memo vs. Daily Mood Diary -->
+    <div class="max-w-4xl mx-auto pt-2.5 flex items-center justify-center">
+      <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 w-full max-w-sm shadow-inner">
+        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+          <span>🧠 Schema-Memo</span>
+        </button>
+        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          <span>📖 Mood & Tagebuch</span>
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- ======================================================== -->
@@ -194,8 +220,10 @@
   <main class="max-w-4xl w-full mx-auto px-3 sm:px-6 py-4">
 
     <!-- ======================================================== -->
-    <!-- VIEW 1: EINGABE (Mobile-First Formular)                   -->
+    <!-- MODULE A: SCHEMA-MEMO VIEWS                               -->
     <!-- ======================================================== -->
+
+    <!-- VIEW A1: SCHEMA EINGABE (Formular) -->
     <div id="view-edit" class="space-y-4">
 
       <!-- Top Banner / Title & Date -->
@@ -243,13 +271,11 @@
           </h3>
         </div>
 
-        <!-- Field 1.1: Emotion -->
         <div class="space-y-1.5">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Im Augenblick fühle ich <span class="text-sky-600 dark:text-sky-400 font-bold">(Emotion)</span>
           </label>
           
-          <!-- Chips -->
           <div class="flex flex-wrap gap-1.5 py-0.5">
             <button type="button" onclick="appendTag('input-emotion', 'Wut')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Wut</button>
             <button type="button" onclick="appendTag('input-emotion', 'Traurigkeit')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Traurigkeit</button>
@@ -264,7 +290,6 @@
           <textarea id="input-emotion" rows="2" placeholder="z. B. tiefe Traurigkeit, Angst vor Ablehnung und Hilflosigkeit..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 1.2: Auslösesituation -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Weil <span class="text-sky-600 dark:text-sky-400 font-bold">(aktuelle Auslösesituation)</span>
@@ -284,7 +309,6 @@
           </h3>
         </div>
 
-        <!-- Field 2.1: Schema / Modus -->
         <div class="space-y-1.5">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Ich weiß, dass das wahrscheinlich mein <span class="text-indigo-600 dark:text-indigo-400 font-bold">(Schema/Modus)</span> ... ist,
@@ -301,7 +325,6 @@
           <textarea id="input-schema" rows="2" placeholder="z. B. Verlassenheits-Schema und der Modus des verletzten Kindes..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 2.2: Kindheitssituation -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             das/den ich durch <span class="text-indigo-600 dark:text-indigo-400 font-bold">(Kindheitssituation)</span> ... erlernt habe.
@@ -309,7 +332,6 @@
           <textarea id="input-childhood" rows="2" placeholder="z. B. frühere Erfahrungen, in denen Eltern emotional distanziert waren..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 2.3: Altes Bewältigungsverhalten -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Diese Aktivierung löst bei mir <span class="text-indigo-600 dark:text-indigo-400 font-bold">(altes Bewältigungsverhalten)</span> ... aus.
@@ -335,7 +357,6 @@
           </h3>
         </div>
 
-        <!-- Field 3.1: Negativer Gedanke -->
         <div class="space-y-1.5">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Obwohl ich glaube <span class="text-amber-600 dark:text-amber-400 font-bold">(negativer Gedanke/ Innere-Eltern-Stimme)</span>,
@@ -343,7 +364,6 @@
           <textarea id="input-thought" rows="2" placeholder="z. B. dass ich nichts wert bin und niemand mich wirklich mag..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 3.2: Rationale Sichtweise -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Ist die Realität, dass <span class="text-amber-600 dark:text-amber-400 font-bold">(rationale Sichtweise/ Gesunder Erwachsener)</span>
@@ -351,7 +371,6 @@
           <textarea id="input-reality" rows="2" placeholder="z. B. eine kurze Nachricht nicht bedeutet, dass kein Interesse da ist..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 3.3: Beweise -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Beweise <span class="text-amber-600 dark:text-amber-400 font-bold">(konkrete Beispiele)</span>
@@ -371,7 +390,6 @@
           </h3>
         </div>
 
-        <!-- Field 4.1: Altes Bewältigungsverhalten -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
             <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
@@ -384,7 +402,6 @@
           <textarea id="input-old-behavior" rows="2" placeholder="z. B. mich tagelang zurückgezogen habe..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition leading-relaxed"></textarea>
         </div>
 
-        <!-- Field 4.2: Alternative Lösungen -->
         <div class="space-y-1.5 pt-1">
           <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
             Könnte ich stattdessen <span class="text-emerald-600 dark:text-emerald-400 font-bold">(alternative Lösungen)</span>
@@ -414,9 +431,7 @@
 
     </div>
 
-    <!-- ======================================================== -->
-    <!-- VIEW 2: BLATTANSICHT (Responsive + Din A4 Print)          -->
-    <!-- ======================================================== -->
+    <!-- VIEW A2: SCHEMA BLATTANSICHT (Original-Vorlage) -->
     <div id="view-sheet" class="hidden space-y-4">
 
       <!-- Sheet Toolbar -->
@@ -446,7 +461,7 @@
         </div>
       </div>
 
-      <!-- THE SHEET: Fluid, Zero-Overflow, 100% Mobile Ready -->
+      <!-- THE SHEET -->
       <div class="w-full">
         <div id="worksheet-paper" class="sheet-paper w-full rounded-2xl p-4 sm:p-10 md:p-12 text-black font-sheet transition-all">
 
@@ -465,7 +480,6 @@
               1. Benennen des aktualisierten Gefühls
             </h2>
 
-            <!-- Field 1.1: Emotion -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Im Augenblick fühle ich (Emotion)
@@ -478,7 +492,6 @@
               </div>
             </div>
 
-            <!-- Field 1.2: Auslösesituation -->
             <div>
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Weil (aktuelle Auslösesituation)
@@ -498,7 +511,6 @@
               2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
             </h2>
 
-            <!-- Field 2.1: Schema/Modus ... ist, -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Ich weiß, dass das wahrscheinlich mein (Schema/Modus)
@@ -514,7 +526,6 @@
               </div>
             </div>
 
-            <!-- Field 2.2: Kindheitssituation ... erlernt habe. -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 das/den ich durch (Kindheitssituation)
@@ -533,7 +544,6 @@
               </div>
             </div>
 
-            <!-- Field 2.3: Altes Bewältigungsverhalten ... aus. -->
             <div>
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Diese Aktivierung löst bei mir (altes Bewältigungsverhalten)
@@ -556,7 +566,6 @@
               3. Anerkennen der Dysfunktionalität / Realitätsprüfung
             </h2>
 
-            <!-- Field 3.1: Negativer Gedanke -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Obwohl ich glaube (negativer Gedanke/ Innere-Eltern-Stimme),
@@ -569,7 +578,6 @@
               </div>
             </div>
 
-            <!-- Field 3.2: Rationale Sichtweise -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Ist die Realität, dass (rationale Sichtweise/ Gesunder Erwachsener)
@@ -582,7 +590,6 @@
               </div>
             </div>
 
-            <!-- Field 3.3: Beweise -->
             <div>
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Beweise (konkrete Beispiele)
@@ -605,7 +612,6 @@
               4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
             </h2>
 
-            <!-- Field 4.1: Altes Verhalten -->
             <div class="mb-3">
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Obwohl ich bisher immer (altes Bewältigungsverhalten)
@@ -618,7 +624,6 @@
               </div>
             </div>
 
-            <!-- Field 4.2: Alternative Lösungen -->
             <div>
               <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
                 Könnte ich stattdessen (alternative Lösungen)
@@ -645,9 +650,7 @@
 
     </div>
 
-    <!-- ======================================================== -->
-    <!-- VIEW 3: ARCHIV / GESPEICHERTE MEMOS                       -->
-    <!-- ======================================================== -->
+    <!-- VIEW A3: SCHEMA ARCHIV -->
     <div id="view-archive" class="hidden space-y-4">
 
       <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -673,7 +676,7 @@
       <!-- Search Input -->
       <div class="relative">
         <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input type="text" id="archive-search" oninput="renderArchiveList()" placeholder="Memos durchsuchen..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+        <input type="text" id="archive-search" oninput="renderArchiveList()" placeholder="Schema-Memos durchsuchen..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
       </div>
 
       <!-- Archive Cards List -->
@@ -683,9 +686,7 @@
 
     </div>
 
-    <!-- ======================================================== -->
-    <!-- VIEW 4: SPICKZETTEL / HILFEN (Schema-Guide)              -->
-    <!-- ======================================================== -->
+    <!-- VIEW A4: SCHEMA LEXIKON & HILFE -->
     <div id="view-help" class="hidden space-y-4">
 
       <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1.5">
@@ -700,7 +701,6 @@
 
       <!-- 4 Steps Explanation -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        
         <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 space-y-1.5">
           <div class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold text-xs flex items-center justify-center">1</span>
@@ -740,7 +740,6 @@
             Wähle bewusst eine neue, heilsame Handlung (durchatmen, Grenze setzen, ehrlich sprechen, Selbstfürsorge).
           </p>
         </div>
-
       </div>
 
       <!-- Quick Reference Schemata & Modi -->
@@ -765,6 +764,8 @@
             <p class="text-slate-500 dark:text-slate-400">Die mitfühlende, vernünftige innere Instanz, die für dich sorgt.</p>
           </div>
         </div>
+      </div>
+
       <!-- App Installation Guide for Android -->
       <div class="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 rounded-2xl p-4 sm:p-5 border border-sky-200 dark:border-slate-700 shadow-sm space-y-2.5">
         <div class="flex items-center gap-2">
@@ -796,54 +797,342 @@
 
     </div>
 
+    <!-- ======================================================== -->
+    <!-- MODULE B: DAILY MOOD TRACKER & DIARY VIEWS                -->
+    <!-- ======================================================== -->
+
+    <!-- VIEW B1: TAGES-CHECK-IN (Mood & Journal Formular) -->
+    <div id="view-diary-entry" class="hidden space-y-4">
+
+      <!-- Header Card with Date -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
+            🌱 Daily Mood & Journal Check-in
+          </span>
+          <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition">
+            Leeren
+          </button>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+            Datum für diesen Tagebucheintrag
+          </label>
+          <input type="date" id="input-diary-date" class="w-full sm:w-auto bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition font-medium">
+        </div>
+      </div>
+
+      <!-- SECTION 1: MOOD SLIDER (1 - 10) -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📊</span> Wie ging es dir heute? (Skala 1 - 10)
+          </h3>
+          <span id="diary-mood-badge" class="px-3 py-1 rounded-full text-xs font-bold transition shadow-sm">
+            8 / 10 • Gut
+          </span>
+        </div>
+
+        <!-- Big Visual Mood Banner -->
+        <div id="diary-mood-banner" class="rounded-xl p-3.5 flex items-center justify-between transition-colors duration-200">
+          <div class="flex items-center gap-3">
+            <span id="diary-mood-emoji" class="text-3xl sm:text-4xl">☀️</span>
+            <div>
+              <div id="diary-mood-title" class="text-sm sm:text-base font-extrabold">Zufrieden & Gut</div>
+              <div id="diary-mood-desc" class="text-xs opacity-90">Der Tag war überwiegend stabil, angenehm und positiv.</div>
+            </div>
+          </div>
+          <div id="diary-mood-number" class="text-2xl sm:text-3xl font-black">8</div>
+        </div>
+
+        <!-- Interactive 1-10 Slider & Buttons -->
+        <div class="space-y-2 pt-1">
+          <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+          
+          <!-- Discrete 1-10 Pill Buttons -->
+          <div class="grid grid-cols-10 gap-1 pt-1">
+            <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
+            <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
+            <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
+            <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
+            <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
+            <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
+            <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
+            <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
+            <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
+            <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EMOTIONEN DES TAGES -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
+        <div>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🎭</span> Welche Emotionen hast du heute gefühlt?
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tippe deine Gefühle an. Für jede ausgewählte Emotion wird automatisch ein Notiz-Abschnitt erstellt.</p>
+        </div>
+
+        <!-- Pleasant Emotions -->
+        <div class="space-y-1.5">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm & Kraftvoll:</span>
+          <div class="flex flex-wrap gap-1.5" id="pleasant-emotions-chips">
+            <!-- Dynamically rendered or static with click handler -->
+          </div>
+        </div>
+
+        <!-- Challenging Emotions -->
+        <div class="space-y-1.5 pt-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Belastend & Fordernd:</span>
+          <div class="flex flex-wrap gap-1.5" id="challenging-emotions-chips">
+            <!-- Dynamically rendered -->
+          </div>
+        </div>
+
+        <!-- Add Custom Emotion Input -->
+        <div class="flex items-center gap-2 pt-1">
+          <input type="text" id="input-custom-emotion" placeholder="Eigene Emotion ergänzen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          <button type="button" onclick="addCustomEmotionFromInput()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl transition">
+            + Hinzufügen
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 3: AUTOMATED EMOTION NOTES SEGMENTS -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>💡</span> Notizen zu deinen ausgewählten Emotionen
+          </h3>
+          <span id="emotion-notes-count-badge" class="text-xs text-slate-500">0 ausgewählt</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Hier kannst du direkt zu den einzelnen Gefühlen reflektieren, was der Auslöser war oder wie du damit umgegangen bist.</p>
+
+        <!-- Dynamically injected note segments -->
+        <div id="diary-emotion-notes-container" class="space-y-3 pt-1">
+          <!-- Injected via JavaScript -->
+        </div>
+      </section>
+
+      <!-- SECTION 4: KEY HIGHLIGHTS (Hauptmomente des Tages) -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
+        <div class="flex items-center gap-2">
+          <span class="text-amber-500 text-lg">⭐</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+            Key Highlights (Hauptmomente des Tages)
+          </h3>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Was waren die wichtigsten Schlüsselmomente, Erlebnisse oder Erkenntnisse deines Tages?</p>
+        <textarea id="input-diary-highlights" rows="2" placeholder="z. B. Tolles Feedback im Meeting; Nachmittag entspannt spazieren gewesen; gutes Gespräch mit Freund..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition leading-relaxed"></textarea>
+      </section>
+
+      <!-- SECTION 5: 3 POSITIVE DINGE (Dankbarkeit) -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-500 text-lg">🌱</span>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              3 Positive Dinge des Tages
+            </h3>
+          </div>
+          <span id="positive-things-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+            0 / 3 notiert
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Trainiere deinen Blick für das Gute: Notiere mindestens drei erfreuliche Momente oder Dinge, für die du dankbar bist.</p>
+
+        <div class="space-y-2" id="positive-things-inputs-container">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
+            <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
+            <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
+            <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich von der To-Do-Liste gestrichen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+        </div>
+
+        <button type="button" onclick="addAnotherPositiveThingInput()" class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1 pt-1">
+          <span>+ Weiteren positiven Moment ergänzen</span>
+        </button>
+      </section>
+
+      <!-- SECTION 6: FREIE NOTIZEN / TAGEBUCH -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
+        <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>📝</span> Zusätzliche Gedanken & Tagebuch-Notizen
+        </h3>
+        <textarea id="input-diary-notes" rows="3" placeholder="Alles, was dir heute sonst noch auf dem Herzen liegt..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition leading-relaxed"></textarea>
+      </section>
+
+      <!-- Save Button -->
+      <div class="pt-2">
+        <button type="button" onclick="saveCurrentDiaryEntry()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+          <span>Eintrag im Tagebuch speichern</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- VIEW B2: TAGEBUCH-CHRONIK (Journal & Ordnerstruktur) -->
+    <div id="view-diary-list" class="hidden space-y-4">
+
+      <!-- Header & Folder Structure Filter -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">📖 Mein Tagebuch & Chronik</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Alle Tagebucheinträge chronologisch in Buchform.</p>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button onclick="printDiaryJournal()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <span>Buch drucken / PDF</span>
+            </button>
+            <button onclick="exportDiaryJSON()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
+              <span>Backup</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ordnerstruktur nach Monaten -->
+        <div class="pt-1">
+          <div class="flex items-center gap-2 overflow-x-auto pb-1" id="diary-folders-container">
+            <!-- Dynamically populated month folders -->
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative pt-1">
+          <svg class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="diary-search-input" oninput="renderDiaryEntriesList()" placeholder="Tagebuch durchsuchen (Gedanken, Gefühle, Highlights)..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+      </div>
+
+      <!-- Journal Entries Container -->
+      <div id="diary-entries-container" class="space-y-4">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+
+    <!-- VIEW B3: STATISTIKEN & TENDENZEN -->
+    <div id="view-diary-stats" class="hidden space-y-4">
+
+      <!-- Header & Timeframe Filter -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">📊 Stimmungs-Statistik & Tendenzen</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Verfolge deine emotionalen Entwicklungen und Muster im Zeitverlauf.</p>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button onclick="printStatsSummary()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <span>Exportieren / PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Time Range Selector -->
+        <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-full sm:w-auto self-start">
+          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-sm" data-days="7">7 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="30">30 Tage</button>
+          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="month">Dieser Monat</button>
+          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="all">Gesamt</button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+          <span class="text-slate-500 text-[11px] font-semibold uppercase tracking-wider">Ø Stimmung</span>
+          <div id="stats-kpi-avg" class="text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
+          <div id="stats-kpi-trend" class="text-[10px] text-slate-400">Wird berechnet...</div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+          <span class="text-slate-500 text-[11px] font-semibold uppercase tracking-wider">Tagebuch-Tage</span>
+          <div id="stats-kpi-count" class="text-2xl font-black text-sky-600 dark:text-sky-400">0</div>
+          <div class="text-[10px] text-slate-400">Einträge im Zeitraum</div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+          <span class="text-slate-500 text-[11px] font-semibold uppercase tracking-wider">Positives notiert</span>
+          <div id="stats-kpi-pos" class="text-2xl font-black text-amber-500">0</div>
+          <div class="text-[10px] text-slate-400">Gute Momente gesamt</div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+          <span class="text-slate-500 text-[11px] font-semibold uppercase tracking-wider">Aktuelle Serie</span>
+          <div id="stats-kpi-streak" class="text-2xl font-black text-indigo-600 dark:text-indigo-400">0</div>
+          <div class="text-[10px] text-slate-400">Tage in Folge</div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE MOOD TIMELINE CHART -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📈</span> Stimmungsverlauf über die Zeit
+          </h3>
+          <span class="text-[11px] text-slate-500 font-medium">Skala 1 - 10</span>
+        </div>
+
+        <div class="w-full overflow-x-auto pb-2" id="stats-chart-wrapper">
+          <div id="stats-chart-container" class="min-w-[320px] h-[190px] w-full flex items-center justify-center">
+            <!-- Rendered via SVG -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TWO COLUMNS: DAY OF WEEK TENDENCY & TOP EMOTIONS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        
+        <!-- Day of Week Analysis (Mo - So) -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>🗓️</span> Tendenzen nach Wochentag
+            </h4>
+          </div>
+          <p class="text-[11px] text-slate-500">An welchen Wochentagen geht es dir im Schnitt am besten?</p>
+          <div id="stats-weekday-bars" class="space-y-2 pt-1">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Top Emotions Frequency -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span>🎭</span> Häufigste Emotionen
+          </h4>
+          <p class="text-[11px] text-slate-500">Welche Gefühle haben dich im gewählten Zeitraum am meisten begleitet?</p>
+          <div id="stats-top-emotions" class="space-y-2 pt-1">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
 
   <!-- ======================================================== -->
-  <!-- NATIVE ANDROID BOTTOM NAVIGATION BAR                      -->
+  <!-- NATIVE ANDROID BOTTOM NAVIGATION BAR (DYNAMIC)            -->
   <!-- ======================================================== -->
-  <nav class="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 py-1 shadow-lg shadow-black/10">
-    
-    <!-- Tab 1: Eingabe -->
-    <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
-      <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-      </div>
-      <span class="text-[11px] font-semibold tracking-tight">Eingabe</span>
-    </button>
-
-    <!-- Tab 2: Blattansicht -->
-    <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
-      <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-      </div>
-      <span class="text-[11px] font-semibold tracking-tight">Blatt</span>
-    </button>
-
-    <!-- Tab 3: Memos / Archiv -->
-    <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
-      <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-        </svg>
-        <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-sky-600 text-white text-[9px] font-bold flex items-center justify-center">0</span>
-      </div>
-      <span class="text-[11px] font-semibold tracking-tight">Memos</span>
-    </button>
-
-    <!-- Tab 4: Hilfe -->
-    <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
-      <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-      </div>
-      <span class="text-[11px] font-semibold tracking-tight">Hilfe</span>
-    </button>
-
+  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 py-1 shadow-lg shadow-black/10">
+    <!-- Populated dynamically via switchAppMode() -->
   </nav>
 
   <!-- Toast Notification -->
@@ -854,17 +1143,53 @@
 
   <!-- Application Logic -->
   <script>
-    // State management
-    const STORAGE_KEY = 'schema_therapy_memos_v1';
+    // ==========================================
+    // STATE MANAGEMENT
+    // ==========================================
+    const STORAGE_KEY_MEMOS = 'schema_therapy_memos_v1';
+    const STORAGE_KEY_DIARY = 'schema_daily_diary_v1';
+    const STORAGE_KEY_MODE = 'schema_app_active_mode';
+
+    let currentAppMode = 'schema'; // 'schema' | 'diary'
     let currentMemoId = null;
     let isBlankMode = false;
+    let currentDiaryEntryId = null;
+    let activeStatsDays = 7;
+    let activeDiaryFolder = 'all';
 
-    // Load initial data
+    // Standard Emotion Lists
+    const PLEASANT_EMOTIONS = [
+      'Freude', 'Dankbarkeit', 'Ruhe', 'Zufriedenheit', 'Energie', 
+      'Stolz', 'Hoffnung', 'Erleichterung', 'Liebe', 'Gelassenheit', 
+      'Verbundenheit', 'Zuversicht'
+    ];
+
+    const CHALLENGING_EMOTIONS = [
+      'Überforderung', 'Erschöpfung', 'Angst', 'Wut', 'Trauer', 
+      'Frustration', 'Einsamkeit', 'Unruhe', 'Zweifel', 'Schuld', 
+      'Scham', 'Stress'
+    ];
+
+    // Selected emotions in current diary draft
+    let selectedDiaryEmotions = new Set();
+    let diaryEmotionNotes = {};
+
+    // ==========================================
+    // INITIALIZATION
+    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       initTheme();
-      initDefaultDate();
+      initDefaultDates();
       ensureInitialMemos();
+      ensureInitialDiary();
+      initEmotionChips();
+      
+      // Load saved mode or default to schema
+      const savedMode = localStorage.getItem(STORAGE_KEY_MODE) || 'schema';
+      switchAppMode(savedMode, false);
+
       renderArchiveList();
+      renderDiaryEntriesList();
       registerServiceWorker();
     });
 
@@ -893,21 +1218,139 @@
         document.getElementById('theme-icon-sun')?.classList.remove('hidden');
         document.getElementById('theme-icon-moon')?.classList.add('hidden');
       }
+      if (currentAppMode === 'diary') renderStatsView();
     }
 
-    // Default Date to Today
-    function initDefaultDate() {
+    function initDefaultDates() {
       const today = new Date().toISOString().split('T')[0];
-      const dateEl = document.getElementById('input-date');
-      if (dateEl && !dateEl.value) {
-        dateEl.value = today;
-      }
+      const memoDate = document.getElementById('input-date');
+      if (memoDate && !memoDate.value) memoDate.value = today;
+
+      const diaryDate = document.getElementById('input-diary-date');
+      if (diaryDate && !diaryDate.value) diaryDate.value = today;
     }
 
-    // Switch between views: 'edit', 'sheet', 'archive', 'help'
+    // ==========================================
+    // APP MODE SWITCHER (Schema vs Diary)
+    // ==========================================
+    function switchAppMode(mode, doScroll = true) {
+      currentAppMode = mode;
+      localStorage.setItem(STORAGE_KEY_MODE, mode);
+
+      const btnSchema = document.getElementById('mode-btn-schema');
+      const btnDiary = document.getElementById('mode-btn-diary');
+      const titleEl = document.getElementById('app-main-title');
+      const subTitleEl = document.getElementById('app-main-subtitle');
+      const headerNewBtnText = document.getElementById('header-btn-new-text');
+      const logoIcon = document.getElementById('brand-logo-icon');
+
+      if (mode === 'schema') {
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        titleEl.innerText = 'Schema-Memo';
+        subTitleEl.innerText = 'Nach J. Young • Schematherapie';
+        headerNewBtnText.innerText = '+ Memo';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
+
+        renderBottomNavForSchema();
+        switchView('edit');
+      } else {
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-300';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        titleEl.innerText = 'Daily Diary';
+        subTitleEl.innerText = 'Mood Tracker & Journal';
+        headerNewBtnText.innerText = '+ Check-in';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
+
+        renderBottomNavForDiary();
+        switchView('diary-entry');
+      }
+
+      if (doScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleBrandClick() {
+      if (currentAppMode === 'schema') switchView('edit');
+      else switchView('diary-entry');
+    }
+
+    function handleHeaderNewClick() {
+      if (currentAppMode === 'schema') createNewMemo();
+      else createNewDiaryEntry();
+    }
+
+    // ==========================================
+    // DYNAMIC BOTTOM NAVIGATION BARS
+    // ==========================================
+    function renderBottomNavForSchema() {
+      const nav = document.getElementById('app-bottom-nav');
+      const memos = getStoredMemos();
+      nav.innerHTML = `
+        <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Eingabe</span>
+        </button>
+
+        <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Blatt</span>
+        </button>
+
+        <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-sky-600 text-white text-[9px] font-bold flex items-center justify-center">${memos.length}</span>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Memos</span>
+        </button>
+
+        <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Hilfe</span>
+        </button>
+      `;
+    }
+
+    function renderBottomNavForDiary() {
+      const nav = document.getElementById('app-bottom-nav');
+      const diary = getStoredDiaryEntries();
+      nav.innerHTML = `
+        <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Check-in</span>
+        </button>
+
+        <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-600 text-white text-[9px] font-bold flex items-center justify-center">${diary.length}</span>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Tagebuch</span>
+        </button>
+
+        <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+          <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-tight">Statistik</span>
+        </button>
+      `;
+    }
+
+    // ==========================================
+    // VIEW SWITCHER
+    // ==========================================
     function switchView(viewName) {
-      const views = ['edit', 'sheet', 'archive', 'help'];
-      views.forEach(v => {
+      const allViews = ['edit', 'sheet', 'archive', 'help', 'diary-entry', 'diary-list', 'diary-stats'];
+      allViews.forEach(v => {
         const el = document.getElementById('view-' + v);
         const btn = document.getElementById('nav-btn-' + v);
         if (el) el.classList.add('hidden');
@@ -923,19 +1366,23 @@
         populateSheetView();
       } else if (viewName === 'archive') {
         renderArchiveList();
+      } else if (viewName === 'diary-list') {
+        renderDiaryEntriesList();
+      } else if (viewName === 'diary-stats') {
+        renderStatsView();
       }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Quick helper buttons
+    // ==========================================
+    // MODULE A: SCHEMA-MEMO LOGIC
+    // ==========================================
     function appendTag(elementId, tagText) {
       const el = document.getElementById(elementId);
       if (!el) return;
-      if (el.value.trim().length === 0) {
-        el.value = tagText;
-      } else {
-        el.value += ', ' + tagText;
-      }
+      if (el.value.trim().length === 0) el.value = tagText;
+      else el.value += ', ' + tagText;
       el.focus();
     }
 
@@ -956,7 +1403,6 @@
       }
     }
 
-    // Collect data from form
     function getFormData() {
       return {
         id: currentMemoId || ('memo_' + Date.now()),
@@ -976,7 +1422,6 @@
       };
     }
 
-    // Populate form with data
     function setFormData(data) {
       currentMemoId = data.id || null;
       document.getElementById('input-title').value = data.title || '';
@@ -993,17 +1438,13 @@
       document.getElementById('input-new-action').value = data.newAction || '';
     }
 
-    // Save Memo to LocalStorage
     function saveCurrentMemo() {
       const data = getFormData();
       const memos = getStoredMemos();
 
       const existingIndex = memos.findIndex(m => m.id === data.id);
-      if (existingIndex >= 0) {
-        memos[existingIndex] = data;
-      } else {
-        memos.unshift(data);
-      }
+      if (existingIndex >= 0) memos[existingIndex] = data;
+      else memos.unshift(data);
 
       saveStoredMemos(memos);
       currentMemoId = data.id;
@@ -1015,15 +1456,10 @@
       switchView('sheet');
     }
 
-    // Split text into line 1, line 2, line 3 based on container width
     function splitTextForWorksheet(text, line1Limit = 42, line2Limit = 60) {
-      if (!text || text.trim().length === 0) {
-        return { l1: '', l2: '', l3: '' };
-      }
+      if (!text || text.trim().length === 0) return { l1: '', l2: '', l3: '' };
       text = text.trim();
-      if (text.length <= line1Limit) {
-        return { l1: text, l2: '', l3: '' };
-      }
+      if (text.length <= line1Limit) return { l1: text, l2: '', l3: '' };
 
       const words = text.split(/\s+/);
       let l1 = '', l2 = '', l3 = '';
@@ -1037,22 +1473,18 @@
           l3 = (l3 + ' ' + word).trim();
         }
       }
-
       return { l1, l2, l3 };
     }
 
-    // Populate Sheet View
     function populateSheetView() {
       const data = isBlankMode ? {
         title: '', date: '', emotion: '', situation: '', schema: '', childhood: '',
         coping: '', thought: '', reality: '', evidence: '', oldBehavior: '', newAction: ''
       } : getFormData();
 
-      // Meta
       document.getElementById('sheet-meta-title').innerText = data.title ? '— ' + data.title : '';
       document.getElementById('sheet-meta-date').innerText = data.date ? 'Datum: ' + formatDateDE(data.date) : '';
 
-      // Helper
       function renderField(l1Id, l2Id, l3Id, text) {
         const split = splitTextForWorksheet(text);
         const el1 = document.getElementById(l1Id);
@@ -1064,46 +1496,32 @@
         if (el3) el3.innerText = split.l3;
       }
 
-      // Step 1
       renderField('sheet-val-emotion', 'sheet-val-emotion-extra', null, data.emotion);
       renderField('sheet-val-situation', 'sheet-val-situation-extra', null, data.situation);
-
-      // Step 2
       renderField('sheet-val-schema', 'sheet-val-schema-extra', null, data.schema);
       renderField('sheet-val-childhood', 'sheet-val-childhood-extra', 'sheet-val-childhood-extra2', data.childhood);
       renderField('sheet-val-coping', 'sheet-val-coping-extra', null, data.coping);
-
-      // Step 3
       renderField('sheet-val-thought', 'sheet-val-thought-extra', null, data.thought);
       renderField('sheet-val-reality', 'sheet-val-reality-extra', null, data.reality);
       renderField('sheet-val-evidence', 'sheet-val-evidence-extra', 'sheet-val-evidence-extra2', data.evidence);
-
-      // Step 4
       renderField('sheet-val-old-behavior', 'sheet-val-old-behavior-extra', null, data.oldBehavior);
       renderField('sheet-val-new-action', 'sheet-val-new-action-extra', 'sheet-val-new-action-extra2', data.newAction);
 
-      // Re-apply selected typography
       const fontSelect = document.getElementById('font-style-select');
       if (fontSelect) changeSheetFont(fontSelect.value);
     }
 
-    // Change sheet typography (Kalam, Caveat, Clean Sans)
     function changeSheetFont(style) {
       const filledSpans = document.querySelectorAll('.sheet-user-content');
       filledSpans.forEach(el => {
         el.classList.remove('font-handKalam', 'font-handCaveat', 'font-sheet', 'text-blue-900', 'text-slate-900', 'text-sm', 'text-base', 'text-lg', 'text-xl', 'font-bold', 'font-semibold', 'font-medium');
 
-        if (style === 'kalam-blue') {
-          el.classList.add('font-handKalam', 'text-blue-900', 'text-base', 'sm:text-lg', 'font-bold');
-        } else if (style === 'caveat-black') {
-          el.classList.add('font-handCaveat', 'text-slate-900', 'text-lg', 'sm:text-xl', 'font-bold');
-        } else if (style === 'clean-sans') {
-          el.classList.add('font-sheet', 'text-slate-900', 'text-xs', 'sm:text-sm', 'font-semibold');
-        }
+        if (style === 'kalam-blue') el.classList.add('font-handKalam', 'text-blue-900', 'text-base', 'sm:text-lg', 'font-bold');
+        else if (style === 'caveat-black') el.classList.add('font-handCaveat', 'text-slate-900', 'text-lg', 'sm:text-xl', 'font-bold');
+        else if (style === 'clean-sans') el.classList.add('font-sheet', 'text-slate-900', 'text-xs', 'sm:text-sm', 'font-semibold');
       });
     }
 
-    // Toggle Blank Template
     function toggleBlankMode() {
       isBlankMode = !isBlankMode;
       const btn = document.getElementById('btn-toggle-blank');
@@ -1117,41 +1535,31 @@
       populateSheetView();
     }
 
-    // Print
     function printSheet() {
       window.print();
     }
 
-    // Local Storage helpers
     function getStoredMemos() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY_MEMOS);
         return raw ? JSON.parse(raw) : [];
       } catch (e) {
-        console.error('Error reading localStorage', e);
         return [];
       }
     }
 
     function saveStoredMemos(memos) {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
-        updateBadge(memos.length);
-      } catch (e) {
-        console.error('Error writing localStorage', e);
-      }
+        localStorage.setItem(STORAGE_KEY_MEMOS, JSON.stringify(memos));
+        const badge = document.getElementById('archive-count-badge');
+        if (badge) badge.innerText = memos.length;
+      } catch (e) {}
     }
 
-    function updateBadge(count) {
-      const badge = document.getElementById('archive-count-badge');
-      if (badge) badge.innerText = count;
-    }
-
-    // Create New Memo
     function createNewMemo() {
       currentMemoId = null;
       document.getElementById('input-title').value = '';
-      initDefaultDate();
+      initDefaultDates();
       document.getElementById('input-emotion').value = '';
       document.getElementById('input-situation').value = '';
       document.getElementById('input-schema').value = '';
@@ -1167,15 +1575,13 @@
     }
 
     function resetFormWithConfirm() {
-      if (confirm('Möchtest du die Eingaben wirklich zurücksetzen?')) {
-        createNewMemo();
-      }
+      if (confirm('Möchtest du die Eingaben wirklich zurücksetzen?')) createNewMemo();
     }
 
-    // Render Saved Archive List
     function renderArchiveList() {
       const memos = getStoredMemos();
-      updateBadge(memos.length);
+      const badge = document.getElementById('archive-count-badge');
+      if (badge) badge.innerText = memos.length;
 
       const searchTerm = (document.getElementById('archive-search')?.value || '').toLowerCase().trim();
       const container = document.getElementById('archive-list-container');
@@ -1218,16 +1624,15 @@
               </p>
             </div>
 
-            <!-- Action buttons -->
             <div class="flex items-center gap-1 flex-shrink-0">
               <button onclick="openMemoSheet('${memo.id}')" class="px-2.5 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 text-xs font-bold transition">
                 Blatt
               </button>
               <button onclick="editMemo('${memo.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="Bearbeiten">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
               </button>
               <button onclick="deleteMemo('${memo.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="Löschen">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
               </button>
             </div>
           </div>
@@ -1268,7 +1673,6 @@
       showToast('Gelöscht');
     }
 
-    // Backup & Restore
     function exportMemosJSON() {
       const memos = getStoredMemos();
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(memos, null, 2));
@@ -1293,9 +1697,7 @@
             const current = getStoredMemos();
             const existingIds = new Set(current.map(m => m.id));
             imported.forEach(item => {
-              if (item.id && !existingIds.has(item.id)) {
-                current.push(item);
-              }
+              if (item.id && !existingIds.has(item.id)) current.push(item);
             });
             saveStoredMemos(current);
             renderArchiveList();
@@ -1311,7 +1713,6 @@
       event.target.value = '';
     }
 
-    // Default Pre-filled Therapy Example
     function loadExampleMemo() {
       const example = {
         title: "Kritik im Teammeeting",
@@ -1336,13 +1737,829 @@
       if (memos.length === 0) {
         loadExampleMemo();
         saveCurrentMemo();
-        switchView('edit');
       } else {
         setFormData(memos[0]);
       }
     }
 
-    // Formatting Helpers
+    // ==========================================
+    // MODULE B: DAILY DIARY & MOOD TRACKER LOGIC
+    // ==========================================
+    function getStoredDiaryEntries() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_DIARY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveStoredDiaryEntries(entries) {
+      try {
+        // Sort descending by date
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        localStorage.setItem(STORAGE_KEY_DIARY, JSON.stringify(entries));
+        const badge = document.getElementById('diary-count-badge');
+        if (badge) badge.innerText = entries.length;
+      } catch (e) {}
+    }
+
+    // Initialize Emotion Selection Chips
+    function initEmotionChips() {
+      const pContainer = document.getElementById('pleasant-emotions-chips');
+      const cContainer = document.getElementById('challenging-emotions-chips');
+      if (!pContainer || !cContainer) return;
+
+      pContainer.innerHTML = PLEASANT_EMOTIONS.map(emo => `
+        <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" id="emo-btn-${escapeHtml(emo)}" class="emo-chip text-xs px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 transition flex items-center gap-1">
+          <span>${escapeHtml(emo)}</span>
+        </button>
+      `).join('');
+
+      cContainer.innerHTML = CHALLENGING_EMOTIONS.map(emo => `
+        <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" id="emo-btn-${escapeHtml(emo)}" class="emo-chip text-xs px-2.5 py-1 rounded-full border border-amber-200 dark:border-amber-900/60 bg-amber-50/50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300 hover:bg-amber-100 transition flex items-center gap-1">
+          <span>${escapeHtml(emo)}</span>
+        </button>
+      `).join('');
+    }
+
+    // Toggle Emotion On/Off
+    function toggleDiaryEmotion(emotion) {
+      if (selectedDiaryEmotions.has(emotion)) {
+        selectedDiaryEmotions.delete(emotion);
+      } else {
+        selectedDiaryEmotions.add(emotion);
+      }
+      updateEmotionChipStyles();
+      renderEmotionNoteSegments();
+    }
+
+    function updateEmotionChipStyles() {
+      document.querySelectorAll('.emo-chip').forEach(btn => {
+        const text = btn.innerText.trim();
+        if (selectedDiaryEmotions.has(text)) {
+          btn.classList.add('ring-2', 'ring-emerald-500', 'font-bold', 'bg-emerald-600', 'text-white');
+          btn.classList.remove('bg-emerald-50/50', 'bg-amber-50/50', 'text-emerald-800', 'text-amber-800');
+        } else {
+          btn.classList.remove('ring-2', 'ring-emerald-500', 'font-bold', 'bg-emerald-600', 'text-white');
+          if (PLEASANT_EMOTIONS.includes(text)) {
+            btn.classList.add('bg-emerald-50/50', 'text-emerald-800');
+          } else {
+            btn.classList.add('bg-amber-50/50', 'text-amber-800');
+          }
+        }
+      });
+      const badge = document.getElementById('emotion-notes-count-badge');
+      if (badge) badge.innerText = `${selectedDiaryEmotions.size} ausgewählt`;
+    }
+
+    function addCustomEmotionFromInput() {
+      const input = document.getElementById('input-custom-emotion');
+      const val = input.value.trim();
+      if (!val) return;
+      selectedDiaryEmotions.add(val);
+      input.value = '';
+      
+      // Add custom chip to container
+      const pContainer = document.getElementById('pleasant-emotions-chips');
+      const newBtn = document.createElement('button');
+      newBtn.type = 'button';
+      newBtn.className = 'emo-chip text-xs px-2.5 py-1 rounded-full border border-sky-300 bg-sky-600 text-white font-bold ring-2 ring-sky-500 transition flex items-center gap-1';
+      newBtn.innerText = val;
+      newBtn.onclick = () => toggleDiaryEmotion(val);
+      pContainer.appendChild(newBtn);
+
+      updateEmotionChipStyles();
+      renderEmotionNoteSegments();
+    }
+
+    // Dynamic Emotion Note Blocks
+    function renderEmotionNoteSegments() {
+      const container = document.getElementById('diary-emotion-notes-container');
+      if (!container) return;
+
+      if (selectedDiaryEmotions.size === 0) {
+        container.innerHTML = `
+          <div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 text-center">
+            Wähle oben Emotionen aus, um automatische Reflexions-Segmente dafür freizuschalten.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = Array.from(selectedDiaryEmotions).map(emo => {
+        const val = diaryEmotionNotes[emo] || '';
+        return `
+          <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-200 dark:border-slate-700/80 space-y-1.5 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Gedanken & Auslöser zu: <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">${escapeHtml(emo)}</span>
+              </span>
+              <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-[10px] text-slate-400 hover:text-rose-500 transition">Entfernen ×</button>
+            </div>
+            <textarea oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" rows="2" placeholder="Was hat dieses Gefühl ausgelöst? Wie hast du es erlebt?..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">${escapeHtml(val)}</textarea>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Mood Score Scale Config (1 to 10)
+    const MOOD_CONFIG = {
+      1: { emoji: '🌧️', title: 'Sehr schwierig / Tiefpunkt', desc: 'Extrem belastend, hilflos oder verzweifelt.', bg: 'bg-rose-100 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200' },
+      2: { emoji: '🌧️', title: 'Schwer / Niedergeschlagen', desc: 'Große Anspannung, Trauer oder Erschöpfung.', bg: 'bg-rose-100 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200' },
+      3: { emoji: '⛅', title: 'Gedrückt / Angespannt', desc: 'Überwiegend fordernd und unruhig.', bg: 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200' },
+      4: { emoji: '⛅', title: 'Eher verhalten', desc: 'Einige Herausforderungen, zäh oder matt.', bg: 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200' },
+      5: { emoji: '🌤️', title: 'Neutral / Okay', desc: 'Weder besonders gut noch schlecht. Stabil.', bg: 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200' },
+      6: { emoji: '🌤️', title: 'Leicht positiv', desc: 'Ruhig, im Fluss, solide bewältigt.', bg: 'bg-sky-100 dark:bg-sky-950/50 text-sky-900 dark:text-sky-200' },
+      7: { emoji: '☀️', title: 'Gut / Erfreulich', desc: 'Angenehm, konstruktiv und ausgeglichen.', bg: 'bg-emerald-100 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200' },
+      8: { emoji: '☀️', title: 'Sehr gut / Zufrieden', desc: 'Klare Momente, Energie, gute Gespräche.', bg: 'bg-emerald-100 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200' },
+      9: { emoji: '🌟', title: 'Großartig / Begeistert', desc: 'Voller Lebensfreude, Tatkraft und Leichtigkeit.', bg: 'bg-indigo-100 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-200' },
+      10: { emoji: '🌟', title: 'Beflügelt / Erfüllt', desc: 'Ein außergewöhnlich glücklicher, bereichernder Tag.', bg: 'bg-indigo-100 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-200' }
+    };
+
+    function updateMoodScore(val) {
+      val = parseInt(val) || 5;
+      val = Math.max(1, Math.min(10, val));
+
+      document.getElementById('diary-mood-slider').value = val;
+      const conf = MOOD_CONFIG[val];
+
+      const badge = document.getElementById('diary-mood-badge');
+      const banner = document.getElementById('diary-mood-banner');
+      const emojiEl = document.getElementById('diary-mood-emoji');
+      const titleEl = document.getElementById('diary-mood-title');
+      const descEl = document.getElementById('diary-mood-desc');
+      const numEl = document.getElementById('diary-mood-number');
+
+      badge.innerText = `${val} / 10 • ${conf.title.split('/')[0].trim()}`;
+      banner.className = `rounded-xl p-3.5 flex items-center justify-between transition-colors duration-200 ${conf.bg}`;
+      emojiEl.innerText = conf.emoji;
+      titleEl.innerText = conf.title;
+      descEl.innerText = conf.desc;
+      numEl.innerText = val;
+
+      // Update pill buttons active state
+      document.querySelectorAll('.mood-num-btn').forEach(btn => {
+        const score = parseInt(btn.getAttribute('data-score'));
+        if (score === val) {
+          btn.className = 'mood-num-btn py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm ring-2 ring-emerald-500 transition';
+        } else {
+          btn.className = 'mood-num-btn py-2 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 text-slate-700 dark:text-slate-300 transition';
+        }
+      });
+    }
+
+    function updatePositiveThingsCounter() {
+      const inputs = document.querySelectorAll('#positive-things-inputs-container input');
+      let filled = 0;
+      inputs.forEach(inp => {
+        if (inp.value.trim().length > 0) filled++;
+      });
+      const counterEl = document.getElementById('positive-things-counter');
+      if (counterEl) {
+        counterEl.innerText = `${filled} / 3 notiert ${filled >= 3 ? '⭐' : ''}`;
+        counterEl.className = filled >= 3 
+          ? 'text-xs font-extrabold text-emerald-600 dark:text-emerald-400' 
+          : 'text-xs font-semibold text-slate-500';
+      }
+    }
+
+    function addAnotherPositiveThingInput() {
+      const container = document.getElementById('positive-things-inputs-container');
+      const count = container.querySelectorAll('input').length + 1;
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-2';
+      row.innerHTML = `
+        <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">${count}</span>
+        <input type="text" oninput="updatePositiveThingsCounter()" placeholder="Ein weiterer schöner Moment..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+      `;
+      container.appendChild(row);
+      row.querySelector('input').focus();
+    }
+
+    // Collect & Save Diary Form Data
+    function getDiaryFormData() {
+      const moodVal = parseInt(document.getElementById('diary-mood-slider').value) || 8;
+      const dateVal = document.getElementById('input-diary-date').value || new Date().toISOString().split('T')[0];
+
+      // Positive things
+      const posInputs = document.querySelectorAll('#positive-things-inputs-container input');
+      const positiveThings = [];
+      posInputs.forEach(inp => {
+        if (inp.value.trim()) positiveThings.push(inp.value.trim());
+      });
+
+      return {
+        id: currentDiaryEntryId || ('diary_' + Date.now()),
+        date: dateVal,
+        mood: moodVal,
+        emotions: Array.from(selectedDiaryEmotions),
+        emotionNotes: { ...diaryEmotionNotes },
+        highlights: document.getElementById('input-diary-highlights').value.trim(),
+        positiveThings: positiveThings,
+        notes: document.getElementById('input-diary-notes').value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+    }
+
+    function setDiaryFormData(data) {
+      currentDiaryEntryId = data.id || null;
+      document.getElementById('input-diary-date').value = data.date || new Date().toISOString().split('T')[0];
+      updateMoodScore(data.mood || 8);
+
+      selectedDiaryEmotions = new Set(data.emotions || []);
+      diaryEmotionNotes = { ...(data.emotionNotes || {}) };
+      updateEmotionChipStyles();
+      renderEmotionNoteSegments();
+
+      document.getElementById('input-diary-highlights').value = data.highlights || '';
+      document.getElementById('input-diary-notes').value = data.notes || '';
+
+      // Positive things
+      const container = document.getElementById('positive-things-inputs-container');
+      const pts = data.positiveThings || [];
+      container.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
+          <input type="text" id="input-pos-1" value="${escapeHtml(pts[0] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
+          <input type="text" id="input-pos-2" value="${escapeHtml(pts[1] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
+          <input type="text" id="input-pos-3" value="${escapeHtml(pts[2] || '')}" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich gelöst..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+      `;
+
+      if (pts.length > 3) {
+        for (let i = 3; i < pts.length; i++) {
+          const row = document.createElement('div');
+          row.className = 'flex items-center gap-2';
+          row.innerHTML = `
+            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">${i+1}</span>
+            <input type="text" value="${escapeHtml(pts[i])}" oninput="updatePositiveThingsCounter()" class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          `;
+          container.appendChild(row);
+        }
+      }
+
+      updatePositiveThingsCounter();
+    }
+
+    function saveCurrentDiaryEntry() {
+      const data = getDiaryFormData();
+      const entries = getStoredDiaryEntries();
+
+      const existingIndex = entries.findIndex(e => e.id === data.id);
+      if (existingIndex >= 0) entries[existingIndex] = data;
+      else entries.unshift(data);
+
+      saveStoredDiaryEntries(entries);
+      currentDiaryEntryId = data.id;
+      showToast('Tagebucheintrag gespeichert! 📖');
+      switchView('diary-list');
+    }
+
+    function createNewDiaryEntry() {
+      currentDiaryEntryId = null;
+      initDefaultDates();
+      updateMoodScore(8);
+      selectedDiaryEmotions.clear();
+      diaryEmotionNotes = {};
+      updateEmotionChipStyles();
+      renderEmotionNoteSegments();
+      document.getElementById('input-diary-highlights').value = '';
+      document.getElementById('input-diary-notes').value = '';
+
+      const container = document.getElementById('positive-things-inputs-container');
+      container.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">1</span>
+          <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Sonnenschein beim Aufstehen..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">2</span>
+          <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein leckerer Kaffee am Mittag..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center flex-shrink-0">3</span>
+          <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Eine Aufgabe erfolgreich gelöst..." class="flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+        </div>
+      `;
+      updatePositiveThingsCounter();
+      switchView('diary-entry');
+      showToast('Neuer Tagebucheintrag bereit');
+    }
+
+    function resetDiaryFormWithConfirm() {
+      if (confirm('Möchtest du diesen Tagebucheintrag leeren?')) createNewDiaryEntry();
+    }
+
+    // ==========================================
+    // DIARY CHRONIK & MONTH FOLDERS VIEW
+    // ==========================================
+    function renderDiaryFolders() {
+      const entries = getStoredDiaryEntries();
+      const container = document.getElementById('diary-folders-container');
+      if (!container) return;
+
+      // Extract unique Month-Year strings
+      const monthMap = new Map();
+      entries.forEach(e => {
+        if (e.date) {
+          const key = e.date.substring(0, 7); // YYYY-MM
+          monthMap.set(key, (monthMap.get(key) || 0) + 1);
+        }
+      });
+
+      const months = Array.from(monthMap.entries()).sort((a, b) => b[0].localeCompare(a[0]));
+
+      container.innerHTML = `
+        <button type="button" onclick="setDiaryFolder('all')" class="diary-folder-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+          📁 Alle Einträge (${entries.length})
+        </button>
+      ` + months.map(([monthKey, count]) => {
+        const [year, month] = monthKey.split('-');
+        const dateObj = new Date(parseInt(year), parseInt(month) - 1, 1);
+        const monthName = dateObj.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+        const isActive = activeDiaryFolder === monthKey;
+        return `
+          <button type="button" onclick="setDiaryFolder('${monthKey}')" class="diary-folder-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition ${isActive ? 'bg-emerald-600 text-white shadow-sm font-bold' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+            📁 ${monthName} (${count})
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setDiaryFolder(folderKey) {
+      activeDiaryFolder = folderKey;
+      renderDiaryFolders();
+      renderDiaryEntriesList();
+    }
+
+    function renderDiaryEntriesList() {
+      renderDiaryFolders();
+      const entries = getStoredDiaryEntries();
+      const container = document.getElementById('diary-entries-container');
+      if (!container) return;
+
+      const searchTerm = (document.getElementById('diary-search-input')?.value || '').toLowerCase().trim();
+
+      const filtered = entries.filter(e => {
+        // Folder filter
+        if (activeDiaryFolder !== 'all' && (!e.date || !e.date.startsWith(activeDiaryFolder))) {
+          return false;
+        }
+        // Search filter
+        if (!searchTerm) return true;
+        const matchesDate = e.date && e.date.toLowerCase().includes(searchTerm);
+        const matchesHighlights = e.highlights && e.highlights.toLowerCase().includes(searchTerm);
+        const matchesNotes = e.notes && e.notes.toLowerCase().includes(searchTerm);
+        const matchesEmotions = (e.emotions || []).some(emo => emo.toLowerCase().includes(searchTerm));
+        const matchesPos = (e.positiveThings || []).some(p => p.toLowerCase().includes(searchTerm));
+        return matchesDate || matchesHighlights || matchesNotes || matchesEmotions || matchesPos;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center space-y-3">
+            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto flex items-center justify-center text-xl">
+              📖
+            </div>
+            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">Keine Tagebucheinträge im ausgewählten Ordner</p>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto">Notiere deinen täglichen Check-in mit Stimmung, Gefühlen und 3 positiven Momenten.</p>
+            <button onclick="createNewDiaryEntry()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition">
+              + Neuen Eintrag verfassen
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const moodConf = MOOD_CONFIG[item.mood || 5] || MOOD_CONFIG[5];
+        const dateObj = new Date(item.date);
+        const formattedFullDate = dateObj.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        return `
+          <article class="diary-page-card rounded-2xl p-4 sm:p-6 space-y-4">
+            
+            <!-- Card Header: Date & Mood Badge -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 gap-2">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Tagebuch-Eintrag</span>
+                <h3 class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white capitalize">${formattedFullDate}</h3>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${moodConf.bg} shadow-sm">
+                  <span>${moodConf.emoji}</span>
+                  <span>${item.mood}/10 • ${moodConf.title.split('/')[0].trim()}</span>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button onclick="editDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="Bearbeiten">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                  </button>
+                  <button onclick="deleteDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="Löschen">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emotions Badges -->
+            ${(item.emotions && item.emotions.length > 0) ? `
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-xs text-slate-400 font-medium">Gefühle:</span>
+                ${item.emotions.map(e => `
+                  <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                    ${escapeHtml(e)}
+                  </span>
+                `).join('')}
+              </div>
+            ` : ''}
+
+            <!-- Key Highlights Box -->
+            ${item.highlights ? `
+              <div class="bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-500 p-3 rounded-r-xl space-y-1">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 flex items-center gap-1">
+                  <span>⭐</span> Key Highlights
+                </div>
+                <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
+                  ${escapeHtml(item.highlights)}
+                </p>
+              </div>
+            ` : ''}
+
+            <!-- 3 Positive Things List -->
+            ${(item.positiveThings && item.positiveThings.length > 0) ? `
+              <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-3.5 space-y-2">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1">
+                  <span>🌱</span> Das war heute positiv & dankbar:
+                </div>
+                <div class="space-y-1.5">
+                  ${item.positiveThings.map((pt, idx) => `
+                    <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                      <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                      <span>${escapeHtml(pt)}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Emotion Notes -->
+            ${(item.emotionNotes && Object.keys(item.emotionNotes).some(k => item.emotionNotes[k])) ? `
+              <div class="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-800/80">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Emotionale Reflexion:</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  ${Object.entries(item.emotionNotes).filter(([k, v]) => v && v.trim()).map(([emo, note]) => `
+                    <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60 text-xs">
+                      <div class="font-bold text-slate-800 dark:text-slate-200 mb-0.5 flex items-center gap-1">
+                        <span class="text-amber-500">💡</span> ${escapeHtml(emo)}:
+                      </div>
+                      <div class="text-slate-600 dark:text-slate-300 italic">${escapeHtml(note)}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- General Notes -->
+            ${item.notes ? `
+              <div class="pt-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800">
+                ${escapeHtml(item.notes)}
+              </div>
+            ` : ''}
+
+          </article>
+        `;
+      }).join('');
+    }
+
+    function editDiaryEntry(id) {
+      const entries = getStoredDiaryEntries();
+      const item = entries.find(e => e.id === id);
+      if (!item) return;
+      setDiaryFormData(item);
+      switchView('diary-entry');
+    }
+
+    function deleteDiaryEntry(id) {
+      if (!confirm('Diesen Tagebucheintrag wirklich löschen?')) return;
+      let entries = getStoredDiaryEntries();
+      entries = entries.filter(e => e.id !== id);
+      saveStoredDiaryEntries(entries);
+      if (currentDiaryEntryId === id) currentDiaryEntryId = null;
+      renderDiaryEntriesList();
+      showToast('Eintrag gelöscht');
+    }
+
+    function printDiaryJournal() {
+      window.print();
+    }
+
+    function exportDiaryJSON() {
+      const entries = getStoredDiaryEntries();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(entries, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "daily_diary_backup_" + new Date().toISOString().split('T')[0] + ".json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Tagebuch-Backup geladen');
+    }
+
+    // Default Pre-filled Diary Entry for First-time users
+    function ensureInitialDiary() {
+      const entries = getStoredDiaryEntries();
+      if (entries.length === 0) {
+        const today = new Date().toISOString().split('T')[0];
+        const sample = {
+          id: 'diary_sample_1',
+          date: today,
+          mood: 8,
+          emotions: ['Freude', 'Dankbarkeit', 'Überforderung'],
+          emotionNotes: {
+            'Freude': 'Schöner Spaziergang in der Mittagssonne und leckeres Essen.',
+            'Dankbarkeit': 'Mein Kollege hat mir bei einer kniffligen Aufgabe unkompliziert geholfen.',
+            'Überforderung': 'Kurz am Vormittag, als zu viele Nachrichten gleichzeitig ankamen. Durchatmen hat geholfen.'
+          },
+          highlights: 'Wichtiges Meeting erfolgreich abgeschlossen und am Abend Zeit zum Entspannen genommen.',
+          positiveThings: [
+            'Den Morgen ohne Hektik mit einer Tasse Kaffee begonnen',
+            'Ein freundliches Lächeln und Lob von einer Bekannten',
+            '30 Minuten draußen an der frischen Luft spaziert'
+          ],
+          notes: 'Ein rundum guter Tag. Ich merke, wie gut es mir tut, die kleinen positiven Momente bewusst wahrzunehmen.',
+          updatedAt: new Date().toISOString()
+        };
+        saveStoredDiaryEntries([sample]);
+      }
+    }
+
+    // ==========================================
+    // MODULE B: STATISTIKEN & TENDENZEN LOGIC
+    // ==========================================
+    function setStatsTimeframe(days) {
+      activeStatsDays = days;
+      document.querySelectorAll('.stats-time-btn').forEach(btn => {
+        const d = btn.getAttribute('data-days');
+        if (d == days) {
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-sm';
+        } else {
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition';
+        }
+      });
+      renderStatsView();
+    }
+
+    function renderStatsView() {
+      const entries = getStoredDiaryEntries();
+      const now = new Date();
+
+      // Filter entries by timeframe
+      const filtered = entries.filter(e => {
+        if (!e.date) return false;
+        const eDate = new Date(e.date);
+        if (activeStatsDays === 'all') return true;
+        if (activeStatsDays === 'month') {
+          return eDate.getFullYear() === now.getFullYear() && eDate.getMonth() === now.getMonth();
+        }
+        const diffDays = (now - eDate) / (1000 * 60 * 60 * 24);
+        return diffDays <= parseInt(activeStatsDays);
+      });
+
+      // Sort chronological ascending for chart
+      const chartEntries = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      // 1. Calculate Average Mood
+      let totalMood = 0;
+      chartEntries.forEach(e => totalMood += (e.mood || 5));
+      const avgMood = chartEntries.length > 0 ? (totalMood / chartEntries.length).toFixed(1) : '--';
+      document.getElementById('stats-kpi-avg').innerText = avgMood !== '--' ? `${avgMood} / 10` : '--';
+
+      // Trend Indicator
+      const trendEl = document.getElementById('stats-kpi-trend');
+      if (chartEntries.length >= 4) {
+        const mid = Math.floor(chartEntries.length / 2);
+        const firstHalf = chartEntries.slice(0, mid);
+        const secondHalf = chartEntries.slice(mid);
+        const avg1 = firstHalf.reduce((acc, c) => acc + (c.mood || 5), 0) / firstHalf.length;
+        const avg2 = secondHalf.reduce((acc, c) => acc + (c.mood || 5), 0) / secondHalf.length;
+        const diff = (avg2 - avg1).toFixed(1);
+        if (diff > 0.3) trendEl.innerHTML = `<span class="text-emerald-500 font-bold">+${diff} ↗️ Steigend</span>`;
+        else if (diff < -0.3) trendEl.innerHTML = `<span class="text-rose-500 font-bold">${diff} ↘️ Sinkend</span>`;
+        else trendEl.innerHTML = `<span class="text-slate-400 font-medium">±0.0 ➔ Stabil</span>`;
+      } else {
+        trendEl.innerText = 'Mehr Daten für Trend nötig';
+      }
+
+      // 2. Count of entries
+      document.getElementById('stats-kpi-count').innerText = chartEntries.length;
+
+      // 3. Positive things total
+      let posTotal = 0;
+      chartEntries.forEach(e => {
+        posTotal += (e.positiveThings || []).length;
+      });
+      document.getElementById('stats-kpi-pos').innerText = posTotal;
+
+      // 4. Current Streak (consecutive days)
+      const allSortedDates = Array.from(new Set(entries.map(e => e.date))).sort().reverse();
+      let streak = 0;
+      let checkDate = new Date();
+      checkDate.setHours(0, 0, 0, 0);
+
+      for (const dStr of allSortedDates) {
+        const d = new Date(dStr);
+        d.setHours(0, 0, 0, 0);
+        const diff = Math.round((checkDate - d) / (1000 * 60 * 60 * 24));
+        if (diff === 0 || diff === 1) {
+          streak++;
+          checkDate = d;
+        } else {
+          break;
+        }
+      }
+      document.getElementById('stats-kpi-streak').innerText = streak > 0 ? `${streak} d` : '0 d';
+
+      // 5. Render SVG Mood Line Chart
+      renderMoodChart(chartEntries);
+
+      // 6. Day of Week Analysis
+      renderWeekdayTendency(entries);
+
+      // 7. Top Emotions Frequency
+      renderTopEmotions(filtered);
+    }
+
+    // Render Clean Responsive SVG Polyline Chart
+    function renderMoodChart(items) {
+      const container = document.getElementById('stats-chart-container');
+      if (!container) return;
+
+      if (items.length < 2) {
+        container.innerHTML = `
+          <div class="text-xs text-slate-400 dark:text-slate-500 text-center italic py-10">
+            Trage mindestens 2 Tage ein, um deine Stimmungskurve zu sehen.
+          </div>
+        `;
+        return;
+      }
+
+      const w = Math.max(340, container.clientWidth || 340);
+      const h = 180;
+      const padL = 32;
+      const padR = 20;
+      const padT = 20;
+      const padB = 30;
+
+      const innerW = w - padL - padR;
+      const innerH = h - padT - padB;
+
+      const stepX = innerW / (items.length - 1);
+
+      // Points calculation
+      const points = items.map((item, idx) => {
+        const x = padL + (idx * stepX);
+        const y = padT + (innerH - ((item.mood - 1) / 9) * innerH);
+        return { x, y, mood: item.mood, date: item.date };
+      });
+
+      const polyPoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+      const areaPoints = `${padL},${padT + innerH} ` + polyPoints + ` ${padL + innerW},${padT + innerH}`;
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full overflow-visible">
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Horizontal Grid Lines (Mood 10, 5, 1) -->
+          <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
+          <text x="${padL - 6}" y="${padT + 4}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">10</text>
+
+          <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
+          <text x="${padL - 6}" y="${padT + innerH / 2 + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">5</text>
+
+          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
+          <text x="${padL - 6}" y="${padT + innerH + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">1</text>
+
+          <!-- Gradient Area -->
+          <polygon points="${areaPoints}" fill="url(#chartGrad)"/>
+
+          <!-- Line -->
+          <polyline points="${polyPoints}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Circles & Labels -->
+          ${points.map((p, idx) => `
+            <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: Stimmung ${p.mood}/10')">
+              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="#ffffff" stroke="#10b981" stroke-width="2.5"/>
+              <!-- X Axis Date Label -->
+              <text x="${p.x.toFixed(1)}" y="${h - 8}" fill="#64748b" font-size="9" text-anchor="middle" font-weight="500">
+                ${p.date ? p.date.substring(8, 10) + '.' : ''}
+              </text>
+            </g>
+          `).join('')}
+        </svg>
+      `;
+    }
+
+    // Day of Week Tendency (Mo to So)
+    function renderWeekdayTendency(entries) {
+      const container = document.getElementById('stats-weekday-bars');
+      if (!container) return;
+
+      const days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+      const stats = [
+        { sum: 0, count: 0 }, // Mo (index 0)
+        { sum: 0, count: 0 }, // Di (1)
+        { sum: 0, count: 0 }, // Mi (2)
+        { sum: 0, count: 0 }, // Do (3)
+        { sum: 0, count: 0 }, // Fr (4)
+        { sum: 0, count: 0 }, // Sa (5)
+        { sum: 0, count: 0 }  // So (6)
+      ];
+
+      entries.forEach(e => {
+        if (!e.date) return;
+        const d = new Date(e.date);
+        let dayIdx = d.getDay() - 1; // 0=Mo, 6=So
+        if (dayIdx === -1) dayIdx = 6; // Sunday
+        stats[dayIdx].sum += (e.mood || 5);
+        stats[dayIdx].count += 1;
+      });
+
+      container.innerHTML = days.map((dayName, idx) => {
+        const item = stats[idx];
+        const avg = item.count > 0 ? (item.sum / item.count).toFixed(1) : 0;
+        const pct = item.count > 0 ? (avg / 10) * 100 : 0;
+        return `
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-6 font-bold text-slate-600 dark:text-slate-400">${dayName}</span>
+            <div class="flex-1 bg-slate-100 dark:bg-slate-800 h-3.5 rounded-full overflow-hidden flex">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+            <span class="w-10 text-right font-bold text-slate-700 dark:text-slate-300">${item.count > 0 ? avg : '—'}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Top Emotions Breakdown
+    function renderTopEmotions(entries) {
+      const container = document.getElementById('stats-top-emotions');
+      if (!container) return;
+
+      const counts = {};
+      entries.forEach(e => {
+        (e.emotions || []).forEach(emo => {
+          counts[emo] = (counts[emo] || 0) + 1;
+        });
+      });
+
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+
+      if (sorted.length === 0) {
+        container.innerHTML = `<div class="text-xs text-slate-400 italic py-4">Noch keine Emotionen erfasst.</div>`;
+        return;
+      }
+
+      const maxCount = sorted[0][1] || 1;
+
+      container.innerHTML = sorted.map(([emo, count]) => {
+        const pct = Math.round((count / maxCount) * 100);
+        const isPleasant = PLEASANT_EMOTIONS.includes(emo);
+        return `
+          <div class="space-y-1 text-xs">
+            <div class="flex justify-between items-center font-medium">
+              <span class="text-slate-800 dark:text-slate-200 font-semibold">${escapeHtml(emo)}</span>
+              <span class="text-slate-500">${count}x</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden flex">
+              <div class="${isPleasant ? 'bg-emerald-500' : 'bg-amber-500'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function printStatsSummary() {
+      window.print();
+    }
+
+    // ==========================================
+    // HELPERS & TOAST
+    // ==========================================
     function formatDateDE(dateStr) {
       if (!dateStr) return '';
       try {
@@ -1355,7 +2572,7 @@
 
     function escapeHtml(str) {
       if (!str) return '';
-      return str.replace(/[&<>"']/g, function(m) {
+      return String(str).replace(/[&<>"']/g, function(m) {
         return {
           '&': '&amp;',
           '<': '&lt;',
@@ -1366,7 +2583,6 @@
       });
     }
 
-    // Toast
     let toastTimeout = null;
     function showToast(message, isSuccess = true) {
       const toast = document.getElementById('toast');
@@ -1402,10 +2618,8 @@
     // Android WebAPK / PWA Installation Handling
     let deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       deferredPrompt = e;
-      // Show install buttons
       const installBtn = document.getElementById('btn-pwa-install');
       if (installBtn) installBtn.classList.remove('hidden');
     });
@@ -1422,7 +2636,7 @@
           if (installBtn) installBtn.classList.add('hidden');
         });
       } else {
-        alert('Tippe in Chrome oben rechts auf das Dreipunkt-Menü (⋮) und wähle "App installieren" oder "Zum Startbildschirm hinzufügen". Android installiert die App dann als eigenständiges WebAPK!');
+        alert('Tippe in Chrome oben rechts auf das Dreipunkt-Menü (⋮) und wähle "App installieren" oder "Zum Startbildschirm hinzufügen".');
       }
     }
 

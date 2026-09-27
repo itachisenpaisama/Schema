@@ -25,7 +25,15 @@
 - **💡 Schema-Spickzettel**:
   - Kompaktes Nachschlagewerk über die typischen Schemata, Modi und Bewältigungsstrategien nach Jeffrey Young.
 - **📱 PWA & Offline-fähig**:
-  - Kann direkt auf Smartphone oder Tablet zum Homescreen hinzugefügt werden.
+  - Echte Android-WebAPK-Unterstützung mit hochauflösenden PNG-Icons & Service Worker für nahtlose Installation auf dem Homescreen.
+- **📖 Daily Mood Tracker & Tagebuch (Neu)**:
+  - **Stimmungsskala 1–10**: Intuitive tägliche Bewertung mit Farbindikatoren und Emojis.
+  - **Vordefinierte Emotionen**: Schnellauswahl für positive Gefühle (Freude, Stolz, Dankbarkeit) und Herausforderungen (Überforderung, Trauer, Frustration).
+  - **Dynamische Emotions-Reflexion**: Automatisch generierte Notiz-Segmente mit maßgeschneiderten Impulsfragen für jede ausgewählte Emotion.
+  - **Key Highlights & 3 Positive Dinge**: Feste Sektionen für Tageshöhepunkte sowie mindestens 3 Dankbarkeits-Punkte zur gezielten Aufmerksamkeitslenkung.
+  - **Tagebuch-Chronik**: Ästhetische Buch-Ansicht, übersichtlich gruppiert in Monats- und Jahresordner.
+  - **Statistiken & Trends**: Interaktive Stimmungskurve (SVG), Wochentags-Tendenzen (bester/herausforderndster Tag), Top-Emotionen & Streak-Zähler.
+  - **Druck & Buch-Export**: Einträge und Statistiken direkt im sauberen DIN-A4-Format drucken oder als PDF sichern.
 
 ---
 

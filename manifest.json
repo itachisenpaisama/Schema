@@ -1,7 +1,7 @@
 {
-  "name": "Schema-Memo",
+  "name": "Schema-Memo & Neuro-Diary",
   "short_name": "SchemaMemo",
-  "description": "Digitales Schema-Memo zur Schematherapie nach J. Young",
+  "description": "Digitales Schema-Memo & Neuro-Tagebuch mit Medikation, Essen, Schlaf, Steps und ADHS-Tracking",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "portrait",

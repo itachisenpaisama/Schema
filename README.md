@@ -90,7 +90,8 @@
 
 - **HTML5 & Modern CSS** (Tailwind CSS CDN)
 - **Vanilla JavaScript (ES6+)** – 100% lokal, latenzfrei, ohne externe Server-Abhängigkeiten oder Framework-Builds.
-- **PWA (Progressive Web App)** mit Service Worker Cache v11 & Web App Manifest.
+- **PWA (Progressive Web App)** mit Service Worker Cache v18 & Web App Manifest.
+- **Modulare Python-Build-Pipeline** (`build_src/assemble.py`) zur sauberen Pflege und automatisierten Validierung.
 - **Google Fonts**: Plus Jakarta Sans, Inter, Kalam, Caveat.
 
 ---

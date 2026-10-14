@@ -393,6 +393,11 @@
           <span id="header-btn-new-text">Neu</span>
         </button>
 
+        <!-- Settings Button -->
+        <button type="button" id="header-btn-settings" onclick="openSettingsModal()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Einstellungen">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </button>
+
         <!-- Quick Update / Cache Clear Button -->
         <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -925,14 +930,22 @@
         <!-- Row 2: Date Selector & Accordion Toggle -->
         <div class="flex flex-wrap items-center justify-between gap-2 pt-0.5">
           <div class="flex items-center gap-1.5 min-w-0">
-            <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Datum:</label>
+            <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0" id="label-diary-date">Datum:</label>
             <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
           </div>
 
-          <!-- Quick Accordion Toggle -->
-          <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen">
-            <span id="label-toggle-all-cards">⤓ Zuklappen</span>
-          </button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Module Settings Quick Button -->
+            <button type="button" onclick="openSettingsModal()" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-semibold transition flex items-center gap-1 shadow-xs" title="Tracking-Module anpassen">
+              <span>⚙️</span>
+              <span id="label-quick-modules" class="hidden sm:inline">Module</span>
+            </button>
+
+            <!-- Quick Accordion Toggle -->
+            <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen">
+              <span id="label-toggle-all-cards">⤓ Zuklappen</span>
+            </button>
+          </div>
         </div>
 
         <!-- Row 3: Section Focus Navigation Bar (Smooth swipe on mobile) -->
@@ -983,95 +996,101 @@
         <!-- Accordion Body -->
         <div id="body-diary-mood" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
-          <!-- Mood (1 - 10) -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Wie ging es dir heute?</span>
-              <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs">8 / 10 · Gut</span>
-            </div>
+          <!-- FEATURE CONTAINER: MOOD & ENERGY -->
+          <div id="feature-container-mood" class="space-y-2.5">
+            <!-- Mood (1 - 10) -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Wie ging es dir heute?</span>
+                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs">8 / 10 · Gut</span>
+              </div>
 
-            <!-- Compact Visual Mood Banner -->
-            <div id="diary-mood-banner" class="rounded-xl p-2 sm:p-2.5 flex items-center justify-between transition-colors duration-200 gap-2">
-              <div class="flex items-center gap-2 min-w-0">
-                <span id="diary-mood-emoji" class="text-2xl shrink-0">😊</span>
-                <div class="min-w-0">
-                  <div id="diary-mood-title" class="text-xs font-extrabold truncate">Zufrieden & Gut</div>
-                  <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate">Der Tag war stabil und angenehm.</div>
+              <!-- Compact Visual Mood Banner -->
+              <div id="diary-mood-banner" class="rounded-xl p-2 sm:p-2.5 flex items-center justify-between transition-colors duration-200 gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span id="diary-mood-emoji" class="text-2xl shrink-0">😊</span>
+                  <div class="min-w-0">
+                    <div id="diary-mood-title" class="text-xs font-extrabold truncate">Zufrieden & Gut</div>
+                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate">Der Tag war stabil und angenehm.</div>
+                  </div>
+                </div>
+                <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
+              </div>
+
+              <!-- Slider & 1-10 Buttons -->
+              <div class="space-y-1 pt-0.5">
+                <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                
+                <div class="grid grid-cols-5 sm:grid-cols-10 gap-1">
+                  <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
+                  <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
+                  <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
+                  <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
+                  <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
+                  <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
+                  <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
+                  <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
+                  <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
+                  <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
                 </div>
               </div>
-              <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
             </div>
 
-            <!-- Slider & 1-10 Buttons -->
-            <div class="space-y-1 pt-0.5">
-              <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-              
-              <div class="grid grid-cols-5 sm:grid-cols-10 gap-1">
-                <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
-                <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
-                <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
-                <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
-                <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
-                <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
-                <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
-                <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
-                <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
-                <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
+            <!-- Energy Level (1 - 10) -->
+            <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">⚡ Energielevel & Vitalität</span>
+                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+                  7 / 10 · Aktiv
+                </span>
+              </div>
+              <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+              <div class="flex justify-between text-[9px] text-slate-400 px-0.5">
+                <span>1 = Erschöpft</span>
+                <span>5 = Normal</span>
+                <span>10 = Voll aufgeladen</span>
               </div>
             </div>
           </div>
 
-          <!-- Energy Level (1 - 10) -->
-          <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">⚡ Energielevel & Vitalität</span>
-              <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
-                7 / 10 · Aktiv
-              </span>
-            </div>
-            <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-            <div class="flex justify-between text-[9px] text-slate-400 px-0.5">
-              <span>1 = Erschöpft</span>
-              <span>5 = Normal</span>
-              <span>10 = Voll aufgeladen</span>
-            </div>
-          </div>
+          <!-- FEATURE CONTAINER: EMOTIONS & REFLECTION -->
+          <div id="feature-container-emotions" class="space-y-2 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+            <!-- Emotionen Chips with Permanent Add (+) Button -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">🎭 Gefühle heute:</span>
+                <button type="button" onclick="openAddCustomModal('emotions')" class="px-2 py-0.5 rounded-lg border border-dashed border-emerald-400 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition inline-flex items-center gap-1" title="Eigene Emotion permanent speichern">
+                  <span class="text-sm font-black">+</span>
+                  <span class="text-[10px]">Eigenes</span>
+                </button>
+              </div>
 
-          <!-- Emotionen Chips with Permanent Add (+) Button -->
-          <div class="space-y-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">🎭 Gefühle heute:</span>
-              <button type="button" onclick="openAddCustomModal('emotions')" class="px-2 py-0.5 rounded-lg border border-dashed border-emerald-400 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition inline-flex items-center gap-1" title="Eigene Emotion permanent speichern">
-                <span class="text-sm font-black">+</span>
-                <span class="text-[10px]">Eigenes</span>
-              </button>
-            </div>
+              <!-- Pleasant Emotions -->
+              <div class="space-y-0.5">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm:</span>
+                <div class="flex flex-wrap gap-1" id="pleasant-emotions-chips">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
 
-            <!-- Pleasant Emotions -->
-            <div class="space-y-0.5">
-              <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm:</span>
-              <div class="flex flex-wrap gap-1" id="pleasant-emotions-chips">
-                <!-- Dynamically populated -->
+              <!-- Challenging Emotions -->
+              <div class="space-y-0.5 pt-0.5">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Fordernd:</span>
+                <div class="flex flex-wrap gap-1" id="challenging-emotions-chips">
+                  <!-- Dynamically populated -->
+                </div>
               </div>
             </div>
 
-            <!-- Challenging Emotions -->
-            <div class="space-y-0.5 pt-0.5">
-              <span class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Fordernd:</span>
-              <div class="flex flex-wrap gap-1" id="challenging-emotions-chips">
-                <!-- Dynamically populated -->
+            <!-- Dynamic Emotion Reflection Notes -->
+            <div id="diary-emotion-notes-wrapper" class="space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Gefühls-Reflexion:</h4>
+                <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500">0</span>
               </div>
-            </div>
-          </div>
-
-          <!-- Dynamic Emotion Reflection Notes -->
-          <div id="diary-emotion-notes-wrapper" class="space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
-            <div class="flex items-center justify-between">
-              <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Gefühls-Reflexion:</h4>
-              <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500">0</span>
-            </div>
-            <div id="diary-emotion-notes-container" class="space-y-1.5">
-              <!-- Dynamically injected cards -->
+              <div id="diary-emotion-notes-container" class="space-y-1.5">
+                <!-- Dynamically injected cards -->
+              </div>
             </div>
           </div>
 
@@ -1102,77 +1121,83 @@
         <!-- Accordion Body -->
         <div id="body-diary-meds" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
-          <!-- 1-Click Quick Meds Presets + Small (+) Button -->
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Schnell-Auswahl (1-Klick):</span>
-              <button type="button" onclick="openAddCustomModal('meds')" class="px-2 py-0.5 rounded-lg border border-dashed border-violet-400 dark:border-violet-700 text-violet-600 dark:text-violet-400 text-xs font-bold hover:bg-violet-50 dark:hover:bg-violet-950/40 transition inline-flex items-center gap-1" title="Eigenes Medikament dauerhaft hinzufügen">
-                <span class="text-sm font-black">+</span>
-                <span class="text-[10px]">Eigenes Medi</span>
-              </button>
-            </div>
-            <div class="flex flex-wrap gap-1" id="quick-meds-chips-container">
-              <!-- Dynamically populated with defaults + user custom meds -->
-            </div>
-          </div>
-
-          <!-- Today's Logged Medications with Editable Time Field -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Heute eingenommen:</span>
-              <span id="meds-count-badge" class="text-[10px] font-bold text-violet-600 dark:text-violet-400">0 Medis</span>
-            </div>
-            <div id="today-meds-list" class="space-y-1">
-              <!-- Dynamically populated with direct time input right on the pill -->
-            </div>
-          </div>
-
-          <!-- EFFICACY / WIRKUNGSBEWERTUNG (NEW REQUESTED FEATURE!) -->
-          <div class="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1">
-                <span>🎯</span> Wie haben die Medis heute gewirkt?
-              </span>
-              <span id="med-efficacy-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300">
-                Noch offen
-              </span>
-            </div>
-
-            <!-- Efficacy Rating Chips -->
-            <div class="flex flex-wrap gap-1">
-              <button type="button" onclick="setMedEfficacyRating('optimal')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="optimal">🎯 Optimal / Flow</button>
-              <button type="button" onclick="setMedEfficacyRating('gut')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="gut">👍 Gut & Stabil</button>
-              <button type="button" onclick="setMedEfficacyRating('schwach')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="schwach">📉 Kaum Wirkung</button>
-              <button type="button" onclick="setMedEfficacyRating('zu_stark')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="zu_stark">⚡ Zu intensiv</button>
-              <button type="button" onclick="setMedEfficacyRating('nebenwirkung')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="nebenwirkung">⚠️ Nebenwirkungen</button>
-            </div>
-
-            <!-- Efficacy Notes Textarea -->
-            <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z.B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
-          </div>
-
-          <!-- Rebound & Wirkungsende Box -->
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
-                <span>⏱️</span> Rebound / Wirkungsende?
-              </span>
-              <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Kein Rebound</span>
-            </div>
-
-            <div class="flex flex-wrap gap-1">
-              <button type="button" onclick="setReboundLevel('none')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold" data-level="none">Kein Rebound</button>
-              <button type="button" onclick="setReboundLevel('leicht')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="leicht">Leicht</button>
-              <button type="button" onclick="setReboundLevel('spuerbar')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="spuerbar">Spürbar</button>
-              <button type="button" onclick="setReboundLevel('stark')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="stark">Stark</button>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
-              <div class="sm:col-span-1 min-w-0">
-                <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" title="Rebound Uhrzeit">
+          <!-- FEATURE CONTAINER: MEDS LOG -->
+          <div id="feature-container-meds-log" class="space-y-2.5">
+            <!-- 1-Click Quick Meds Presets + Small (+) Button -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Schnell-Auswahl (1-Klick):</span>
+                <button type="button" onclick="openAddCustomModal('meds')" class="px-2 py-0.5 rounded-lg border border-dashed border-violet-400 dark:border-violet-700 text-violet-600 dark:text-violet-400 text-xs font-bold hover:bg-violet-50 dark:hover:bg-violet-950/40 transition inline-flex items-center gap-1" title="Eigenes Medikament dauerhaft hinzufügen">
+                  <span class="text-sm font-black">+</span>
+                  <span class="text-[10px]">Eigenes Medi</span>
+                </button>
               </div>
-              <div class="sm:col-span-3 min-w-0">
-                <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1.5 block w-full">
+              <div class="flex flex-wrap gap-1" id="quick-meds-chips-container">
+                <!-- Dynamically populated with defaults + user custom meds -->
+              </div>
+            </div>
+
+            <!-- Today's Logged Medications with Editable Time Field -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Heute eingenommen:</span>
+                <span id="meds-count-badge" class="text-[10px] font-bold text-violet-600 dark:text-violet-400">0 Medis</span>
+              </div>
+              <div id="today-meds-list" class="space-y-1">
+                <!-- Dynamically populated with direct time input right on the pill -->
+              </div>
+            </div>
+          </div>
+
+          <!-- FEATURE CONTAINER: MEDS EFFICACY & REBOUND -->
+          <div id="feature-container-meds-efficacy" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+            <!-- EFFICACY / WIRKUNGSBEWERTUNG (NEW REQUESTED FEATURE!) -->
+            <div class="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1">
+                  <span>🎯</span> Wie haben die Medis heute gewirkt?
+                </span>
+                <span id="med-efficacy-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300">
+                  Noch offen
+                </span>
+              </div>
+
+              <!-- Efficacy Rating Chips -->
+              <div class="flex flex-wrap gap-1">
+                <button type="button" onclick="setMedEfficacyRating('optimal')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="optimal">🎯 Optimal / Flow</button>
+                <button type="button" onclick="setMedEfficacyRating('gut')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="gut">👍 Gut & Stabil</button>
+                <button type="button" onclick="setMedEfficacyRating('schwach')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="schwach">📉 Kaum Wirkung</button>
+                <button type="button" onclick="setMedEfficacyRating('zu_stark')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="zu_stark">⚡ Zu intensiv</button>
+                <button type="button" onclick="setMedEfficacyRating('nebenwirkung')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="nebenwirkung">⚠️ Nebenwirkungen</button>
+              </div>
+
+              <!-- Efficacy Notes Textarea -->
+              <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z.B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
+            </div>
+
+            <!-- Rebound & Wirkungsende Box -->
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
+                  <span>⏱️</span> Rebound / Wirkungsende?
+                </span>
+                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Kein Rebound</span>
+              </div>
+
+              <div class="flex flex-wrap gap-1">
+                <button type="button" onclick="setReboundLevel('none')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold" data-level="none">Kein Rebound</button>
+                <button type="button" onclick="setReboundLevel('leicht')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="leicht">Leicht</button>
+                <button type="button" onclick="setReboundLevel('spuerbar')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="spuerbar">Spürbar</button>
+                <button type="button" onclick="setReboundLevel('stark')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="stark">Stark</button>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
+                <div class="sm:col-span-1 min-w-0">
+                  <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" title="Rebound Uhrzeit">
+                </div>
+                <div class="sm:col-span-3 min-w-0">
+                  <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1.5 block w-full">
+                </div>
               </div>
             </div>
           </div>
@@ -1204,8 +1229,8 @@
         <!-- Accordion Body -->
         <div id="body-diary-vital" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
-          <!-- 4 Mahlzeiten Grid (2x2) -->
-          <div class="space-y-1">
+          <!-- FEATURE CONTAINER: MEALS -->
+          <div id="feature-container-meals" class="space-y-1">
             <div class="flex items-center justify-between">
               <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Mahlzeiten:</span>
               <button type="button" onclick="openAddCustomModal('meal_tags')" class="px-2 py-0.5 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen">
@@ -1259,9 +1284,9 @@
           </div>
 
           <!-- Hydration & Koffein Side-by-Side (Compact 2 Cols) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800">
-            <!-- Water -->
-            <div class="p-2 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/40 dark:bg-sky-950/20 space-y-1.5">
+          <div id="vital-drinks-row" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+            <!-- FEATURE CONTAINER: WATER -->
+            <div id="feature-container-water" class="p-2 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/40 dark:bg-sky-950/20 space-y-1.5 min-w-0">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1">💧 Wasser:</span>
                 <span id="water-display" class="text-xs font-bold text-sky-600 dark:text-sky-400">0 ml / 2500 ml</span>
@@ -1277,8 +1302,8 @@
               </div>
             </div>
 
-            <!-- Caffeine -->
-            <div class="p-2 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/40 dark:bg-amber-950/20 space-y-1.5">
+            <!-- FEATURE CONTAINER: CAFFEINE -->
+            <div id="feature-container-caffeine" class="p-2 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/40 dark:bg-amber-950/20 space-y-1.5 min-w-0">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1">☕ Koffein:</span>
                 <span id="caffeine-display" class="text-xs font-bold text-amber-600 dark:text-amber-400">0 Tassen</span>
@@ -1292,8 +1317,8 @@
             </div>
           </div>
 
-          <!-- Schlaf & Erholung -->
-          <div class="p-2.5 rounded-xl border border-indigo-100 dark:border-indigo-900/40 bg-indigo-50/30 dark:bg-indigo-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <!-- FEATURE CONTAINER: SLEEP -->
+          <div id="feature-container-sleep" class="p-2.5 rounded-xl border border-indigo-100 dark:border-indigo-900/40 bg-indigo-50/30 dark:bg-indigo-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-1">
                 <span>🛏️</span> Schlaf & Erholung:
@@ -1395,73 +1420,84 @@
         <!-- Accordion Body -->
         <div id="body-diary-adhs" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
-          <!-- 3 Sliders Grid: Focus, Restlessness, Brain Fog -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
-            <!-- Focus -->
-            <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-900 dark:text-white">🎯 Fokus:</span>
-                <span id="adhs-focus-badge" class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400">7 / 10</span>
+          <!-- FEATURE CONTAINER: ADHS, FOKUS & REIZE -->
+          <div id="feature-container-adhs" class="space-y-2.5">
+            <!-- 3 Sliders Grid: Focus, Restlessness, Brain Fog -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+              <!-- Focus -->
+              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900 dark:text-white">🎯 Fokus:</span>
+                  <span id="adhs-focus-badge" class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400">7 / 10</span>
+                </div>
+                <input type="range" id="input-adhs-focus" min="1" max="10" value="7" step="1" oninput="updateAdhsFocusScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-slate-400">
+                  <span>Zerstreut</span>
+                  <span>Im Flow</span>
+                </div>
               </div>
-              <input type="range" id="input-adhs-focus" min="1" max="10" value="7" step="1" oninput="updateAdhsFocusScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-              <div class="flex justify-between text-[9px] text-slate-400">
-                <span>Zerstreut</span>
-                <span>Im Flow</span>
+
+              <!-- Restlessness -->
+              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900 dark:text-white">🌪️ Unruhe:</span>
+                  <span id="adhs-restlessness-badge" class="text-xs font-extrabold text-amber-600 dark:text-amber-400">4 / 10</span>
+                </div>
+                <input type="range" id="input-adhs-restlessness" min="1" max="10" value="4" step="1" oninput="updateAdhsRestlessnessScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-slate-400">
+                  <span>Ruhig</span>
+                  <span>Getrieben</span>
+                </div>
+              </div>
+
+              <!-- Brain Fog -->
+              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900 dark:text-white">🌫️ Brainfog:</span>
+                  <span id="adhs-brainfog-badge" class="text-xs font-extrabold text-sky-600 dark:text-sky-400">2 / 10</span>
+                </div>
+                <input type="range" id="input-adhs-brainfog" min="1" max="10" value="2" step="1" oninput="updateAdhsBrainFogScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-slate-400">
+                  <span>Klar</span>
+                  <span>Nebel</span>
+                </div>
               </div>
             </div>
 
-            <!-- Restlessness -->
-            <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-900 dark:text-white">🌪️ Unruhe:</span>
-                <span id="adhs-restlessness-badge" class="text-xs font-extrabold text-amber-600 dark:text-amber-400">4 / 10</span>
+            <!-- Executive Function & Sensory Pills -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-0.5">
+              <div class="space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase">Exekutive Funktion:</span>
+                <div class="flex flex-wrap gap-1">
+                  <button type="button" onclick="setExecutiveFunction('paralysis')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="paralysis">🧱 Paralysis</button>
+                  <button type="button" onclick="setExecutiveFunction('muehsam')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="muehsam">⏳ Mühsam</button>
+                  <button type="button" onclick="setExecutiveFunction('gut')" class="exec-btn active text-xs px-2 py-0.5 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold" data-val="gut">🚀 Flow</button>
+                  <button type="button" onclick="setExecutiveFunction('hyperfokus')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="hyperfokus">⚡ Hyperfokus</button>
+                </div>
               </div>
-              <input type="range" id="input-adhs-restlessness" min="1" max="10" value="4" step="1" oninput="updateAdhsRestlessnessScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-              <div class="flex justify-between text-[9px] text-slate-400">
-                <span>Ruhig</span>
-                <span>Getrieben</span>
+
+              <div class="space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase">Reizoffenheit:</span>
+                <div class="flex flex-wrap gap-1">
+                  <button type="button" onclick="setSensoryOverload('keine')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="keine">🟢 Reizarm</button>
+                  <button type="button" onclick="setSensoryOverload('gering')" class="sensory-btn active text-xs px-2 py-0.5 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold" data-val="gering">🟡 Leicht</button>
+                  <button type="button" onclick="setSensoryOverload('mittel')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="mittel">🟠 Hoch</button>
+                  <button type="button" onclick="setSensoryOverload('stark')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="stark">🔴 Reizflut</button>
+                </div>
               </div>
             </div>
 
-            <!-- Brain Fog -->
-            <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-900 dark:text-white">🌫️ Brainfog:</span>
-                <span id="adhs-brainfog-badge" class="text-xs font-extrabold text-sky-600 dark:text-sky-400">2 / 10</span>
-              </div>
-              <input type="range" id="input-adhs-brainfog" min="1" max="10" value="2" step="1" oninput="updateAdhsBrainFogScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-              <div class="flex justify-between text-[9px] text-slate-400">
-                <span>Klar</span>
-                <span>Nebel</span>
-              </div>
+            <!-- ADHS Note / Win -->
+            <div class="space-y-1 pt-0.5">
+              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                💡 ADHS-Erkenntnis, Dopamin-Hack oder Tagessieg:
+              </label>
+              <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat geholfen, Timer gestellt..." class="shadcn-input text-xs py-1.5">
             </div>
           </div>
 
-          <!-- Executive Function & Sensory Pills -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-0.5">
-            <div class="space-y-1">
-              <span class="text-[9px] font-bold text-slate-500 uppercase">Exekutive Funktion:</span>
-              <div class="flex flex-wrap gap-1">
-                <button type="button" onclick="setExecutiveFunction('paralysis')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="paralysis">🧱 Paralysis</button>
-                <button type="button" onclick="setExecutiveFunction('muehsam')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="muehsam">⏳ Mühsam</button>
-                <button type="button" onclick="setExecutiveFunction('gut')" class="exec-btn active text-xs px-2 py-0.5 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold" data-val="gut">🚀 Flow</button>
-                <button type="button" onclick="setExecutiveFunction('hyperfokus')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="hyperfokus">⚡ Hyperfokus</button>
-              </div>
-            </div>
-
-            <div class="space-y-1">
-              <span class="text-[9px] font-bold text-slate-500 uppercase">Reizoffenheit:</span>
-              <div class="flex flex-wrap gap-1">
-                <button type="button" onclick="setSensoryOverload('keine')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="keine">🟢 Reizarm</button>
-                <button type="button" onclick="setSensoryOverload('gering')" class="sensory-btn active text-xs px-2 py-0.5 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold" data-val="gering">🟡 Leicht</button>
-                <button type="button" onclick="setSensoryOverload('mittel')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="mittel">🟠 Hoch</button>
-                <button type="button" onclick="setSensoryOverload('stark')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="stark">🔴 Reizflut</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Schritte & Aktivitäten Block -->
-          <div class="p-2.5 rounded-xl border border-blue-100 dark:border-blue-900/40 bg-blue-50/30 dark:bg-blue-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <!-- FEATURE CONTAINER: STEPS & AKTIVITÄTEN -->
+          <div id="feature-container-steps" class="p-2.5 rounded-xl border border-blue-100 dark:border-blue-900/40 bg-blue-50/30 dark:bg-blue-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-blue-900 dark:text-blue-300 flex items-center gap-1">
                 <span>👟</span> Schritte & Bewegung:
@@ -1512,14 +1548,6 @@
             </div>
           </div>
 
-          <!-- ADHS Note / Win -->
-          <div class="space-y-1 pt-0.5">
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300">
-              💡 ADHS-Erkenntnis, Dopamin-Hack oder Tagessieg:
-            </label>
-            <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat geholfen, Timer gestellt..." class="shadcn-input text-xs py-1.5">
-          </div>
-
         </div>
       </section>
 
@@ -1547,8 +1575,8 @@
         <!-- Accordion Body -->
         <div id="body-diary-mind" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
-          <!-- 3 Positive Dinge (Dankbarkeit & Dopamin) -->
-          <div class="space-y-1.5">
+          <!-- FEATURE CONTAINER: 3 POSITIVE DINGE -->
+          <div id="feature-container-positive-things" class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-1">
                 <span>💚</span> 3 Positive Dinge (Dopamin-Anker):
@@ -1580,8 +1608,8 @@
             </div>
           </div>
 
-          <!-- Key Highlights & Tags -->
-          <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+          <!-- FEATURE CONTAINER: HIGHLIGHTS & MEMORIES -->
+          <div id="feature-container-highlights" class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1">
                 <span>🌟</span> Highlights & Erlebnisse:
@@ -1598,8 +1626,8 @@
             </div>
           </div>
 
-          <!-- Free Thoughts / Brain Dump -->
-          <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+          <!-- FEATURE CONTAINER: BRAIN DUMP / NOTES -->
+          <div id="feature-container-notes" class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
               <span>📖</span> Freie Gedanken & Brain Dump:
             </span>
@@ -1620,6 +1648,29 @@
 
         </div>
       </section>
+
+      <!-- Global Fallback Save Button (shown if Card 5 is hidden but at least one card is visible) -->
+      <div id="diary-fallback-save-bar" class="hidden pt-2 flex items-center justify-between gap-2">
+        <div class="text-[10px] text-slate-400 flex items-center gap-1">
+          <span class="text-emerald-500 font-bold">🔒</span>
+          <span>100% lokal & privat</span>
+        </div>
+        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+          <span id="label-fallback-save-btn">Tages-Eintrag speichern</span>
+        </button>
+      </div>
+
+      <!-- ALL MODULES DISABLED NOTICE -->
+      <div id="diary-all-disabled-notice" class="hidden p-6 rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 text-center space-y-3 bg-slate-50/50 dark:bg-slate-900/50 my-4">
+        <div class="text-3xl">🎛️</div>
+        <h3 class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-200" id="all-disabled-title">Alle Tracking-Module sind deaktiviert</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto" id="all-disabled-desc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
+        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-xs transition inline-flex items-center gap-1.5">
+          <span>⚙️</span>
+          <span id="all-disabled-btn">Module anpassen</span>
+        </button>
+      </div>
 
     </div>
     <!-- VIEW B2: TAGEBUCH-CHRONIK (Journal & Ordnerstruktur) -->
@@ -1877,6 +1928,194 @@
 
     </div>
   </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: APP-EINSTELLUNGEN & MODUL-MANAGER (SETTINGS)       -->
+  <!-- ======================================================== -->
+  <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200">
+    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="text-xl shrink-0">⚙️</span>
+          <div class="min-w-0">
+            <h3 id="settings-modal-heading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
+            <p id="settings-modal-subheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Segmented Tab Navigation inside Modal -->
+      <div class="px-4 pt-2.5 pb-1 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shrink-0">
+        <div class="grid grid-cols-2 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-xs font-bold shadow-inner">
+          <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+            <span id="tab-label-modules">🎛️ Tracking-Module</span>
+          </button>
+          <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+            <span id="tab-label-general">⚙️ Allgemein & Sprache</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4">
+        
+        <!-- ============================================== -->
+        <!-- TAB 1: TRACKING-MODULE (FEATURE TOGGLES)       -->
+        <!-- ============================================== -->
+        <div id="settings-tab-modules" class="space-y-3.5">
+          
+          <!-- Banner & Presets -->
+          <div class="p-3 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40 space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
+                <span>🎯</span>
+                <span id="settings-presets-title">Schnell-Vorlagen:</span>
+              </span>
+              <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold" id="settings-active-count-badge">13 aktiv</span>
+            </div>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc">
+              Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-0.5">
+              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-xs">
+                ✨ Alle an
+              </button>
+              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs">
+                🎯 Nur Kern (Minimal)
+              </button>
+              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs">
+                🧘 Achtsamkeit
+              </button>
+            </div>
+          </div>
+
+          <!-- Feature Toggles List Container (Dynamically populated & synced) -->
+          <div id="settings-feature-toggles-container" class="space-y-2">
+            <!-- Dynamically injected feature rows with iOS-style toggles -->
+          </div>
+
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: ALLGEMEIN, SPRACHE, THEME & BACKUP     -->
+        <!-- ============================================== -->
+        <div id="settings-tab-general" class="hidden space-y-4">
+          
+          <!-- 1. SPRACHE / LANGUAGE -->
+          <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                <span>🌐</span> <span id="label-setting-language">Sprache / Language:</span>
+              </span>
+              <span id="current-lang-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Deutsch</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
+              <button type="button" onclick="setAppLanguage('de')" id="lang-btn-de" class="py-2 px-3 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                <span>🇩🇪</span> <span>Deutsch</span>
+              </button>
+              <button type="button" onclick="setAppLanguage('en')" id="lang-btn-en" class="py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 font-semibold text-xs flex items-center justify-center gap-1.5 transition">
+                <span>🇬🇧</span> <span>English</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. ERSCHEINUNGSBILD / THEME -->
+          <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span>🎨</span> <span id="label-setting-theme">Erscheinungsbild:</span>
+            </span>
+            <div class="grid grid-cols-3 gap-1.5 pt-0.5">
+              <button type="button" onclick="setAppThemeSetting('light')" id="theme-opt-light" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-0.5">
+                <span>☀️</span> <span class="text-[11px]">Hell</span>
+              </button>
+              <button type="button" onclick="setAppThemeSetting('dark')" id="theme-opt-dark" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-0.5">
+                <span>🌙</span> <span class="text-[11px]">Dunkel</span>
+              </button>
+              <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-0.5">
+                <span>💻</span> <span class="text-[11px]">System</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. TAGESZIELE & START-ANSICHT -->
+          <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2.5">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span>🎯</span> <span id="label-setting-targets">Tagesziele & Verhalten:</span>
+            </span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-steps">Standard Schritte-Ziel:</label>
+                <input type="number" id="setting-steps-goal" min="1000" step="500" value="10000" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-water">Standard Wasser-Ziel (ml):</label>
+                <input type="number" id="setting-water-goal" min="500" step="250" value="2500" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
+              </div>
+            </div>
+
+            <div class="pt-1 border-t border-slate-200/60 dark:border-slate-800 space-y-2">
+              <label class="flex items-center justify-between gap-2 cursor-pointer">
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-compact-mode">Karten beim Start standardmäßig zuklappen (Fokus-Modus)</span>
+                <input type="checkbox" id="setting-compact-mode" onchange="updateGoalSettings()" class="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 cursor-pointer accent-sky-600">
+              </label>
+
+              <div class="flex items-center justify-between gap-2 pt-1">
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view">Startansicht beim Öffnen:</span>
+                <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
+                  <option value="schema">🧠 Schema-Memo</option>
+                  <option value="diary">📖 Daily Diary</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. DATEN, BACKUP & SICHERHEIT -->
+          <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                <span>💾</span> <span id="label-setting-backup">Gesamt-Backup & Datensicherung:</span>
+              </span>
+              <span id="settings-data-stats" class="text-[10px] text-slate-400">Berechne...</span>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-snug" id="settings-backup-desc">
+              Erstelle ein Komplett-Backup aller Memos, Tagebuch-Tage und Einstellungen in einer einzigen sicheren Datei.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <button type="button" onclick="exportFullBackupJSON()" class="flex-1 min-w-[140px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-black text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span id="btn-export-backup-text">Gesamt-Backup laden</span>
+              </button>
+
+              <label class="flex-1 min-w-[140px] py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
+                <span id="btn-import-backup-text">Backup einspielen</span>
+                <input type="file" id="full-backup-import-file" accept=".json" onchange="importFullBackupJSON(event)" class="hidden">
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between px-4 py-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 shrink-0">
+        <span class="text-[10px] text-slate-400 flex items-center gap-1">
+          <span class="text-emerald-500 font-bold">●</span>
+          <span id="settings-footer-privacy">100% lokal & privat auf diesem Gerät</span>
+        </span>
+        <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-xs">
+          <span id="settings-btn-done">Fertig</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
   <!-- Application Logic -->
   <script>
     // ==========================================
@@ -1885,6 +2124,176 @@
     const STORAGE_KEY_MEMOS = 'schema_therapy_memos_v1';
     const STORAGE_KEY_DIARY = 'schema_daily_diary_v1';
     const STORAGE_KEY_MODE = 'schema_app_active_mode';
+    const STORAGE_KEY_SETTINGS = 'schema_settings_v1';
+
+    const DEFAULT_SETTINGS = {
+      language: 'de',      // 'de' | 'en'
+      theme: 'auto',       // 'light' | 'dark' | 'auto'
+      stepsGoal: 10000,
+      waterGoal: 2500,
+      compactMode: false,
+      startView: 'schema', // 'schema' | 'diary'
+      features: {
+        'mood': true,
+        'emotions': true,
+        'meds-log': true,
+        'meds-efficacy': true,
+        'meals': true,
+        'water': true,
+        'caffeine': true,
+        'sleep': true,
+        'adhs': true,
+        'steps': true,
+        'positive-things': true,
+        'highlights': true,
+        'notes': true
+      }
+    };
+
+    let appSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+
+    const FEATURE_METADATA = [
+      { id: 'mood', card: 'mood', icon: '😊', title_de: 'Gemüt & Energie', title_en: 'Mood & Energy', desc_de: '1-10 Skala für Stimmung & Energielevel', desc_en: '1-10 scale for mood & energy score' },
+      { id: 'emotions', card: 'mood', icon: '🎭', title_de: 'Gefühle & Reflexion', title_en: 'Emotions & Reflection', desc_de: 'Gefühls-Chips mit eigener Reflexions-Notiz', desc_en: 'Emotion chips with personal reflection notes' },
+      { id: 'meds-log', card: 'meds', icon: '💊', title_de: 'Medikamente & Uhrzeit', title_en: 'Medications & Time', desc_de: '1-Klick Einnahme mit flexibler Zeiterfassung', desc_en: '1-click logging with flexible intake time' },
+      { id: 'meds-efficacy', card: 'meds', icon: '🎯', title_de: 'Wirkung & Rebound', title_en: 'Efficacy & Rebound', desc_de: 'Wirkungsbewertung (Flow, Optimal, ...) & Rebound', desc_en: 'Efficacy rating (Flow, Optimal, ...) & Rebound' },
+      { id: 'meals', card: 'vital', icon: '🍳', title_de: 'Mahlzeiten (4 Phasen)', title_en: 'Meals (4 Phases)', desc_de: 'Frühstück, Mittag, Abend, Snacks & Tags', desc_en: 'Breakfast, Lunch, Dinner, Snacks & Tags' },
+      { id: 'water', card: 'vital', icon: '💧', title_de: 'Wasser & Hydration', title_en: 'Water & Hydration', desc_de: 'Fortschrittsbalken mit +250 / +500 ml Tasten', desc_en: 'Progress bar with +250 / +500 ml buttons' },
+      { id: 'caffeine', card: 'vital', icon: '☕', title_de: 'Koffein & Wachmacher', title_en: 'Caffeine & Boosters', desc_de: 'Kaffee- & Energy-Zähler bzgl. Wechselwirkung', desc_en: 'Coffee & energy counter for interactions' },
+      { id: 'sleep', card: 'vital', icon: '🛏️', title_de: 'Schlaf & Erholung', title_en: 'Sleep & Recovery', desc_de: 'Zeiten, Auto-Schlafdauer, Qualität & Faktoren', desc_en: 'Times, auto-duration, quality & factors' },
+      { id: 'adhs', card: 'adhs', icon: '🧠', title_de: 'ADHS, Fokus & Reize', title_en: 'ADHD, Focus & Sensory', desc_de: 'Fokus, Unruhe, Brainfog, Flow & Reizoffenheit', desc_en: 'Focus, restlessness, brain fog, flow & sensory load' },
+      { id: 'steps', card: 'adhs', icon: '👟', title_de: 'Schritte & Sport', title_en: 'Steps & Activities', desc_de: 'Schrittzähler mit Zielbalken & Sport-Chips', desc_en: 'Step counter with goal bar & sport chips' },
+      { id: 'positive-things', card: 'mind', icon: '💚', title_de: '3 Positive Dinge', title_en: '3 Positive Things', desc_de: 'Dankbarkeit & tägliche Dopamin-Anker', desc_en: 'Gratitude & daily dopamine anchors' },
+      { id: 'highlights', card: 'mind', icon: '🌟', title_de: 'Highlights & Erlebnisse', title_en: 'Highlights & Memories', desc_de: 'Schlüsselerlebnisse und Erinnerungs-Tags (#)', desc_en: 'Key moments and memory tags (#)' },
+      { id: 'notes', card: 'mind', icon: '📖', title_de: 'Brain Dump / Notizen', title_en: 'Brain Dump / Notes', desc_de: 'Freies Textfeld für ungefilterte Gedanken', desc_en: 'Freeform text field for unfiltered thoughts' }
+    ];
+
+    const I18N = {
+      de: {
+        brandSubtitle: 'Nach J. Young · Schematherapie',
+        diarySubtitle: 'All-in-One Life, Med & Neuro Tracker',
+        navSchema: '🧠 Schema-Memo',
+        navDiary: '📖 Diary & Tracker',
+        headerNewMemo: 'Memo',
+        headerNewCheckin: 'Check-in',
+        btnInstall: 'Installieren',
+        tabEdit: 'Eingabe',
+        tabSheet: 'Blatt',
+        tabMemos: 'Memos',
+        tabHelp: 'Hilfe',
+        tabCheckin: 'Check-in',
+        tabHistory: 'Chronik',
+        tabTrends: 'Trends',
+        quickYesterday: 'Vortag',
+        quickReset: 'Leeren',
+        quickCollapse: '⤓ Zuklappen',
+        quickExpand: '⤢ Aufklappen',
+        quickModules: 'Module',
+        filterAll: '✨ Alles',
+        filterMood: '🌈 Mood',
+        filterMeds: '💊 Medis',
+        filterVital: '🌿 Vitales',
+        filterAdhs: '🧠 ADHS & Steps',
+        filterMind: '📖 Journal',
+        saveEntry: 'Tages-Eintrag speichern',
+        privacyNote: '100% lokal & privat auf diesem Gerät',
+        allDisabledTitle: 'Alle Tracking-Module sind deaktiviert',
+        allDisabledDesc: 'Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.',
+        allDisabledBtn: 'Module anpassen',
+        settingsHeading: 'Einstellungen & Module',
+        settingsSubheading: 'Passe Module, Sprache und Darstellung an deine Bedürfnisse an.',
+        tabLabelModules: '🎛️ Tracking-Module',
+        tabLabelGeneral: '⚙️ Allgemein & Sprache',
+        settingsPresetsTitle: 'Schnell-Vorlagen:',
+        settingsPresetsDesc: 'Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.',
+        presetAll: '✨ Alle an',
+        presetMinimal: '🎯 Nur Kern (Minimal)',
+        presetMindfulness: '🧘 Achtsamkeit',
+        labelSettingLanguage: 'Sprache / Language:',
+        labelSettingTheme: 'Erscheinungsbild:',
+        themeLight: 'Hell',
+        themeDark: 'Dunkel',
+        themeAuto: 'System',
+        labelSettingTargets: 'Tagesziele & Verhalten:',
+        labelTargetSteps: 'Standard Schritte-Ziel:',
+        labelTargetWater: 'Standard Wasser-Ziel (ml):',
+        labelCompactMode: 'Karten beim Start standardmäßig zuklappen (Fokus-Modus)',
+        labelStartView: 'Startansicht beim Öffnen:',
+        labelSettingBackup: 'Gesamt-Backup & Datensicherung:',
+        settingsBackupDesc: 'Erstelle ein Komplett-Backup aller Memos, Tagebuch-Tage und Einstellungen in einer einzigen sicheren Datei.',
+        btnExportBackup: 'Gesamt-Backup laden',
+        btnImportBackup: 'Backup einspielen',
+        settingsDone: 'Fertig',
+        toastSaved: 'Gespeichert',
+        toastPresetApplied: 'Vorlage angewendet',
+        toastBackupExported: 'Gesamt-Backup erfolgreich heruntergeladen!',
+        toastBackupImported: 'Backup erfolgreich wiederhergestellt!',
+        toastLanguageChanged: 'Sprache auf Deutsch gestellt',
+        toastThemeChanged: 'Design angepasst'
+      },
+      en: {
+        brandSubtitle: 'By J. Young · Schema Therapy',
+        diarySubtitle: 'All-in-One Life, Med & Neuro Tracker',
+        navSchema: '🧠 Schema-Memo',
+        navDiary: '📖 Diary & Tracker',
+        headerNewMemo: 'Memo',
+        headerNewCheckin: 'Check-in',
+        btnInstall: 'Install',
+        tabEdit: 'Form',
+        tabSheet: 'Sheet',
+        tabMemos: 'Memos',
+        tabHelp: 'Help',
+        tabCheckin: 'Check-in',
+        tabHistory: 'History',
+        tabTrends: 'Trends',
+        quickYesterday: 'Yesterday',
+        quickReset: 'Clear',
+        quickCollapse: '⤓ Collapse',
+        quickExpand: '⤢ Expand',
+        quickModules: 'Modules',
+        filterAll: '✨ All',
+        filterMood: '🌈 Mood',
+        filterMeds: '💊 Meds',
+        filterVital: '🌿 Vitals',
+        filterAdhs: '🧠 ADHD & Steps',
+        filterMind: '📖 Journal',
+        saveEntry: 'Save Daily Entry',
+        privacyNote: '100% local & private on this device',
+        allDisabledTitle: 'All tracking modules are disabled',
+        allDisabledDesc: 'You have currently hidden all diary sections. Enable modules in Settings to get started.',
+        allDisabledBtn: 'Configure Modules',
+        settingsHeading: 'Settings & Modules',
+        settingsSubheading: 'Customize modules, language and appearance to your needs.',
+        tabLabelModules: '🎛️ Tracking Modules',
+        tabLabelGeneral: '⚙️ General & Language',
+        settingsPresetsTitle: 'Quick Presets:',
+        settingsPresetsDesc: 'Tailor your diary so you never feel overwhelmed. Toggle only the areas you really want to track today.',
+        presetAll: '✨ All on',
+        presetMinimal: '🎯 Core Only (Minimal)',
+        presetMindfulness: '🧘 Mindfulness',
+        labelSettingLanguage: 'Language / Sprache:',
+        labelSettingTheme: 'Appearance:',
+        themeLight: 'Light',
+        themeDark: 'Dark',
+        themeAuto: 'System',
+        labelSettingTargets: 'Daily Goals & Behavior:',
+        labelTargetSteps: 'Default Steps Goal:',
+        labelTargetWater: 'Default Water Goal (ml):',
+        labelCompactMode: 'Collapse cards by default at startup (Focus Mode)',
+        labelStartView: 'Startup view on launch:',
+        labelSettingBackup: 'Complete Backup & Safety:',
+        settingsBackupDesc: 'Create a full backup of all memos, diary entries, and settings in a single safe file.',
+        btnExportBackup: 'Export Full Backup',
+        btnImportBackup: 'Restore Backup',
+        settingsDone: 'Done',
+        toastSaved: 'Saved',
+        toastPresetApplied: 'Preset applied',
+        toastBackupExported: 'Full backup exported successfully!',
+        toastBackupImported: 'Backup restored successfully!',
+        toastLanguageChanged: 'Language set to English',
+        toastThemeChanged: 'Theme updated'
+      }
+    };
 
     let currentAppMode = 'schema'; // 'schema' | 'diary'
     let currentMemoId = null;
@@ -2005,6 +2414,7 @@
     // INITIALIZATION
     // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
+      loadAppSettings();
       initTheme();
       initDefaultDates();
       ensureInitialMemos();
@@ -2018,9 +2428,21 @@
       renderMemoryTagChips();
       renderSchemaCustomChips();
       updateCardSummaryBadges();
+      applyDiaryFeatureVisibility();
       
-      const savedMode = localStorage.getItem(STORAGE_KEY_MODE) || 'schema';
+      const savedMode = localStorage.getItem(STORAGE_KEY_MODE) || (appSettings.startView || 'schema');
       switchAppMode(savedMode, false);
+
+      if (appSettings.compactMode) {
+        ['mood', 'meds', 'vital', 'adhs', 'mind'].forEach(k => {
+          diaryCardsState[k] = false;
+          applyDiaryCardVisibility(k);
+        });
+        allCardsExpanded = false;
+        const lbl = document.getElementById('label-toggle-all-cards');
+        const isDe = (appSettings.language || 'de') === 'de';
+        if (lbl) lbl.textContent = isDe ? '⤢ Aufklappen' : '⤢ Expand';
+      }
 
       renderArchiveList();
       renderDiaryEntriesList();
@@ -2035,6 +2457,10 @@
 
     // Theme Management
     function initTheme() {
+      if (appSettings && appSettings.theme && appSettings.theme !== 'auto') {
+        setAppThemeSetting(appSettings.theme);
+        return;
+      }
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
         document.getElementById('theme-icon-sun')?.classList.remove('hidden');
@@ -2048,15 +2474,9 @@
 
     function toggleTheme() {
       if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
-        document.getElementById('theme-icon-sun')?.classList.add('hidden');
-        document.getElementById('theme-icon-moon')?.classList.remove('hidden');
+        setAppThemeSetting('light');
       } else {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-        document.getElementById('theme-icon-sun')?.classList.remove('hidden');
-        document.getElementById('theme-icon-moon')?.classList.add('hidden');
+        setAppThemeSetting('dark');
       }
     }
 
@@ -2086,12 +2506,15 @@
       const headerNewBtnText = document.getElementById('header-btn-new-text');
       const logoIcon = document.getElementById('brand-logo-icon');
 
+      const isDe = (appSettings.language || 'de') === 'de';
+      const t = I18N[appSettings.language || 'de'] || I18N.de;
+
       if (mode === 'schema') {
         btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300';
         btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         titleEl.innerText = 'Schema-Memo';
-        subTitleEl.innerText = 'Nach J. Young · Schematherapie';
-        headerNewBtnText.innerText = 'Memo';
+        subTitleEl.innerText = t.brandSubtitle;
+        headerNewBtnText.innerText = t.headerNewMemo;
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
 
         renderBottomNavForSchema();
@@ -2100,8 +2523,8 @@
         btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-300';
         btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         titleEl.innerText = 'Daily Diary & Neuro';
-        subTitleEl.innerText = 'All-in-One Life, Med & Neuro Tracker';
-        headerNewBtnText.innerText = 'Check-in';
+        subTitleEl.innerText = t.diarySubtitle;
+        headerNewBtnText.innerText = t.headerNewCheckin;
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
 
         renderBottomNavForDiary();
@@ -2124,20 +2547,22 @@
     // Dynamic Bottom Nav
     function renderBottomNavForSchema() {
       const nav = document.getElementById('app-bottom-nav');
+      if (!nav) return;
       const memos = getStoredMemos();
+      const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
         <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Eingabe</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabEdit}</span>
         </button>
 
         <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Blatt</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabSheet}</span>
         </button>
 
         <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
@@ -2145,27 +2570,29 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-sky-600 text-white text-[9px] font-bold flex items-center justify-center">${memos.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Memos</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabMemos}</span>
         </button>
 
         <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Hilfe</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabHelp}</span>
         </button>
       `;
     }
 
     function renderBottomNavForDiary() {
       const nav = document.getElementById('app-bottom-nav');
+      if (!nav) return;
       const diary = getStoredDiaryEntries();
+      const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
         <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Check-in</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabCheckin}</span>
         </button>
 
         <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
@@ -2173,16 +2600,537 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-600 text-white text-[9px] font-bold flex items-center justify-center">${diary.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Chronik</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabHistory}</span>
         </button>
 
         <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Trends</span>
+          <span class="text-[11px] font-semibold tracking-tight">${t.tabTrends}</span>
         </button>
       `;
+    }
+
+    // ==========================================
+    // APP SETTINGS & MODULAR FEATURE CONTROLLER
+    // ==========================================
+    function loadAppSettings() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_SETTINGS);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          appSettings = {
+            ...DEFAULT_SETTINGS,
+            ...parsed,
+            features: {
+              ...DEFAULT_SETTINGS.features,
+              ...(parsed.features || {})
+            }
+          };
+        }
+      } catch (e) {
+        console.error('Error loading settings:', e);
+        appSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+      }
+
+      // Sync water and steps goals
+      if (appSettings.waterGoal) {
+        currentWaterGoal = appSettings.waterGoal;
+        const waterDisp = document.getElementById('water-display');
+        if (waterDisp) updateWaterDisplay();
+      }
+      if (appSettings.stepsGoal) {
+        const inputGoal = document.getElementById('input-steps-goal');
+        if (inputGoal) inputGoal.value = appSettings.stepsGoal;
+        const setStepsGoal = document.getElementById('setting-steps-goal');
+        if (setStepsGoal) setStepsGoal.value = appSettings.stepsGoal;
+      }
+      const setWaterGoal = document.getElementById('setting-water-goal');
+      if (setWaterGoal) setWaterGoal.value = appSettings.waterGoal;
+
+      const setCompact = document.getElementById('setting-compact-mode');
+      if (setCompact) setCompact.checked = !!appSettings.compactMode;
+
+      const setStart = document.getElementById('setting-start-view');
+      if (setStart) setStart.value = appSettings.startView || 'schema';
+
+      // Apply theme setting buttons
+      updateThemeButtonsUI(appSettings.theme || 'auto');
+
+      // Apply Language
+      applyLanguageStrings();
+    }
+
+    function saveAppSettings() {
+      try {
+        localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(appSettings));
+      } catch (e) {
+        console.error('Error saving settings:', e);
+      }
+    }
+
+    function applyLanguageStrings() {
+      const lang = appSettings.language || 'de';
+      const t = I18N[lang] || I18N.de;
+
+      const safeSetText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+
+      safeSetText('settings-modal-heading', t.settingsHeading);
+      safeSetText('settings-modal-subheading', t.settingsSubheading);
+      safeSetText('tab-label-modules', t.tabLabelModules);
+      safeSetText('tab-label-general', t.tabLabelGeneral);
+      safeSetText('settings-presets-title', t.settingsPresetsTitle);
+      safeSetText('settings-presets-desc', t.settingsPresetsDesc);
+      safeSetText('label-setting-language', t.labelSettingLanguage);
+      safeSetText('label-setting-theme', t.labelSettingTheme);
+      safeSetText('label-setting-targets', t.labelSettingTargets);
+      safeSetText('label-target-steps', t.labelTargetSteps);
+      safeSetText('label-target-water', t.labelTargetWater);
+      safeSetText('label-compact-mode', t.labelCompactMode);
+      safeSetText('label-start-view', t.labelStartView);
+      safeSetText('label-setting-backup', t.labelSettingBackup);
+      safeSetText('settings-backup-desc', t.settingsBackupDesc);
+      safeSetText('btn-export-backup-text', t.btnExportBackup);
+      safeSetText('btn-import-backup-text', t.btnImportBackup);
+      safeSetText('settings-footer-privacy', t.privacyNote);
+      safeSetText('settings-btn-done', t.settingsDone);
+      safeSetText('label-quick-modules', t.quickModules);
+      safeSetText('sec-nav-all', t.filterAll);
+      safeSetText('sec-nav-mood', t.filterMood);
+      safeSetText('sec-nav-meds', t.filterMeds);
+      safeSetText('sec-nav-vital', t.filterVital);
+      safeSetText('sec-nav-adhs', t.filterAdhs);
+      safeSetText('sec-nav-mind', t.filterMind);
+      safeSetText('all-disabled-title', t.allDisabledTitle);
+      safeSetText('all-disabled-desc', t.allDisabledDesc);
+      safeSetText('all-disabled-btn', t.allDisabledBtn);
+      safeSetText('label-fallback-save-btn', t.saveEntry);
+
+      // Accordion toggle label
+      const toggleAllLbl = document.getElementById('label-toggle-all-cards');
+      if (toggleAllLbl) toggleAllLbl.textContent = allCardsExpanded ? t.quickCollapse : t.quickExpand;
+
+      // Update Language badge and button active states
+      const langBadge = document.getElementById('current-lang-badge');
+      if (langBadge) langBadge.textContent = lang === 'de' ? 'Deutsch' : 'English';
+
+      const btnDe = document.getElementById('lang-btn-de');
+      const btnEn = document.getElementById('lang-btn-en');
+      if (btnDe && btnEn) {
+        if (lang === 'de') {
+          btnDe.className = 'py-2 px-3 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs';
+          btnEn.className = 'py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 font-semibold text-xs flex items-center justify-center gap-1.5 transition';
+        } else {
+          btnEn.className = 'py-2 px-3 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs';
+          btnDe.className = 'py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 font-semibold text-xs flex items-center justify-center gap-1.5 transition';
+        }
+      }
+
+      // Re-render Bottom Nav & Settings Toggles with correct language
+      if (currentAppMode === 'schema') renderBottomNavForSchema();
+      else renderBottomNavForDiary();
+      renderSettingsFeatureToggles();
+    }
+
+    function setAppLanguage(lang) {
+      appSettings.language = lang;
+      saveAppSettings();
+      applyLanguageStrings();
+      updateCardSummaryBadges();
+      showToast(lang === 'de' ? 'Sprache auf Deutsch gestellt' : 'Language set to English');
+    }
+
+    function setAppThemeSetting(theme) {
+      appSettings.theme = theme;
+      saveAppSettings();
+      updateThemeButtonsUI(theme);
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+        document.getElementById('theme-icon-sun')?.classList.add('hidden');
+        document.getElementById('theme-icon-moon')?.classList.remove('hidden');
+      } else if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+        document.getElementById('theme-icon-sun')?.classList.remove('hidden');
+        document.getElementById('theme-icon-moon')?.classList.add('hidden');
+      } else { // auto
+        delete localStorage.theme;
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+          document.getElementById('theme-icon-sun')?.classList.remove('hidden');
+          document.getElementById('theme-icon-moon')?.classList.add('hidden');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.getElementById('theme-icon-sun')?.classList.add('hidden');
+          document.getElementById('theme-icon-moon')?.classList.remove('hidden');
+        }
+      }
+      showToast(appSettings.language === 'en' ? 'Theme updated' : 'Design angepasst');
+    }
+
+    function updateThemeButtonsUI(activeTheme) {
+      const opts = ['light', 'dark', 'auto'];
+      opts.forEach(opt => {
+        const el = document.getElementById(`theme-opt-${opt}`);
+        if (!el) return;
+        if (opt === activeTheme) {
+          el.className = 'theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-0.5 shadow-xs';
+        } else {
+          el.className = 'theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-center transition flex flex-col items-center gap-0.5';
+        }
+      });
+    }
+
+    function updateGoalSettings() {
+      const stepsInput = document.getElementById('setting-steps-goal');
+      const waterInput = document.getElementById('setting-water-goal');
+      const compactInput = document.getElementById('setting-compact-mode');
+      const startInput = document.getElementById('setting-start-view');
+
+      if (stepsInput && stepsInput.value) {
+        const val = parseInt(stepsInput.value, 10);
+        if (val > 0) {
+          appSettings.stepsGoal = val;
+          const inputStepsGoal = document.getElementById('input-steps-goal');
+          if (inputStepsGoal) inputStepsGoal.value = val;
+          updateStepsProgressDisplay();
+        }
+      }
+
+      if (waterInput && waterInput.value) {
+        const val = parseInt(waterInput.value, 10);
+        if (val > 0) {
+          appSettings.waterGoal = val;
+          currentWaterGoal = val;
+          updateWaterDisplay();
+        }
+      }
+
+      if (compactInput) {
+        appSettings.compactMode = compactInput.checked;
+      }
+
+      if (startInput) {
+        appSettings.startView = startInput.value;
+      }
+
+      saveAppSettings();
+    }
+
+    function applyDiaryFeatureVisibility() {
+      let activeCount = 0;
+      const cardCounts = {
+        mood: 0,
+        meds: 0,
+        vital: 0,
+        adhs: 0,
+        mind: 0
+      };
+
+      FEATURE_METADATA.forEach(feat => {
+        const isEnabled = appSettings.features[feat.id] !== false;
+        if (isEnabled) {
+          activeCount++;
+          if (cardCounts[feat.card] !== undefined) cardCounts[feat.card]++;
+        }
+        const container = document.getElementById('feature-container-' + feat.id);
+        if (container) {
+          if (isEnabled) container.classList.remove('hidden');
+          else container.classList.add('hidden');
+        }
+      });
+
+      // Update badge in settings modal
+      const badge = document.getElementById('settings-active-count-badge');
+      if (badge) {
+        const isDe = (appSettings.language || 'de') === 'de';
+        badge.textContent = `${activeCount} ${isDe ? 'aktiv' : 'active'}`;
+      }
+
+      // Handle drinks row (water + caffeine)
+      const drinksRow = document.getElementById('vital-drinks-row');
+      const isWater = appSettings.features['water'] !== false;
+      const isCaff = appSettings.features['caffeine'] !== false;
+      if (drinksRow) {
+        if (!isWater && !isCaff) {
+          drinksRow.classList.add('hidden');
+        } else {
+          drinksRow.classList.remove('hidden');
+        }
+      }
+
+      // Check card containers and their navigation pills
+      let visibleCardsCount = 0;
+      ['mood', 'meds', 'vital', 'adhs', 'mind'].forEach(cardKey => {
+        const cardEl = document.getElementById('card-diary-' + cardKey);
+        const navPill = document.getElementById('sec-nav-' + cardKey);
+        const isCardVisible = cardCounts[cardKey] > 0;
+
+        if (cardEl) {
+          if (isCardVisible) {
+            cardEl.classList.remove('hidden');
+            visibleCardsCount++;
+          } else {
+            cardEl.classList.add('hidden');
+          }
+        }
+        if (navPill) {
+          if (isCardVisible) navPill.classList.remove('hidden');
+          else navPill.classList.add('hidden');
+        }
+      });
+
+      // Fallback save bar & All-disabled notice
+      const notice = document.getElementById('diary-all-disabled-notice');
+      const fallbackSave = document.getElementById('diary-fallback-save-bar');
+      const secNavAll = document.getElementById('sec-nav-all');
+
+      if (visibleCardsCount === 0) {
+        if (notice) notice.classList.remove('hidden');
+        if (fallbackSave) fallbackSave.classList.add('hidden');
+        if (secNavAll) secNavAll.classList.add('hidden');
+      } else {
+        if (notice) notice.classList.add('hidden');
+        if (secNavAll) secNavAll.classList.remove('hidden');
+
+        // If Card 5 (mind) is hidden, show fallback save bar so user can still save
+        const isMindVisible = cardCounts['mind'] > 0;
+        if (!isMindVisible && fallbackSave) {
+          fallbackSave.classList.remove('hidden');
+        } else if (fallbackSave) {
+          fallbackSave.classList.add('hidden');
+        }
+      }
+    }
+
+    function renderSettingsFeatureToggles() {
+      const container = document.getElementById('settings-feature-toggles-container');
+      if (!container) return;
+
+      const lang = appSettings.language || 'de';
+      const isDe = lang === 'de';
+
+      const cardTitles = {
+        mood: isDe ? '🌈 Gemüt & Gefühle' : '🌈 Mood & Emotions',
+        meds: isDe ? '💊 Medikation & Wirkung' : '💊 Medications & Efficacy',
+        vital: isDe ? '🌿 Vital-Hub (Essen, Trinken, Schlaf)' : '🌿 Vitals (Meals, Drinks, Sleep)',
+        adhs: isDe ? '🧠 Neuro & Body (ADHS, Schritte)' : '🧠 Neuro & Body (ADHD, Steps)',
+        mind: isDe ? '📖 Journal & Reflexion' : '📖 Journal & Reflection'
+      };
+
+      let html = '';
+      const grouped = {};
+      FEATURE_METADATA.forEach(feat => {
+        if (!grouped[feat.card]) grouped[feat.card] = [];
+        grouped[feat.card].push(feat);
+      });
+
+      Object.keys(grouped).forEach(cardKey => {
+        html += `
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-2.5 space-y-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block pb-1 border-b border-slate-200/50 dark:border-slate-800">
+              ${cardTitles[cardKey] || cardKey}
+            </span>
+            <div class="space-y-1.5">
+        `;
+
+        grouped[cardKey].forEach(feat => {
+          const isChecked = appSettings.features[feat.id] !== false;
+          const title = isDe ? feat.title_de : feat.title_en;
+          const desc = isDe ? feat.desc_de : feat.desc_en;
+
+          html += `
+            <label class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 transition cursor-pointer gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-base shrink-0">${feat.icon}</span>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">${title}</div>
+                  <div class="text-[10px] text-slate-400 truncate leading-tight">${desc}</div>
+                </div>
+              </div>
+              
+              <div class="relative inline-flex items-center shrink-0">
+                <input type="checkbox" onchange="toggleFeatureSetting('${feat.id}', this.checked)" ${isChecked ? 'checked' : ''} class="sr-only peer">
+                <div class="w-9 h-5 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+              </div>
+            </label>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function toggleFeatureSetting(featId, isChecked) {
+      if (!appSettings.features) appSettings.features = {};
+      appSettings.features[featId] = isChecked;
+      saveAppSettings();
+      applyDiaryFeatureVisibility();
+    }
+
+    function setFeaturePreset(presetType) {
+      if (!appSettings.features) appSettings.features = {};
+      
+      if (presetType === 'all') {
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = true;
+        });
+      } else if (presetType === 'minimal') {
+        const core = new Set(['mood', 'meds-log', 'meds-efficacy', 'water', 'sleep', 'adhs', 'positive-things']);
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = core.has(f.id);
+        });
+      } else if (presetType === 'mindfulness') {
+        const mindful = new Set(['mood', 'emotions', 'meals', 'water', 'sleep', 'steps', 'positive-things', 'highlights', 'notes']);
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = mindful.has(f.id);
+        });
+      }
+
+      saveAppSettings();
+      renderSettingsFeatureToggles();
+      applyDiaryFeatureVisibility();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Vorlage übernommen' : 'Preset applied');
+    }
+
+    function switchSettingsTab(tab) {
+      const tabModules = document.getElementById('settings-tab-modules');
+      const tabGeneral = document.getElementById('settings-tab-general');
+      const btnModules = document.getElementById('tab-btn-modules');
+      const btnGeneral = document.getElementById('tab-btn-general');
+
+      if (!tabModules || !tabGeneral) return;
+
+      if (tab === 'modules') {
+        tabModules.classList.remove('hidden');
+        tabGeneral.classList.add('hidden');
+        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 font-bold';
+        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium';
+      } else {
+        tabModules.classList.add('hidden');
+        tabGeneral.classList.remove('hidden');
+        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 font-bold';
+        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium';
+
+        updateSettingsDataStats();
+      }
+    }
+
+    function openSettingsModal() {
+      const modal = document.getElementById('settings-modal');
+      if (!modal) return;
+      renderSettingsFeatureToggles();
+      updateSettingsDataStats();
+      modal.classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      const modal = document.getElementById('settings-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function updateSettingsDataStats() {
+      const statsEl = document.getElementById('settings-data-stats');
+      if (!statsEl) return;
+      const memos = getStoredMemos();
+      const diary = getStoredDiaryEntries();
+      const isDe = (appSettings.language || 'de') === 'de';
+      statsEl.textContent = isDe 
+        ? `${memos.length} Memos · ${diary.length} Einträge`
+        : `${memos.length} Memos · ${diary.length} Entries`;
+    }
+
+    function exportFullBackupJSON() {
+      const backupData = {
+        app: 'Schema-Memo & Daily Life Tracker',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        memos: getStoredMemos(),
+        diary: getStoredDiaryEntries(),
+        customOptions: customOptions,
+        settings: appSettings
+      };
+
+      const jsonStr = JSON.stringify(backupData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const dateStr = new Date().toISOString().split('T')[0];
+      a.href = url;
+      a.download = `schema-memo-full-backup-${dateStr}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Gesamt-Backup erfolgreich exportiert!' : 'Full backup exported successfully!');
+    }
+
+    function importFullBackupJSON(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (!data || typeof data !== 'object') {
+            throw new Error('Ungültiges Datenformat');
+          }
+
+          if (Array.isArray(data.memos)) {
+            localStorage.setItem(STORAGE_KEY_MEMOS, JSON.stringify(data.memos));
+          }
+          if (Array.isArray(data.diary)) {
+            localStorage.setItem(STORAGE_KEY_DIARY, JSON.stringify(data.diary));
+          }
+          if (data.customOptions && typeof data.customOptions === 'object') {
+            localStorage.setItem(STORAGE_KEY_CUSTOM_OPTIONS, JSON.stringify(data.customOptions));
+            customOptions = data.customOptions;
+          }
+          if (data.settings && typeof data.settings === 'object') {
+            localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(data.settings));
+            appSettings = { ...DEFAULT_SETTINGS, ...data.settings };
+          }
+
+          loadAppSettings();
+          loadCustomOptions();
+          renderQuickMedsChips();
+          renderEmotionChips();
+          renderSleepTagChips();
+          renderActivitiesChips();
+          renderMealTagChips();
+          renderMemoryTagChips();
+          renderSchemaCustomChips();
+          applyDiaryFeatureVisibility();
+          renderArchiveList();
+          renderDiaryEntriesList();
+          if (currentDiaryEntryId) loadDiaryEntryForDate(document.getElementById('input-diary-date')?.value || getTodayDateString());
+
+          const isDe = (appSettings.language || 'de') === 'de';
+          showToast(isDe ? 'Backup erfolgreich wiederhergestellt!' : 'Backup restored successfully!');
+          updateSettingsDataStats();
+          closeSettingsModal();
+        } catch (err) {
+          console.error('Import error:', err);
+          alert('Fehler beim Einlesen der Backup-Datei: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
     }
 
     function switchView(viewName) {
@@ -2910,30 +3858,44 @@
     }
 
     function updateCardSummaryBadges() {
+      const isDe = (appSettings.language || 'de') === 'de';
+
       const moodBadge = document.getElementById('badge-summary-mood');
       const moodVal = document.getElementById('diary-mood-slider')?.value || 8;
       const emoCount = selectedDiaryEmotions.size;
-      if (moodBadge) moodBadge.textContent = `${moodVal}/10 · ${emoCount} ${emoCount === 1 ? 'Gefühl' : 'Gefühle'}`;
+      if (moodBadge) {
+        const emoWord = isDe ? (emoCount === 1 ? 'Gefühl' : 'Gefühle') : (emoCount === 1 ? 'Emotion' : 'Emotions');
+        moodBadge.textContent = `${moodVal}/10 · ${emoCount} ${emoWord}`;
+      }
 
       const medsBadge = document.getElementById('badge-summary-meds');
       const medCount = currentDayMedications.length;
       const eff = currentMedEfficacyRating ? ` · ${currentMedEfficacyRating.toUpperCase()}` : '';
-      if (medsBadge) medsBadge.textContent = `${medCount} ${medCount === 1 ? 'Medi' : 'Medis'}${eff}`;
+      if (medsBadge) {
+        const medWord = isDe ? (medCount === 1 ? 'Medi' : 'Medis') : (medCount === 1 ? 'Med' : 'Meds');
+        medsBadge.textContent = `${medCount} ${medWord}${eff}`;
+      }
 
       const vitalBadge = document.getElementById('badge-summary-vital');
       const duration = document.getElementById('input-sleep-duration')?.value || '7.5';
-      if (vitalBadge) vitalBadge.textContent = `${currentWaterMl} ml · ${duration}h Schlaf`;
+      if (vitalBadge) {
+        vitalBadge.textContent = `${currentWaterMl} ml · ${duration}h ${isDe ? 'Schlaf' : 'Sleep'}`;
+      }
 
       const adhsBadge = document.getElementById('badge-summary-adhs');
       const focusVal = document.getElementById('input-adhs-focus')?.value || 7;
       const stepsVal = document.getElementById('input-steps-count')?.value || 0;
-      if (adhsBadge) adhsBadge.textContent = `Fokus ${focusVal}/10 · ${parseInt(stepsVal).toLocaleString('de-DE')} Steps`;
+      if (adhsBadge) {
+        adhsBadge.textContent = `${isDe ? 'Fokus' : 'Focus'} ${focusVal}/10 · ${parseInt(stepsVal).toLocaleString(isDe ? 'de-DE' : 'en-US')} Steps`;
+      }
 
       const mindBadge = document.getElementById('badge-summary-mind');
       const posInputs = document.querySelectorAll('#positive-things-inputs-container input');
       let posFilled = 0;
       posInputs.forEach(i => { if (i.value.trim()) posFilled++; });
-      if (mindBadge) mindBadge.textContent = `${posFilled}/3 Positiv`;
+      if (mindBadge) {
+        mindBadge.textContent = `${posFilled}/3 ${isDe ? 'Positiv' : 'Positive'}`;
+      }
     }
 
     function renderQuickMedsChips() {
@@ -4550,7 +5512,7 @@
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=11').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=16').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

@@ -64,8 +64,21 @@
       overflow-x: hidden;
     }
 
+    html {
+      scroll-padding-top: 105px;
+    }
+
     body {
       padding-bottom: calc(68px + env(safe-area-inset-bottom, 12px));
+    }
+
+    /* Hide scrollbar for clean touch swipe horizontal bars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     /* Prevent auto-zoom on mobile inputs */
@@ -306,34 +319,34 @@
   <!-- ======================================================== -->
   <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
   <!-- ======================================================== -->
-  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-2.5 sm:px-6 py-2">
-    <div class="max-w-4xl mx-auto flex items-center justify-between">
+  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-2.5 sm:px-6 py-1.5 sm:py-2">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
       
       <!-- Brand Logo & Title -->
-      <div class="flex items-center gap-2 cursor-pointer" onclick="handleBrandClick()">
-        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-xs">
+      <div class="flex items-center gap-2 min-w-0 cursor-pointer" onclick="handleBrandClick()">
+        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-xs shrink-0">
           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
         </div>
-        <div>
-          <h1 id="app-main-title" class="text-sm sm:text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
-          <p id="app-main-subtitle" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Nach J. Young · Schematherapie</p>
+        <div class="min-w-0">
+          <h1 id="app-main-title" class="text-xs sm:text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight truncate">Schema-Memo</h1>
+          <p id="app-main-subtitle" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block truncate">Nach J. Young · Schematherapie</p>
         </div>
       </div>
 
       <!-- Header Quick Actions -->
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 shrink-0">
         <!-- PWA Install Button -->
         <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Als echte App installieren">
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span>Installieren</span>
         </button>
 
-        <!-- New Item Quick Button -->
-        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-[11px] font-semibold transition flex items-center gap-1" title="Neu anlegen">
+        <!-- New Item Quick Button (Single clean plus icon) -->
+        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-[11px] font-semibold transition flex items-center gap-1 shadow-xs" title="Neu anlegen">
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          <span id="header-btn-new-text">+ Neu</span>
+          <span id="header-btn-new-text">Neu</span>
         </button>
 
         <!-- Quick Update / Cache Clear Button -->
@@ -351,7 +364,7 @@
     </div>
 
     <!-- PRIMARY MODULE SWITCHER: Schema-Memo vs. Daily Life & Neuro-Tracker Diary -->
-    <div class="max-w-4xl mx-auto pt-1.5 flex items-center justify-center">
+    <div class="max-w-4xl mx-auto pt-1 sm:pt-1.5 flex items-center justify-center">
       <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 w-full max-w-xs shadow-inner">
         <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
           <span>🧠 Schema-Memo</span>
@@ -366,7 +379,7 @@
   <!-- ======================================================== -->
   <!-- MAIN APP CONTAINER                                        -->
   <!-- ======================================================== -->
-  <main class="max-w-4xl w-full mx-auto px-2 sm:px-6 pt-2.5 sm:pt-4 pb-24 sm:pb-32">
+  <main class="max-w-4xl w-full mx-auto px-2 sm:px-6 pt-3 sm:pt-5 pb-24 sm:pb-32">
     <!-- ======================================================== -->
     <!-- MODULE A: SCHEMA-MEMO VIEWS                               -->
     <!-- ======================================================== -->
@@ -381,11 +394,11 @@
             🔍 Situation reflektieren
           </span>
 
-          <div class="flex items-center gap-1.5">
-            <button type="button" onclick="loadExampleMemo()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="loadExampleMemo()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition shadow-xs">
               Beispiel
             </button>
-            <button type="button" onclick="resetFormWithConfirm()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition">
+            <button type="button" onclick="resetFormWithConfirm()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shadow-xs">
               Leeren
             </button>
           </div>
@@ -843,57 +856,60 @@
       <!-- TOP CONTROL CARD: DATE, VORTAG & FOCUS-NAV -->
       <section class="shadcn-card p-2.5 sm:p-3 space-y-2">
         
-        <!-- Header Row: Date & Actions -->
+        <!-- Row 1: Check-in Status & Actions -->
         <div class="flex items-center justify-between pb-1.5 border-b border-slate-100 dark:border-slate-800 gap-2">
           <div class="flex items-center gap-1.5 min-w-0">
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0">
               Check-in
             </span>
-            <span id="diary-current-day-label" class="text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">Heute</span>
+            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">Heute</span>
           </div>
 
           <div class="flex items-center gap-1.5 shrink-0">
-            <!-- Date input -->
-            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-0.5 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
-            
             <!-- Quick routine copy from yesterday -->
-            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1" title="Kopiert Medikation & Ziele vom Vortag">
+            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               <span>Vortag</span>
             </button>
 
-            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition" title="Zurücksetzen">
+            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shadow-xs" title="Zurücksetzen">
               Leeren
             </button>
           </div>
         </div>
 
-        <!-- Section Focus Navigation Bar & Toggle All -->
-        <div class="flex items-center justify-between gap-1 pt-0.5">
-          <div class="flex flex-wrap items-center gap-1 text-[11px] font-semibold flex-1">
-            <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-2.5 py-1 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition">
-              ✨ Alles
-            </button>
-            <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              🌈 Mood
-            </button>
-            <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              💊 Medis
-            </button>
-            <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              🌿 Vitales
-            </button>
-            <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              🧠 ADHS & Steps
-            </button>
-            <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-              📖 Journal
-            </button>
+        <!-- Row 2: Date Selector & Accordion Toggle -->
+        <div class="flex items-center justify-between gap-2 pt-0.5">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Datum:</label>
+            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
           </div>
 
           <!-- Quick Accordion Toggle -->
-          <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 text-[10px] font-bold transition flex items-center gap-1" title="Alle Karten ein-/ausklappen">
+          <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen">
             <span id="label-toggle-all-cards">⤓ Zuklappen</span>
+          </button>
+        </div>
+
+        <!-- Row 3: Section Focus Navigation Bar (Smooth swipe on mobile) -->
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-2.5 py-1 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition shrink-0 text-xs">
+            ✨ Alles
+          </button>
+          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs">
+            🌈 Mood
+          </button>
+          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs">
+            💊 Medis
+          </button>
+          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs">
+            🌿 Vitales
+          </button>
+          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs">
+            🧠 ADHS & Steps
+          </button>
+          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs">
+            📖 Journal
           </button>
         </div>
 
@@ -902,7 +918,7 @@
       <!-- ======================================================== -->
       <!-- CARD 1: 🌈 GEMÜT, ENERGIE & GEFÜHLE                      -->
       <!-- ======================================================== -->
-      <section id="card-diary-mood" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200">
+      <section id="card-diary-mood" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mood')" class="flex items-center justify-between cursor-pointer select-none">
@@ -1021,7 +1037,7 @@
       <!-- ======================================================== -->
       <!-- CARD 2: 💊 MEDIKATION, WIRKUNG & REBOUND                 -->
       <!-- ======================================================== -->
-      <section id="card-diary-meds" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200">
+      <section id="card-diary-meds" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('meds')" class="flex items-center justify-between cursor-pointer select-none">
@@ -1123,7 +1139,7 @@
       <!-- ======================================================== -->
       <!-- CARD 3: 🌿 VITAL-HUB: ESSEN, TRINKEN & SCHLAF             -->
       <!-- ======================================================== -->
-      <section id="card-diary-vital" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200">
+      <section id="card-diary-vital" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('vital')" class="flex items-center justify-between cursor-pointer select-none">
@@ -1314,7 +1330,7 @@
       <!-- ======================================================== -->
       <!-- CARD 4: 🧠 NEURO & BODY: ADHS, FOKUS & SCHRITTE          -->
       <!-- ======================================================== -->
-      <section id="card-diary-adhs" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200">
+      <section id="card-diary-adhs" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('adhs')" class="flex items-center justify-between cursor-pointer select-none">
@@ -1414,6 +1430,10 @@
             <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
               <div id="steps-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-500">
+              <span id="steps-progress-percent">0% erreicht (0 / 10.000)</span>
+              <span>Tagesziel</span>
+            </div>
 
             <div class="grid grid-cols-2 gap-1.5">
               <div>
@@ -1462,7 +1482,7 @@
       <!-- ======================================================== -->
       <!-- CARD 5: 📖 JOURNAL, 3 POSITIVE DINGE & SPEICHERN         -->
       <!-- ======================================================== -->
-      <section id="card-diary-mind" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200">
+      <section id="card-diary-mind" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mind')" class="flex items-center justify-between cursor-pointer select-none">
@@ -1522,9 +1542,9 @@
               <span class="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1">
                 <span>🌟</span> Highlights & Erlebnisse:
               </span>
-              <button type="button" onclick="openAddCustomModal('memory_tags')" class="px-2 py-0.5 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1" title="Eigenen Tag dauerhaft hinzufügen">
-                <span class="text-sm font-black">+</span>
-                <span class="text-[10px]">#Tag</span>
+              <button type="button" onclick="openAddCustomModal('memory_tags')" class="px-2 py-0.5 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1 shadow-xs" title="Eigenen Tag dauerhaft hinzufügen">
+                <span class="text-xs font-bold">+</span>
+                <span class="text-[10px]">Eigener Tag</span>
               </button>
             </div>
             <textarea id="input-diary-highlights" rows="2" placeholder="Was waren heute die wichtigsten Momente deines Tages?..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
@@ -1766,7 +1786,7 @@
   </nav>
 
   <!-- Toast Notification -->
-  <div id="toast" class="no-print fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-700 text-xs font-semibold backdrop-blur-md">
+  <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-700 text-xs font-semibold backdrop-blur-md">
     <div id="toast-icon" class="text-emerald-400 font-bold">✓</div>
     <span id="toast-message">Gespeichert</span>
   </div>
@@ -1907,7 +1927,7 @@
     ];
 
     const DEFAULT_MEMORY_TAGS = [
-      '🏆 #Erfolg', '🌲 #Natur', '👥 #Freunde', '🏡 #Familie', '🎨 #Kreativ', '⚡ #DopaminWin', '💡 #Gelernt', '🏃 #Sport', '🧘 #MeTime'
+      '🏆 Erfolg', '🌲 Natur', '👥 Freunde', '🏡 Familie', '🎨 Kreativ', '⚡ Dopamin-Win', '💡 Gelernt', '🏃 Sport', '🧘 Me-Time'
     ];
 
 
@@ -2027,7 +2047,7 @@
         btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         titleEl.innerText = 'Schema-Memo';
         subTitleEl.innerText = 'Nach J. Young · Schematherapie';
-        headerNewBtnText.innerText = '+ Memo';
+        headerNewBtnText.innerText = 'Memo';
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
 
         renderBottomNavForSchema();
@@ -2037,7 +2057,7 @@
         btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
         titleEl.innerText = 'Daily Diary & Neuro';
         subTitleEl.innerText = 'All-in-One Life, Med & Neuro Tracker';
-        headerNewBtnText.innerText = '+ Check-in';
+        headerNewBtnText.innerText = 'Check-in';
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
 
         renderBottomNavForDiary();
@@ -2146,37 +2166,6 @@
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Section focus filter inside Diary Check-in Form
-    function filterCheckinSections(filterKey) {
-      document.querySelectorAll('.sec-nav-btn').forEach(b => {
-        b.className = 'sec-nav-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0 font-medium transition';
-      });
-      const activeBtn = document.getElementById('sec-nav-' + filterKey);
-      if (activeBtn) {
-        activeBtn.className = 'sec-nav-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold shrink-0 shadow-xs transition';
-      }
-
-      const allSecs = [
-        { id: 'section-mood', group: 'mind' },
-        { id: 'section-meds', group: 'meds_food' },
-        { id: 'section-food', group: 'meds_food' },
-        { id: 'section-sleep', group: 'body' },
-        { id: 'section-steps', group: 'body' },
-        { id: 'section-adhs', group: 'adhs' },
-        { id: 'section-mind', group: 'mind' },
-      ];
-
-      allSecs.forEach(s => {
-        const el = document.getElementById(s.id);
-        if (!el) return;
-        if (filterKey === 'all' || s.group === filterKey) {
-          el.classList.remove('hidden');
-        } else {
-          el.classList.add('hidden');
-        }
-      });
     }
 
     // ==========================================
@@ -2597,18 +2586,6 @@
       renderEmotionNoteSegments();
     }
 
-    function addCustomEmotionFromInput() {
-      const input = document.getElementById('input-custom-emotion');
-      const val = input.value.trim();
-      if (!val) return;
-      selectedDiaryEmotions.add(val);
-      if (!diaryEmotionNotes[val]) diaryEmotionNotes[val] = '';
-      input.value = '';
-      updateEmotionChipStyles();
-      renderEmotionNoteSegments();
-      showToast(`Emotion "${val}" hinzugefügt`);
-    }
-
     function updateEmotionChipStyles() {
       document.querySelectorAll('.emotion-chip').forEach(chip => {
         const emo = chip.getAttribute('data-emotion');
@@ -2923,15 +2900,15 @@
       const customs = customOptions.meds || [];
 
       let html = defaults.map(m => `
-        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2 py-0.5 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium">
-          + ${escapeHtml(m.name)} ${escapeHtml(m.dose)}
+        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium inline-flex items-center gap-1">
+          <span>💊</span> <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
         </button>
       `).join('');
 
       if (customs.length > 0) {
         html += customs.map(m => `
-          <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2 py-0.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 transition font-bold" title="Dein eigenes Medikament">
-            ★ ${escapeHtml(m.name)} ${escapeHtml(m.dose)}
+          <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 transition font-bold inline-flex items-center gap-1 shadow-xs" title="Dein eigenes Medikament">
+            <span>★</span> <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
           </button>
         `).join('');
       }
@@ -3230,22 +3207,42 @@
       renderSleepTagChips();
     }
 
-    function renderSleepTagChips() {
-      const container = document.getElementById('sleep-factors-chips-container');
+    function formatTagDisplay(tag) {
+      if (!tag) return '';
+      const trimmed = tag.trim();
+      if (trimmed.includes('#')) return trimmed;
+      const parts = trimmed.split(' ');
+      if (parts.length > 1 && parts[0].length <= 2) {
+        return `${parts[0]} #${parts.slice(1).join(' ')}`;
+      }
+      return '#' + trimmed;
+    }
+
+    function renderGenericChipGroup({ containerId, defaults, customs = [], activeSet, toggleFnName, activeClass, inactiveClass, isHashtag = false }) {
+      const container = document.getElementById(containerId);
       if (!container) return;
-
-      const defaults = DEFAULT_SLEEP_FACTORS;
-      const customs = customOptions.sleep_factors || [];
-      const allFactors = defaults.concat(customs);
-
-      container.innerHTML = allFactors.map(tag => {
-        const isSelected = selectedSleepTags.has(tag);
+      const allItems = defaults.concat(customs);
+      container.innerHTML = allItems.map(item => {
+        const isSelected = activeSet.has(item);
+        const displayLabel = isHashtag ? formatTagDisplay(item) : item;
         return `
-          <button type="button" onclick="toggleSleepTag('${escapeHtml(tag)}')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border transition ${isSelected ? 'border-indigo-500 bg-indigo-100 dark:bg-indigo-950/70 text-indigo-900 dark:text-indigo-200 font-bold' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium'}" data-tag="${escapeHtml(tag)}">
-            ${escapeHtml(tag)}
+          <button type="button" onclick="${toggleFnName}('${escapeHtml(item)}')" class="text-xs px-2.5 py-1 rounded-full border transition ${isSelected ? activeClass : inactiveClass}" data-tag="${escapeHtml(item)}">
+            ${escapeHtml(displayLabel)}
           </button>
         `;
       }).join('');
+    }
+
+    function renderSleepTagChips() {
+      renderGenericChipGroup({
+        containerId: 'sleep-factors-chips-container',
+        defaults: DEFAULT_SLEEP_FACTORS,
+        customs: customOptions.sleep_factors || [],
+        activeSet: selectedSleepTags,
+        toggleFnName: 'toggleSleepTag',
+        activeClass: 'border-indigo-500 bg-indigo-100 dark:bg-indigo-950/70 text-indigo-900 dark:text-indigo-200 font-bold shadow-xs',
+        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
+      });
     }
 
     // ==========================================
@@ -3281,61 +3278,44 @@
     function toggleActivityTag(tag) {
       if (selectedActivities.has(tag)) selectedActivities.delete(tag);
       else selectedActivities.add(tag);
-      renderActivityChips();
+      renderActivitiesChips();
     }
 
     function renderActivitiesChips() {
-      const container = document.getElementById('activities-chips-container');
-      if (!container) return;
-
-      const defaults = DEFAULT_ACTIVITIES;
-      const customs = customOptions.activities || [];
-      const allActs = defaults.concat(customs);
-
-      container.innerHTML = allActs.map(act => {
-        const isSelected = selectedActivities.has(act);
-        return `
-          <button type="button" onclick="toggleActivityTag('${escapeHtml(act)}')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border transition ${isSelected ? 'border-blue-500 bg-blue-100 dark:bg-blue-950/70 text-blue-900 dark:text-blue-200 font-bold' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium'}" data-tag="${escapeHtml(act)}">
-            ${escapeHtml(act)}
-          </button>
-        `;
-      }).join('');
+      renderGenericChipGroup({
+        containerId: 'activities-chips-container',
+        defaults: DEFAULT_ACTIVITIES,
+        customs: customOptions.activities || [],
+        activeSet: selectedActivities,
+        toggleFnName: 'toggleActivityTag',
+        activeClass: 'border-blue-500 bg-blue-100 dark:bg-blue-950/70 text-blue-900 dark:text-blue-200 font-bold shadow-xs',
+        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
+      });
     }
 
     function renderMealTagChips() {
-      const container = document.getElementById('meal-tags-container');
-      if (!container) return;
-
-      const defaults = DEFAULT_MEAL_TAGS;
-      const customs = customOptions.meal_tags || [];
-      const allTags = defaults.concat(customs);
-
-      container.innerHTML = allTags.map(tag => {
-        const isSelected = selectedMealTags.has(tag);
-        return `
-          <button type="button" onclick="toggleMealTag('${escapeHtml(tag)}')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border transition ${isSelected ? 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium'}" data-tag="${escapeHtml(tag)}">
-            ${escapeHtml(tag)}
-          </button>
-        `;
-      }).join('');
+      renderGenericChipGroup({
+        containerId: 'meal-tags-container',
+        defaults: DEFAULT_MEAL_TAGS,
+        customs: customOptions.meal_tags || [],
+        activeSet: selectedMealTags,
+        toggleFnName: 'toggleMealTag',
+        activeClass: 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold shadow-xs',
+        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
+      });
     }
 
     function renderMemoryTagChips() {
-      const container = document.getElementById('memory-tags-container');
-      if (!container) return;
-
-      const defaults = DEFAULT_MEMORY_TAGS;
-      const customs = customOptions.memory_tags || [];
-      const allTags = defaults.concat(customs);
-
-      container.innerHTML = allTags.map(tag => {
-        const isSelected = selectedMemoryTags.has(tag);
-        return `
-          <button type="button" onclick="toggleMemoryTag('${escapeHtml(tag)}')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border transition ${isSelected ? 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium'}" data-tag="${escapeHtml(tag)}">
-            #${escapeHtml(tag)}
-          </button>
-        `;
-      }).join('');
+      renderGenericChipGroup({
+        containerId: 'memory-tags-container',
+        defaults: DEFAULT_MEMORY_TAGS,
+        customs: customOptions.memory_tags || [],
+        activeSet: selectedMemoryTags,
+        toggleFnName: 'toggleMemoryTag',
+        activeClass: 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold shadow-xs',
+        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium',
+        isHashtag: true
+      });
     }
 
     // ==========================================
@@ -3391,17 +3371,6 @@
       if (selectedMemoryTags.has(tag)) selectedMemoryTags.delete(tag);
       else selectedMemoryTags.add(tag);
       renderMemoryTagChips();
-    }
-
-    function renderMemoryTagChips() {
-      document.querySelectorAll('.memory-tag-btn').forEach(btn => {
-        const tag = btn.getAttribute('data-tag');
-        if (selectedMemoryTags.has(tag)) {
-          btn.className = 'memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold transition';
-        } else {
-          btn.className = 'memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition';
-        }
-      });
     }
 
     function updatePositiveThingsCounter() {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'schema-memo-v17';
+const CACHE_NAME = 'schema-memo-v18';
 
 // Immediate takeover upon new SW deployment
 self.addEventListener('install', (event) => {

@@ -81,9 +81,38 @@
       scrollbar-width: none;
     }
 
-    /* Prevent auto-zoom on mobile inputs */
+    /* Responsive auto-zoom prevention: ONLY on small mobile screens (<640px)
+       On iPad/Tablet (>=640px) and Desktop, preserve exact typography without blowing up compact inputs */
+    @media (max-width: 639px) {
+      input:not([type="range"]):not([type="checkbox"]),
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* Clean number inputs (hide bulky OS spin buttons that cause overflow on iPad) */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    /* Native date/time inputs on iOS/iPadOS Safari */
+    input[type="date"],
+    input[type="time"] {
+      min-height: 2.25rem;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    /* Ensure all inputs and textareas have rigid box models and never overflow containers */
     input, select, textarea {
-      font-size: 16px !important;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     /* Custom Scrollbar */
@@ -116,14 +145,18 @@
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /* shadcn Input & Textarea */
+    /* shadcn Input Base */
     .shadcn-input {
+      display: block;
       width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
       background: #f8fafc;
       border: 1px solid #cbd5e1;
       border-radius: 0.75rem;
       padding: 0.55rem 0.75rem;
       font-size: 0.875rem;
+      line-height: 1.4;
       color: #0f172a;
       transition: all 0.15s ease;
       outline: none;
@@ -142,6 +175,17 @@
       background: #0f172a;
       border-color: #38bdf8;
       box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Dedicated Textarea styling: guarantee block layout and clean height */
+    textarea.shadcn-input {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      min-height: 4.25rem;
+      resize: vertical;
+      line-height: 1.5;
     }
 
     /* Notebook Input Area */
@@ -406,17 +450,17 @@
 
         <!-- Titel & Datum Inputs -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          <div class="sm:col-span-2">
+          <div class="sm:col-span-2 min-w-0">
             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
               Titel des Memos <span class="text-sky-500">*</span>
             </label>
-            <input type="text" id="input-title" placeholder="z. B. Konflikt im Meeting, Absage, Einsamkeit..." class="shadcn-input font-medium">
+            <input type="text" id="input-title" placeholder="z. B. Konflikt im Meeting, Absage, Einsamkeit..." class="shadcn-input font-medium block w-full">
           </div>
-          <div>
+          <div class="min-w-0">
             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
               Datum
             </label>
-            <input type="date" id="input-date" class="shadcn-input font-medium cursor-pointer">
+            <input type="date" id="input-date" class="shadcn-input font-medium cursor-pointer block w-full">
           </div>
         </div>
       </div>
@@ -879,10 +923,10 @@
         </div>
 
         <!-- Row 2: Date Selector & Accordion Toggle -->
-        <div class="flex items-center justify-between gap-2 pt-0.5">
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-0.5">
           <div class="flex items-center gap-1.5 min-w-0">
             <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Datum:</label>
-            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
+            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
           </div>
 
           <!-- Quick Accordion Toggle -->
@@ -1123,12 +1167,12 @@
               <button type="button" onclick="setReboundLevel('stark')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="stark">Stark</button>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-1 pt-0.5">
-              <div class="w-full sm:w-28 shrink-0">
-                <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1" placeholder="Uhrzeit">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
+              <div class="sm:col-span-1 min-w-0">
+                <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" title="Rebound Uhrzeit">
               </div>
-              <div class="flex-1 min-w-0">
-                <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1">
+              <div class="sm:col-span-3 min-w-0">
+                <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1.5 block w-full">
               </div>
             </div>
           </div>
@@ -1170,41 +1214,41 @@
               </button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <!-- Breakfast -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] font-bold text-slate-900 dark:text-white flex items-center gap-1">🍳 Frühstück:</span>
                   <button type="button" onclick="appendMealTag('breakfast', 'Proteinreich')" class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold">+ Protein</button>
                 </div>
-                <textarea id="input-meal-breakfast" rows="1" placeholder="z. B. Rühreier mit Vollkornbrot..." class="shadcn-input text-xs py-1 px-2"></textarea>
+                <textarea id="input-meal-breakfast" rows="2" placeholder="z. B. Rühreier mit Vollkornbrot..." class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
               </div>
 
               <!-- Lunch -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] font-bold text-slate-900 dark:text-white flex items-center gap-1">🥗 Mittag:</span>
                   <button type="button" onclick="appendMealTag('lunch', 'Ausgewogen')" class="text-[9px] px-1.5 py-0.5 rounded bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold">+ Ausgewogen</button>
                 </div>
-                <textarea id="input-meal-lunch" rows="1" placeholder="z. B. Reisbowl mit Gemüse & Hähnchen..." class="shadcn-input text-xs py-1 px-2"></textarea>
+                <textarea id="input-meal-lunch" rows="2" placeholder="z. B. Reisbowl mit Gemüse & Hähnchen..." class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
               </div>
 
               <!-- Dinner -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] font-bold text-slate-900 dark:text-white flex items-center gap-1">🍲 Abend:</span>
                   <button type="button" onclick="appendMealTag('dinner', 'Leicht')" class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 font-bold">+ Leicht</button>
                 </div>
-                <textarea id="input-meal-dinner" rows="1" placeholder="z. B. Gemüsesuppe, Salat, Lachs..." class="shadcn-input text-xs py-1 px-2"></textarea>
+                <textarea id="input-meal-dinner" rows="2" placeholder="z. B. Gemüsesuppe, Salat, Lachs..." class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
               </div>
 
               <!-- Snacks -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] font-bold text-slate-900 dark:text-white flex items-center gap-1">🍎 Snacks:</span>
                   <button type="button" onclick="appendMealTag('snacks', 'Wenig Appetit')" class="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-bold">Appetitmangel</button>
                 </div>
-                <textarea id="input-meal-snacks" rows="1" placeholder="z. B. Nüsse, Proteinriegel, Apfel..." class="shadcn-input text-xs py-1 px-2"></textarea>
+                <textarea id="input-meal-snacks" rows="2" placeholder="z. B. Nüsse, Proteinriegel, Apfel..." class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
               </div>
             </div>
 
@@ -1260,20 +1304,20 @@
             </div>
 
             <!-- Times & Auto Calculator -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-              <div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
+              <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5">Zubettgehzeit:</label>
-                <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1">
+                <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
-              <div>
+              <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5">Aufwachzeit:</label>
-                <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1">
+                <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
-              <div class="col-span-2 sm:col-span-1">
+              <div class="col-span-2 sm:col-span-1 min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5">Schlafdauer (Std):</label>
                 <div class="flex items-center gap-1">
-                  <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-bold py-1">
-                  <span class="text-xs font-bold text-slate-400">h</span>
+                  <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-bold py-1.5 flex-1 min-w-0 block">
+                  <span class="text-xs font-bold text-slate-400 shrink-0">h</span>
                 </div>
               </div>
             </div>
@@ -1435,14 +1479,14 @@
               <span>Tagesziel</span>
             </div>
 
-            <div class="grid grid-cols-2 gap-1.5">
-              <div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5">Schritte heute:</label>
-                <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-extrabold text-blue-600 dark:text-blue-400 py-1">
+                <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-extrabold text-blue-600 dark:text-blue-400 py-1.5 block w-full">
               </div>
-              <div>
+              <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5">Ziel:</label>
-                <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold py-1">
+                <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold py-1.5 block w-full">
               </div>
             </div>
 
@@ -1514,18 +1558,18 @@
               </span>
             </div>
 
-            <div class="space-y-1" id="positive-things-inputs-container">
+            <div class="space-y-1.5" id="positive-things-inputs-container">
               <div class="flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">1</span>
-                <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="Ein schöner Moment heute..." class="shadcn-input py-1 px-2.5 text-xs">
+                <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="Ein schöner Moment heute..." class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
               </div>
               <div class="flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">2</span>
-                <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="Ein Erfolg oder Lob..." class="shadcn-input py-1 px-2.5 text-xs">
+                <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="Ein Erfolg oder Lob..." class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
               </div>
               <div class="flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">3</span>
-                <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="Zeit genommen für mich..." class="shadcn-input py-1 px-2.5 text-xs">
+                <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="Zeit genommen für mich..." class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
               </div>
             </div>
 
@@ -2619,7 +2663,7 @@
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Gefühl: <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">${escapeHtml(emo)}</span></span>
             <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-[10px] text-rose-500 hover:text-rose-700 font-semibold">Entfernen</button>
           </div>
-          <textarea rows="2" oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" placeholder="Was hat ${escapeHtml(emo)} ausgelöst und wie bist du damit umgegangen?" class="shadcn-input text-xs">${escapeHtml(diaryEmotionNotes[emo] || '')}</textarea>
+          <textarea rows="2" oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" placeholder="Was hat ${escapeHtml(emo)} ausgelöst und wie bist du damit umgegangen?" class="shadcn-input text-xs block w-full resize-none min-h-[50px] leading-relaxed">${escapeHtml(diaryEmotionNotes[emo] || '')}</textarea>
         </div>
       `).join('');
     }
@@ -2678,18 +2722,18 @@
         fields.innerHTML = `
           <div>
             <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Name des Medikaments / Supplements:</label>
-            <input type="text" id="input-custom-modal-name" placeholder="z. B. Attentin, Magnesium, Elvanse..." class="shadcn-input text-xs">
+            <input type="text" id="input-custom-modal-name" placeholder="z. B. Attentin, Magnesium, Elvanse..." class="shadcn-input text-xs block w-full">
           </div>
           <div>
             <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Standard-Dosis:</label>
-            <input type="text" id="input-custom-modal-dose" placeholder="z. B. 10 mg, 400 mg, 1 Kapsel..." class="shadcn-input text-xs" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+            <input type="text" id="input-custom-modal-dose" placeholder="z. B. 10 mg, 400 mg, 1 Kapsel..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
       } else {
         fields.innerHTML = `
           <div>
             <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Bezeichnung:</label>
-            <input type="text" id="input-custom-modal-val" placeholder="z. B. Neue Bezeichnung..." class="shadcn-input text-xs" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+            <input type="text" id="input-custom-modal-val" placeholder="z. B. Neue Bezeichnung..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
       }
@@ -3058,11 +3102,11 @@
           </div>
           <!-- Editable time directly on each med pill -->
           <div class="flex items-center gap-1.5 shrink-0">
-            <div class="flex items-center gap-0.5 bg-slate-100 dark:bg-slate-700/80 px-1.5 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
-              <span class="text-[10px] text-slate-400">⏰</span>
-              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-[11px] font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-16" title="Einnahme-Uhrzeit anpassen">
+            <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
+              <span class="text-[10px] text-slate-400 shrink-0">⏰</span>
+              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="Einnahme-Uhrzeit anpassen">
             </div>
-            <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition" title="Löschen">
+            <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="Löschen">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
@@ -3392,10 +3436,10 @@
       const container = document.getElementById('positive-things-inputs-container');
       const count = container.querySelectorAll('input').length + 1;
       const row = document.createElement('div');
-      row.className = 'flex items-center gap-2.5';
+      row.className = 'flex items-center gap-2';
       row.innerHTML = `
-        <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">${count}</span>
-        <input type="text" oninput="updatePositiveThingsCounter()" placeholder="Ein weiterer positiver Moment..." class="notebook-input-area py-2.5">
+        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">${count}</span>
+        <input type="text" oninput="updatePositiveThingsCounter()" placeholder="Ein weiterer positiver Moment..." class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
       `;
       container.appendChild(row);
       row.querySelector('input').focus();

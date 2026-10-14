@@ -257,6 +257,12 @@
       border: 1px solid #e2e8f0;
       position: relative;
     }
+    .dark .sheet-paper {
+      background-color: #0f172a;
+      color: #f8fafc;
+      border-color: #1e293b;
+      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.35);
+    }
 
     /* Dotted Line Rule */
     .dotted-rule {
@@ -266,6 +272,9 @@
       align-items: flex-end;
       padding-bottom: 2px;
       width: 100%;
+    }
+    .dark .dotted-rule {
+      border-bottom-color: #475569;
     }
 
     /* Bottom Navigation Active Glow */
@@ -383,13 +392,13 @@
       <div class="flex items-center gap-1 shrink-0">
         <!-- PWA Install Button -->
         <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Als echte App installieren">
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span>Installieren</span>
         </button>
 
         <!-- New Item Quick Button (Single clean plus icon) -->
         <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-[11px] font-semibold transition flex items-center gap-1 shadow-xs" title="Neu anlegen">
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           <span id="header-btn-new-text">Neu</span>
         </button>
 
@@ -400,13 +409,13 @@
 
         <!-- Quick Update / Cache Clear Button -->
         <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         </button>
 
         <!-- Dark Mode Toggle -->
         <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Design umschalten">
-          <svg id="theme-icon-sun" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <svg id="theme-icon-moon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
       </div>
 
@@ -477,7 +486,7 @@
             1
           </span>
           <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-            1. Benennen des aktualisierten Gefühls
+            Benennen des aktualisierten Gefühls
           </h3>
         </div>
 
@@ -515,7 +524,7 @@
             2
           </span>
           <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-            2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
+            Erkennen der aktivierten Schemata/Modi und der Bewältigung
           </h3>
         </div>
 
@@ -564,7 +573,7 @@
             3
           </span>
           <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-            3. Anerkennen der Dysfunktionalität / Realitätsprüfung
+            Anerkennen der Dysfunktionalität / Realitätsprüfung
           </h3>
         </div>
 
@@ -597,7 +606,7 @@
             4
           </span>
           <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-            4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
+            Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
           </h3>
         </div>
 
@@ -644,19 +653,19 @@
       <!-- Sheet Toolbar -->
       <div class="no-print shadcn-card p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-1.5">
-          <button onclick="switchView('edit')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          <button onclick="switchView('edit')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             <span>Bearbeiten</span>
           </button>
 
-          <button onclick="printSheet()" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <button onclick="printSheet()" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span>Drucken / PDF</span>
           </button>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <select id="font-style-select" onchange="changeSheetFont(this.value)" class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
+          <select id="font-style-select" onchange="changeSheetFont(this.value)" class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
             <option value="kalam-blue" selected>🖋️ Handschrift Blau</option>
             <option value="caveat-black">✒️ Handschrift Schwarz</option>
             <option value="clean-sans">⌨️ Druckschrift</option>
@@ -670,25 +679,25 @@
 
       <!-- THE SHEET -->
       <div class="w-full">
-        <div id="worksheet-paper" class="sheet-paper w-full rounded-2xl p-4 sm:p-10 md:p-12 text-black font-sheet transition-all">
+        <div id="worksheet-paper" class="sheet-paper w-full rounded-2xl p-4 sm:p-10 md:p-12 text-slate-900 dark:text-slate-100 font-sheet transition-all">
 
           <!-- Header Metadata -->
-          <div id="sheet-header-meta" class="mb-5 pb-2 border-b border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-1">
+          <div id="sheet-header-meta" class="mb-5 pb-2 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-1">
             <div class="flex items-center gap-1.5 font-medium">
-              <span class="font-bold text-slate-900 uppercase tracking-wider text-[11px]">Schema-Memo</span>
-              <span id="sheet-meta-title" class="text-slate-800 font-semibold"></span>
+              <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Schema-Memo</span>
+              <span id="sheet-meta-title" class="text-slate-800 dark:text-slate-200 font-semibold"></span>
             </div>
-            <div id="sheet-meta-date" class="text-slate-500"></div>
+            <div id="sheet-meta-date" class="text-slate-500 dark:text-slate-400"></div>
           </div>
 
           <!-- SECTION 1 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-black mb-2.5">
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5">
               1. Benennen des aktualisierten Gefühls
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Im Augenblick fühle ich (Emotion)
               </div>
               <div class="dotted-rule">
@@ -700,7 +709,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 weil (aktuelle Auslösesituation)
               </div>
               <div class="dotted-rule">
@@ -714,12 +723,12 @@
 
           <!-- SECTION 2 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-black mb-2.5">
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5">
               2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Ich weiß, dass das wahrscheinlich mein (Schema/Modus) ... ist,
               </div>
               <div class="dotted-rule">
@@ -728,7 +737,7 @@
             </div>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 das/den ich durch (Kindheitssituation) ... erlernt habe.
               </div>
               <div class="dotted-rule">
@@ -737,7 +746,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Diese Aktivierung löst bei mir (altes Bewältigungsverhalten) ... aus.
               </div>
               <div class="dotted-rule">
@@ -748,12 +757,12 @@
 
           <!-- SECTION 3 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-black mb-2.5">
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5">
               3. Anerkennen der Dysfunktionalität / Realitätsprüfung
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Obwohl ich glaube (negativer Gedanke/ Innere-Eltern-Stimme),
               </div>
               <div class="dotted-rule">
@@ -762,7 +771,7 @@
             </div>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 ist die Realität (Sicht des Gesunden Erwachsenen),
               </div>
               <div class="dotted-rule">
@@ -771,7 +780,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Beweise für diese Realität sind:
               </div>
               <div class="dotted-rule">
@@ -785,12 +794,12 @@
 
           <!-- SECTION 4 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-black mb-2.5">
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5">
               4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Obwohl ich am liebsten (altes dysfunktionales Verhalten) ... würde,
               </div>
               <div class="dotted-rule">
@@ -799,7 +808,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-900 text-xs sm:text-[14px] mb-1">
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1">
                 Könnte ich stattdessen (alternative Lösungen)
               </div>
               <div class="dotted-rule">
@@ -812,7 +821,7 @@
           </div>
 
           <!-- FOOTER / COPYRIGHT (REQUIRED) -->
-          <div class="mt-8 pt-3 border-t border-slate-300 text-center text-[10px] text-slate-500">
+          <div class="mt-8 pt-3 border-t border-slate-200 dark:border-slate-800 text-center text-[10px] text-slate-500 dark:text-slate-400">
             Modifiziert nach J. Young 1996/2002. Das Original ist urheberrechtlich geschützt.
           </div>
 
@@ -917,7 +926,7 @@
           <div class="flex items-center gap-1.5 shrink-0">
             <!-- Quick routine copy from yesterday -->
             <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               <span>Vortag</span>
             </button>
 
@@ -1017,21 +1026,13 @@
                 <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
               </div>
 
-              <!-- Slider & 1-10 Buttons -->
+              <!-- Responsive Mood Slider -->
               <div class="space-y-1 pt-0.5">
-                <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                
-                <div class="grid grid-cols-5 sm:grid-cols-10 gap-1">
-                  <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
-                  <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
-                  <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
-                  <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
-                  <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
-                  <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
-                  <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
-                  <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
-                  <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
-                  <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn h-7 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
+                <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-400 px-0.5 font-medium">
+                  <span>1 = Tiefpunkt / Krise</span>
+                  <span>5 = Neutral</span>
+                  <span>10 = Hervorragend</span>
                 </div>
               </div>
             </div>
@@ -1058,7 +1059,9 @@
             <!-- Emotionen Chips with Permanent Add (+) Button -->
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">🎭 Gefühle heute:</span>
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
+                  <span>🎭</span> Gefühle heute: <span class="text-[10px] text-slate-400 font-normal">(Mehrfachauswahl möglich)</span>
+                </span>
                 <button type="button" onclick="openAddCustomModal('emotions')" class="px-2 py-0.5 rounded-lg border border-dashed border-emerald-400 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition inline-flex items-center gap-1" title="Eigene Emotion permanent speichern">
                   <span class="text-sm font-black">+</span>
                   <span class="text-[10px]">Eigenes</span>
@@ -1152,51 +1155,53 @@
           <!-- FEATURE CONTAINER: MEDS EFFICACY & REBOUND -->
           <div id="feature-container-meds-efficacy" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
             <!-- EFFICACY / WIRKUNGSBEWERTUNG (NEW REQUESTED FEATURE!) -->
+            <!-- EFFICACY / WIRKUNGSBEWERTUNG (Single-Select Dropdown) -->
             <div class="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1">
+                <label for="select-med-efficacy" class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1">
                   <span>🎯</span> Wie haben die Medis heute gewirkt?
-                </span>
+                </label>
                 <span id="med-efficacy-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300">
                   Noch offen
                 </span>
               </div>
 
-              <!-- Efficacy Rating Chips -->
-              <div class="flex flex-wrap gap-1">
-                <button type="button" onclick="setMedEfficacyRating('optimal')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="optimal">🎯 Optimal / Flow</button>
-                <button type="button" onclick="setMedEfficacyRating('gut')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="gut">👍 Gut & Stabil</button>
-                <button type="button" onclick="setMedEfficacyRating('schwach')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="schwach">📉 Kaum Wirkung</button>
-                <button type="button" onclick="setMedEfficacyRating('zu_stark')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="zu_stark">⚡ Zu intensiv</button>
-                <button type="button" onclick="setMedEfficacyRating('nebenwirkung')" class="med-eff-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold transition" data-rating="nebenwirkung">⚠️ Nebenwirkungen</button>
-              </div>
+              <!-- Single-select Dropdown -->
+              <select id="select-med-efficacy" onchange="setMedEfficacyRating(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                <option value="none">-- Wirkung auswählen (Einzelauswahl) --</option>
+                <option value="optimal">🎯 Optimal / Flow (fokussiert & ruhig)</option>
+                <option value="gut">👍 Gut & Stabil (gute Unterstützung)</option>
+                <option value="schwach">📉 Kaum Wirkung / Zu schwach</option>
+                <option value="zu_stark">⚡ Zu intensiv / Überstimuliert</option>
+                <option value="nebenwirkung">⚠️ Nebenwirkungen / Unangenehm</option>
+              </select>
 
               <!-- Efficacy Notes Textarea -->
-              <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z.B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
+              <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z. B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
             </div>
 
-            <!-- Rebound & Wirkungsende Box -->
+            <!-- Rebound & Wirkungsende Box (Single-Select Dropdown) -->
             <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
+                <label for="select-med-rebound" class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
                   <span>⏱️</span> Rebound / Wirkungsende?
-                </span>
+                </label>
                 <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Kein Rebound</span>
               </div>
 
-              <div class="flex flex-wrap gap-1">
-                <button type="button" onclick="setReboundLevel('none')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold" data-level="none">Kein Rebound</button>
-                <button type="button" onclick="setReboundLevel('leicht')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="leicht">Leicht</button>
-                <button type="button" onclick="setReboundLevel('spuerbar')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="spuerbar">Spürbar</button>
-                <button type="button" onclick="setReboundLevel('stark')" class="rebound-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="stark">Stark</button>
-              </div>
+              <select id="select-med-rebound" onchange="setReboundLevel(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                <option value="none">Kein Rebound (sanftes Ausklingen)</option>
+                <option value="leicht">Leicht (milde Erschöpfung)</option>
+                <option value="spuerbar">Moderat (Reizbarkeit / Unruhe)</option>
+                <option value="stark">Stark (Crasherlebnis / Tiefe Erschöpfung)</option>
+              </select>
 
               <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
                 <div class="sm:col-span-1 min-w-0">
                   <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" title="Rebound Uhrzeit">
                 </div>
                 <div class="sm:col-span-3 min-w-0">
-                  <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1.5 block w-full">
+                  <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z. B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1.5 block w-full">
                 </div>
               </div>
             </div>
@@ -1232,7 +1237,7 @@
           <!-- FEATURE CONTAINER: MEALS -->
           <div id="feature-container-meals" class="space-y-1">
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Mahlzeiten:</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Mahlzeiten: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl für Tags)</span></span>
               <button type="button" onclick="openAddCustomModal('meal_tags')" class="px-2 py-0.5 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen">
                 <span class="text-sm font-black">+</span>
                 <span class="text-[10px]">Tag</span>
@@ -1302,17 +1307,59 @@
               </div>
             </div>
 
-            <!-- FEATURE CONTAINER: CAFFEINE -->
-            <div id="feature-container-caffeine" class="p-2 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/40 dark:bg-amber-950/20 space-y-1.5 min-w-0">
+            <!-- FEATURE CONTAINER: CAFFEINE (INDEPENDENT COFFEE & ENERGY TRACKING) -->
+            <div id="feature-container-caffeine" class="p-2.5 rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/20 space-y-1.5 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1">☕ Koffein:</span>
-                <span id="caffeine-display" class="text-xs font-bold text-amber-600 dark:text-amber-400">0 Tassen</span>
+                <span class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1">
+                  <span>☕</span> Koffein & Stimulanzien:
+                </span>
+                <span id="caffeine-total-badge" class="text-xs font-extrabold text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 shadow-xs">
+                  <span id="caffeine-display">0 mg</span>
+                </span>
               </div>
-              <p class="text-[10px] text-slate-400 leading-tight">Wechselwirkung mit Medis beachten.</p>
-              <div class="flex items-center gap-1">
-                <button type="button" onclick="addCaffeine(1, 'Kaffee')" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ☕ Kaffee</button>
-                <button type="button" onclick="addCaffeine(1, 'Energy')" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ⚡ Energy</button>
-                <button type="button" onclick="addCaffeine(-1, '')" class="text-[11px] font-semibold px-1.5 py-0.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">- 1</button>
+              <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
+                Getrennt tracken und mixen · Wechselwirkung mit Medis beachten.
+              </p>
+
+              <!-- Two Independent Counters: Coffee & Energy Drink -->
+              <div class="space-y-1.5 pt-0.5">
+                <!-- Coffee Row -->
+                <div class="flex items-center justify-between p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-amber-200/70 dark:border-amber-800/40">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="text-base shrink-0">☕</span>
+                    <div class="min-w-0">
+                      <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Kaffee</span>
+                      <span class="text-[10px] text-slate-400 block sm:inline sm:ml-1">(~80 mg)</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <button type="button" onclick="changeCoffee(-1)" class="w-6 h-6 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center transition" title="1 Tasse abziehen">-</button>
+                    <span id="coffee-count-display" class="w-8 text-center text-xs font-black text-amber-800 dark:text-amber-300">0</span>
+                    <button type="button" onclick="changeCoffee(1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center justify-center transition shadow-xs" title="1 Tasse hinzufügen">+</button>
+                  </div>
+                </div>
+
+                <!-- Energy Drink Row -->
+                <div class="flex items-center justify-between p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-amber-200/70 dark:border-amber-800/40">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="text-base shrink-0">⚡</span>
+                    <div class="min-w-0">
+                      <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Energy Drink</span>
+                      <span class="text-[10px] text-slate-400 block sm:inline sm:ml-1">(~150 mg)</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <button type="button" onclick="changeEnergyDrink(-1)" class="w-6 h-6 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center transition" title="1 Dose abziehen">-</button>
+                    <span id="energy-count-display" class="w-8 text-center text-xs font-black text-amber-800 dark:text-amber-300">0</span>
+                    <button type="button" onclick="changeEnergyDrink(1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center justify-center transition shadow-xs" title="1 Dose hinzufügen">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Summary Info Line -->
+              <div id="caffeine-summary-text" class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-between pt-0.5">
+                <span id="caffeine-mix-label">Mix: 0x ☕ · 0x ⚡</span>
+                <button type="button" onclick="resetCaffeine()" class="text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition">Reset</button>
               </div>
             </div>
           </div>
@@ -1347,40 +1394,25 @@
               </div>
             </div>
 
-            <!-- Sleep Quality Rating (5 Buttons) -->
+            <!-- Sleep Quality Rating (Single-Select Dropdown) -->
             <div class="space-y-1">
               <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Schlafqualität:</span>
+                <label for="select-sleep-quality" class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Schlafqualität (Einzelauswahl):</label>
                 <span id="sleep-quality-label" class="text-xs font-bold text-indigo-600 dark:text-indigo-400">4 / 5 · Gut</span>
               </div>
-              <div class="grid grid-cols-5 gap-1">
-                <button type="button" onclick="setSleepQuality(1)" class="sleep-qual-btn py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-center transition flex flex-col items-center justify-center" data-qual="1">
-                  <span class="text-base">😫</span>
-                  <span class="text-[10px] font-bold">1</span>
-                </button>
-                <button type="button" onclick="setSleepQuality(2)" class="sleep-qual-btn py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-center transition flex flex-col items-center justify-center" data-qual="2">
-                  <span class="text-base">🥱</span>
-                  <span class="text-[10px] font-bold">2</span>
-                </button>
-                <button type="button" onclick="setSleepQuality(3)" class="sleep-qual-btn py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-center transition flex flex-col items-center justify-center" data-qual="3">
-                  <span class="text-base">😐</span>
-                  <span class="text-[10px] font-bold">3</span>
-                </button>
-                <button type="button" onclick="setSleepQuality(4)" class="sleep-qual-btn active py-1.5 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-center transition font-bold shadow-xs flex flex-col items-center justify-center" data-qual="4">
-                  <span class="text-base">🙂</span>
-                  <span class="text-[10px] font-bold">4</span>
-                </button>
-                <button type="button" onclick="setSleepQuality(5)" class="sleep-qual-btn py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-center transition flex flex-col items-center justify-center" data-qual="5">
-                  <span class="text-base">⚡</span>
-                  <span class="text-[10px] font-bold">5</span>
-                </button>
-              </div>
+              <select id="select-sleep-quality" onchange="setSleepQuality(parseInt(this.value))" class="shadcn-input text-xs py-2 font-semibold">
+                <option value="5">⭐⭐⭐⭐⭐ 5 / 5 · Sehr erholsam & tief</option>
+                <option value="4" selected>⭐⭐⭐⭐ 4 / 5 · Gut & ausreichend</option>
+                <option value="3">⭐⭐⭐ 3 / 5 · Mittelmäßig / unruhig</option>
+                <option value="2">⭐⭐ 2 / 5 · Schlecht / oft aufgewacht</option>
+                <option value="1">⭐ 1 / 5 · Erschöpft & zerschlagen</option>
+              </select>
             </div>
 
-            <!-- Sleep Factors with (+) Button -->
+            <!-- Sleep Factors with (+) Button (Multi-Select) -->
             <div class="space-y-1 pt-0.5">
               <div class="flex items-center justify-between">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Schlaf-Faktoren:</span>
+                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Schlaf-Faktoren: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span></span>
                 <button type="button" onclick="openAddCustomModal('sleep_factors')" class="px-2 py-0.5 rounded-lg border border-dashed border-indigo-400 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 text-xs font-bold hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition inline-flex items-center gap-1" title="Eigenen Schlaffaktor dauerhaft hinzufügen">
                   <span class="text-sm font-black">+</span>
                   <span class="text-[10px]">Faktor</span>
@@ -1464,26 +1496,26 @@
               </div>
             </div>
 
-            <!-- Executive Function & Sensory Pills -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-0.5">
+            <!-- Executive Function & Sensory Overload (Single-Select Dropdowns) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
               <div class="space-y-1">
-                <span class="text-[9px] font-bold text-slate-500 uppercase">Exekutive Funktion:</span>
-                <div class="flex flex-wrap gap-1">
-                  <button type="button" onclick="setExecutiveFunction('paralysis')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="paralysis">🧱 Paralysis</button>
-                  <button type="button" onclick="setExecutiveFunction('muehsam')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="muehsam">⏳ Mühsam</button>
-                  <button type="button" onclick="setExecutiveFunction('gut')" class="exec-btn active text-xs px-2 py-0.5 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold" data-val="gut">🚀 Flow</button>
-                  <button type="button" onclick="setExecutiveFunction('hyperfokus')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="hyperfokus">⚡ Hyperfokus</button>
-                </div>
+                <label for="select-adhs-executive" class="block text-[10px] font-bold text-slate-500 uppercase">Exekutive Funktion (Einzelauswahl):</label>
+                <select id="select-adhs-executive" onchange="setExecutiveFunction(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                  <option value="gut" selected>🚀 Flow & Fokussiert</option>
+                  <option value="muehsam">⏳ Mühsam / Zerstreut</option>
+                  <option value="paralysis">🧱 Paralysis / Blockade</option>
+                  <option value="hyperfokus">⚡ Hyperfokus (stark vertieft)</option>
+                </select>
               </div>
 
               <div class="space-y-1">
-                <span class="text-[9px] font-bold text-slate-500 uppercase">Reizoffenheit:</span>
-                <div class="flex flex-wrap gap-1">
-                  <button type="button" onclick="setSensoryOverload('keine')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="keine">🟢 Reizarm</button>
-                  <button type="button" onclick="setSensoryOverload('gering')" class="sensory-btn active text-xs px-2 py-0.5 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold" data-val="gering">🟡 Leicht</button>
-                  <button type="button" onclick="setSensoryOverload('mittel')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="mittel">🟠 Hoch</button>
-                  <button type="button" onclick="setSensoryOverload('stark')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="stark">🔴 Reizflut</button>
-                </div>
+                <label for="select-adhs-sensory" class="block text-[10px] font-bold text-slate-500 uppercase">Reizoffenheit (Einzelauswahl):</label>
+                <select id="select-adhs-sensory" onchange="setSensoryOverload(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                  <option value="keine">🟢 Reizarm / Entspannt</option>
+                  <option value="gering" selected>🟡 Leicht empfindlich</option>
+                  <option value="mittel">🟠 Hohe Reizoffenheit</option>
+                  <option value="stark">🔴 Sensorischer Overload / Reizflut</option>
+                </select>
               </div>
             </div>
 
@@ -1536,7 +1568,7 @@
             <!-- Sport & Aktivitäten Chips with (+) Button -->
             <div class="space-y-1 pt-1 border-t border-blue-200/40 dark:border-blue-900/30">
               <div class="flex items-center justify-between">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Aktivitäten & Sport:</span>
+                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Aktivitäten & Sport: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span></span>
                 <button type="button" onclick="openAddCustomModal('activities')" class="px-2 py-0.5 rounded-lg border border-dashed border-blue-400 dark:border-blue-700 text-blue-600 dark:text-blue-400 text-xs font-bold hover:bg-blue-50 dark:hover:bg-blue-950/40 transition inline-flex items-center gap-1" title="Eigene Aktivität dauerhaft hinzufügen">
                   <span class="text-sm font-black">+</span>
                   <span class="text-[10px]">Aktivität</span>
@@ -1612,7 +1644,7 @@
           <div id="feature-container-highlights" class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1">
-                <span>🌟</span> Highlights & Erlebnisse:
+                <span>🌟</span> Highlights & Erlebnisse: <span class="text-[10px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span>
               </span>
               <button type="button" onclick="openAddCustomModal('memory_tags')" class="px-2 py-0.5 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1 shadow-xs" title="Eigenen Tag dauerhaft hinzufügen">
                 <span class="text-xs font-bold">+</span>
@@ -1686,7 +1718,7 @@
 
           <div class="flex flex-wrap items-center gap-1.5">
             <button onclick="printDiaryJournal()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-xs">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
               <span>Drucken</span>
             </button>
             <button onclick="exportDiaryJSON()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
@@ -1740,7 +1772,7 @@
           </div>
 
           <button onclick="printStatsSummary()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1 self-start sm:self-auto">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span>Drucken</span>
           </button>
         </div>
@@ -1790,7 +1822,7 @@
         <!-- 5. ADHD Focus -->
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Ø ADHS-Fokus</span>
-          <div id="stats-kpi-focus" class="text-lg sm:text-2xl font-black text-pink-600 dark:text-pink-400">--</div>
+          <div id="stats-kpi-focus" class="text-lg sm:text-2xl font-black text-violet-600 dark:text-violet-400">--</div>
           <div class="text-[10px] text-slate-400">Fokus (1-10)</div>
         </div>
 
@@ -1816,8 +1848,8 @@
             <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Stimmung
             </span>
-            <span class="flex items-center gap-1 text-pink-600 dark:text-pink-400">
-              <span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span> ADHS-Fokus
+            <span class="flex items-center gap-1 text-violet-600 dark:text-violet-400">
+              <span class="w-2.5 h-2.5 rounded-full bg-violet-500"></span> ADHS-Fokus
             </span>
           </div>
         </div>
@@ -1945,7 +1977,7 @@
           </div>
         </div>
         <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
@@ -2087,12 +2119,12 @@
             </p>
             <div class="flex flex-wrap gap-2 pt-1">
               <button type="button" onclick="exportFullBackupJSON()" class="flex-1 min-w-[140px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-black text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 <span id="btn-export-backup-text">Gesamt-Backup laden</span>
               </button>
 
               <label class="flex-1 min-w-[140px] py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
                 <span id="btn-import-backup-text">Backup einspielen</span>
                 <input type="file" id="full-backup-import-file" accept=".json" onchange="importFullBackupJSON(event)" class="hidden">
               </label>
@@ -2315,6 +2347,8 @@
     let selectedMealTags = new Set();
     let currentWaterMl = 0;
     let currentWaterGoal = 2500;
+    let currentCoffeeCups = 0;
+    let currentEnergyCups = 0;
     let currentCaffeineCups = 0;
 
     let currentSleepQuality = 4;
@@ -3353,11 +3387,11 @@
       spans.forEach(span => {
         span.className = 'sheet-user-content';
         if (fontClass === 'kalam-blue') {
-          span.classList.add('font-handKalam', 'text-sky-800', 'text-base', 'sm:text-lg', 'font-bold');
+          span.classList.add('font-handKalam', 'text-sky-800', 'dark:text-sky-300', 'text-base', 'sm:text-lg', 'font-bold');
         } else if (fontClass === 'caveat-black') {
-          span.classList.add('font-handCaveat', 'text-slate-900', 'text-lg', 'sm:text-xl', 'font-bold');
+          span.classList.add('font-handCaveat', 'text-slate-900', 'dark:text-slate-100', 'text-lg', 'sm:text-xl', 'font-bold');
         } else {
-          span.classList.add('font-sans', 'text-slate-800', 'text-xs', 'sm:text-sm', 'font-semibold');
+          span.classList.add('font-sans', 'text-slate-800', 'dark:text-slate-200', 'text-xs', 'sm:text-sm', 'font-semibold');
         }
       });
     }
@@ -3413,10 +3447,10 @@
             </div>
             <div class="flex items-center gap-1">
               <button onclick="editMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="Bearbeiten">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
               </button>
               <button onclick="deleteMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-rose-50 text-rose-500 text-xs transition" title="Löschen">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </button>
             </div>
           </div>
@@ -3496,8 +3530,8 @@
       const dateVal = document.getElementById('input-diary-date').value;
       if (!dateVal) return;
       try {
-        const d = new Date(dateVal);
-        const dayStr = d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
+        const d = new Date(dateVal + 'T12:00:00');
+        const dayStr = d.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
         const label = document.getElementById('diary-current-day-label');
         if (label) label.innerText = dayStr;
       } catch (e) {}
@@ -3515,15 +3549,9 @@
       document.getElementById('diary-mood-number').innerText = score;
 
       const banner = document.getElementById('diary-mood-banner');
-      banner.className = `rounded-2xl p-3.5 flex items-center justify-between transition-colors duration-200 gap-3 ${conf.bg}`;
-
-      document.querySelectorAll('.mood-num-btn').forEach(btn => {
-        if (parseInt(btn.getAttribute('data-score')) === score) {
-          btn.className = 'mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition shadow-xs';
-        } else {
-          btn.className = 'mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition';
-        }
-      });
+      if (banner) {
+        banner.className = `rounded-2xl p-3.5 flex items-center justify-between transition-colors duration-200 gap-3 ${conf.bg}`;
+      }
     }
 
     function updateEnergyScore(score) {
@@ -3546,18 +3574,32 @@
       const challengingContainer = document.getElementById('challenging-emotions-chips');
 
       const customs = customOptions.emotions || [];
+      const pleasantCustoms = [];
+      const challengingCustoms = [];
+
+      customs.forEach(c => {
+        if (typeof c === 'string') {
+          pleasantCustoms.push(c);
+        } else if (c && typeof c === 'object') {
+          if (c.category === 'challenging') {
+            challengingCustoms.push(c.name);
+          } else {
+            pleasantCustoms.push(c.name);
+          }
+        }
+      });
 
       if (pleasantContainer) {
-        pleasantContainer.innerHTML = PLEASANT_EMOTIONS.concat(customs).map(emo => `
-          <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}">
+        pleasantContainer.innerHTML = PLEASANT_EMOTIONS.concat(pleasantCustoms).map(emo => `
+          <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip pleasant-emo text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="pleasant">
             ${escapeHtml(emo)}
           </button>
         `).join('');
       }
 
       if (challengingContainer) {
-        challengingContainer.innerHTML = CHALLENGING_EMOTIONS.map(emo => `
-          <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}">
+        challengingContainer.innerHTML = CHALLENGING_EMOTIONS.concat(challengingCustoms).map(emo => `
+          <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip challenging-emo text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="challenging">
             ${escapeHtml(emo)}
           </button>
         `).join('');
@@ -3581,10 +3623,15 @@
     function updateEmotionChipStyles() {
       document.querySelectorAll('.emotion-chip').forEach(chip => {
         const emo = chip.getAttribute('data-emotion');
+        const isChallenging = chip.getAttribute('data-type') === 'challenging';
         if (selectedDiaryEmotions.has(emo)) {
-          chip.className = 'emotion-chip text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 font-bold transition shadow-xs';
+          if (isChallenging) {
+            chip.className = 'emotion-chip challenging-emo text-xs px-2.5 py-1 rounded-full border border-rose-500 bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 font-bold transition shadow-xs';
+          } else {
+            chip.className = 'emotion-chip pleasant-emo text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 font-bold transition shadow-xs';
+          }
         } else {
-          chip.className = 'emotion-chip text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition';
+          chip.className = `emotion-chip ${isChallenging ? 'challenging-emo' : 'pleasant-emo'} text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition`;
         }
       });
     }
@@ -3677,6 +3724,24 @@
             <input type="text" id="input-custom-modal-dose" placeholder="z. B. 10 mg, 400 mg, 1 Kapsel..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
+      } else if (category === 'emotions') {
+        fields.innerHTML = `
+          <div>
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Kategorie des Gefühls:</label>
+            <div class="grid grid-cols-2 gap-2 mb-2.5">
+              <label class="flex items-center gap-1.5 p-2 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50/60 dark:bg-emerald-950/40 cursor-pointer">
+                <input type="radio" name="custom-emotion-cat" value="pleasant" checked class="text-emerald-600 focus:ring-emerald-500">
+                <span class="text-xs font-bold text-emerald-800 dark:text-emerald-200">🟢 Angenehm / Positiv</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-2 rounded-xl border border-rose-300 dark:border-rose-800 bg-rose-50/60 dark:bg-rose-950/40 cursor-pointer">
+                <input type="radio" name="custom-emotion-cat" value="challenging" class="text-rose-600 focus:ring-rose-500">
+                <span class="text-xs font-bold text-rose-800 dark:text-rose-200">🔴 Fordernd / Negativ</span>
+              </label>
+            </div>
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Name des Gefühls:</label>
+            <input type="text" id="input-custom-modal-val" placeholder="z. B. Inspiriert, Überreizt, Erleichtert..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+          </div>
+        `;
       } else {
         fields.innerHTML = `
           <div>
@@ -3709,7 +3774,19 @@
 
       existingWrapper.classList.remove('hidden');
       existingList.innerHTML = items.map((item, idx) => {
-        const label = typeof item === 'object' ? `${item.name} (${item.dose})` : item;
+        let label = '';
+        if (typeof item === 'object') {
+          if (activeCustomModalCategory === 'meds') {
+            label = `${item.name} (${item.dose})`;
+          } else if (activeCustomModalCategory === 'emotions') {
+            const catBadge = item.category === 'challenging' ? '🔴' : '🟢';
+            label = `${catBadge} ${item.name}`;
+          } else {
+            label = item.name || JSON.stringify(item);
+          }
+        } else {
+          label = item;
+        }
         return `
           <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
             <span>${escapeHtml(label)}</span>
@@ -3741,6 +3818,22 @@
         renderQuickMedsChips();
         quickAddMedication(name, dose);
         showToast(`${name} dauerhaft gespeichert & eingetragen! ✨`);
+      } else if (activeCustomModalCategory === 'emotions') {
+        const val = (document.getElementById('input-custom-modal-val')?.value || '').trim();
+        if (!val) {
+          alert('Bitte gib eine Bezeichnung ein.');
+          return;
+        }
+        const catRadio = document.querySelector('input[name="custom-emotion-cat"]:checked');
+        const emotionCat = catRadio ? catRadio.value : 'pleasant';
+
+        customOptions.emotions = customOptions.emotions || [];
+        customOptions.emotions.push({ name: val, category: emotionCat });
+        saveCustomOptionsToStorage();
+
+        renderEmotionChips();
+        toggleDiaryEmotion(val);
+        showToast(`${emotionCat === 'pleasant' ? '🟢' : '🔴'} Emotion "${val}" gespeichert! ✨`);
       } else {
         const val = (document.getElementById('input-custom-modal-val')?.value || '').trim();
         if (!val) {
@@ -3751,10 +3844,7 @@
         customOptions[activeCustomModalCategory].push(val);
         saveCustomOptionsToStorage();
 
-        if (activeCustomModalCategory === 'emotions') {
-          renderEmotionChips();
-          toggleDiaryEmotion(val);
-        } else if (activeCustomModalCategory === 'sleep_factors') {
+        if (activeCustomModalCategory === 'sleep_factors') {
           renderSleepTagChips();
           toggleSleepTag(val);
         } else if (activeCustomModalCategory === 'activities') {
@@ -4000,7 +4090,11 @@
     }
 
     function setMedEfficacyRating(rating) {
-      currentMedEfficacyRating = rating;
+      currentMedEfficacyRating = rating || '';
+      const sel = document.getElementById('select-med-efficacy');
+      if (sel && sel.value !== currentMedEfficacyRating) {
+        sel.value = currentMedEfficacyRating || 'none';
+      }
       const labels = {
         'optimal': '🎯 Optimal / Flow',
         'gut': '👍 Gut & Stabil',
@@ -4010,8 +4104,19 @@
       };
       const badge = document.getElementById('med-efficacy-badge');
       if (badge) {
-        badge.textContent = labels[rating] || 'Noch offen';
-        badge.className = rating ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-600 text-white' : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300';
+        if (rating && rating !== 'none') {
+          badge.textContent = labels[rating] || rating;
+          if (rating === 'optimal' || rating === 'gut') {
+            badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white';
+          } else if (rating === 'zu_stark' || rating === 'nebenwirkung') {
+            badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 text-white';
+          } else {
+            badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-600 text-white';
+          }
+        } else {
+          badge.textContent = 'Noch offen';
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400';
+        }
       }
       document.querySelectorAll('.med-eff-btn').forEach(btn => {
         if (btn.getAttribute('data-rating') === rating) {
@@ -4069,7 +4174,7 @@
               <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="Einnahme-Uhrzeit anpassen">
             </div>
             <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="Löschen">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
         </div>
@@ -4079,10 +4184,23 @@
     }
 
     function setReboundLevel(level) {
-      currentReboundLevel = level;
+      currentReboundLevel = level || 'none';
+      const sel = document.getElementById('select-med-rebound');
+      if (sel && sel.value !== currentReboundLevel) {
+        sel.value = currentReboundLevel;
+      }
       const badge = document.getElementById('rebound-badge');
       if (badge) {
-        badge.innerText = level === 'none' ? 'Kein Rebound' : (level.charAt(0).toUpperCase() + level.slice(1) + 'er Rebound');
+        if (level === 'none') {
+          badge.innerText = 'Kein Rebound';
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-200';
+        } else if (level === 'leicht') {
+          badge.innerText = 'Leichter Rebound';
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-200';
+        } else {
+          badge.innerText = (level === 'stark' ? 'Starker Rebound' : 'Spürbarer Rebound');
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 text-white shadow-xs';
+        }
       }
       document.querySelectorAll('.rebound-btn').forEach(btn => {
         if (btn.getAttribute('data-level') === level) {
@@ -4141,18 +4259,56 @@
       bar.style.width = pct + '%';
     }
 
-    function addCaffeine(amount, type) {
-      currentCaffeineCups = Math.max(0, currentCaffeineCups + amount);
+    function changeCoffee(delta) {
+      currentCoffeeCups = Math.max(0, currentCoffeeCups + delta);
+      currentCaffeineCups = currentCoffeeCups + currentEnergyCups;
       updateCaffeineDisplay();
-      if (amount > 0 && type) {
-        showToast(`+1 ${type} erfasst ☕`);
-      }
+      if (delta > 0) showToast('+1 Kaffee erfasst ☕');
+    }
+
+    function changeEnergyDrink(delta) {
+      currentEnergyCups = Math.max(0, currentEnergyCups + delta);
+      currentCaffeineCups = currentCoffeeCups + currentEnergyCups;
+      updateCaffeineDisplay();
+      if (delta > 0) showToast('+1 Energy Drink erfasst ⚡');
+    }
+
+    function resetCaffeine() {
+      currentCoffeeCups = 0;
+      currentEnergyCups = 0;
+      currentCaffeineCups = 0;
+      updateCaffeineDisplay();
+      showToast('Koffein zurückgesetzt');
     }
 
     function updateCaffeineDisplay() {
-      const disp = document.getElementById('caffeine-display');
-      if (disp) {
-        disp.innerText = `${currentCaffeineCups} ${currentCaffeineCups === 1 ? 'Tasse' : 'Tassen'}`;
+      const coffeeEl = document.getElementById('coffee-count-display');
+      const energyEl = document.getElementById('energy-count-display');
+      const badgeEl = document.getElementById('caffeine-total-badge');
+      const dispEl = document.getElementById('caffeine-display');
+      const mixEl = document.getElementById('caffeine-mix-label');
+
+      if (coffeeEl) coffeeEl.textContent = String(currentCoffeeCups);
+      if (energyEl) energyEl.textContent = String(currentEnergyCups);
+
+      const totalMg = (currentCoffeeCups * 80) + (currentEnergyCups * 150);
+
+      if (badgeEl) {
+        badgeEl.innerHTML = `<span id="caffeine-display">${totalMg} mg</span>`;
+      } else if (dispEl) {
+        dispEl.textContent = `${totalMg} mg`;
+      }
+      if (mixEl) {
+        mixEl.textContent = `Mix: ${currentCoffeeCups}x ☕ · ${currentEnergyCups}x ⚡ (~${totalMg} mg)`;
+      }
+      updateCardSummaryBadges();
+    }
+
+    function addCaffeine(amount, type) {
+      if (type && type.toLowerCase().includes('energy')) {
+        changeEnergyDrink(amount);
+      } else {
+        changeCoffee(amount);
       }
     }
 
@@ -4186,13 +4342,17 @@
     }
 
     function setSleepQuality(qual) {
-      currentSleepQuality = parseInt(qual);
+      currentSleepQuality = parseInt(qual) || 4;
+      const sel = document.getElementById('select-sleep-quality');
+      if (sel && parseInt(sel.value) !== currentSleepQuality) {
+        sel.value = String(currentSleepQuality);
+      }
       const labels = {
         1: '1 / 5 · Sehr schlecht',
         2: '2 / 5 · Schlecht',
         3: '3 / 5 · Mittelmäßig',
-        4: '4 / 5 · Gut',
-        5: '5 / 5 · Sehr gut'
+        4: '4 / 5 · Gut & ausreichend',
+        5: '5 / 5 · Sehr erholsam & tief'
       };
       const lbl = document.getElementById('sleep-quality-label');
       if (lbl) lbl.textContent = labels[currentSleepQuality] || (currentSleepQuality + ' / 5');
@@ -4349,7 +4509,11 @@
     }
 
     function setExecutiveFunction(val) {
-      currentExecutiveFunction = val;
+      currentExecutiveFunction = val || 'gut';
+      const sel = document.getElementById('select-adhs-executive');
+      if (sel && sel.value !== currentExecutiveFunction) {
+        sel.value = currentExecutiveFunction;
+      }
       document.querySelectorAll('.exec-btn').forEach(btn => {
         if (btn.getAttribute('data-val') === val) {
           btn.className = 'exec-btn active text-xs px-2.5 py-1 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold';
@@ -4360,7 +4524,11 @@
     }
 
     function setSensoryOverload(val) {
-      currentSensoryOverload = val;
+      currentSensoryOverload = val || 'gering';
+      const sel = document.getElementById('select-adhs-sensory');
+      if (sel && sel.value !== currentSensoryOverload) {
+        sel.value = currentSensoryOverload;
+      }
       document.querySelectorAll('.sensory-btn').forEach(btn => {
         if (btn.getAttribute('data-val') === val) {
           btn.className = 'sensory-btn active text-xs px-2.5 py-1 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold';
@@ -4501,7 +4669,10 @@
         mealTags: Array.from(selectedMealTags),
         waterMl: currentWaterMl || 0,
         waterGoal: currentWaterGoal || 2500,
-        caffeineCups: currentCaffeineCups || 0,
+        coffeeCups: currentCoffeeCups || 0,
+        energyCups: currentEnergyCups || 0,
+        caffeineCups: (currentCoffeeCups + currentEnergyCups) || 0,
+        caffeineMg: (currentCoffeeCups * 80 + currentEnergyCups * 150),
         sleep: {
           durationHours: sleepDuration,
           bedTime: sleepBed,
@@ -4596,7 +4767,9 @@
       currentWaterMl = typeof data.waterMl === 'number' ? data.waterMl : 0;
       currentWaterGoal = data.waterGoal || 2500;
       updateWaterDisplay();
-      currentCaffeineCups = typeof data.caffeineCups === 'number' ? data.caffeineCups : 0;
+      currentCoffeeCups = typeof data.coffeeCups === 'number' ? data.coffeeCups : (typeof data.caffeineCups === 'number' ? data.caffeineCups : 0);
+      currentEnergyCups = typeof data.energyCups === 'number' ? data.energyCups : 0;
+      currentCaffeineCups = currentCoffeeCups + currentEnergyCups;
       updateCaffeineDisplay();
 
       // Sleep
@@ -4693,6 +4866,8 @@
       // Reset Water, Sleep, Steps, ADHD
       currentWaterMl = 0;
       updateWaterDisplay();
+      currentCoffeeCups = 0;
+      currentEnergyCups = 0;
       currentCaffeineCups = 0;
       updateCaffeineDisplay();
 
@@ -4864,10 +5039,10 @@
 
                 <div class="flex items-center gap-1">
                   <button onclick="editDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="Bearbeiten">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                   </button>
                   <button onclick="deleteDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="Löschen">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                   </button>
                 </div>
               </div>
@@ -4899,14 +5074,14 @@
                 </span>
               ` : ''}
 
-              ${caffeine > 0 ? `
+              ${(item.coffeeCups || item.energyCups || caffeine > 0) ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40">
-                  <span>☕</span> ${caffeine}x
+                  <span>☕</span> ${item.coffeeCups !== undefined ? `${item.coffeeCups || 0}x ☕ · ${item.energyCups || 0}x ⚡` : `${caffeine}x`}
                 </span>
               ` : ''}
 
               ${adhs.focus ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-pink-50 dark:bg-pink-950/50 text-pink-700 dark:text-pink-300 border border-pink-200/50 dark:border-pink-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
                   <span>🧠</span> Fokus: ${adhs.focus}/10
                 </span>
               ` : ''}
@@ -4994,7 +5169,7 @@
                 ` : ''}
                 ${adhs.notes ? `
                   <div class="pt-0.5 text-slate-800 dark:text-slate-200">
-                    <strong class="text-pink-600 dark:text-pink-400">💡 ADHS-Erkenntnis:</strong> ${escapeHtml(adhs.notes)}
+                    <strong class="text-violet-600 dark:text-violet-400">💡 ADHS-Erkenntnis:</strong> ${escapeHtml(adhs.notes)}
                   </div>
                 ` : ''}
               </div>
@@ -5334,7 +5509,7 @@
 
           <!-- Polylines -->
           <polyline points="${polyMood}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="${polyFocus}" fill="none" stroke="#ec4899" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${polyFocus}" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- Circles for Mood -->
           ${moodPoints.map((p, idx) => `
@@ -5348,7 +5523,7 @@
 
           <!-- Circles for Focus -->
           ${focusPoints.map((p, idx) => `
-            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#ec4899" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ADHS-Fokus ${p.val}/10')"/>
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ADHS-Fokus ${p.val}/10')"/>
           `).join('')}
         </svg>
       `;
@@ -5468,10 +5643,19 @@
     function formatDateDE(dateStr) {
       if (!dateStr) return '';
       try {
-        const [year, month, day] = dateStr.split('-');
-        return `${day}.${month}.${year}`;
+        if (typeof dateStr === 'string' && dateStr.includes('-')) {
+          const parts = dateStr.split('T')[0].split('-');
+          if (parts.length === 3) {
+            return `${parts[2]}.${parts[1]}.${parts[0]}`;
+          }
+        }
+        const d = new Date(dateStr);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        }
+        return String(dateStr);
       } catch (e) {
-        return dateStr;
+        return String(dateStr);
       }
     }
 

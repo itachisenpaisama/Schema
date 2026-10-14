@@ -73,7 +73,7 @@ def get_diary_entry_view_html():
       </section>
 
       <!-- ======================================================== -->
-      <!-- CARD 1: 🌈 GEMÜT, ENERGIE & GEFÜHLE                      -->
+      <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
       <!-- ======================================================== -->
       <section id="card-diary-mood" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
@@ -152,8 +152,8 @@ def get_diary_entry_view_html():
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200">
                   Gefühle heute: <span class="text-[10px] text-slate-400 font-normal">(Mehrfachauswahl möglich)</span>
                 </span>
-                <button type="button" onclick="openAddCustomModal('emotions')" class="px-2.5 py-1 rounded-lg border border-dashed border-emerald-400 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen">
-                  <span>+ Neu</span>
+                <button type="button" onclick="openAddCustomModal('emotions')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen">
+                  <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
                 </button>
               </div>
 
@@ -190,7 +190,7 @@ def get_diary_entry_view_html():
       </section>
 
       <!-- ======================================================== -->
-      <!-- CARD 2: 💊 MEDIKATION, WIRKUNG & REBOUND                 -->
+      <!-- CARD 2: MEDIKATION, WIRKUNG & REBOUND                     -->
       <!-- ======================================================== -->
       <section id="card-diary-meds" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
@@ -218,8 +218,8 @@ def get_diary_entry_view_html():
             <div class="space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Schnell-Auswahl (1-Klick):</span>
-                <button type="button" onclick="openAddCustomModal('meds')" class="px-2.5 py-1 rounded-lg border border-dashed border-violet-400 dark:border-violet-700 text-violet-600 dark:text-violet-400 text-xs font-bold hover:bg-violet-50 dark:hover:bg-violet-950/40 transition inline-flex items-center gap-1" title="Eigenes Medikament dauerhaft hinzufügen">
-                  <span>+ Neu</span>
+                <button type="button" onclick="openAddCustomModal('meds')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenes Medikament hinzufügen">
+                  <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
                 </button>
               </div>
               <div class="flex flex-wrap gap-1" id="quick-meds-chips-container">
@@ -297,7 +297,7 @@ def get_diary_entry_view_html():
       </section>
 
       <!-- ======================================================== -->
-      <!-- CARD 3: 🌿 VITAL-HUB: ESSEN, TRINKEN & SCHLAF             -->
+      <!-- CARD 3: VITAL-HUB: ESSEN, TRINKEN & SCHLAF                 -->
       <!-- ======================================================== -->
       <section id="card-diary-vital" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
@@ -323,8 +323,8 @@ def get_diary_entry_view_html():
           <div id="feature-container-meals" class="space-y-1">
             <div class="flex items-center justify-between">
               <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Mahlzeiten: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl für Tags)</span></span>
-              <button type="button" onclick="openAddCustomModal('meal_tags')" class="px-2.5 py-1 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen">
-                <span>+ Neu</span>
+              <button type="button" onclick="openAddCustomModal('meal_tags')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen">
+                <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
               </button>
             </div>
 
@@ -479,8 +479,8 @@ def get_diary_entry_view_html():
             <div class="space-y-1 pt-0.5">
               <div class="flex items-center justify-between">
                 <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Schlaf-Faktoren: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span></span>
-                <button type="button" onclick="openAddCustomModal('sleep_factors')" class="px-2.5 py-1 rounded-lg border border-dashed border-indigo-400 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 text-xs font-bold hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition inline-flex items-center gap-1" title="Eigenen Schlaffaktor dauerhaft hinzufügen">
-                  <span>+ Neu</span>
+                <button type="button" onclick="openAddCustomModal('sleep_factors')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Schlaffaktor hinzufügen">
+                  <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
                 </button>
               </div>
               <div class="flex flex-wrap gap-1" id="sleep-factors-chips-container">
@@ -494,7 +494,7 @@ def get_diary_entry_view_html():
       </section>
 
       <!-- ======================================================== -->
-      <!-- CARD 4: 🧠 NEURO & BODY: ADHS, FOKUS & SCHRITTE          -->
+      <!-- CARD 4: NEURO & BODY: ADHS, FOKUS & SCHRITTE              -->
       <!-- ======================================================== -->
       <section id="card-diary-adhs" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
@@ -633,8 +633,8 @@ def get_diary_entry_view_html():
             <div class="space-y-1 pt-1 border-t border-blue-200/40 dark:border-blue-900/30">
               <div class="flex items-center justify-between">
                 <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Aktivitäten & Sport: <span class="text-[9px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span></span>
-                <button type="button" onclick="openAddCustomModal('activities')" class="px-2.5 py-1 rounded-lg border border-dashed border-blue-400 dark:border-blue-700 text-blue-600 dark:text-blue-400 text-xs font-bold hover:bg-blue-50 dark:hover:bg-blue-950/40 transition inline-flex items-center gap-1" title="Eigene Aktivität dauerhaft hinzufügen">
-                  <span>+ Neu</span>
+                <button type="button" onclick="openAddCustomModal('activities')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Aktivität hinzufügen">
+                  <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
                 </button>
               </div>
               <div class="flex flex-wrap gap-1" id="activities-chips-container">
@@ -647,7 +647,7 @@ def get_diary_entry_view_html():
       </section>
 
       <!-- ======================================================== -->
-      <!-- CARD 5: 📖 JOURNAL, 3 POSITIVE DINGE & SPEICHERN         -->
+      <!-- CARD 5: JOURNAL, 3 POSITIVE DINGE & SPEICHERN             -->
       <!-- ======================================================== -->
       <section id="card-diary-mind" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
@@ -696,8 +696,8 @@ def get_diary_entry_view_html():
             </div>
 
             <div class="pt-0.5">
-              <button type="button" onclick="addAnotherPositiveThingInput()" class="text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold hover:underline flex items-center gap-1">
-                <span>+ Weiterer positiver Moment</span>
+              <button type="button" onclick="addAnotherPositiveThingInput()" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Weiteren positiven Moment hinzufügen">
+                <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
               </button>
             </div>
           </div>
@@ -708,8 +708,8 @@ def get_diary_entry_view_html():
               <span class="text-xs font-bold text-amber-800 dark:text-amber-400">
                 Highlights & Erlebnisse: <span class="text-[10px] text-slate-400 font-normal normal-case">(Mehrfachauswahl)</span>
               </span>
-              <button type="button" onclick="openAddCustomModal('memory_tags')" class="px-2.5 py-1 rounded-lg border border-dashed border-amber-400 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-50 dark:hover:bg-amber-950/40 transition inline-flex items-center gap-1 shadow-xs" title="Eigenen Tag dauerhaft hinzufügen">
-                <span>+ Neu</span>
+              <button type="button" onclick="openAddCustomModal('memory_tags')" class="text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Erlebnis-Tag hinzufügen">
+                <span class="font-bold text-sm leading-none">+</span><span>Neu</span>
               </button>
             </div>
             <textarea id="input-diary-highlights" rows="2" placeholder="Was waren heute die wichtigsten Momente deines Tages?..." class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>

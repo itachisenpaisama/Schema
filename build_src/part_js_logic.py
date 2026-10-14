@@ -11,6 +11,26 @@ def get_javascript_code():
     const STORAGE_KEY_MODE = 'schema_app_active_mode';
     const STORAGE_KEY_SETTINGS = 'schema_settings_v1';
 
+    // ==========================================
+    // EMOJI PURGE & SANITIZATION ENGINE
+    // Preserves ONLY mood/stimmung 1-10 faces: 😭 😞 😔 😕 😐 🙂 😊 😁 🥳 🌟
+    // All other emojis are strictly purged across the entire app
+    // ==========================================
+    const MOOD_PERMITTED_EMOJIS = new Set(['😭', '😞', '😔', '😕', '😐', '🙂', '😊', '😁', '🥳', '🌟']);
+    const NON_MOOD_EMOJI_REGEX = /[\u{1F000}-\u{1FAFF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}\u{2B50}\u{FE00}-\u{FE0F}]/gu;
+
+    function stripNonMoodEmojis(str) {
+      if (!str || typeof str !== 'string') return str;
+      return str.replace(NON_MOOD_EMOJI_REGEX, (m) => {
+        return MOOD_PERMITTED_EMOJIS.has(m) ? m : '';
+      }).replace(/\s+/g, ' ').trim();
+    }
+
+    function stripAllEmojis(str) {
+      if (!str || typeof str !== 'string') return str;
+      return str.replace(NON_MOOD_EMOJI_REGEX, '').replace(/\s+/g, ' ').trim();
+    }
+
     const DEFAULT_SETTINGS = {
       language: 'de',      // 'de' | 'en'
       theme: 'auto',       // 'light' | 'dark' | 'auto'
@@ -304,6 +324,20 @@ def get_javascript_code():
       loadAppSettings();
       initTheme();
       initDefaultDates();
+      // Auto-migrate legacy data in client localStorage to strip obsolete emojis
+      try {
+        const rawD = localStorage.getItem(STORAGE_KEY_DIARY);
+        if (rawD) {
+          const pD = JSON.parse(rawD);
+          if (Array.isArray(pD)) localStorage.setItem(STORAGE_KEY_DIARY, JSON.stringify(pD.map(sanitizeDiaryEntry)));
+        }
+        const rawM = localStorage.getItem(STORAGE_KEY_MEMOS);
+        if (rawM) {
+          const pM = JSON.parse(rawM);
+          if (Array.isArray(pM)) localStorage.setItem(STORAGE_KEY_MEMOS, JSON.stringify(pM.map(sanitizeMemoEntry)));
+        }
+      } catch (e) {}
+
       ensureInitialMemos();
       ensureInitialDiary();
       loadCustomOptions();
@@ -1049,10 +1083,27 @@ def get_javascript_code():
     // ==========================================
     // MODULE A: SCHEMA-MEMO LOGIC
     // ==========================================
+    function sanitizeMemoEntry(m) {
+      if (!m || typeof m !== 'object') return m;
+      return {
+        ...m,
+        emotion: stripAllEmojis(m.emotion || ''),
+        situation: stripAllEmojis(m.situation || ''),
+        schema: stripAllEmojis(m.schema || ''),
+        mode: stripAllEmojis(m.mode || ''),
+        coping: stripAllEmojis(m.coping || ''),
+        healthyBelief: stripAllEmojis(m.healthyBelief || ''),
+        newAction: stripAllEmojis(m.newAction || '')
+      };
+    }
+
     function getStoredMemos() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY_MEMOS);
-        return raw ? JSON.parse(raw) : [];
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.map(sanitizeMemoEntry);
       } catch (e) {
         console.error(e);
         return [];
@@ -1060,9 +1111,10 @@ def get_javascript_code():
     }
 
     function saveStoredMemos(memos) {
-      localStorage.setItem(STORAGE_KEY_MEMOS, JSON.stringify(memos));
+      const cleaned = (memos || []).map(sanitizeMemoEntry);
+      localStorage.setItem(STORAGE_KEY_MEMOS, JSON.stringify(cleaned));
       const badge = document.getElementById('archive-count-badge');
-      if (badge) badge.innerText = memos.length;
+      if (badge) badge.innerText = cleaned.length;
     }
 
     function ensureInitialMemos() {
@@ -1362,10 +1414,53 @@ def get_javascript_code():
     // ==========================================
     // MODULE B: DAILY DIARY & LIFE TRACKER LOGIC
     // ==========================================
+    function sanitizeDiaryEntry(entry) {
+      if (!entry || typeof entry !== 'object') return entry;
+      if (Array.isArray(entry.emotions)) {
+        entry.emotions = entry.emotions.map(stripAllEmojis).filter(Boolean);
+      }
+      if (entry.emotionNotes && typeof entry.emotionNotes === 'object') {
+        const cleaned = {};
+        for (const [k, v] of Object.entries(entry.emotionNotes)) {
+          cleaned[stripAllEmojis(k)] = stripNonMoodEmojis(v);
+        }
+        entry.emotionNotes = cleaned;
+      }
+      if (Array.isArray(entry.memoryTags)) {
+        entry.memoryTags = entry.memoryTags.map(stripAllEmojis).filter(Boolean);
+      }
+      if (Array.isArray(entry.mealTags)) {
+        entry.mealTags = entry.mealTags.map(stripAllEmojis).filter(Boolean);
+      }
+      if (entry.sleep && Array.isArray(entry.sleep.tags)) {
+        entry.sleep.tags = entry.sleep.tags.map(stripAllEmojis).filter(Boolean);
+      }
+      if (Array.isArray(entry.activities)) {
+        entry.activities = entry.activities.map(stripAllEmojis).filter(Boolean);
+      }
+      if (Array.isArray(entry.medications)) {
+        entry.medications = entry.medications.map(m => ({
+          ...m,
+          name: stripAllEmojis(m.name || ''),
+          dose: stripAllEmojis(m.dose || ''),
+          note: stripAllEmojis(m.note || '')
+        }));
+      }
+      if (Array.isArray(entry.positiveThings)) {
+        entry.positiveThings = entry.positiveThings.map(stripNonMoodEmojis).filter(Boolean);
+      }
+      if (entry.highlights) entry.highlights = stripNonMoodEmojis(entry.highlights);
+      if (entry.notes) entry.notes = stripNonMoodEmojis(entry.notes);
+      return entry;
+    }
+
     function getStoredDiaryEntries() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY_DIARY);
-        return raw ? JSON.parse(raw) : [];
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.map(sanitizeDiaryEntry);
       } catch (e) {
         console.error(e);
         return [];
@@ -1373,9 +1468,10 @@ def get_javascript_code():
     }
 
     function saveStoredDiaryEntries(entries) {
-      localStorage.setItem(STORAGE_KEY_DIARY, JSON.stringify(entries));
+      const cleaned = (entries || []).map(sanitizeDiaryEntry);
+      localStorage.setItem(STORAGE_KEY_DIARY, JSON.stringify(cleaned));
       const badge = document.getElementById('diary-count-badge');
-      if (badge) badge.innerText = entries.length;
+      if (badge) badge.innerText = cleaned.length;
     }
 
     function updateDiaryDateDisplay() {
@@ -1551,12 +1647,44 @@ def get_javascript_code():
     // ==========================================
     // CUSTOM OPTIONS SYSTEM & MODAL (+)
     // ==========================================
+    function sanitizeCustomOptions(opts) {
+      if (!opts || typeof opts !== 'object') return opts;
+      for (const key of Object.keys(opts)) {
+        if (Array.isArray(opts[key])) {
+          if (key === 'meds') {
+            opts[key] = opts[key].map(m => {
+              if (typeof m === 'string') return { name: stripAllEmojis(m), dose: '1 Dosis' };
+              return {
+                name: stripAllEmojis(m.name || ''),
+                dose: stripAllEmojis(m.dose || '')
+              };
+            }).filter(m => m.name);
+          } else if (key === 'emotions') {
+            opts[key] = opts[key].map(e => {
+              if (typeof e === 'string') return { name: stripAllEmojis(e), category: 'pleasant' };
+              return {
+                name: stripAllEmojis(e.name || ''),
+                category: e.category || 'pleasant'
+              };
+            }).filter(e => e.name);
+          } else {
+            opts[key] = opts[key]
+              .map(val => (typeof val === 'string' ? stripAllEmojis(val) : val))
+              .filter(Boolean);
+          }
+        }
+      }
+      return opts;
+    }
+
     function loadCustomOptions() {
       try {
         const saved = localStorage.getItem(STORAGE_KEY_CUSTOM_OPTIONS);
         if (saved) {
           const parsed = JSON.parse(saved);
-          customOptions = Object.assign(customOptions, parsed);
+          const cleaned = sanitizeCustomOptions(parsed);
+          customOptions = Object.assign(customOptions, cleaned);
+          localStorage.setItem(STORAGE_KEY_CUSTOM_OPTIONS, JSON.stringify(customOptions));
         }
       } catch (e) {
         console.error('Error loading custom options', e);
@@ -1565,6 +1693,7 @@ def get_javascript_code():
 
     function saveCustomOptionsToStorage() {
       try {
+        sanitizeCustomOptions(customOptions);
         localStorage.setItem(STORAGE_KEY_CUSTOM_OPTIONS, JSON.stringify(customOptions));
       } catch (e) {
         console.error('Error saving custom options', e);
@@ -1691,8 +1820,8 @@ def get_javascript_code():
       if (!activeCustomModalCategory) return;
 
       if (activeCustomModalCategory === 'meds') {
-        const name = (document.getElementById('input-custom-modal-name')?.value || '').trim();
-        const dose = (document.getElementById('input-custom-modal-dose')?.value || '').trim() || '1 Dosis';
+        const name = stripAllEmojis((document.getElementById('input-custom-modal-name')?.value || '').trim());
+        const dose = stripAllEmojis((document.getElementById('input-custom-modal-dose')?.value || '').trim()) || '1 Dosis';
         if (!name) {
           alert('Bitte gib mindestens den Namen des Medikaments ein.');
           return;
@@ -1704,7 +1833,7 @@ def get_javascript_code():
         quickAddMedication(name, dose);
         showToast(`${name} gespeichert & eingetragen!`);
       } else if (activeCustomModalCategory === 'emotions') {
-        const val = (document.getElementById('input-custom-modal-val')?.value || '').trim();
+        const val = stripAllEmojis((document.getElementById('input-custom-modal-val')?.value || '').trim());
         if (!val) {
           alert('Bitte gib eine Bezeichnung ein.');
           return;
@@ -1720,7 +1849,7 @@ def get_javascript_code():
         toggleDiaryEmotion(val);
         showToast(`Emotion "${val}" gespeichert!`);
       } else {
-        const val = (document.getElementById('input-custom-modal-val')?.value || '').trim();
+        const val = stripAllEmojis((document.getElementById('input-custom-modal-val')?.value || '').trim());
         if (!val) {
           alert('Bitte gib eine Bezeichnung ein.');
           return;
@@ -2120,7 +2249,7 @@ def get_javascript_code():
           <!-- Editable time directly on each med pill -->
           <div class="flex items-center gap-1.5 shrink-0">
             <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
-              <span class="text-[10px] text-slate-400 shrink-0">⏰</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 7v5l3 2"/></svg>
               <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="Einnahme-Uhrzeit anpassen">
             </div>
             <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="Löschen">

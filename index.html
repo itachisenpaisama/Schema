@@ -51,15 +51,21 @@
   </script>
 
   <style>
-    /* Android Mobile Polish */
+    /* ==========================================================
+       Mobile-First Polish & shadcn/ui Design Tokens
+       ========================================================== */
     * {
       -webkit-tap-highlight-color: transparent;
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      max-width: 100vw;
       overflow-x: hidden;
-      padding-bottom: calc(76px + env(safe-area-inset-bottom, 12px));
+    }
+
+    body {
+      padding-bottom: calc(68px + env(safe-area-inset-bottom, 12px));
     }
 
     /* Prevent auto-zoom on mobile inputs */
@@ -69,8 +75,8 @@
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
@@ -87,20 +93,14 @@
     .shadcn-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 1.25rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      border-radius: 1rem;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      transition: border-color 0.15s ease;
     }
     .dark .shadcn-card {
       background: #0f172a;
       border-color: #1e293b;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-    }
-    .shadcn-card:hover {
-      border-color: #cbd5e1;
-    }
-    .dark .shadcn-card:hover {
-      border-color: #334155;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     }
 
     /* shadcn Input & Textarea */
@@ -108,9 +108,9 @@
       width: 100%;
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      border-radius: 0.875rem;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
+      border-radius: 0.75rem;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.875rem;
       color: #0f172a;
       transition: all 0.15s ease;
       outline: none;
@@ -123,12 +123,12 @@
     .shadcn-input:focus {
       background: #ffffff;
       border-color: #0284c7;
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
     }
     .dark .shadcn-input:focus {
       background: #0f172a;
       border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
     }
 
     /* Notebook Input Area */
@@ -136,9 +136,9 @@
       width: 100%;
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
-      border-radius: 0.875rem;
-      padding: 0.875rem 1rem;
-      font-size: 0.925rem;
+      border-radius: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.9rem;
       color: #0f172a;
       transition: all 0.2s ease;
     }
@@ -151,12 +151,12 @@
       outline: none;
       background: #ffffff;
       border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
     }
     .dark .notebook-input-area:focus {
       background: #0f172a;
       border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
     }
 
     /* Range slider custom styling */
@@ -169,7 +169,7 @@
       outline: none;
     }
     input[type=range]::-webkit-slider-runnable-track {
-      height: 8px;
+      height: 6px;
       border-radius: 9999px;
       background: #e2e8f0;
       transition: background 0.2s ease;
@@ -179,24 +179,24 @@
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 22px;
-      width: 22px;
+      height: 18px;
+      width: 18px;
       border-radius: 50%;
       background: #ffffff;
-      border: 2.5px solid #0284c7;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-      margin-top: -7px;
-      transition: transform 0.1s ease, border-color 0.2s ease;
+      border: 2px solid #0284c7;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      margin-top: -6px;
+      transition: transform 0.1s ease;
     }
     input[type=range]:active::-webkit-slider-thumb {
-      transform: scale(1.18);
+      transform: scale(1.15);
     }
 
     /* Worksheet Paper Styling */
     .sheet-paper {
       background-color: #ffffff;
       color: #0f172a;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.05);
       border: 1px solid #e2e8f0;
       position: relative;
     }
@@ -204,7 +204,7 @@
     /* Dotted Line Rule */
     .dotted-rule {
       border-bottom: 1.5px dotted #64748b;
-      min-height: 26px;
+      min-height: 24px;
       display: flex;
       align-items: flex-end;
       padding-bottom: 2px;
@@ -229,33 +229,33 @@
     .diary-page-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 1.25rem;
-      box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.04);
+      border-radius: 1rem;
+      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
       position: relative;
     }
     .dark .diary-page-card {
       background: #0f172a;
       border-color: #1e293b;
-      box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
     }
 
     /* Interactive Notebook Styling */
     .notebook-container {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 1.5rem;
-      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+      border-radius: 1rem;
+      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
       position: relative;
       overflow: hidden;
     }
     .dark .notebook-container {
       background: #0f172a;
       border-color: #1e293b;
-      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
     }
 
     .notebook-segment {
-      padding: 1.25rem 1.25rem;
+      padding: 1rem;
       border-bottom: 1px solid #f1f5f9;
       position: relative;
       transition: background-color 0.2s ease;
@@ -266,9 +266,9 @@
     .notebook-segment:last-child {
       border-bottom: none;
     }
-    @media (max-width: 640px) {
+    @media (min-width: 640px) {
       .notebook-segment {
-        padding: 1.125rem 1rem;
+        padding: 1.25rem;
       }
     }
 
@@ -290,8 +290,8 @@
       .sheet-paper, .diary-page-card {
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
-        padding: 16px !important;
-        margin-bottom: 24px !important;
+        padding: 14px !important;
+        margin-bottom: 20px !important;
         page-break-inside: avoid;
         width: 100% !important;
         max-width: 100% !important;
@@ -306,58 +306,57 @@
   <!-- ======================================================== -->
   <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
   <!-- ======================================================== -->
-  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-3.5 sm:px-6 py-2.5">
+  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-2.5 sm:px-6 py-2">
     <div class="max-w-4xl mx-auto flex items-center justify-between">
       
       <!-- Brand Logo & Title -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="handleBrandClick()">
-        <div id="brand-logo-icon" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="handleBrandClick()">
+        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-xs">
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
         </div>
         <div>
-          <h1 id="app-main-title" class="text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
+          <h1 id="app-main-title" class="text-sm sm:text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Schema-Memo</h1>
           <p id="app-main-subtitle" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Nach J. Young · Schematherapie</p>
         </div>
       </div>
 
       <!-- Header Quick Actions -->
-      <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1">
         <!-- PWA Install Button -->
-        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm shadow-emerald-500/20" title="Als echte App installieren">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          <span class="hidden sm:inline">App installieren</span>
-          <span class="sm:hidden">Installieren</span>
+        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Als echte App installieren">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Installieren</span>
         </button>
 
         <!-- New Item Quick Button -->
-        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2.5 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-semibold transition flex items-center gap-1" title="Neu anlegen">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          <span id="header-btn-new-text" class="hidden sm:inline">+ Neu</span>
+        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-[11px] font-semibold transition flex items-center gap-1" title="Neu anlegen">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span id="header-btn-new-text">+ Neu</span>
         </button>
 
         <!-- Quick Update / Cache Clear Button -->
-        <button type="button" onclick="forceAppUpdate()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         </button>
 
         <!-- Dark Mode Toggle -->
-        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Design umschalten">
-          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Design umschalten">
+          <svg id="theme-icon-sun" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
       </div>
 
     </div>
 
     <!-- PRIMARY MODULE SWITCHER: Schema-Memo vs. Daily Life & Neuro-Tracker Diary -->
-    <div class="max-w-4xl mx-auto pt-2.5 flex items-center justify-center">
-      <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 w-full max-w-sm shadow-inner">
-        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+    <div class="max-w-4xl mx-auto pt-1.5 flex items-center justify-center">
+      <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 w-full max-w-xs shadow-inner">
+        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
           <span>🧠 Schema-Memo</span>
         </button>
-        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1 px-2.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
           <span>📖 Diary & Tracker</span>
         </button>
       </div>
@@ -367,7 +366,7 @@
   <!-- ======================================================== -->
   <!-- MAIN APP CONTAINER                                        -->
   <!-- ======================================================== -->
-  <main class="max-w-4xl w-full mx-auto px-3 sm:px-6 pt-4 pb-32 sm:pb-36">
+  <main class="max-w-4xl w-full mx-auto px-2 sm:px-6 pt-2.5 sm:pt-4 pb-24 sm:pb-32">
     <!-- ======================================================== -->
     <!-- MODULE A: SCHEMA-MEMO VIEWS                               -->
     <!-- ======================================================== -->
@@ -376,7 +375,7 @@
     <div id="view-edit" class="space-y-4">
 
       <!-- Top Banner / Title & Date -->
-      <div class="shadcn-card p-4 sm:p-5 space-y-3">
+      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
         <div class="flex items-center justify-between gap-2">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300">
             🔍 Situation reflektieren
@@ -410,7 +409,7 @@
       </div>
 
       <!-- STEP 1 CARD -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3.5">
+      <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
           <span class="w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold flex items-center justify-center text-xs">
             1
@@ -447,7 +446,7 @@
       </section>
 
       <!-- STEP 2 CARD -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3.5">
+      <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
           <span class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-center text-xs">
             2
@@ -495,7 +494,7 @@
       </section>
 
       <!-- STEP 3 CARD -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3.5">
+      <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
           <span class="w-7 h-7 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-bold flex items-center justify-center text-xs">
             3
@@ -528,7 +527,7 @@
       </section>
 
       <!-- STEP 4 CARD -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3.5">
+      <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
           <span class="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold flex items-center justify-center text-xs">
             4
@@ -759,7 +758,7 @@
 
     <!-- VIEW A3: SCHEMA ARCHIV -->
     <div id="view-archive" class="hidden space-y-4">
-      <div class="shadcn-card p-4 sm:p-5 space-y-3">
+      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Gespeicherte Schema-Memos</h2>
@@ -789,7 +788,7 @@
 
     <!-- VIEW A4: SCHEMA SPICKZETTEL / HILFE -->
     <div id="view-help" class="hidden space-y-4">
-      <div class="shadcn-card p-4 sm:p-5 space-y-3">
+      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
         <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">💡 Schema-Therapie Spickzettel</h2>
         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           Kompaktes Nachschlagewerk über die 18 Schemata und Modi nach Jeffrey Young zur schnellen Orientierung während der Reflexion.
@@ -798,7 +797,7 @@
 
       <!-- Schemata Accordions/Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="shadcn-card p-4 space-y-2">
+        <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
           <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Bereich 1</span>
           <h3 class="text-sm font-bold text-slate-900 dark:text-white">Abweisung & Trennung</h3>
           <p class="text-xs text-slate-500 leading-relaxed">
@@ -806,7 +805,7 @@
           </p>
         </div>
 
-        <div class="shadcn-card p-4 space-y-2">
+        <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
           <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Bereich 2</span>
           <h3 class="text-sm font-bold text-slate-900 dark:text-white">Autonomie & Leistung</h3>
           <p class="text-xs text-slate-500 leading-relaxed">
@@ -814,7 +813,7 @@
           </p>
         </div>
 
-        <div class="shadcn-card p-4 space-y-2">
+        <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
           <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Bereich 3</span>
           <h3 class="text-sm font-bold text-slate-900 dark:text-white">Beeinträchtigte Grenzen</h3>
           <p class="text-xs text-slate-500 leading-relaxed">
@@ -822,7 +821,7 @@
           </p>
         </div>
 
-        <div class="shadcn-card p-4 space-y-2">
+        <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
           <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Bereich 4</span>
           <h3 class="text-sm font-bold text-slate-900 dark:text-white">Fremdbezogenheit</h3>
           <p class="text-xs text-slate-500 leading-relaxed">
@@ -836,54 +835,52 @@
     <!-- ======================================================== -->
 
     <!-- VIEW B1: TAGES-CHECK-IN (All-in-One Life, Med, Food, Sleep, Steps & ADHS Tracker) -->
-    <div id="view-diary-entry" class="hidden space-y-4">
+    <div id="view-diary-entry" class="hidden space-y-3">
 
       <!-- TOP CONTROL CARD: DATE, ROUTINE-KOPIEREN & SCHNELL-FILTER -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3.5">
+      <section class="shadcn-card p-3 sm:p-4 space-y-2.5">
         
         <!-- Header Row: Date & Actions -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 gap-2.5">
-          <div class="flex items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
-              ✨ Daily Life Check-in
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800 gap-2">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0">
+              Check-in
             </span>
-            <span id="diary-current-day-label" class="text-xs font-semibold text-slate-600 dark:text-slate-300">Heute</span>
+            <span id="diary-current-day-label" class="text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">Heute</span>
           </div>
 
-          <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
-            <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 flex-1 sm:flex-initial">
-              <span class="text-xs text-slate-400">📅</span>
-              <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-transparent text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer w-full">
-            </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Date input -->
+            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
             
             <!-- Quick routine copy from yesterday -->
-            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-xs font-semibold px-3 py-1.5 rounded-xl border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1 shrink-0" title="Kopiert Medikation & Ziele vom Vortag">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              <span>Vortag-Routine</span>
+            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1" title="Kopiert Medikation & Ziele vom Vortag">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span class="hidden sm:inline">Vortag</span>
             </button>
 
-            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-xs font-semibold px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shrink-0" title="Formular zurücksetzen">
+            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition" title="Zurücksetzen">
               Leeren
             </button>
           </div>
         </div>
 
-        <!-- Section Navigation Pills (ADHD-friendly focus mode) -->
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs font-medium no-scrollbar">
-          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold shrink-0 shadow-xs">
-            ✨ Alles im Flow
+        <!-- Section Navigation Pills (ADHD-friendly focus mode, wraps cleanly, no horizontal scrolling!) -->
+        <div class="flex flex-wrap items-center gap-1 text-xs font-semibold">
+          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-2.5 py-1 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition">
+            ✨ Flow (Alles)
           </button>
-          <button type="button" onclick="filterCheckinSections('meds_food')" id="sec-nav-meds_food" class="sec-nav-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">
+          <button type="button" onclick="filterCheckinSections('meds_food')" id="sec-nav-meds_food" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
             💊 Medis & Essen
           </button>
-          <button type="button" onclick="filterCheckinSections('body')" id="sec-nav-body" class="sec-nav-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">
+          <button type="button" onclick="filterCheckinSections('body')" id="sec-nav-body" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
             🛏️ Schlaf & Steps
           </button>
-          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">
-            🧠 ADHS & Neuro
+          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+            🧠 ADHS Hub
           </button>
-          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">
-            🌟 Mood & Reflexion
+          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+            🌟 Mood & Notizen
           </button>
         </div>
       </section>
@@ -891,110 +888,108 @@
       <!-- ======================================================== -->
       <!-- SECTION 1: MOOD, ENERGIE & EMOTIONEN                     -->
       <!-- ======================================================== -->
-      <section id="section-mood" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
+      <section id="section-mood" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
         
         <!-- Mood (1 - 10) -->
-        <div class="space-y-3">
+        <div class="space-y-2">
           <div class="flex items-center justify-between">
             <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-              <span>🌈</span> Wie ging es dir heute? (Stimmung 1 - 10)
+              <span>🌈</span> Wie ging es dir heute?
             </h3>
-            <span id="diary-mood-badge" class="px-3 py-0.5 rounded-full text-xs font-bold transition shadow-xs">
+            <span id="diary-mood-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold transition shadow-xs">
               8 / 10 · Gut
             </span>
           </div>
 
           <!-- Visual Mood Banner -->
-          <div id="diary-mood-banner" class="rounded-2xl p-3.5 flex items-center justify-between transition-colors duration-200 gap-3">
-            <div class="flex items-center gap-3 min-w-0">
-              <span id="diary-mood-emoji" class="text-3xl sm:text-4xl shrink-0">😊</span>
+          <div id="diary-mood-banner" class="rounded-xl p-2.5 sm:p-3 flex items-center justify-between transition-colors duration-200 gap-2.5">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span id="diary-mood-emoji" class="text-2xl sm:text-3xl shrink-0">😊</span>
               <div class="min-w-0">
-                <div id="diary-mood-title" class="text-sm sm:text-base font-extrabold truncate">Zufrieden & Gut</div>
-                <div id="diary-mood-desc" class="text-xs opacity-90 line-clamp-2 leading-relaxed">Der Tag war überwiegend stabil, angenehm und positiv.</div>
+                <div id="diary-mood-title" class="text-xs sm:text-sm font-extrabold truncate">Zufrieden & Gut</div>
+                <div id="diary-mood-desc" class="text-[11px] opacity-90 line-clamp-1 leading-snug">Der Tag war stabil, angenehm und positiv.</div>
               </div>
             </div>
-            <div id="diary-mood-number" class="w-12 h-12 rounded-xl bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-2xl sm:text-3xl font-black shrink-0">8</div>
+            <div id="diary-mood-number" class="w-9 h-9 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-xl font-black shrink-0">8</div>
           </div>
 
-          <!-- Slider & Quick Buttons -->
-          <div class="space-y-2 pt-0.5">
-            <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+          <!-- Slider & Quick Buttons (Clean 2-row on mobile, never overflows!) -->
+          <div class="space-y-1.5 pt-0.5">
+            <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
             
-            <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 pt-0.5">
-              <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
-              <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
-              <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
-              <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
-              <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
-              <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
-              <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
-              <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
-              <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
-              <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn h-9 rounded-xl flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
+            <div class="grid grid-cols-5 sm:grid-cols-10 gap-1 pt-0.5">
+              <button type="button" onclick="updateMoodScore(1)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="1">1</button>
+              <button type="button" onclick="updateMoodScore(2)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="2">2</button>
+              <button type="button" onclick="updateMoodScore(3)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="3">3</button>
+              <button type="button" onclick="updateMoodScore(4)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="4">4</button>
+              <button type="button" onclick="updateMoodScore(5)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="5">5</button>
+              <button type="button" onclick="updateMoodScore(6)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="6">6</button>
+              <button type="button" onclick="updateMoodScore(7)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="7">7</button>
+              <button type="button" onclick="updateMoodScore(8)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="8">8</button>
+              <button type="button" onclick="updateMoodScore(9)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="9">9</button>
+              <button type="button" onclick="updateMoodScore(10)" class="mood-num-btn h-8 rounded-lg flex items-center justify-center text-center font-bold text-xs border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition" data-score="10">10</button>
             </div>
           </div>
         </div>
 
         <!-- Energielevel (1 - 10) -->
-        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div class="space-y-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
           <div class="flex items-center justify-between">
             <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
               <span>⚡</span> Energielevel & Vitalität
             </h3>
-            <span id="diary-energy-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
-              7 / 10 · Aktiv & Ausgeglichen
+            <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+              7 / 10 · Aktiv
             </span>
           </div>
-          <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-          <div class="flex justify-between text-[10px] text-slate-400 font-medium px-1">
-            <span>1 = Völlig entladen</span>
+          <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between text-[9px] text-slate-400 font-medium px-0.5">
+            <span>1 = Erschöpft</span>
             <span>5 = Normal</span>
-            <span>10 = Hochenergetisch</span>
+            <span>10 = Voll aufgeladen</span>
           </div>
         </div>
 
         <!-- Emotionen Chips Selector -->
-        <div class="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div class="space-y-2 pt-1.5 border-t border-slate-100 dark:border-slate-800">
           <div>
             <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-              <span>🎭</span> Welche Emotionen hast du heute gefühlt?
+              <span>🎭</span> Gefühle heute:
             </h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Tippe deine Gefühle an. Im Abschnitt unten wird dafür automatisch eine Vertiefung angeboten.</p>
           </div>
 
           <!-- Pleasant Emotions -->
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm & Stärkend:</span>
-            <div class="flex flex-wrap gap-1.5" id="pleasant-emotions-chips">
+          <div class="space-y-1">
+            <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Angenehm:</span>
+            <div class="flex flex-wrap gap-1" id="pleasant-emotions-chips">
               <!-- Dynamically populated -->
             </div>
           </div>
 
           <!-- Challenging Emotions -->
-          <div class="space-y-1.5 pt-0.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Belastend & Fordernd:</span>
-            <div class="flex flex-wrap gap-1.5" id="challenging-emotions-chips">
+          <div class="space-y-1 pt-0.5">
+            <span class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Fordernd:</span>
+            <div class="flex flex-wrap gap-1" id="challenging-emotions-chips">
               <!-- Dynamically populated -->
             </div>
           </div>
 
           <!-- Add Custom Emotion Input -->
           <div class="flex items-center gap-1.5 pt-1 w-full max-w-full">
-            <input type="text" id="input-custom-emotion" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomEmotionFromInput();}" placeholder="Eigene Emotion..." class="min-w-0 flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-full px-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-            <button type="button" onclick="addCustomEmotionFromInput()" class="shrink-0 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition flex items-center gap-1">
-              <span>+</span>
-              <span>Hinzufügen</span>
+            <input type="text" id="input-custom-emotion" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomEmotionFromInput();}" placeholder="Eigene Emotion..." class="min-w-0 flex-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <button type="button" onclick="addCustomEmotionFromInput()" class="shrink-0 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition">
+              + Neu
             </button>
           </div>
         </div>
 
         <!-- Dynamic Emotion Reflection Notes -->
-        <div id="diary-emotion-notes-wrapper" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800 hidden">
+        <div id="diary-emotion-notes-wrapper" class="space-y-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800 hidden">
           <div class="flex items-center justify-between">
-            <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Gefühls-Reflexion (vertieft):</h4>
-            <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500">0 ausgewählt</span>
+            <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Gefühls-Reflexion:</h4>
+            <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500">0</span>
           </div>
-          <div id="diary-emotion-notes-container" class="space-y-2.5">
+          <div id="diary-emotion-notes-container" class="space-y-2">
             <!-- Dynamically injected cards -->
           </div>
         </div>
@@ -1004,91 +999,90 @@
       <!-- ======================================================== -->
       <!-- SECTION 2: MEDIKATION & SUPPLEMENTS (ADHS-FOKUS)         -->
       <!-- ======================================================== -->
-      <section id="section-meds" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
+      <section id="section-meds" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 flex items-center justify-center font-bold text-sm shadow-xs">
+            <div class="w-7 h-7 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 flex items-center justify-center font-bold text-xs shadow-xs">
               💊
             </div>
             <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
                 Medikation & Supplements
               </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Erfasse Dosis, Uhrzeit und Verträglichkeit deiner Medis</p>
             </div>
           </div>
-          <span id="meds-count-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-violet-100 dark:bg-violet-950/70 text-violet-700 dark:text-violet-300">
+          <span id="meds-count-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-violet-100 dark:bg-violet-950/70 text-violet-700 dark:text-violet-300">
             0 erfasst
           </span>
         </div>
 
         <!-- Quick-Add Chip Pills (Common ADHD meds & supplements) -->
-        <div class="space-y-1.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">1-Klick Schnell-Hinzufügen:</span>
-          <div class="flex flex-wrap gap-1.5">
-            <button type="button" onclick="quickAddMedication('Elvanse Adult', '30 mg')" class="text-xs px-2.5 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition">+ Elvanse 30mg</button>
-            <button type="button" onclick="quickAddMedication('Elvanse Adult', '50 mg')" class="text-xs px-2.5 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition">+ Elvanse 50mg</button>
-            <button type="button" onclick="quickAddMedication('Elvanse Adult', '70 mg')" class="text-xs px-2.5 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition">+ Elvanse 70mg</button>
-            <button type="button" onclick="quickAddMedication('Medikinet adult', '10 mg')" class="text-xs px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200/60 dark:border-sky-800/40 transition">+ Medikinet 10mg</button>
-            <button type="button" onclick="quickAddMedication('Medikinet adult', '20 mg')" class="text-xs px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200/60 dark:border-sky-800/40 transition">+ Medikinet 20mg</button>
-            <button type="button" onclick="quickAddMedication('Ritalin adult', '10 mg')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition">+ Ritalin 10mg</button>
-            <button type="button" onclick="quickAddMedication('Concerta / Kinecteen', '27 mg')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition">+ Concerta 27mg</button>
-            <button type="button" onclick="quickAddMedication('Attentin', '5 mg')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition">+ Attentin 5mg</button>
-            <button type="button" onclick="quickAddMedication('Bupropion / Wellbutrin', '150 mg')" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition">+ Bupropion 150mg</button>
-            <button type="button" onclick="quickAddMedication('Magnesium Bisglycinat', '400 mg')" class="text-xs px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 transition">+ Magnesium 400mg</button>
-            <button type="button" onclick="quickAddMedication('Vitamin D3 + K2', '4000 IE')" class="text-xs px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 text-amber-700 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40 transition">+ Vitamin D3+K2</button>
-            <button type="button" onclick="quickAddMedication('Omega 3 (EPA/DHA)', '1000 mg')" class="text-xs px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 transition">+ Omega 3</button>
+        <div class="space-y-1">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">1-Klick Schnell-Auswahl:</span>
+          <div class="flex flex-wrap gap-1">
+            <button type="button" onclick="quickAddMedication('Elvanse Adult', '30 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium">+ Elvanse 30mg</button>
+            <button type="button" onclick="quickAddMedication('Elvanse Adult', '50 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium">+ Elvanse 50mg</button>
+            <button type="button" onclick="quickAddMedication('Elvanse Adult', '70 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium">+ Elvanse 70mg</button>
+            <button type="button" onclick="quickAddMedication('Medikinet adult', '10 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200/60 dark:border-sky-800/40 transition font-medium">+ Medikinet 10mg</button>
+            <button type="button" onclick="quickAddMedication('Medikinet adult', '20 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200/60 dark:border-sky-800/40 transition font-medium">+ Medikinet 20mg</button>
+            <button type="button" onclick="quickAddMedication('Ritalin adult', '10 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition font-medium">+ Ritalin 10mg</button>
+            <button type="button" onclick="quickAddMedication('Concerta / Kinecteen', '27 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition font-medium">+ Concerta 27mg</button>
+            <button type="button" onclick="quickAddMedication('Attentin', '5 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition font-medium">+ Attentin 5mg</button>
+            <button type="button" onclick="quickAddMedication('Bupropion / Wellbutrin', '150 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition font-medium">+ Bupropion 150mg</button>
+            <button type="button" onclick="quickAddMedication('Magnesium Bisglycinat', '400 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 transition font-medium">+ Magnesium 400mg</button>
+            <button type="button" onclick="quickAddMedication('Vitamin D3 + K2', '4000 IE')" class="text-xs px-2 py-0.5 rounded-lg bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 text-amber-700 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40 transition font-medium">+ Vit D3+K2</button>
+            <button type="button" onclick="quickAddMedication('Omega 3 (EPA/DHA)', '1000 mg')" class="text-xs px-2 py-0.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 transition font-medium">+ Omega 3</button>
           </div>
         </div>
 
-        <!-- Custom Add Input Row -->
-        <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
-          <div class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Individuelles Medikament erfassen:</div>
-          <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-            <input type="text" id="input-med-name" placeholder="Name (z.B. Elvanse)" class="shadcn-input text-xs sm:col-span-1">
-            <input type="text" id="input-med-dose" placeholder="Dosis (z.B. 30 mg)" class="shadcn-input text-xs sm:col-span-1">
-            <input type="time" id="input-med-time" class="shadcn-input text-xs sm:col-span-1">
-            <input type="text" id="input-med-note" placeholder="Notiz (z.B. mit Frühstück)" class="shadcn-input text-xs sm:col-span-1">
+        <!-- Custom Add Form: Compact Mobile 2-Row Layout -->
+        <div class="bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1.5">
+          <div class="text-[10px] font-bold text-slate-600 dark:text-slate-400">Individuelles Medikament erfassen:</div>
+          <!-- Row 1: Name + Dose -->
+          <div class="flex gap-1.5">
+            <input type="text" id="input-med-name" placeholder="Name (z.B. Elvanse)" class="shadcn-input text-xs flex-1 min-w-0">
+            <input type="text" id="input-med-dose" placeholder="Dosis (z.B. 30 mg)" class="shadcn-input text-xs w-28 shrink-0">
           </div>
-          <div class="flex justify-end pt-1">
-            <button type="button" onclick="addCustomMedicationFromForm()" class="px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs transition flex items-center gap-1 shadow-xs">
-              <span>+ Medikament hinzufügen</span>
+          <!-- Row 2: Time + Note + Button -->
+          <div class="flex items-center gap-1.5">
+            <input type="time" id="input-med-time" class="shadcn-input text-xs w-24 shrink-0">
+            <input type="text" id="input-med-note" placeholder="Notiz (mit Frühstück)" class="shadcn-input text-xs flex-1 min-w-0">
+            <button type="button" onclick="addCustomMedicationFromForm()" class="px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs transition shrink-0 shadow-xs">
+              + Add
             </button>
           </div>
         </div>
 
         <!-- Today's Logged Medications List -->
-        <div class="space-y-2">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Heute eingenommen:</span>
-          <div id="today-meds-list" class="space-y-2">
+        <div class="space-y-1.5">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Heute erfasst:</span>
+          <div id="today-meds-list" class="space-y-1.5">
             <!-- Dynamically populated -->
           </div>
         </div>
 
         <!-- Rebound & Wirkungsverlauf Box (ADHD-crucial!) -->
-        <div class="p-3.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2.5">
+        <div class="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1.5">
-              <span>⏱️</span> Rebound-Effekt / Wirkungsende bemerkt?
+            <span class="text-xs font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1">
+              <span>⏱️</span> Rebound / Wirkungsende?
             </span>
             <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300">Kein Rebound</span>
           </div>
 
-          <div class="flex flex-wrap gap-1.5">
+          <div class="flex flex-wrap gap-1">
             <button type="button" onclick="setReboundLevel('none')" class="rebound-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-semibold" data-level="none">Kein Rebound</button>
             <button type="button" onclick="setReboundLevel('leicht')" class="rebound-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="leicht">Leicht</button>
             <button type="button" onclick="setReboundLevel('spuerbar')" class="rebound-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="spuerbar">Spürbar</button>
             <button type="button" onclick="setReboundLevel('stark')" class="rebound-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-violet-300 font-semibold" data-level="stark">Stark</button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
-            <div class="sm:col-span-1">
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Uhrzeit des Wirkungsabfalls:</label>
-              <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5">
+          <div class="flex flex-col sm:flex-row gap-1.5 pt-0.5">
+            <div class="w-full sm:w-28 shrink-0">
+              <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1" placeholder="Uhrzeit">
             </div>
-            <div class="sm:col-span-2">
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Symptome / Rebound-Notiz:</label>
-              <input type="text" id="input-med-rebound-notes" placeholder="z. B. Konzentrationsabfall, leichte Reizbarkeit, Müdigkeit..." class="shadcn-input text-xs py-1.5">
+            <div class="flex-1 min-w-0">
+              <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z.B. Konzentrationsabfall, Müdigkeit)..." class="shadcn-input text-xs py-1">
             </div>
           </div>
         </div>
@@ -1098,119 +1092,115 @@
       <!-- ======================================================== -->
       <!-- SECTION 3: ESSEN, MAHLZEITEN, HYDRATION & KOFFEIN        -->
       <!-- ======================================================== -->
-      <section id="section-food" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-sm shadow-xs">
-              🍽️
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                Essen, Mahlzeiten & Hydration
-              </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Proteinreich frühstücken ist essenziell für die ADHS-Medikationswirkung!</p>
-            </div>
+      <section id="section-food" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-xs shadow-xs">
+            🍽️
+          </div>
+          <div>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+              Essen, Mahlzeiten & Hydration
+            </h3>
           </div>
         </div>
 
         <!-- 4 Meal Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
           
           <!-- Breakfast -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
                 <span>🍳</span> Frühstück (Proteinbasis)
               </span>
-              <button type="button" onclick="appendMealTag('breakfast', 'Proteinreich')" class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold">+ Protein</button>
+              <button type="button" onclick="appendMealTag('breakfast', 'Proteinreich')" class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold">+ Protein</button>
             </div>
-            <textarea id="input-meal-breakfast" rows="2" placeholder="z. B. 3 Rühreier mit Vollkornbrot, Skyr mit Beeren..." class="shadcn-input text-xs"></textarea>
+            <textarea id="input-meal-breakfast" rows="2" placeholder="z. B. Rühreier mit Vollkornbrot..." class="shadcn-input text-xs py-1.5 px-2"></textarea>
           </div>
 
           <!-- Lunch -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
                 <span>🥗</span> Mittagessen
               </span>
-              <button type="button" onclick="appendMealTag('lunch', 'Ausgewogen')" class="text-[10px] px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-semibold">+ Ausgewogen</button>
+              <button type="button" onclick="appendMealTag('lunch', 'Ausgewogen')" class="text-[9px] px-1.5 py-0.5 rounded bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold">+ Ausgewogen</button>
             </div>
-            <textarea id="input-meal-lunch" rows="2" placeholder="z. B. Hähnchen-Reis-Bowl mit Brokkoli, Pasta mit Salat..." class="shadcn-input text-xs"></textarea>
+            <textarea id="input-meal-lunch" rows="2" placeholder="z. B. Hähnchen-Reis-Bowl mit Brokkoli..." class="shadcn-input text-xs py-1.5 px-2"></textarea>
           </div>
 
           <!-- Dinner -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
                 <span>🍲</span> Abendessen
               </span>
-              <button type="button" onclick="appendMealTag('dinner', 'Leicht')" class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 font-semibold">+ Leicht</button>
+              <button type="button" onclick="appendMealTag('dinner', 'Leicht')" class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 font-bold">+ Leicht</button>
             </div>
-            <textarea id="input-meal-dinner" rows="2" placeholder="z. B. Gemüsesuppe, Lachs mit Süßkartoffeln, Salat..." class="shadcn-input text-xs"></textarea>
+            <textarea id="input-meal-dinner" rows="2" placeholder="z. B. Gemüsesuppe, Lachs mit Süßkartoffeln..." class="shadcn-input text-xs py-1.5 px-2"></textarea>
           </div>
 
           <!-- Snacks & Cravings -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <span>🍎</span> Snacks, Nüsse & Heißhunger
+              <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
+                <span>🍎</span> Snacks & Heißhunger
               </span>
-              <button type="button" onclick="appendMealTag('snacks', 'Wenig Appetit')" class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-semibold">Med-Effekt</button>
+              <button type="button" onclick="appendMealTag('snacks', 'Wenig Appetit')" class="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-bold">Med-Effekt</button>
             </div>
-            <textarea id="input-meal-snacks" rows="2" placeholder="z. B. Handvoll Mandeln, Proteinriegel, Apfel, dunkle Schokolade..." class="shadcn-input text-xs"></textarea>
+            <textarea id="input-meal-snacks" rows="2" placeholder="z. B. Mandeln, Apfel, Proteinriegel..." class="shadcn-input text-xs py-1.5 px-2"></textarea>
           </div>
 
         </div>
 
         <!-- Meal Tags Selector -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-1">
-          <span class="text-[10px] font-bold text-slate-500 uppercase mr-1">Tages-Ernährung:</span>
-          <button type="button" onclick="toggleMealTag('Proteinreich')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Proteinreich">🍗 Proteinreich</button>
-          <button type="button" onclick="toggleMealTag('Ausgewogen')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Ausgewogen">🥗 Ausgewogen</button>
-          <button type="button" onclick="toggleMealTag('Leicht')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Leicht">🍃 Leicht</button>
-          <button type="button" onclick="toggleMealTag('Fast Food')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Fast Food">🍔 Fast Food</button>
-          <button type="button" onclick="toggleMealTag('Appetitmangel')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Appetitmangel">🤐 Med-Appetitmangel</button>
-          <button type="button" onclick="toggleMealTag('Heißhunger am Abend')" class="meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Heißhunger am Abend">🍫 Heißhunger am Abend</button>
+        <div class="flex flex-wrap items-center gap-1 pt-0.5">
+          <button type="button" onclick="toggleMealTag('Proteinreich')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Proteinreich">🍗 Proteinreich</button>
+          <button type="button" onclick="toggleMealTag('Ausgewogen')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Ausgewogen">🥗 Ausgewogen</button>
+          <button type="button" onclick="toggleMealTag('Leicht')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Leicht">🍃 Leicht</button>
+          <button type="button" onclick="toggleMealTag('Fast Food')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Fast Food">🍔 Fast Food</button>
+          <button type="button" onclick="toggleMealTag('Appetitmangel')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Appetitmangel">🤐 Appetitmangel</button>
+          <button type="button" onclick="toggleMealTag('Heißhunger am Abend')" class="meal-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Heißhunger am Abend">🍫 Heißhunger</button>
         </div>
 
         <!-- Hydration & Koffein Side-by-Side -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
           
           <!-- Water Tracker -->
-          <div class="p-4 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/20 space-y-2.5">
+          <div class="p-3 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/20 space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
+              <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1">
                 <span>💧</span> Wasser-Tracker
               </span>
               <span id="water-display" class="text-xs font-bold text-sky-600 dark:text-sky-400">0 ml / 2500 ml</span>
             </div>
 
-            <div class="w-full bg-slate-200 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+            <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden">
               <div id="water-progress-bar" class="h-full bg-gradient-to-r from-sky-500 to-teal-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-1.5 pt-1">
-              <button type="button" onclick="addWater(250)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 250 ml 🥛</button>
-              <button type="button" onclick="addWater(500)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 500 ml 🍶</button>
-              <button type="button" onclick="addWater(-250)" class="text-xs font-semibold px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">- 250 ml</button>
-              <button type="button" onclick="resetWater()" class="text-xs text-slate-400 hover:text-slate-600 ml-auto transition">Reset</button>
+            <div class="flex flex-wrap items-center gap-1 pt-0.5">
+              <button type="button" onclick="addWater(250)" class="text-xs font-bold px-2 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 250 ml</button>
+              <button type="button" onclick="addWater(500)" class="text-xs font-bold px-2 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 500 ml</button>
+              <button type="button" onclick="addWater(-250)" class="text-xs font-semibold px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">- 250</button>
+              <button type="button" onclick="resetWater()" class="text-[11px] text-slate-400 hover:text-slate-600 ml-auto transition">Reset</button>
             </div>
           </div>
 
           <!-- Caffeine Tracker -->
-          <div class="p-4 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/20 space-y-2.5">
+          <div class="p-3 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/20 space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1.5">
-                <span>☕</span> Koffein & Aufputschmittel
+              <span class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1">
+                <span>☕</span> Koffein
               </span>
               <span id="caffeine-display" class="text-xs font-bold text-amber-600 dark:text-amber-400">0 Tassen</span>
             </div>
 
-            <p class="text-[11px] text-slate-500 leading-tight">Vorsicht: Koffein verstärkt oft ADHS-Medikamente und kann innere Unruhe auslösen.</p>
+            <p class="text-[11px] text-slate-500 leading-tight">Wechselwirkung mit Stimulanzien beachten.</p>
 
-            <div class="flex flex-wrap items-center gap-1.5 pt-1">
-              <button type="button" onclick="addCaffeine(1, 'Kaffee')" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ☕ Espresso / Kaffee</button>
-              <button type="button" onclick="addCaffeine(1, 'Energy')" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ⚡ Energy</button>
+            <div class="flex flex-wrap items-center gap-1 pt-0.5">
+              <button type="button" onclick="addCaffeine(1, 'Kaffee')" class="text-xs font-bold px-2 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ☕ Kaffee</button>
+              <button type="button" onclick="addCaffeine(1, 'Energy')" class="text-xs font-bold px-2 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition shadow-xs">+ ⚡ Energy</button>
               <button type="button" onclick="addCaffeine(-1, '')" class="text-xs font-semibold px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">- 1</button>
             </div>
           </div>
@@ -1222,17 +1212,16 @@
       <!-- ======================================================== -->
       <!-- SECTION 4: SCHLAF & ERHOLUNG                             -->
       <!-- ======================================================== -->
-      <section id="section-sleep" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
+      <section id="section-sleep" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-sm shadow-xs">
+            <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-xs shadow-xs">
               🛏️
             </div>
             <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
                 Schlaf & Erholung
               </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Guter Schlaf ist der wichtigste Prädiktor für Fokus und emotionale Stabilität</p>
             </div>
           </div>
           <span id="sleep-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300">
@@ -1240,64 +1229,70 @@
           </span>
         </div>
 
-        <!-- Times & Auto Calculator -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Times & Auto Calculator: 2 Cols on mobile -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
           <div>
-            <label class="block text-[11px] font-bold text-slate-500 mb-1">Zubettgehzeit:</label>
-            <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer">
+            <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Zubettgehzeit:</label>
+            <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-500 mb-1">Aufwachzeit:</label>
-            <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer">
+            <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Aufwachzeit:</label>
+            <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1">
           </div>
-          <div>
-            <label class="block text-[11px] font-bold text-slate-500 mb-1">Schlafdauer (Stunden):</label>
-            <div class="flex items-center gap-2">
-              <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-bold">
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Schlafdauer (Stunden):</label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-bold py-1">
               <span class="text-xs font-bold text-slate-400">Std</span>
             </div>
           </div>
         </div>
 
-        <!-- Sleep Quality Rating (1 - 5 Stars / Pills) -->
-        <div class="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-800">
-          <label class="block text-xs font-bold text-slate-900 dark:text-white">
-            Schlafqualität & Erholungswert:
-          </label>
-          <div class="grid grid-cols-5 gap-2">
-            <button type="button" onclick="setSleepQuality(1)" class="sleep-qual-btn p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="1">
-              <div class="text-lg sm:text-xl">😫</div>
-              <div class="text-[10px] font-bold mt-1">1 · Sehr schlecht</div>
+        <!-- Sleep Quality Rating (5 compact emoji buttons + live label, never overflows!) -->
+        <div class="space-y-1.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-slate-900 dark:text-white">
+              Schlafqualität:
+            </label>
+            <span id="sleep-quality-label" class="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+              4 / 5 · Erholsam & Gut
+            </span>
+          </div>
+
+          <div class="grid grid-cols-5 gap-1 sm:gap-2">
+            <button type="button" onclick="setSleepQuality(1)" class="sleep-qual-btn p-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="1">
+              <div class="text-lg">😫</div>
+              <div class="text-[10px] font-bold mt-0.5">1</div>
             </button>
-            <button type="button" onclick="setSleepQuality(2)" class="sleep-qual-btn p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="2">
-              <div class="text-lg sm:text-xl">🥱</div>
-              <div class="text-[10px] font-bold mt-1">2 · Unruhig</div>
+            <button type="button" onclick="setSleepQuality(2)" class="sleep-qual-btn p-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="2">
+              <div class="text-lg">🥱</div>
+              <div class="text-[10px] font-bold mt-0.5">2</div>
             </button>
-            <button type="button" onclick="setSleepQuality(3)" class="sleep-qual-btn p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="3">
-              <div class="text-lg sm:text-xl">😐</div>
-              <div class="text-[10px] font-bold mt-1">3 · Geht so</div>
+            <button type="button" onclick="setSleepQuality(3)" class="sleep-qual-btn p-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="3">
+              <div class="text-lg">😐</div>
+              <div class="text-[10px] font-bold mt-0.5">3</div>
             </button>
-            <button type="button" onclick="setSleepQuality(4)" class="sleep-qual-btn active p-2 rounded-xl border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-center transition" data-qual="4">
-              <div class="text-lg sm:text-xl">🙂</div>
-              <div class="text-[10px] font-bold mt-1">4 · Erholsam</div>
+            <button type="button" onclick="setSleepQuality(4)" class="sleep-qual-btn active p-1.5 rounded-xl border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-center transition font-bold shadow-xs" data-qual="4">
+              <div class="text-lg">🙂</div>
+              <div class="text-[10px] font-bold mt-0.5">4</div>
             </button>
-            <button type="button" onclick="setSleepQuality(5)" class="sleep-qual-btn p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="5">
-              <div class="text-lg sm:text-xl">⚡</div>
-              <div class="text-[10px] font-bold mt-1">5 · Perfekt</div>
+            <button type="button" onclick="setSleepQuality(5)" class="sleep-qual-btn p-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition" data-qual="5">
+              <div class="text-lg">⚡</div>
+              <div class="text-[10px] font-bold mt-0.5">5</div>
             </button>
           </div>
         </div>
 
         <!-- Sleep Factors Chips -->
-        <div class="space-y-1.5 pt-1">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Schlaf-Faktoren (Tippen zum Auswählen):</span>
-          <div class="flex flex-wrap gap-1.5">
-            <button type="button" onclick="toggleSleepTag('Einschlafprobleme (Gedankenkreisen)')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Einschlafprobleme (Gedankenkreisen)">🧠 Gedankenkreisen / Einschlafprobleme</button>
-            <button type="button" onclick="toggleSleepTag('Nachts aufgewacht')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Nachts aufgewacht">👀 Nachts aufgewacht</button>
-            <button type="button" onclick="toggleSleepTag('Melatonin genommen')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Melatonin genommen">💊 Melatonin genommen</button>
-            <button type="button" onclick="toggleSleepTag('Revenge Procrastination')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Revenge Procrastination">📱 Zu spät ins Bett (Handy/Streaming)</button>
-            <button type="button" onclick="toggleSleepTag('Erholt aufgewacht')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Erholt aufgewacht">☀️ Erholt aufgewacht</button>
-            <button type="button" onclick="toggleSleepTag('Traumintensiv')" class="sleep-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Traumintensiv">🌌 Traumintensiv</button>
+        <div class="space-y-1 pt-1">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Schlaf-Faktoren:</span>
+          <div class="flex flex-wrap gap-1">
+            <button type="button" onclick="toggleSleepTag('Einschlafprobleme (Gedankenkreisen)')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Einschlafprobleme (Gedankenkreisen)">🧠 Gedankenkreisen</button>
+            <button type="button" onclick="toggleSleepTag('Nachts aufgewacht')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Nachts aufgewacht">👀 Nachts wach</button>
+            <button type="button" onclick="toggleSleepTag('Melatonin genommen')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Melatonin genommen">💊 Melatonin</button>
+            <button type="button" onclick="toggleSleepTag('Revenge Procrastination')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Revenge Procrastination">📱 Zu spät ins Bett</button>
+            <button type="button" onclick="toggleSleepTag('Erholt aufgewacht')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Erholt aufgewacht">☀️ Erholt</button>
+            <button type="button" onclick="toggleSleepTag('Traumintensiv')" class="sleep-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Traumintensiv">🌌 Träume</button>
           </div>
         </div>
 
@@ -1306,17 +1301,16 @@
       <!-- ======================================================== -->
       <!-- SECTION 5: STEPS & BEWEGUNG                              -->
       <!-- ======================================================== -->
-      <section id="section-steps" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
+      <section id="section-steps" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-sm shadow-xs">
+            <div class="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-xs shadow-xs">
               👟
             </div>
             <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
                 Schritte & Bewegung
               </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Körperliche Bewegung reguliert das Dopamin- und Noradrenalin-System</p>
             </div>
           </div>
           <span id="steps-display-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300">
@@ -1325,47 +1319,47 @@
         </div>
 
         <!-- Steps Progress Bar & Number Inputs -->
-        <div class="space-y-3 bg-slate-50/70 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <div class="space-y-2 bg-slate-50/70 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Tages-Schrittziel:</span>
-            <span id="steps-progress-percent" class="text-xs font-extrabold text-blue-600 dark:text-blue-400">0% erreicht</span>
+            <span id="steps-progress-percent" class="text-xs font-extrabold text-blue-600 dark:text-blue-400">0%</span>
           </div>
 
-          <div class="w-full bg-slate-200 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+          <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden">
             <div id="steps-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <div class="grid grid-cols-2 gap-2 pt-0.5">
             <div>
-              <label class="block text-[11px] font-bold text-slate-500 mb-1">Schritte heute:</label>
-              <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-sm font-extrabold text-blue-600 dark:text-blue-400">
+              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Schritte heute:</label>
+              <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-extrabold text-blue-600 dark:text-blue-400 py-1">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-slate-500 mb-1">Tagesziel:</label>
-              <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold">
+              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Tagesziel:</label>
+              <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold py-1">
             </div>
           </div>
 
           <!-- Quick Increment Buttons -->
-          <div class="flex flex-wrap items-center gap-1.5 pt-1">
-            <button type="button" onclick="addSteps(500)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 500</button>
-            <button type="button" onclick="addSteps(1000)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 1.000</button>
-            <button type="button" onclick="addSteps(2500)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 2.500</button>
-            <button type="button" onclick="addSteps(5000)" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 5.000</button>
-            <button type="button" onclick="setSteps(10000)" class="text-xs font-bold px-3 py-1 rounded-lg bg-blue-600 text-white ml-auto transition shadow-xs">🎯 10k erreicht!</button>
+          <div class="flex flex-wrap items-center gap-1 pt-0.5">
+            <button type="button" onclick="addSteps(500)" class="text-xs font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 500</button>
+            <button type="button" onclick="addSteps(1000)" class="text-xs font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 1k</button>
+            <button type="button" onclick="addSteps(2500)" class="text-xs font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 2.5k</button>
+            <button type="button" onclick="addSteps(5000)" class="text-xs font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 5k</button>
+            <button type="button" onclick="setSteps(10000)" class="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-blue-600 text-white ml-auto transition shadow-xs">🎯 10k Ziel</button>
           </div>
         </div>
 
         <!-- Sport & Activities Chips -->
-        <div class="space-y-1.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Aktivitäten & Sport heute:</span>
-          <div class="flex flex-wrap gap-1.5">
-            <button type="button" onclick="toggleActivityTag('Spaziergang')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Spaziergang">🚶 Spaziergang</button>
-            <button type="button" onclick="toggleActivityTag('Gym / Krafttraining')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Gym / Krafttraining">🏋️ Gym / Kraftsport</button>
-            <button type="button" onclick="toggleActivityTag('Laufen / Joggen')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Laufen / Joggen">🏃 Laufen / Joggen</button>
-            <button type="button" onclick="toggleActivityTag('Radfahren')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Radfahren">🚴 Radfahren</button>
-            <button type="button" onclick="toggleActivityTag('Dehnen / Yoga')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Dehnen / Yoga">🧘 Dehnen / Yoga</button>
-            <button type="button" onclick="toggleActivityTag('Ruhetag')" class="activity-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Ruhetag">🛋️ Ruhetag</button>
+        <div class="space-y-1">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Aktivitäten & Sport heute:</span>
+          <div class="flex flex-wrap gap-1">
+            <button type="button" onclick="toggleActivityTag('Spaziergang')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Spaziergang">🚶 Spaziergang</button>
+            <button type="button" onclick="toggleActivityTag('Gym / Krafttraining')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Gym / Krafttraining">🏋️ Gym</button>
+            <button type="button" onclick="toggleActivityTag('Laufen / Joggen')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Laufen / Joggen">🏃 Laufen</button>
+            <button type="button" onclick="toggleActivityTag('Radfahren')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Radfahren">🚴 Radfahren</button>
+            <button type="button" onclick="toggleActivityTag('Dehnen / Yoga')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Dehnen / Yoga">🧘 Yoga</button>
+            <button type="button" onclick="toggleActivityTag('Ruhetag')" class="activity-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Ruhetag">🛋️ Ruhetag</button>
           </div>
         </div>
 
@@ -1374,26 +1368,23 @@
       <!-- ======================================================== -->
       <!-- SECTION 6: ADHS & NEURO-FOKUS HUB                        -->
       <!-- ======================================================== -->
-      <section id="section-adhs" class="checkin-section shadcn-card p-4 sm:p-5 space-y-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 flex items-center justify-center font-bold text-sm shadow-xs">
-              🧠
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                ADHS & Neuro-Fokus Hub
-              </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Exekutive Funktionen, Reizüberflutung, Hyperfokus & Brain Fog erfassen</p>
-            </div>
+      <section id="section-adhs" class="checkin-section shadcn-card p-3 sm:p-4 space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 flex items-center justify-center font-bold text-xs shadow-xs">
+            🧠
+          </div>
+          <div>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+              ADHS & Neuro-Fokus Hub
+            </h3>
           </div>
         </div>
 
         <!-- 3 Sliders Grid: Focus, Restlessness, Brain Fog -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5">
           
           <!-- Focus -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-900 dark:text-white">🎯 Konzentration:</span>
               <span id="adhs-focus-badge" class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400">7 / 10</span>
@@ -1406,7 +1397,7 @@
           </div>
 
           <!-- Restlessness -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-900 dark:text-white">🌪️ Innere Unruhe:</span>
               <span id="adhs-restlessness-badge" class="text-xs font-extrabold text-amber-600 dark:text-amber-400">4 / 10</span>
@@ -1414,58 +1405,58 @@
             <input type="range" id="input-adhs-restlessness" min="1" max="10" value="4" step="1" oninput="updateAdhsRestlessnessScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
             <div class="flex justify-between text-[9px] text-slate-400">
               <span>Ruhig</span>
-              <span>Sehr getrieben</span>
+              <span>Getrieben</span>
             </div>
           </div>
 
           <!-- Brain Fog -->
-          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+          <div class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-900 dark:text-white">🌫️ Gehirnnebel:</span>
               <span id="adhs-brainfog-badge" class="text-xs font-extrabold text-sky-600 dark:text-sky-400">2 / 10</span>
             </div>
             <input type="range" id="input-adhs-brainfog" min="1" max="10" value="2" step="1" oninput="updateAdhsBrainFogScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
             <div class="flex justify-between text-[9px] text-slate-400">
-              <span>Kristallklar</span>
-              <span>Dichter Nebel</span>
+              <span>Klar</span>
+              <span>Nebel</span>
             </div>
           </div>
 
         </div>
 
         <!-- Executive Function & Sensory Overload Toggles -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-0.5">
           
           <!-- Executive Function -->
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold text-slate-500 uppercase">Exekutive Funktion / Aufgabenstart:</span>
-            <div class="flex flex-wrap gap-1.5">
-              <button type="button" onclick="setExecutiveFunction('paralysis')" class="exec-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="paralysis">🧱 Task Paralysis</button>
-              <button type="button" onclick="setExecutiveFunction('muehsam')" class="exec-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="muehsam">⏳ Mühsam</button>
-              <button type="button" onclick="setExecutiveFunction('gut')" class="exec-btn active text-xs px-2.5 py-1 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold" data-val="gut">🚀 Gut im Flow</button>
-              <button type="button" onclick="setExecutiveFunction('hyperfokus')" class="exec-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="hyperfokus">⚡ Hyperfokus</button>
+          <div class="space-y-1">
+            <span class="text-[9px] font-bold text-slate-500 uppercase">Exekutive Funktion:</span>
+            <div class="flex flex-wrap gap-1">
+              <button type="button" onclick="setExecutiveFunction('paralysis')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="paralysis">🧱 Paralysis</button>
+              <button type="button" onclick="setExecutiveFunction('muehsam')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="muehsam">⏳ Mühsam</button>
+              <button type="button" onclick="setExecutiveFunction('gut')" class="exec-btn active text-xs px-2 py-0.5 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold" data-val="gut">🚀 Flow</button>
+              <button type="button" onclick="setExecutiveFunction('hyperfokus')" class="exec-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="hyperfokus">⚡ Hyperfokus</button>
             </div>
           </div>
 
           <!-- Sensory Overload -->
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold text-slate-500 uppercase">Sensorische Belastung / Reizoffenheit:</span>
-            <div class="flex flex-wrap gap-1.5">
-              <button type="button" onclick="setSensoryOverload('keine')" class="sensory-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="keine">🟢 Reizarm / Entspannt</button>
-              <button type="button" onclick="setSensoryOverload('gering')" class="sensory-btn active text-xs px-2.5 py-1 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold" data-val="gering">🟡 Leicht empfindlich</button>
-              <button type="button" onclick="setSensoryOverload('mittel')" class="sensory-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="mittel">🟠 Überreizt</button>
-              <button type="button" onclick="setSensoryOverload('stark')" class="sensory-btn text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700" data-val="stark">🔴 Reizüberflutung</button>
+          <div class="space-y-1">
+            <span class="text-[9px] font-bold text-slate-500 uppercase">Sensorische Reizoffenheit:</span>
+            <div class="flex flex-wrap gap-1">
+              <button type="button" onclick="setSensoryOverload('keine')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="keine">🟢 Reizarm</button>
+              <button type="button" onclick="setSensoryOverload('gering')" class="sensory-btn active text-xs px-2 py-0.5 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold" data-val="gering">🟡 Leicht</button>
+              <button type="button" onclick="setSensoryOverload('mittel')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="mittel">🟠 Überlastung</button>
+              <button type="button" onclick="setSensoryOverload('stark')" class="sensory-btn text-xs px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700" data-val="stark">🔴 Reizüberflutung</button>
             </div>
           </div>
 
         </div>
 
         <!-- ADHD Note / Win of the Day -->
-        <div class="space-y-1 pt-1">
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">
+        <div class="space-y-1 pt-0.5">
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300">
             💡 ADHS-Erkenntnis, Dopamin-Hack oder Tagessieg:
           </label>
-          <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat gegen Prokrastination geholfen; gute Musik beim Aufräumen genutzt..." class="shadcn-input text-xs">
+          <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat geholfen..." class="shadcn-input text-xs py-1.5">
         </div>
 
       </section>
@@ -1473,105 +1464,94 @@
       <!-- ======================================================== -->
       <!-- SECTION 7: MEMORIES, HIGHLIGHTS, DANKBARKEIT & NOTIZEN   -->
       <!-- ======================================================== -->
-      <section id="section-mind" class="checkin-section notebook-container shadow-sm">
+      <section id="section-mind" class="checkin-section notebook-container shadow-xs">
         
         <!-- Segment 1: Key Highlights & Memories -->
-        <div class="notebook-segment space-y-2.5">
+        <div class="notebook-segment space-y-2">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="text-base sm:text-lg text-amber-500">🌟</span>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                Key Highlights, Memories & Erlebnisse
+            <div class="flex items-center gap-1.5">
+              <span class="text-base text-amber-500">🌟</span>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                Highlights & Erlebnisse
               </h3>
             </div>
-            <span class="text-[10px] uppercase font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full">Hauptfokus</span>
+            <span class="text-[9px] uppercase font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full">Fokus</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Was waren heute die wichtigsten Schlüsselmomente, Erlebnisse, Wendepunkte oder Erkenntnisse deines Tages?
-          </p>
-          <textarea id="input-diary-highlights" rows="3" placeholder="z. B. Ein sehr inspirierendes Gespräch geführt; nachmittags draußen in der Sonne Energie getankt; ein wichtiges Problem ruhig gelöst..." class="notebook-input-area min-h-[90px]"></textarea>
+          <textarea id="input-diary-highlights" rows="2" placeholder="Was waren heute die wichtigsten Momente deines Tages?..." class="notebook-input-area min-h-[70px] text-xs"></textarea>
 
           <!-- Memory Tags -->
-          <div class="space-y-1.5 pt-1">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Erlebnis-Tags:</span>
-            <div class="flex flex-wrap gap-1.5" id="memory-tags-container">
-              <button type="button" onclick="toggleMemoryTag('Erfolg')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Erfolg">🏆 #Erfolg</button>
-              <button type="button" onclick="toggleMemoryTag('Natur')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Natur">🌲 #Natur</button>
-              <button type="button" onclick="toggleMemoryTag('Freunde')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Freunde">👥 #Freunde</button>
-              <button type="button" onclick="toggleMemoryTag('Familie')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Familie">🏡 #Familie</button>
-              <button type="button" onclick="toggleMemoryTag('Kreativ')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Kreativ">🎨 #Kreativ</button>
-              <button type="button" onclick="toggleMemoryTag('DopaminWin')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="DopaminWin">⚡ #DopaminWin</button>
-              <button type="button" onclick="toggleMemoryTag('Gelernt')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Gelernt">💡 #Gelernt</button>
-              <button type="button" onclick="toggleMemoryTag('Sport')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Sport">🏃 #Sport</button>
-              <button type="button" onclick="toggleMemoryTag('MeTime')" class="memory-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="MeTime">🧘 #MeTime</button>
+          <div class="space-y-1 pt-0.5">
+            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500">Erlebnis-Tags:</span>
+            <div class="flex flex-wrap gap-1" id="memory-tags-container">
+              <button type="button" onclick="toggleMemoryTag('Erfolg')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Erfolg">🏆 #Erfolg</button>
+              <button type="button" onclick="toggleMemoryTag('Natur')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Natur">🌲 #Natur</button>
+              <button type="button" onclick="toggleMemoryTag('Freunde')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Freunde">👥 #Freunde</button>
+              <button type="button" onclick="toggleMemoryTag('Familie')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Familie">🏡 #Familie</button>
+              <button type="button" onclick="toggleMemoryTag('Kreativ')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Kreativ">🎨 #Kreativ</button>
+              <button type="button" onclick="toggleMemoryTag('DopaminWin')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="DopaminWin">⚡ #DopaminWin</button>
+              <button type="button" onclick="toggleMemoryTag('Gelernt')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Gelernt">💡 #Gelernt</button>
+              <button type="button" onclick="toggleMemoryTag('Sport')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="Sport">🏃 #Sport</button>
+              <button type="button" onclick="toggleMemoryTag('MeTime')" class="memory-tag-btn text-xs px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition" data-tag="MeTime">🧘 #MeTime</button>
             </div>
           </div>
         </div>
 
         <!-- Segment 2: 3 Positive Dinge (Dankbarkeit) -->
-        <div class="notebook-segment space-y-3">
+        <div class="notebook-segment space-y-2">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="text-base sm:text-lg text-emerald-500">💚</span>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                3 Positive Dinge des Tages (Dopamin-Anker)
+            <div class="flex items-center gap-1.5">
+              <span class="text-base text-emerald-500">💚</span>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                3 Positive Dinge (Dopamin-Anker)
               </h3>
             </div>
             <span id="positive-things-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-              0 / 3 notiert
+              0 / 3
             </span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Dankbarkeit stärkt nachweislich die Psyche: Halte mindestens drei positive Momente oder Gesten fest.
-          </p>
-          <div class="space-y-2.5 pt-1" id="positive-things-inputs-container">
-            <div class="flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">1</span>
-              <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein ruhiger, wärmender Morgenkaffee..." class="notebook-input-area py-2.5">
+          <div class="space-y-1.5" id="positive-things-inputs-container">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center">1</span>
+              <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="Ein ruhiger Morgenkaffee..." class="notebook-input-area py-1.5 px-2.5 text-xs">
             </div>
-            <div class="flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">2</span>
-              <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein unerwartetes Lächeln oder schönes Feedback..." class="notebook-input-area py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center">2</span>
+              <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="Ein unerwartetes Lob oder Lächeln..." class="notebook-input-area py-1.5 px-2.5 text-xs">
             </div>
-            <div class="flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">3</span>
-              <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Zeit genommen für mich und durchgeatmet..." class="notebook-input-area py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center">3</span>
+              <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="Zeit genommen für mich..." class="notebook-input-area py-1.5 px-2.5 text-xs">
             </div>
           </div>
-          <div class="pt-1">
-            <button type="button" onclick="addAnotherPositiveThingInput()" class="w-full sm:w-auto py-2.5 px-4 rounded-xl border border-dashed border-emerald-300 dark:border-emerald-800/70 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 text-xs font-semibold transition flex items-center justify-center gap-1.5">
-              <span class="text-sm font-bold">+</span>
-              <span>Weiteren positiven Moment ergänzen</span>
+          <div class="pt-0.5">
+            <button type="button" onclick="addAnotherPositiveThingInput()" class="text-xs text-emerald-700 dark:text-emerald-300 font-semibold hover:underline flex items-center gap-1">
+              <span>+ Weiterer positiver Moment</span>
             </button>
           </div>
         </div>
 
         <!-- Segment 3: Free Thoughts / Brain Dump -->
-        <div class="notebook-segment space-y-2">
+        <div class="notebook-segment space-y-1.5">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="text-base sm:text-lg text-indigo-500">📖</span>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                Freie Tagebuch-Gedanken & Brain Dump
+            <div class="flex items-center gap-1.5">
+              <span class="text-base text-indigo-500">📖</span>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                Freie Gedanken & Brain Dump
               </h3>
             </div>
-            <span class="text-[10px] uppercase font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full">Freies Schreiben</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Dein geschützter Raum: Schreibe ungefiltert auf, was dich beschäftigt hat, Sorgen, Learnings oder Wünsche für morgen.
-          </p>
-          <textarea id="input-diary-notes" rows="5" placeholder="Hier ist dein freier Platz im Notizbuch. Lass deine Gedanken einfach fließen..." class="notebook-input-area min-h-[140px]"></textarea>
+          <textarea id="input-diary-notes" rows="4" placeholder="Schreibe ungefiltert auf, was dich beschäftigt hat..." class="notebook-input-area min-h-[90px] text-xs"></textarea>
         </div>
 
         <!-- NOTEBOOK FOOTER: SAVE BUTTON -->
-        <div class="p-4 sm:p-5 bg-slate-50/80 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span>100% lokal & privat auf deinem Gerät gesichert</span>
+        <div class="p-3 bg-slate-50/80 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span class="truncate">100% lokal & privat</span>
           </div>
-          <button type="button" onclick="saveCurrentDiaryEntry()" class="w-full sm:w-auto py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-            <span>Eintrag im Tagebuch speichern</span>
+          <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5 shrink-0">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+            <span>Speichern</span>
           </button>
         </div>
 
@@ -1579,20 +1559,20 @@
 
     </div>
     <!-- VIEW B2: TAGEBUCH-CHRONIK (Journal & Ordnerstruktur) -->
-    <div id="view-diary-list" class="hidden space-y-4">
+    <div id="view-diary-list" class="hidden space-y-3 sm:space-y-4">
 
       <!-- Header & Folder Structure Filter -->
-      <div class="shadcn-card p-4 sm:p-5 space-y-3.5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="shadcn-card p-3 sm:p-5 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div>
             <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">📖 Mein Tagebuch & Lebens-Chronik</h2>
             <p class="text-xs text-slate-500 dark:text-slate-400">Alle Einträge mit Medikation, Essen, Schlaf, Steps und ADHS-Fokus chronologisch.</p>
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <button onclick="printDiaryJournal()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="printDiaryJournal()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-xs">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-              <span>Buch drucken / PDF</span>
+              <span>Drucken</span>
             </button>
             <button onclick="exportDiaryJSON()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
               <span>Backup</span>
@@ -1605,40 +1585,40 @@
         </div>
 
         <!-- Search Input -->
-        <div class="pt-1">
-          <input type="text" id="diary-search-input" oninput="renderDiaryEntriesList()" placeholder="Tagebuch durchsuchen (Medis, Mahlzeiten, Emotionen, Highlights, Notizen, Tags)..." class="shadcn-input text-xs">
+        <div class="pt-0.5">
+          <input type="text" id="diary-search-input" oninput="renderDiaryEntriesList()" placeholder="Tagebuch durchsuchen (Medis, Essen, Emotionen, Tags)..." class="shadcn-input text-xs">
         </div>
 
         <!-- Filter Folders / Months -->
-        <div class="space-y-1.5 pt-1">
+        <div class="space-y-1 pt-0.5">
           <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Monats-Ordner:</span>
-          <div class="flex items-center gap-1.5 overflow-x-auto pb-1" id="diary-folders-container">
+          <div class="flex flex-wrap items-center gap-1 pb-0.5" id="diary-folders-container">
             <!-- Dynamically populated month folders -->
           </div>
         </div>
 
         <!-- Quick Filter Tags -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div class="flex flex-wrap items-center gap-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
           <span class="text-[10px] font-bold text-slate-500 uppercase mr-1">Filter:</span>
           <button type="button" onclick="setDiaryQuickFilter('all')" id="qf-all" class="qf-btn active text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold transition">Alle Einträge</button>
-          <button type="button" onclick="setDiaryQuickFilter('meds')" id="qf-meds" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">💊 Mit Medikation</button>
-          <button type="button" onclick="setDiaryQuickFilter('food')" id="qf-food" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">🍽️ Mit Mahlzeiten</button>
-          <button type="button" onclick="setDiaryQuickFilter('steps')" id="qf-steps" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">👟 Schritte &gt; 8k</button>
+          <button type="button" onclick="setDiaryQuickFilter('meds')" id="qf-meds" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">💊 Medikation</button>
+          <button type="button" onclick="setDiaryQuickFilter('food')" id="qf-food" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">🍽️ Mahlzeiten</button>
+          <button type="button" onclick="setDiaryQuickFilter('steps')" id="qf-steps" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">👟 &gt; 8k Steps</button>
         </div>
       </div>
 
       <!-- Journal Feed Cards List -->
-      <div id="diary-entries-container" class="space-y-4">
+      <div id="diary-entries-container" class="space-y-3">
         <!-- Rendered via JavaScript -->
       </div>
 
     </div>
     <!-- VIEW B3: TAGEBUCH-STATISTIKEN & NEURO-TRENDS -->
-    <div id="view-diary-stats" class="hidden space-y-4">
+    <div id="view-diary-stats" class="hidden space-y-3 sm:space-y-4">
 
       <!-- Stats Header & Timeframe Selector -->
-      <div class="shadcn-card p-4 sm:p-5 space-y-3.5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="shadcn-card p-3 sm:p-5 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div>
             <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">📊 Statistiken, Trends & Neuro-Insights</h2>
             <p class="text-xs text-slate-500 dark:text-slate-400">Verstehe Zusammenhänge zwischen Medikation, Schlaf, Essen, Bewegung und mentalem Fokus.</p>
@@ -1652,67 +1632,67 @@
 
         <!-- Time Range Selector -->
         <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 w-full flex-wrap gap-1">
-          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-xs" data-days="7">7 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="14">14 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="30">30 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="90">90 Tage</button>
-          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="month">Dieser Monat</button>
-          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="all">Alle</button>
+          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-xs" data-days="7">7 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="14">14 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="30">30 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="90">90 Tage</button>
+          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="month">Monat</button>
+          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="all">Alle</button>
         </div>
       </div>
 
       <!-- 6 METRIC KPI CARDS GRID -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
         
         <!-- 1. Mood -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Ø Stimmung</span>
-          <div id="stats-kpi-avg" class="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
-          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate">Trend berechnen...</div>
+          <div id="stats-kpi-avg" class="text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
+          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate">Trend...</div>
         </div>
 
         <!-- 2. Sleep -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Ø Schlaf</span>
-          <div id="stats-kpi-sleep" class="text-xl sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">--</div>
+          <div id="stats-kpi-sleep" class="text-lg sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">--</div>
           <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate">-- Qualität</div>
         </div>
 
         <!-- 3. Steps -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Ø Schritte</span>
-          <div id="stats-kpi-steps" class="text-xl sm:text-2xl font-black text-blue-600 dark:text-blue-400">--</div>
+          <div id="stats-kpi-steps" class="text-lg sm:text-2xl font-black text-blue-600 dark:text-blue-400">--</div>
           <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate">0 gesamt</div>
         </div>
 
         <!-- 4. Med Adherence -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Med-Treue</span>
-          <div id="stats-kpi-meds" class="text-xl sm:text-2xl font-black text-violet-600 dark:text-violet-400">--</div>
-          <div class="text-[10px] text-slate-400">Tage mit Medikation</div>
+          <div id="stats-kpi-meds" class="text-lg sm:text-2xl font-black text-violet-600 dark:text-violet-400">--</div>
+          <div class="text-[10px] text-slate-400">Tage mit Medis</div>
         </div>
 
         <!-- 5. ADHD Focus -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Ø ADHS-Fokus</span>
-          <div id="stats-kpi-focus" class="text-xl sm:text-2xl font-black text-pink-600 dark:text-pink-400">--</div>
-          <div class="text-[10px] text-slate-400">Konzentration (1-10)</div>
+          <div id="stats-kpi-focus" class="text-lg sm:text-2xl font-black text-pink-600 dark:text-pink-400">--</div>
+          <div class="text-[10px] text-slate-400">Fokus (1-10)</div>
         </div>
 
         <!-- 6. Streak -->
-        <div class="shadcn-card p-3.5 space-y-1">
+        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Aktive Serie</span>
-          <div id="stats-kpi-streak" class="text-xl sm:text-2xl font-black text-amber-500">0 d</div>
+          <div id="stats-kpi-streak" class="text-lg sm:text-2xl font-black text-amber-500">0 d</div>
           <div class="text-[10px] text-slate-400">Tage in Folge</div>
         </div>
 
       </div>
 
       <!-- INTERACTIVE DUAL-LINE TIMELINE CHART (MOOD & FOCUS) -->
-      <section class="shadcn-card p-4 sm:p-5 space-y-3">
+      <section class="shadcn-card p-3 sm:p-5 space-y-2.5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
           <div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span>📈</span> Stimmung & ADHS-Fokus im Verlauf
             </h3>
             <p class="text-[11px] text-slate-500">Vergleiche deine Stimmungskurve direkt mit deinem Konzentrationslevel</p>
@@ -1727,17 +1707,18 @@
           </div>
         </div>
 
-        <div class="w-full overflow-x-auto pb-2" id="stats-chart-wrapper">
-          <div id="stats-chart-container" class="min-w-[320px] h-[210px] w-full flex items-center justify-center">
+        <!-- Chart container: 100% width, no horizontal scroll, auto-responsive SVG -->
+        <div class="w-full pb-1 overflow-hidden" id="stats-chart-wrapper">
+          <div id="stats-chart-container" class="w-full h-[180px] sm:h-[210px] flex items-center justify-center">
             <!-- Rendered via SVG -->
           </div>
         </div>
       </section>
 
       <!-- NEURO-INSIGHT CORRELATION CARD -->
-      <section class="p-4 sm:p-5 rounded-2xl bg-gradient-to-tr from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800/60 space-y-2">
+      <section class="p-3 sm:p-4 rounded-2xl bg-gradient-to-tr from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800/60 space-y-1.5">
         <div class="flex items-center gap-2">
-          <span class="text-lg">💡</span>
+          <span class="text-base sm:text-lg">💡</span>
           <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Neuro-Insight & Lebensstil-Muster</h4>
         </div>
         <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -1746,28 +1727,28 @@
       </section>
 
       <!-- TWO COLUMNS: DAY OF WEEK TENDENCY & TOP EMOTIONS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
         
         <!-- Day of Week Analysis (Mo - So) -->
-        <div class="shadcn-card p-4 space-y-3">
+        <div class="shadcn-card p-3 sm:p-4 space-y-2">
           <div class="flex items-center justify-between">
             <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
               <span>📅</span> Tendenzen nach Wochentag
             </h4>
           </div>
           <p class="text-[11px] text-slate-500">An welchen Wochentagen geht es dir im Schnitt am besten?</p>
-          <div id="stats-weekday-bars" class="space-y-2 pt-1">
+          <div id="stats-weekday-bars" class="space-y-1.5 pt-1">
             <!-- Injected via JavaScript -->
           </div>
         </div>
 
         <!-- Top Emotions Frequency -->
-        <div class="shadcn-card p-4 space-y-3">
+        <div class="shadcn-card p-3 sm:p-4 space-y-2">
           <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
             <span>🎭</span> Häufigste Emotionen
           </h4>
           <p class="text-[11px] text-slate-500">Welche Gefühle haben dich im gewählten Zeitraum am meisten begleitet?</p>
-          <div id="stats-top-emotions" class="space-y-2 pt-1">
+          <div id="stats-top-emotions" class="space-y-1.5 pt-1">
             <!-- Injected via JavaScript -->
           </div>
         </div>
@@ -1872,6 +1853,12 @@
       renderArchiveList();
       renderDiaryEntriesList();
       registerServiceWorker();
+
+      window.addEventListener('resize', () => {
+        if (currentView === 'diary-stats') {
+          renderStatsView();
+        }
+      });
     });
 
     // Theme Management
@@ -2750,11 +2737,21 @@
 
     function setSleepQuality(qual) {
       currentSleepQuality = parseInt(qual);
+      const labels = {
+        1: '1 / 5 · Sehr schlecht',
+        2: '2 / 5 · Schlecht',
+        3: '3 / 5 · Mittelmäßig',
+        4: '4 / 5 · Gut',
+        5: '5 / 5 · Sehr gut'
+      };
+      const lbl = document.getElementById('sleep-quality-label');
+      if (lbl) lbl.textContent = labels[currentSleepQuality] || (currentSleepQuality + ' / 5');
+
       document.querySelectorAll('.sleep-qual-btn').forEach(btn => {
         if (parseInt(btn.getAttribute('data-qual')) === currentSleepQuality) {
-          btn.className = 'sleep-qual-btn active p-2 rounded-xl border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-center transition font-bold shadow-xs';
+          btn.className = 'sleep-qual-btn active py-2 rounded-lg border border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-center transition font-bold shadow-xs flex flex-col items-center justify-center';
         } else {
-          btn.className = 'sleep-qual-btn p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center transition';
+          btn.className = 'sleep-qual-btn py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-center transition flex flex-col items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800/60';
         }
       });
       updateSleepDurationDisplay();
@@ -3345,17 +3342,17 @@
         const adhs = item.adhs || {};
 
         return `
-          <article class="diary-page-card p-4 sm:p-6 space-y-4">
+          <article class="diary-page-card p-3 sm:p-5 space-y-3 break-words overflow-hidden">
             
             <!-- Card Header: Date & Mood Badge & Action Buttons -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 gap-2.5">
-              <div>
+            <div class="flex flex-wrap items-center justify-between pb-2.5 border-b border-slate-100 dark:border-slate-800 gap-2">
+              <div class="min-w-0">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Daily Life & Neuro Entry</span>
-                <h3 class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white capitalize">${formattedFullDate}</h3>
+                <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white capitalize">${formattedFullDate}</h3>
               </div>
 
-              <div class="flex items-center gap-2">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${moodConf.bg} shadow-xs">
+              <div class="flex items-center gap-1.5">
+                <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${moodConf.bg} shadow-xs">
                   <span>${moodConf.emoji}</span>
                   <span>${item.mood}/10 · ${moodConf.title.split('/')[0].trim()}</span>
                 </div>
@@ -3372,39 +3369,39 @@
             </div>
 
             <!-- Quick Metrics Overview Bar -->
-            <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
+            <div class="flex flex-wrap items-center gap-1 pt-0.5">
               ${slp.durationHours ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-800/40">
                   <span>🛏️</span> ${slp.durationHours}h (${slp.quality || 4}/5★)
                 </span>
               ` : ''}
 
               ${steps > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/40">
-                  <span>👟</span> ${steps.toLocaleString('de-DE')} Schritte
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/40">
+                  <span>👟</span> ${steps.toLocaleString('de-DE')}
                 </span>
               ` : ''}
 
               ${meds.length > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
                   <span>💊</span> ${meds.length} ${meds.length === 1 ? 'Medi' : 'Medis'}
                 </span>
               ` : ''}
 
               ${water > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
                   <span>💧</span> ${water} ml
                 </span>
               ` : ''}
 
               ${caffeine > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40">
-                  <span>☕</span> ${caffeine}x Koffein
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40">
+                  <span>☕</span> ${caffeine}x
                 </span>
               ` : ''}
 
               ${adhs.focus ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-pink-50 dark:bg-pink-950/50 text-pink-700 dark:text-pink-300 border border-pink-200/50 dark:border-pink-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-pink-50 dark:bg-pink-950/50 text-pink-700 dark:text-pink-300 border border-pink-200/50 dark:border-pink-800/40">
                   <span>🧠</span> Fokus: ${adhs.focus}/10
                 </span>
               ` : ''}
@@ -3412,7 +3409,7 @@
 
             <!-- Key Highlights Box -->
             ${item.highlights ? `
-              <div class="bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-500 p-3.5 rounded-r-xl space-y-1.5">
+              <div class="bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-500 p-2.5 sm:p-3 rounded-r-xl space-y-1">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 flex items-center justify-between">
                   <span class="flex items-center gap-1"><span>🌟</span> Key Highlights & Erlebnisse</span>
                 </div>
@@ -3420,7 +3417,7 @@
                   ${escapeHtml(item.highlights)}
                 </p>
                 ${(item.memoryTags && item.memoryTags.length > 0) ? `
-                  <div class="flex flex-wrap gap-1 pt-1">
+                  <div class="flex flex-wrap gap-1 pt-0.5">
                     ${item.memoryTags.map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">#${escapeHtml(t)}</span>`).join('')}
                   </div>
                 ` : ''}
@@ -3429,13 +3426,13 @@
 
             <!-- Medications Details Box -->
             ${(meds.length > 0 || (item.rebound && item.rebound.level !== 'none')) ? `
-              <div class="p-3.5 rounded-xl border border-violet-100 dark:border-violet-900/40 bg-violet-50/40 dark:bg-violet-950/20 space-y-2">
+              <div class="p-2.5 sm:p-3 rounded-xl border border-violet-100 dark:border-violet-900/40 bg-violet-50/40 dark:bg-violet-950/20 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 flex items-center justify-between">
                   <span class="flex items-center gap-1"><span>💊</span> Eingenommene Medikation & Supplements:</span>
                 </div>
-                <div class="flex flex-wrap gap-1.5">
+                <div class="flex flex-wrap gap-1">
                   ${meds.map(m => `
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs border border-violet-200/60 dark:border-violet-800/50">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs border border-violet-200/60 dark:border-violet-800/50">
                       <span class="text-emerald-500 font-bold">✓</span>
                       <span class="font-bold">${escapeHtml(m.name)}</span>
                       <span class="text-violet-600 dark:text-violet-400 font-semibold">${escapeHtml(m.dose)}</span>
@@ -3453,11 +3450,11 @@
 
             <!-- Meals Box -->
             ${(mls.breakfast || mls.lunch || mls.dinner || mls.snacks) ? `
-              <div class="p-3.5 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/30 dark:bg-amber-950/15 space-y-2">
+              <div class="p-2.5 sm:p-3 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/30 dark:bg-amber-950/15 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 flex items-center gap-1">
                   <span>🍽️</span> Mahlzeiten & Ernährung:
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 dark:text-slate-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-700 dark:text-slate-300">
                   ${mls.breakfast ? `<div><strong class="text-slate-900 dark:text-white">🍳 Frühstück:</strong> ${escapeHtml(mls.breakfast)}</div>` : ''}
                   ${mls.lunch ? `<div><strong class="text-slate-900 dark:text-white">🥗 Mittag:</strong> ${escapeHtml(mls.lunch)}</div>` : ''}
                   ${mls.dinner ? `<div><strong class="text-slate-900 dark:text-white">🍲 Abend:</strong> ${escapeHtml(mls.dinner)}</div>` : ''}
@@ -3468,21 +3465,21 @@
 
             <!-- ADHD & Body Details -->
             ${(adhs.notes || (item.activities && item.activities.length > 0) || (slp.tags && slp.tags.length > 0)) ? `
-              <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-2 text-xs">
+              <div class="p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-1.5 text-xs">
                 ${(item.activities && item.activities.length > 0) ? `
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-slate-400 font-semibold">Sport & Bewegung:</span>
+                  <div class="flex items-center gap-1 flex-wrap">
+                    <span class="text-slate-400 font-semibold">Sport:</span>
                     ${item.activities.map(a => `<span class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold">${escapeHtml(a)}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${(slp.tags && slp.tags.length > 0) ? `
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-slate-400 font-semibold">Schlaffaktoren:</span>
+                  <div class="flex items-center gap-1 flex-wrap">
+                    <span class="text-slate-400 font-semibold">Schlaf:</span>
                     ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold">${escapeHtml(t)}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${adhs.notes ? `
-                  <div class="pt-1 text-slate-800 dark:text-slate-200">
+                  <div class="pt-0.5 text-slate-800 dark:text-slate-200">
                     <strong class="text-pink-600 dark:text-pink-400">💡 ADHS-Erkenntnis:</strong> ${escapeHtml(adhs.notes)}
                   </div>
                 ` : ''}
@@ -3491,13 +3488,13 @@
 
             <!-- 3 Positive Things List -->
             ${(item.positiveThings && item.positiveThings.length > 0) ? `
-              <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-3.5 space-y-2">
+              <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-2.5 sm:p-3 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1">
-                  <span>💚</span> Das war heute positiv & dankbar:
+                  <span>💚</span> Das war heute positiv:
                 </div>
-                <div class="space-y-1.5">
+                <div class="space-y-1">
                   ${item.positiveThings.map(pt => `
-                    <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                    <div class="flex items-start gap-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                       <span class="text-emerald-500 font-bold mt-0.5">✓</span>
                       <span>${escapeHtml(pt)}</span>
                     </div>
@@ -3777,12 +3774,12 @@
         return;
       }
 
-      const w = Math.max(340, container.clientWidth || 340);
-      const h = 200;
-      const padL = 32;
-      const padR = 20;
-      const padT = 20;
-      const padB = 30;
+      const w = Math.max(260, container.clientWidth || 300);
+      const h = 180;
+      const padL = 24;
+      const padR = 12;
+      const padT = 16;
+      const padB = 26;
 
       const innerW = w - padL - padR;
       const innerH = h - padT - padB;
@@ -3808,16 +3805,16 @@
       const polyFocus = focusPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
 
       container.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full overflow-visible">
+        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full overflow-hidden block">
           <!-- Horizontal Grid Lines -->
           <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 6}" y="${padT + 4}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">10</text>
+          <text x="${padL - 4}" y="${padT + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">10</text>
 
           <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 6}" y="${padT + innerH / 2 + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">5</text>
+          <text x="${padL - 4}" y="${padT + innerH / 2 + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">5</text>
 
           <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 6}" y="${padT + innerH + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">1</text>
+          <text x="${padL - 4}" y="${padT + innerH + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">1</text>
 
           <!-- Polylines -->
           <polyline points="${polyMood}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3826,8 +3823,8 @@
           <!-- Circles for Mood -->
           ${moodPoints.map((p, idx) => `
             <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: Stimmung ${p.val}/10')">
-              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
-              <text x="${p.x.toFixed(1)}" y="${h - 8}" fill="#64748b" font-size="9" text-anchor="middle" font-weight="500">
+              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+              <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#64748b" font-size="8.5" text-anchor="middle" font-weight="500">
                 ${p.date ? p.date.substring(8, 10) + '.' : ''}
               </text>
             </g>
@@ -3835,7 +3832,7 @@
 
           <!-- Circles for Focus -->
           ${focusPoints.map((p, idx) => `
-            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#ffffff" stroke="#ec4899" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ADHS-Fokus ${p.val}/10')"/>
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#ec4899" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ADHS-Fokus ${p.val}/10')"/>
           `).join('')}
         </svg>
       `;

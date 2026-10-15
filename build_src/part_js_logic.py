@@ -883,16 +883,16 @@ def get_javascript_code():
 
     // Mood Configurations (1 - 10)
     const MOOD_CONFIG = {
-      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', title_en: 'Crisis / Acute Distress', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', desc_en: 'Extremely distressing, barely bearable. Please rest and seek support.', bg: 'bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border border-rose-300 dark:border-rose-800' },
-      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', title_en: 'Very Down / Exhausted', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', desc_en: 'Heavy emotional burden, grief or severe exhaustion.', bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900' },
-      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', title_en: 'Low & Drained', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', desc_en: 'Everything felt difficult, low motivation or persistent worries.', bg: 'bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-800' },
-      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', title_en: 'Dissatisfied / Tense', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', desc_en: 'A challenging day with frustrations or inner restlessness.', bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900' },
-      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', title_en: 'Average / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', desc_en: 'Neither particularly good nor bad. A solid, normal day.', bg: 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700' },
-      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', title_en: 'Pretty Okay / Mildly Positive', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', desc_en: 'Mostly alright with a few pleasant moments.', bg: 'bg-sky-50 dark:bg-sky-950/50 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-900' },
-      7: { emoji: '😊', title: 'Gut & Ausgeglichen', title_en: 'Good & Balanced', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', desc_en: 'Stable day with positive baseline mood and good energy.', bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900' },
-      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', title_en: 'Very Content & Productive', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', desc_en: 'Fulfilling, stable, with many enriching moments.', bg: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800' },
-      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', title_en: 'Great & Driven', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', desc_en: 'Outstanding mood, strong connection to yourself or others.', bg: 'bg-teal-100 dark:bg-teal-950/80 text-teal-900 dark:text-teal-200 border border-teal-300 dark:border-teal-800' },
-      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', title_en: 'Extraordinary / Flow State', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', desc_en: 'An absolute highlight day filled with joy, gratitude, and clarity.', bg: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700' }
+      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', title_en: 'Crisis / Acute Distress', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', desc_en: 'Extremely distressing, barely bearable. Please rest and seek support.', bg: 'bg-[#F7EBEB] dark:bg-[#2A1D1D] text-stone-900 dark:text-stone-100 border border-[#E8C8C8] dark:border-[#523333]' },
+      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', title_en: 'Very Down / Exhausted', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', desc_en: 'Heavy emotional burden, grief or severe exhaustion.', bg: 'bg-[#FBF0EE] dark:bg-[#251A19] text-stone-900 dark:text-stone-100 border border-[#EED7D2] dark:border-[#462F2C]' },
+      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', title_en: 'Low & Drained', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', desc_en: 'Everything felt difficult, low motivation or persistent worries.', bg: 'bg-[#FDF3EA] dark:bg-[#271E18] text-stone-900 dark:text-stone-100 border border-[#F2DAC6] dark:border-[#4B3727]' },
+      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', title_en: 'Dissatisfied / Tense', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', desc_en: 'A challenging day with frustrations or inner restlessness.', bg: 'bg-[#FAF5EE] dark:bg-[#231F1B] text-stone-900 dark:text-stone-100 border border-[#ECE0D0] dark:border-[#3D332A]' },
+      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', title_en: 'Average / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', desc_en: 'Neither particularly good nor bad. A solid, normal day.', bg: 'bg-[#F5F4F0] dark:bg-[#1E1C1A] text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800' },
+      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', title_en: 'Pretty Okay / Mildly Positive', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', desc_en: 'Mostly alright with a few pleasant moments.', bg: 'bg-[#F2F6F3] dark:bg-[#1B211E] text-stone-900 dark:text-stone-100 border border-[#D5E3DB] dark:border-[#2C3B34]' },
+      7: { emoji: '😊', title: 'Gut & Ausgeglichen', title_en: 'Good & Balanced', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', desc_en: 'Stable day with positive baseline mood and good energy.', bg: 'bg-[#EDF4F0] dark:bg-[#19231E] text-stone-900 dark:text-stone-100 border border-[#C6DDD1] dark:border-[#283E34]' },
+      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', title_en: 'Very Content & Productive', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', desc_en: 'Fulfilling, stable, with many enriching moments.', bg: 'bg-[#E8F2EC] dark:bg-[#17251E] text-stone-900 dark:text-stone-100 border border-[#B9D7C7] dark:border-[#254234]' },
+      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', title_en: 'Great & Driven', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', desc_en: 'Outstanding mood, strong connection to yourself or others.', bg: 'bg-[#E2EFE7] dark:bg-[#15271E] text-stone-900 dark:text-stone-100 border border-[#ACD1BD] dark:border-[#214633]' },
+      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', title_en: 'Extraordinary / Flow State', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', desc_en: 'An absolute highlight day filled with joy, gratitude, and clarity.', bg: 'bg-[#FBF4E7] dark:bg-[#2A2317] text-stone-900 dark:text-stone-100 border border-[#EAD4AB] dark:border-[#544324]' }
     };
 
     const PLEASANT_EMOTIONS = [
@@ -1066,22 +1066,22 @@ def get_javascript_code():
       const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       if (mode === 'schema') {
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300';
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
         titleEl.innerText = 'Schema-Memo';
         subTitleEl.innerText = t.brandSubtitle;
         headerNewBtnText.innerText = t.headerNewMemo;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForSchema();
         switchView(targetView || 'edit');
       } else {
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-300';
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
         titleEl.innerText = 'Daily Diary & Neuro';
         subTitleEl.innerText = t.diarySubtitle;
         headerNewBtnText.innerText = t.headerNewCheckin;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForDiary();
         switchView(targetView || 'diary-entry');
@@ -1107,33 +1107,33 @@ def get_javascript_code():
       const memos = getStoredMemos();
       const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
-        <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabEdit}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabEdit}</span>
         </button>
 
-        <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabSheet}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabSheet}</span>
         </button>
 
-        <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+        <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-sky-600 text-white text-[9px] font-bold flex items-center justify-center">${memos.length}</span>
+            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${memos.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabMemos}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabMemos}</span>
         </button>
 
-        <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabHelp}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabHelp}</span>
         </button>
       `;
     }
@@ -1144,26 +1144,26 @@ def get_javascript_code():
       const diary = getStoredDiaryEntries();
       const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
-        <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabCheckin}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabCheckin}</span>
         </button>
 
-        <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+        <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-600 text-white text-[9px] font-bold flex items-center justify-center">${diary.length}</span>
+            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${diary.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabHistory}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabHistory}</span>
         </button>
 
-        <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabTrends}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabTrends}</span>
         </button>
       `;
     }
@@ -2233,6 +2233,17 @@ def get_javascript_code():
           } else {
             label.innerText = dayStr;
           }
+        }
+        const greetingEl = document.getElementById('diary-editorial-greeting');
+        if (greetingEl) {
+          const hour = new Date().getHours();
+          let greeting = '';
+          if (isEn) {
+            greeting = hour < 12 ? 'Good morning' : (hour < 18 ? 'Good afternoon' : 'Good evening');
+          } else {
+            greeting = hour < 12 ? 'Guten Morgen' : (hour < 18 ? 'Guten Tag' : 'Guten Abend');
+          }
+          greetingEl.innerText = greeting;
         }
       } catch (e) {}
     }
@@ -3805,11 +3816,11 @@ def get_javascript_code():
     function setDiaryQuickFilter(qfKey) {
       activeDiaryQuickFilter = qfKey;
       document.querySelectorAll('.qf-btn').forEach(btn => {
-        btn.className = 'qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition';
+        btn.className = 'qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition';
       });
       const activeBtn = document.getElementById('qf-' + qfKey);
       if (activeBtn) {
-        activeBtn.className = 'qf-btn active text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold transition';
+        activeBtn.className = 'qf-btn active text-xs px-3 py-1 rounded-full border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 font-medium transition shadow-xs';
       }
       renderDiaryEntriesList();
     }
@@ -3829,7 +3840,7 @@ def get_javascript_code():
 
       const sorted = Object.keys(folders).sort().reverse();
       let html = `
-        <button type="button" onclick="setDiaryFolder('all')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+        <button type="button" onclick="setDiaryFolder('all')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
           ${isEn ? 'All' : 'Alle'} (${entries.length})
         </button>
       `;
@@ -3839,7 +3850,7 @@ def get_javascript_code():
         const dObj = new Date(parseInt(y), parseInt(m) - 1, 1);
         const label = dObj.toLocaleDateString(isEn ? 'en-US' : 'de-DE', { month: 'short', year: 'numeric' });
         html += `
-          <button type="button" onclick="setDiaryFolder('${key}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+          <button type="button" onclick="setDiaryFolder('${key}')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
             ${label} (${folders[key]})
           </button>
         `;
@@ -4246,9 +4257,9 @@ def get_javascript_code():
       document.querySelectorAll('.stats-time-btn').forEach(btn => {
         const d = btn.getAttribute('data-days');
         if (d == days) {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-xs';
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs';
         } else {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition';
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition';
         }
       });
       renderStatsView();
@@ -4417,24 +4428,24 @@ def get_javascript_code():
       container.innerHTML = `
         <svg viewBox="0 0 ${w} ${h}" class="w-full h-full overflow-hidden block">
           <!-- Horizontal Grid Lines -->
-          <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">10</text>
+          <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">10</text>
 
-          <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + innerH / 2 + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">5</text>
+          <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + innerH / 2 + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">5</text>
 
-          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + innerH + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">1</text>
+          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + innerH + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">1</text>
 
           <!-- Polylines -->
-          <polyline points="${polyMood}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="${polyFocus}" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${polyMood}" fill="none" stroke="#4A7264" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${polyFocus}" fill="none" stroke="#C27838" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- Circles for Mood -->
           ${moodPoints.map((p, idx) => `
             <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'Mood' : 'Stimmung'} ${p.val}/10')">
-              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
-              <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#64748b" font-size="8.5" text-anchor="middle" font-weight="500">
+              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#FAF9F5" stroke="#4A7264" stroke-width="2"/>
+              <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#78716c" font-size="8.5" text-anchor="middle" font-weight="500">
                 ${p.date ? p.date.substring(8, 10) + '.' : ''}
               </text>
             </g>
@@ -4442,7 +4453,7 @@ def get_javascript_code():
 
           <!-- Circles for Focus -->
           ${focusPoints.map((p, idx) => `
-            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'ADHD Focus' : 'ADHS-Fokus'} ${p.val}/10')"/>
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#FAF9F5" stroke="#C27838" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'ADHD Focus' : 'ADHS-Fokus'} ${p.val}/10')"/>
           `).join('')}
         </svg>
       `;
@@ -4474,11 +4485,11 @@ def get_javascript_code():
         const pct = item.count > 0 ? (avg / 10) * 100 : 0;
         return `
           <div class="flex items-center gap-2 text-xs">
-            <span class="w-7 font-bold text-slate-600 dark:text-slate-400">${dayName}</span>
-            <div class="flex-1 bg-slate-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden flex">
-              <div class="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            <span class="w-7 font-serif font-semibold text-stone-600 dark:text-stone-400">${dayName}</span>
+            <div class="flex-1 bg-stone-200/70 dark:bg-stone-800 h-2.5 rounded-full overflow-hidden flex">
+              <div class="bg-[#4A7264] dark:bg-[#6B9A88] rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
-            <span class="w-10 text-right font-bold text-slate-700 dark:text-slate-300">${item.count > 0 ? avg : '-'}</span>
+            <span class="w-10 text-right font-serif font-medium text-stone-700 dark:text-stone-300">${item.count > 0 ? avg : '-'}</span>
           </div>
         `;
       }).join('');
@@ -4498,7 +4509,7 @@ def get_javascript_code():
 
       const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
       if (sorted.length === 0) {
-        container.innerHTML = `<div class="text-xs text-slate-400 italic py-4">${isEn ? 'No emotions recorded yet.' : 'Noch keine Emotionen erfasst.'}</div>`;
+        container.innerHTML = `<div class="text-xs text-stone-400 italic py-4">${isEn ? 'No emotions recorded yet.' : 'Noch keine Emotionen erfasst.'}</div>`;
         return;
       }
 
@@ -4510,11 +4521,11 @@ def get_javascript_code():
         return `
           <div class="space-y-1 text-xs">
             <div class="flex justify-between items-center font-medium">
-              <span class="text-slate-800 dark:text-slate-200 font-semibold">${escapeHtml(displayEmo)}</span>
-              <span class="text-slate-500">${count}x</span>
+              <span class="font-serif text-stone-800 dark:text-stone-200 font-medium">${escapeHtml(displayEmo)}</span>
+              <span class="text-stone-500 text-[11px]">${count}x</span>
             </div>
-            <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden flex">
-              <div class="${isPleasant ? 'bg-emerald-500' : 'bg-amber-500'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            <div class="w-full bg-stone-200/70 dark:bg-stone-800 h-2 rounded-full overflow-hidden flex">
+              <div class="${isPleasant ? 'bg-[#4A7264] dark:bg-[#6B9A88]' : 'bg-[#C27838] dark:bg-[#D98E4E]'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
           </div>
         `;
@@ -4631,7 +4642,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=23').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=24').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

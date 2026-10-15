@@ -6,29 +6,32 @@ def get_bottom_nav_and_toast():
   <!-- ======================================================== -->
   <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
   <!-- ======================================================== -->
-  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 py-1.5 shadow-lg shadow-black/10">
+  <!-- ======================================================== -->
+  <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
+  <!-- ======================================================== -->
+  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-t border-stone-200/80 dark:border-stone-800/80 flex items-center justify-around px-2 py-1.5 shadow-xs">
     <!-- Populated dynamically via switchAppMode() -->
   </nav>
 
   <!-- Toast Notification -->
-  <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-700 text-xs font-semibold backdrop-blur-md">
-    <div id="toast-icon" class="text-emerald-400 font-bold">✓</div>
+  <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-stone-900/95 dark:bg-stone-800/95 text-stone-100 px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 border border-stone-700/60 text-xs font-medium backdrop-blur-md">
+    <div id="toast-icon" class="text-[#6B9A88] font-bold">✓</div>
     <span id="toast-message" data-i18n="toastSaved">Gespeichert</span>
   </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: EIGENE OPTION PERMANENT HINZUFÜGEN (+)            -->
   <!-- ======================================================== -->
-  <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl animate-in fade-in zoom-in-95">
+  <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
+    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+      <div class="flex items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800">
         <div class="flex items-center gap-2">
-          <span id="custom-modal-icon" class="text-base font-bold text-sky-600 dark:text-sky-400">+</span>
-          <h3 id="custom-modal-title" class="text-sm font-bold" data-i18n="customModalTitle">Eigene Option hinzufügen</h3>
+          <span id="custom-modal-icon" class="text-base font-bold text-[#4A7264] dark:text-[#7BA896]">+</span>
+          <h3 id="custom-modal-title" class="font-serif text-sm font-semibold" data-i18n="customModalTitle">Eigene Option hinzufügen</h3>
         </div>
-        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" aria-label="Schließen" data-i18n-title="btnClose">
+        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
@@ -39,19 +42,19 @@ def get_bottom_nav_and_toast():
       </div>
 
       <!-- Existing Custom Items List (User can delete them anytime) -->
-      <div id="custom-modal-existing-wrapper" class="space-y-1.5 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400" data-i18n="customModalExistingTitle">Deine bisherigen eigenen Einträge:</span>
+      <div id="custom-modal-existing-wrapper" class="space-y-1.5 pt-1 border-t border-stone-100 dark:border-stone-800 hidden">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400" data-i18n="customModalExistingTitle">Deine bisherigen eigenen Einträge:</span>
         <div id="custom-modal-existing-list" class="flex flex-wrap gap-1 max-h-28 overflow-y-auto p-0.5">
           <!-- Injected items with delete button -->
         </div>
       </div>
 
       <!-- Modal Action Buttons -->
-      <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
-        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-stone-100 dark:border-stone-800">
+        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-semibold hover:bg-stone-100 dark:hover:bg-stone-800 transition">
           <span data-i18n="btnCancel">Abbrechen</span>
         </button>
-        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs">
+        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-xs font-semibold transition shadow-xs">
           <span data-i18n="btnSavePermanent">Dauerhaft speichern</span>
         </button>
       </div>
@@ -62,32 +65,32 @@ def get_bottom_nav_and_toast():
   <!-- ======================================================== -->
   <!-- MODAL: APP-EINSTELLUNGEN & MODUL-MANAGER (SETTINGS)       -->
   <!-- ======================================================== -->
-  <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
+  <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
+    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 shrink-0">
-        <div class="flex items-center gap-2 min-w-0">
-          <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 shrink-0">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-600 dark:text-stone-300 shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div class="min-w-0">
-            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
-            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
+            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 leading-tight truncate">Einstellungen & Module</h3>
+            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[11px] text-stone-500 dark:text-stone-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
           </div>
         </div>
-        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
+        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
       <!-- Segmented Tab Navigation inside Modal -->
-      <div class="px-4 pt-2.5 pb-1 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shrink-0">
-        <div class="grid grid-cols-2 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-xs font-bold shadow-inner">
-          <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+      <div class="px-4 pt-2.5 pb-1 border-b border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/50 shrink-0">
+        <div class="grid grid-cols-2 p-1 rounded-xl bg-stone-200/70 dark:bg-stone-800 border border-stone-300/60 dark:border-stone-700 text-xs font-semibold shadow-inner">
+          <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold">
             <span id="tab-label-modules" data-i18n="tabLabelModules">Tracking-Module</span>
           </button>
-          <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium">
             <span id="tab-label-general" data-i18n="tabLabelGeneral">Allgemein & Sprache</span>
           </button>
         </div>
@@ -102,24 +105,24 @@ def get_bottom_nav_and_toast():
         <div id="settings-tab-modules" class="space-y-3.5">
           
           <!-- Banner & Presets -->
-          <div class="p-3 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40 space-y-2">
+          <div class="p-3 rounded-xl bg-stone-100/70 dark:bg-stone-900/40 border border-stone-200/80 dark:border-stone-800 space-y-2">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
+              <span class="text-xs font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                 <span id="settings-presets-title" data-i18n="settingsPresetsTitle">Schnell-Vorlagen:</span>
               </span>
-              <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold" id="settings-active-count-badge">13 aktiv</span>
+              <span class="text-[10px] text-[#4A7264] dark:text-[#7BA896] font-bold" id="settings-active-count-badge">13 aktiv</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
+            <p class="text-[11px] text-stone-600 dark:text-stone-400 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
-              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-xs" data-i18n="presetAll">
+              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white font-semibold transition shadow-xs" data-i18n="presetAll">
                 Alle an
               </button>
-              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMinimal">
+              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMinimal">
                 Nur Kern (Minimal)
               </button>
-              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMindfulness">
+              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMindfulness">
                 Achtsamkeit
               </button>
             </div>

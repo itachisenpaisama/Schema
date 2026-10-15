@@ -46,10 +46,10 @@ def get_head_and_styles():
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Look) -->
+  <!-- Google Fonts: Lora (Editorial & Humanist) + Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Look) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -58,18 +58,34 @@ def get_head_and_styles():
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif'],
             sheet: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
             handKalam: ['Kalam', 'cursive'],
             handCaveat: ['Caveat', 'cursive']
           },
           colors: {
+            stoic: {
+              bg: '#FAF9F5',
+              darkbg: '#121110',
+              card: '#FFFFFF',
+              darkcard: '#181715',
+              ink: '#1C1917',
+              lightink: '#F5F3EF',
+              muted: '#78716C',
+              darkmuted: '#A8A29E',
+              sage: '#4A7264',
+              sagedark: '#6B9A88',
+              amber: '#C27838',
+              border: 'rgba(28, 25, 23, 0.08)',
+              darkborder: 'rgba(245, 243, 239, 0.08)'
+            },
             brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0284c7',
-              600: '#0369a1',
-              700: '#075985',
-              900: '#0c4a6e',
+              50: '#f6f7f5',
+              100: '#eceee9',
+              500: '#4A7264',
+              600: '#3D5F53',
+              700: '#2F4B41',
+              900: '#1C2E28',
             }
           }
         }
@@ -169,50 +185,50 @@ def get_head_and_styles():
       background: #334155;
     }
 
-    /* shadcn Card Container */
+    /* shadcn Card Container - Stoic Warm Paper Elevation */
     .shadcn-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-      transition: border-color 0.15s ease;
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 2px rgba(28, 25, 23, 0.02), 0 8px 24px -4px rgba(28, 25, 23, 0.03);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .dark .shadcn-card {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
-    /* shadcn Input Base */
+    /* shadcn Input Base - Tactile Natural Surfaces */
     .shadcn-input {
       display: block;
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 0.75rem;
-      padding: 0.55rem 0.75rem;
+      background: #F4F2EC;
+      border: 1px solid rgba(28, 25, 23, 0.1);
+      border-radius: 0.85rem;
+      padding: 0.6rem 0.85rem;
       font-size: 0.875rem;
-      line-height: 1.4;
-      color: #0f172a;
-      transition: all 0.15s ease;
+      line-height: 1.45;
+      color: #1C1917;
+      transition: all 0.2s ease;
       outline: none;
     }
     .dark .shadcn-input {
-      background: rgba(30, 41, 59, 0.6);
-      border-color: #334155;
-      color: #f8fafc;
+      background: #1F1E1B;
+      border-color: rgba(245, 243, 239, 0.1);
+      color: #F5F3EF;
     }
     .shadcn-input:focus {
       background: #ffffff;
-      border-color: #0284c7;
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+      border-color: #4A7264;
+      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.14);
     }
     .dark .shadcn-input:focus {
-      background: #0f172a;
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 0 0 3px rgba(123, 168, 150, 0.18);
     }
 
     /* Dedicated Textarea styling: guarantee block layout and clean height */
@@ -221,40 +237,40 @@ def get_head_and_styles():
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      min-height: 4.25rem;
+      min-height: 4.5rem;
       resize: vertical;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* Notebook Input Area */
     .notebook-input-area {
       width: 100%;
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 0.75rem;
-      padding: 0.65rem 0.85rem;
+      background: #F4F2EC;
+      border: 1.5px solid rgba(28, 25, 23, 0.1);
+      border-radius: 0.85rem;
+      padding: 0.7rem 0.9rem;
       font-size: 0.9rem;
-      color: #0f172a;
+      color: #1C1917;
       transition: all 0.2s ease;
     }
     .dark .notebook-input-area {
-      background: #0f172a;
-      border-color: #334155;
-      color: #f8fafc;
+      background: #1F1E1B;
+      border-color: rgba(245, 243, 239, 0.1);
+      color: #F5F3EF;
     }
     .notebook-input-area:focus {
       outline: none;
       background: #ffffff;
-      border-color: #059669;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+      border-color: #4A7264;
+      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.14);
     }
     .dark .notebook-input-area:focus {
-      background: #0f172a;
-      border-color: #10b981;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 0 0 3px rgba(123, 168, 150, 0.18);
     }
 
-    /* Range slider custom styling */
+    /* Range slider custom styling - Tactile Sage Track & Thumb */
     input[type=range] {
       -webkit-appearance: none;
       background: transparent;
@@ -266,45 +282,50 @@ def get_head_and_styles():
     input[type=range]::-webkit-slider-runnable-track {
       height: 6px;
       border-radius: 9999px;
-      background: #e2e8f0;
+      background: #E5E3DC;
       transition: background 0.2s ease;
     }
     .dark input[type=range]::-webkit-slider-runnable-track {
-      background: #334155;
+      background: #2B2926;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 18px;
-      width: 18px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
       background: #ffffff;
-      border: 2px solid #0284c7;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-      margin-top: -6px;
-      transition: transform 0.1s ease;
+      border: 2.5px solid #4A7264;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      margin-top: -7px;
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dark input[type=range]::-webkit-slider-thumb {
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
     input[type=range]:active::-webkit-slider-thumb {
-      transform: scale(1.15);
+      transform: scale(1.18);
     }
 
-    /* Worksheet Paper Styling */
+    /* Worksheet Paper Styling - Warm Tactile Parchment */
     .sheet-paper {
       background-color: #ffffff;
-      color: #0f172a;
-      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
+      color: #1C1917;
+      box-shadow: 0 2px 14px -3px rgba(28, 25, 23, 0.06);
+      border: 1px solid rgba(28, 25, 23, 0.08);
       position: relative;
     }
     .dark .sheet-paper {
-      background-color: #0f172a;
-      color: #f8fafc;
-      border-color: #1e293b;
-      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.35);
+      background-color: #181715;
+      color: #F5F3EF;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
     /* Dotted Line Rule */
     .dotted-rule {
-      border-bottom: 1.5px dotted #64748b;
+      border-bottom: 1.5px dotted #78716C;
       min-height: 24px;
       display: flex;
       align-items: flex-end;
@@ -312,60 +333,62 @@ def get_head_and_styles():
       width: 100%;
     }
     .dark .dotted-rule {
-      border-bottom-color: #475569;
+      border-bottom-color: #57534E;
     }
 
-    /* Bottom Navigation Active Glow */
+    /* Bottom Navigation Active State - Understated & Mindful */
     .bottom-nav-btn.active {
-      color: #0284c7;
+      color: #1C1917;
     }
     .dark .bottom-nav-btn.active {
-      color: #38bdf8;
+      color: #F5F3EF;
     }
     .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: #e0f2fe;
+      background-color: rgba(74, 114, 100, 0.12);
+      color: #35584D;
     }
     .dark .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: rgba(14, 165, 233, 0.2);
+      background-color: rgba(123, 168, 150, 0.18);
+      color: #9CC2B2;
     }
 
     /* Diary Book Entry Styling */
     .diary-page-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 3px rgba(28, 25, 23, 0.02), 0 6px 18px -4px rgba(28, 25, 23, 0.03);
       position: relative;
     }
     .dark .diary-page-card {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
     }
 
     /* Interactive Notebook Styling */
     .notebook-container {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 3px rgba(28, 25, 23, 0.02), 0 6px 18px -4px rgba(28, 25, 23, 0.03);
       position: relative;
       overflow: hidden;
     }
     .dark .notebook-container {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
     }
 
     .notebook-segment {
       padding: 1rem;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid rgba(28, 25, 23, 0.06);
       position: relative;
       transition: background-color 0.2s ease;
     }
     .dark .notebook-segment {
-      border-bottom-color: #1e293b;
+      border-bottom-color: rgba(245, 243, 239, 0.06);
     }
     .notebook-segment:last-child {
       border-bottom: none;
@@ -406,5 +429,5 @@ def get_head_and_styles():
     }
   </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-200">
+<body class="bg-[#FAF9F5] dark:bg-[#121110] text-[#1C1917] dark:text-[#F5F3EF] min-h-screen font-sans transition-colors duration-200">
 '''

@@ -43,10 +43,10 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Look) -->
+  <!-- Google Fonts: Lora (Editorial & Humanist) + Plus Jakarta Sans (UI) + Inter + Kalam & Caveat (Handwritten Look) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -55,18 +55,34 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif'],
             sheet: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
             handKalam: ['Kalam', 'cursive'],
             handCaveat: ['Caveat', 'cursive']
           },
           colors: {
+            stoic: {
+              bg: '#FAF9F5',
+              darkbg: '#121110',
+              card: '#FFFFFF',
+              darkcard: '#181715',
+              ink: '#1C1917',
+              lightink: '#F5F3EF',
+              muted: '#78716C',
+              darkmuted: '#A8A29E',
+              sage: '#4A7264',
+              sagedark: '#6B9A88',
+              amber: '#C27838',
+              border: 'rgba(28, 25, 23, 0.08)',
+              darkborder: 'rgba(245, 243, 239, 0.08)'
+            },
             brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0284c7',
-              600: '#0369a1',
-              700: '#075985',
-              900: '#0c4a6e',
+              50: '#f6f7f5',
+              100: '#eceee9',
+              500: '#4A7264',
+              600: '#3D5F53',
+              700: '#2F4B41',
+              900: '#1C2E28',
             }
           }
         }
@@ -166,50 +182,50 @@
       background: #334155;
     }
 
-    /* shadcn Card Container */
+    /* shadcn Card Container - Stoic Warm Paper Elevation */
     .shadcn-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-      transition: border-color 0.15s ease;
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 2px rgba(28, 25, 23, 0.02), 0 8px 24px -4px rgba(28, 25, 23, 0.03);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .dark .shadcn-card {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
-    /* shadcn Input Base */
+    /* shadcn Input Base - Tactile Natural Surfaces */
     .shadcn-input {
       display: block;
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 0.75rem;
-      padding: 0.55rem 0.75rem;
+      background: #F4F2EC;
+      border: 1px solid rgba(28, 25, 23, 0.1);
+      border-radius: 0.85rem;
+      padding: 0.6rem 0.85rem;
       font-size: 0.875rem;
-      line-height: 1.4;
-      color: #0f172a;
-      transition: all 0.15s ease;
+      line-height: 1.45;
+      color: #1C1917;
+      transition: all 0.2s ease;
       outline: none;
     }
     .dark .shadcn-input {
-      background: rgba(30, 41, 59, 0.6);
-      border-color: #334155;
-      color: #f8fafc;
+      background: #1F1E1B;
+      border-color: rgba(245, 243, 239, 0.1);
+      color: #F5F3EF;
     }
     .shadcn-input:focus {
       background: #ffffff;
-      border-color: #0284c7;
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+      border-color: #4A7264;
+      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.14);
     }
     .dark .shadcn-input:focus {
-      background: #0f172a;
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 0 0 3px rgba(123, 168, 150, 0.18);
     }
 
     /* Dedicated Textarea styling: guarantee block layout and clean height */
@@ -218,40 +234,40 @@
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      min-height: 4.25rem;
+      min-height: 4.5rem;
       resize: vertical;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* Notebook Input Area */
     .notebook-input-area {
       width: 100%;
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 0.75rem;
-      padding: 0.65rem 0.85rem;
+      background: #F4F2EC;
+      border: 1.5px solid rgba(28, 25, 23, 0.1);
+      border-radius: 0.85rem;
+      padding: 0.7rem 0.9rem;
       font-size: 0.9rem;
-      color: #0f172a;
+      color: #1C1917;
       transition: all 0.2s ease;
     }
     .dark .notebook-input-area {
-      background: #0f172a;
-      border-color: #334155;
-      color: #f8fafc;
+      background: #1F1E1B;
+      border-color: rgba(245, 243, 239, 0.1);
+      color: #F5F3EF;
     }
     .notebook-input-area:focus {
       outline: none;
       background: #ffffff;
-      border-color: #059669;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+      border-color: #4A7264;
+      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.14);
     }
     .dark .notebook-input-area:focus {
-      background: #0f172a;
-      border-color: #10b981;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 0 0 3px rgba(123, 168, 150, 0.18);
     }
 
-    /* Range slider custom styling */
+    /* Range slider custom styling - Tactile Sage Track & Thumb */
     input[type=range] {
       -webkit-appearance: none;
       background: transparent;
@@ -263,45 +279,50 @@
     input[type=range]::-webkit-slider-runnable-track {
       height: 6px;
       border-radius: 9999px;
-      background: #e2e8f0;
+      background: #E5E3DC;
       transition: background 0.2s ease;
     }
     .dark input[type=range]::-webkit-slider-runnable-track {
-      background: #334155;
+      background: #2B2926;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 18px;
-      width: 18px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
       background: #ffffff;
-      border: 2px solid #0284c7;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-      margin-top: -6px;
-      transition: transform 0.1s ease;
+      border: 2.5px solid #4A7264;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      margin-top: -7px;
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dark input[type=range]::-webkit-slider-thumb {
+      background: #181715;
+      border-color: #7BA896;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
     input[type=range]:active::-webkit-slider-thumb {
-      transform: scale(1.15);
+      transform: scale(1.18);
     }
 
-    /* Worksheet Paper Styling */
+    /* Worksheet Paper Styling - Warm Tactile Parchment */
     .sheet-paper {
       background-color: #ffffff;
-      color: #0f172a;
-      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
+      color: #1C1917;
+      box-shadow: 0 2px 14px -3px rgba(28, 25, 23, 0.06);
+      border: 1px solid rgba(28, 25, 23, 0.08);
       position: relative;
     }
     .dark .sheet-paper {
-      background-color: #0f172a;
-      color: #f8fafc;
-      border-color: #1e293b;
-      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.35);
+      background-color: #181715;
+      color: #F5F3EF;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
     /* Dotted Line Rule */
     .dotted-rule {
-      border-bottom: 1.5px dotted #64748b;
+      border-bottom: 1.5px dotted #78716C;
       min-height: 24px;
       display: flex;
       align-items: flex-end;
@@ -309,60 +330,62 @@
       width: 100%;
     }
     .dark .dotted-rule {
-      border-bottom-color: #475569;
+      border-bottom-color: #57534E;
     }
 
-    /* Bottom Navigation Active Glow */
+    /* Bottom Navigation Active State - Understated & Mindful */
     .bottom-nav-btn.active {
-      color: #0284c7;
+      color: #1C1917;
     }
     .dark .bottom-nav-btn.active {
-      color: #38bdf8;
+      color: #F5F3EF;
     }
     .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: #e0f2fe;
+      background-color: rgba(74, 114, 100, 0.12);
+      color: #35584D;
     }
     .dark .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: rgba(14, 165, 233, 0.2);
+      background-color: rgba(123, 168, 150, 0.18);
+      color: #9CC2B2;
     }
 
     /* Diary Book Entry Styling */
     .diary-page-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 3px rgba(28, 25, 23, 0.02), 0 6px 18px -4px rgba(28, 25, 23, 0.03);
       position: relative;
     }
     .dark .diary-page-card {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
     }
 
     /* Interactive Notebook Styling */
     .notebook-container {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: 1.25rem;
+      box-shadow: 0 1px 3px rgba(28, 25, 23, 0.02), 0 6px 18px -4px rgba(28, 25, 23, 0.03);
       position: relative;
       overflow: hidden;
     }
     .dark .notebook-container {
-      background: #0f172a;
-      border-color: #1e293b;
-      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.25);
+      background: #181715;
+      border-color: rgba(245, 243, 239, 0.07);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
     }
 
     .notebook-segment {
       padding: 1rem;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid rgba(28, 25, 23, 0.06);
       position: relative;
       transition: background-color 0.2s ease;
     }
     .dark .notebook-segment {
-      border-bottom-color: #1e293b;
+      border-bottom-color: rgba(245, 243, 239, 0.06);
     }
     .notebook-segment:last-child {
       border-bottom: none;
@@ -403,54 +426,57 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-200">
+<body class="bg-[#FAF9F5] dark:bg-[#121110] text-[#1C1917] dark:text-[#F5F3EF] min-h-screen font-sans transition-colors duration-200">
   <!-- ======================================================== -->
   <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
   <!-- ======================================================== -->
-  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-2.5 sm:px-6 py-1.5 sm:py-2">
+  <!-- ======================================================== -->
+  <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
+  <!-- ======================================================== -->
+  <header class="no-print sticky top-0 z-30 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800/70 px-2.5 sm:px-6 py-1.5 sm:py-2">
     <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
       
       <!-- Brand Logo & Title -->
-      <div class="flex items-center gap-2 min-w-0 cursor-pointer" onclick="handleBrandClick()">
-        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-xs shrink-0">
+      <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="handleBrandClick()">
+        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center font-bold shadow-xs shrink-0 transition-all">
           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
         </div>
         <div class="min-w-0">
-          <h1 id="app-main-title" class="text-xs sm:text-base font-bold tracking-tight text-slate-900 dark:text-white leading-tight truncate">Schema-Memo</h1>
-          <p id="app-main-subtitle" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block truncate" data-i18n="brandSubtitle">Nach J. Young · Schematherapie</p>
+          <h1 id="app-main-title" class="font-serif text-sm sm:text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100 leading-tight truncate">Schema-Memo</h1>
+          <p id="app-main-subtitle" class="font-serif italic text-[11px] text-stone-500 dark:text-stone-400 font-normal hidden sm:block truncate" data-i18n="brandSubtitle">Nach J. Young · Schematherapie</p>
         </div>
       </div>
 
       <!-- Header Quick Actions -->
       <div class="flex items-center gap-1 shrink-0">
         <!-- PWA Install Button -->
-        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Als echte App installieren" data-i18n-title="pwaInstallTitle">
+        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Als echte App installieren" data-i18n-title="pwaInstallTitle">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span data-i18n="btnInstall">Installieren</span>
         </button>
 
-        <!-- New Item Quick Button (Single clean plus icon) -->
-        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-[11px] font-semibold transition flex items-center gap-1 shadow-xs" title="Neu anlegen" data-i18n-title="headerNewTooltip">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <!-- New Item Quick Button -->
+        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2.5 py-1 rounded-lg bg-stone-200/60 dark:bg-stone-800/80 text-stone-800 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700 text-[11px] font-medium transition flex items-center gap-1 shadow-xs border border-stone-300/40 dark:border-stone-700/50" title="Neu anlegen" data-i18n-title="headerNewTooltip">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           <span id="header-btn-new-text">Neu</span>
         </button>
 
         <!-- Settings Button -->
-        <button type="button" id="header-btn-settings" onclick="openSettingsModal()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Einstellungen" data-i18n-title="settingsTooltip">
+        <button type="button" id="header-btn-settings" onclick="openSettingsModal()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Einstellungen" data-i18n-title="settingsTooltip">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </button>
 
         <!-- Quick Update / Cache Clear Button -->
-        <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="App aktualisieren & Cache leeren" data-i18n-title="forceUpdateTooltip">
+        <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="App aktualisieren & Cache leeren" data-i18n-title="forceUpdateTooltip">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         </button>
 
         <!-- Dark Mode Toggle -->
-        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Design umschalten" data-i18n-title="themeToggleTooltip">
-          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Design umschalten" data-i18n-title="themeToggleTooltip">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
       </div>
 
@@ -458,11 +484,11 @@
 
     <!-- PRIMARY MODULE SWITCHER: Schema-Memo vs. Daily Life & Neuro-Tracker Diary -->
     <div class="max-w-4xl mx-auto pt-1 sm:pt-1.5 flex items-center justify-center">
-      <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 w-full max-w-xs shadow-inner">
-        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+      <div class="inline-flex p-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/50 w-full max-w-xs shadow-inner">
+        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100">
           <span data-i18n="navSchema">Schema-Memo</span>
         </button>
-        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1 px-2.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100">
           <span data-i18n="navDiary">Diary & Tracker</span>
         </button>
       </div>
@@ -481,17 +507,18 @@
     <div id="view-edit" class="space-y-4">
 
       <!-- Top Banner / Title & Date -->
-      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
+      <div class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center justify-between gap-2">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300" data-i18n="schemaReflectBanner">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-[#EFECE6] dark:bg-[#252321] text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-800" data-i18n="schemaReflectBanner">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#4A7264] dark:bg-[#6B9A88]"></span>
             Situation reflektieren
           </span>
 
           <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="loadExampleMemo()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition shadow-xs" data-i18n="btnExample">
+            <button type="button" onclick="loadExampleMemo()" class="text-[11px] font-medium px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition shadow-xs" data-i18n="btnExample">
               Beispiel
             </button>
-            <button type="button" onclick="resetFormWithConfirm()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shadow-xs" data-i18n="quickReset">
+            <button type="button" onclick="resetFormWithConfirm()" class="text-[11px] font-medium px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition shadow-xs" data-i18n="quickReset">
               Leeren
             </button>
           </div>
@@ -500,13 +527,13 @@
         <!-- Titel & Datum Inputs -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <div class="sm:col-span-2 min-w-0">
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-              <span data-i18n="schemaLabelTitle">Titel des Memos</span> <span class="text-sky-500">*</span>
+            <label class="block text-[11px] font-medium tracking-wide uppercase text-stone-500 dark:text-stone-400 mb-1.5">
+              <span data-i18n="schemaLabelTitle">Titel des Memos</span> <span class="text-stone-400 dark:text-stone-500">*</span>
             </label>
             <input type="text" id="input-title" placeholder="z. B. Konflikt im Meeting, Absage, Einsamkeit..." data-i18n-placeholder="schemaPlaceholderTitle" class="shadcn-input font-medium block w-full">
           </div>
           <div class="min-w-0">
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" data-i18n="schemaLabelDate">
+            <label class="block text-[11px] font-medium tracking-wide uppercase text-stone-500 dark:text-stone-400 mb-1.5" data-i18n="schemaLabelDate">
               Datum
             </label>
             <input type="date" id="input-date" class="shadcn-input font-medium cursor-pointer block w-full">
@@ -517,36 +544,36 @@
       <!-- STEP 1 CARD -->
       <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
-          <span class="w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-bold flex items-center justify-center text-xs">
+          <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif text-xs font-semibold flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">
             1
           </span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white" data-i18n="schemaStep1Title">
+          <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="schemaStep1Title">
             Benennen des aktualisierten Gefühls
           </h3>
         </div>
 
         <div class="space-y-1.5">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep1Prompt">Im Augenblick fühle ich</span> <span class="text-sky-600 dark:text-sky-400 font-bold" data-i18n="schemaStep1PromptBracket">(Emotion)</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep1Prompt">Im Augenblick fühle ich</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep1PromptBracket">(Emotion)</span>
           </label>
 
           <div class="flex flex-wrap gap-1.5 py-0.5" id="schema-step1-chips">
-            <button type="button" onclick="appendTag('input-emotion', 'Traurig')" data-tag="Traurig" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Traurig</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Ängstlich')" data-tag="Ängstlich" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Ängstlich</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Wütend')" data-tag="Wütend" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Wütend</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Einsam')" data-tag="Einsam" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Einsam</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Überfordert')" data-tag="Überfordert" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Überfordert</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Hilflosigkeit')" data-tag="Hilflosigkeit" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Hilflosigkeit</button>
-            <button type="button" onclick="appendTag('input-emotion', 'Kränkung')" data-tag="Kränkung" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-900/40 text-slate-700 dark:text-slate-300 transition">Kränkung</button>
-            <button type="button" onclick="openAddCustomModal('schema_emotions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen" data-i18n-title="addCustomEmotionTooltip"><span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
+            <button type="button" onclick="appendTag('input-emotion', 'Traurig')" data-tag="Traurig" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Traurig</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Ängstlich')" data-tag="Ängstlich" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Ängstlich</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Wütend')" data-tag="Wütend" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Wütend</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Einsam')" data-tag="Einsam" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Einsam</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Überfordert')" data-tag="Überfordert" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Überfordert</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Hilflosigkeit')" data-tag="Hilflosigkeit" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Hilflosigkeit</button>
+            <button type="button" onclick="appendTag('input-emotion', 'Kränkung')" data-tag="Kränkung" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Kränkung</button>
+            <button type="button" onclick="openAddCustomModal('schema_emotions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen" data-i18n-title="addCustomEmotionTooltip"><span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
           </div>
 
           <textarea id="input-emotion" rows="2" placeholder="z. B. tiefe Traurigkeit, Angst vor Ablehnung und Hilflosigkeit..." data-i18n-placeholder="schemaPlaceholderEmotion" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep1Because">Weil</span> <span class="text-sky-600 dark:text-sky-400 font-bold" data-i18n="schemaStep1BecauseBracket">(aktuelle Auslösesituation)</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep1Because">Weil</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep1BecauseBracket">(aktuelle Auslösesituation)</span>
           </label>
           <textarea id="input-situation" rows="2" placeholder="z. B. mein Partner mir heute morgen nur kurz angebunden geantwortet hat..." data-i18n-placeholder="schemaPlaceholderSituation" class="shadcn-input leading-relaxed"></textarea>
         </div>
@@ -555,47 +582,47 @@
       <!-- STEP 2 CARD -->
       <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
-          <span class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-center text-xs">
+          <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif text-xs font-semibold flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">
             2
           </span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white" data-i18n="schemaStep2Title">
+          <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="schemaStep2Title">
             Erkennen der aktivierten Schemata/Modi und der Bewältigung
           </h3>
         </div>
 
         <div class="space-y-1.5">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep2Prompt">Ich weiß, dass das wahrscheinlich mein</span> <span class="text-indigo-600 dark:text-indigo-400 font-bold" data-i18n="schemaStep2PromptBracket">(Schema/Modus)</span> <span data-i18n="schemaStep2PromptSuffix">... ist,</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep2Prompt">Ich weiß, dass das wahrscheinlich mein</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep2PromptBracket">(Schema/Modus)</span> <span data-i18n="schemaStep2PromptSuffix">... ist,</span>
           </label>
 
           <div class="flex flex-wrap gap-1.5 py-0.5">
-            <button type="button" onclick="setFieldValue('input-schema', 'Verlassenheit / Instabilität (Verletztes Kind)')" data-tag="Verlassenheit / Verletztes Kind" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Verlassenheit / Verletztes Kind</button>
-            <button type="button" onclick="setFieldValue('input-schema', 'Unzulänglichkeit / Scham (Strafender Modus)')" data-tag="Unzulänglichkeit / Scham" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Unzulänglichkeit / Scham</button>
-            <button type="button" onclick="setFieldValue('input-schema', 'Überhöhte Standards (Fordernder Modus)')" data-tag="Überhöhte Standards" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Überhöhte Standards</button>
-            <button type="button" onclick="setFieldValue('input-schema', 'Unterwerfung / Aufopferung')" data-tag="Unterwerfung" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Unterwerfung</button>
-            <button type="button" onclick="setFieldValue('input-schema', 'Distanzierter Beschützer (Rückzug)')" data-tag="Distanzierter Beschützer" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Distanzierter Beschützer</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Verlassenheit / Instabilität (Verletztes Kind)')" data-tag="Verlassenheit / Verletztes Kind" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Verlassenheit / Verletztes Kind</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Unzulänglichkeit / Scham (Strafender Modus)')" data-tag="Unzulänglichkeit / Scham" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Unzulänglichkeit / Scham</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Überhöhte Standards (Fordernder Modus)')" data-tag="Überhöhte Standards" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Überhöhte Standards</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Unterwerfung / Aufopferung')" data-tag="Unterwerfung" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Unterwerfung</button>
+            <button type="button" onclick="setFieldValue('input-schema', 'Distanzierter Beschützer (Rückzug)')" data-tag="Distanzierter Beschützer" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Distanzierter Beschützer</button>
           </div>
 
           <textarea id="input-schema" rows="2" placeholder="z. B. Verlassenheits-Schema und der Modus des verletzten Kindes..." data-i18n-placeholder="schemaPlaceholderSchema" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep2Childhood">das/den ich durch</span> <span class="text-indigo-600 dark:text-indigo-400 font-bold" data-i18n="schemaStep2ChildhoodBracket">(Kindheitssituation)</span> <span data-i18n="schemaStep2ChildhoodSuffix">... erlernt habe.</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep2Childhood">das/den ich durch</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep2ChildhoodBracket">(Kindheitssituation)</span> <span data-i18n="schemaStep2ChildhoodSuffix">... erlernt habe.</span>
           </label>
           <textarea id="input-childhood" rows="2" placeholder="z. B. frühere Erfahrungen, in denen Eltern emotional distanziert waren..." data-i18n-placeholder="schemaPlaceholderChildhood" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep2Coping">Diese Aktivierung löst bei mir</span> <span class="text-indigo-600 dark:text-indigo-400 font-bold" data-i18n="schemaStep2CopingBracket">(altes Bewältigungsverhalten)</span> <span data-i18n="schemaStep2CopingSuffix">... aus.</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep2Coping">Diese Aktivierung löst bei mir</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep2CopingBracket">(altes Bewältigungsverhalten)</span> <span data-i18n="schemaStep2CopingSuffix">... aus.</span>
           </label>
           <div class="flex flex-wrap gap-1.5 py-0.5" id="schema-step2-coping-chips">
-            <button type="button" onclick="appendTag('input-coping', 'Rückzug & Mauern')" data-tag="Rückzug & Mauern" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Rückzug & Mauern</button>
-            <button type="button" onclick="appendTag('input-coping', 'Überanpassung')" data-tag="Überanpassung" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Überanpassung</button>
-            <button type="button" onclick="appendTag('input-coping', 'Vorwürfe & Wutausbruch')" data-tag="Vorwürfe & Wut" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Vorwürfe & Wut</button>
-            <button type="button" onclick="appendTag('input-coping', 'Gefühle betäuben / Ablenken')" data-tag="Ablenken" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-300 transition">Ablenken</button>
-            <button type="button" onclick="openAddCustomModal('schema_coping')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenes Bewältigungsverhalten hinzufügen" data-i18n-title="addCustomCopingTooltip"><span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
+            <button type="button" onclick="appendTag('input-coping', 'Rückzug & Mauern')" data-tag="Rückzug & Mauern" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Rückzug & Mauern</button>
+            <button type="button" onclick="appendTag('input-coping', 'Überanpassung')" data-tag="Überanpassung" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Überanpassung</button>
+            <button type="button" onclick="appendTag('input-coping', 'Vorwürfe & Wutausbruch')" data-tag="Vorwürfe & Wut" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Vorwürfe & Wut</button>
+            <button type="button" onclick="appendTag('input-coping', 'Gefühle betäuben / Ablenken')" data-tag="Ablenken" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Ablenken</button>
+            <button type="button" onclick="openAddCustomModal('schema_coping')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigenes Bewältigungsverhalten hinzufügen" data-i18n-title="addCustomCopingTooltip"><span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
           </div>
           <textarea id="input-coping" rows="2" placeholder="z. B. innerer Rückzug, gekränktes Schweigen..." data-i18n-placeholder="schemaPlaceholderCoping" class="shadcn-input leading-relaxed"></textarea>
         </div>
@@ -604,30 +631,30 @@
       <!-- STEP 3 CARD -->
       <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
-          <span class="w-7 h-7 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-bold flex items-center justify-center text-xs">
+          <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif text-xs font-semibold flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">
             3
           </span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white" data-i18n="schemaStep3Title">
+          <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="schemaStep3Title">
             Anerkennen der Dysfunktionalität / Realitätsprüfung
           </h3>
         </div>
 
         <div class="space-y-1.5">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep3Thought">Obwohl ich glaube</span> <span class="text-amber-600 dark:text-amber-400 font-bold" data-i18n="schemaStep3ThoughtBracket">(negativer Gedanke/ Innere-Eltern-Stimme)</span>,
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep3Thought">Ob obwohl ich glaube</span> <span class="text-[#C27838] dark:text-[#D98E4E] font-serif italic font-normal" data-i18n="schemaStep3ThoughtBracket">(negativer Gedanke/ Innere-Eltern-Stimme)</span>,
           </label>
           <textarea id="input-thought" rows="2" placeholder="z. B. dass ich nichts wert bin und niemand mich wirklich mag..." data-i18n-placeholder="schemaPlaceholderThought" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep3Reality">ist die Realität</span> <span class="text-amber-600 dark:text-amber-400 font-bold" data-i18n="schemaStep3RealityBracket">(Sicht des Gesunden Erwachsenen)</span>,
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep3Reality">ist die Realität</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep3RealityBracket">(Sicht des Gesunden Erwachsenen)</span>,
           </label>
           <textarea id="input-reality" rows="2" placeholder="z. B. eine kurze Nachricht nicht bedeutet, dass kein Interesse da ist..." data-i18n-placeholder="schemaPlaceholderReality" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200" data-i18n="schemaStep3Evidence">
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300" data-i18n="schemaStep3Evidence">
             Beweise für diese Realität sind:
           </label>
           <textarea id="input-evidence" rows="2" placeholder="z. B. gestern haben wir noch herzlich gelacht; die Person hat viel Stress..." data-i18n-placeholder="schemaPlaceholderEvidence" class="shadcn-input leading-relaxed"></textarea>
@@ -637,44 +664,44 @@
       <!-- STEP 4 CARD -->
       <section class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex items-center gap-2.5">
-          <span class="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold flex items-center justify-center text-xs">
+          <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif text-xs font-semibold flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">
             4
           </span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white" data-i18n="schemaStep4Title">
+          <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="schemaStep4Title">
             Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
           </h3>
         </div>
 
         <div class="space-y-1.5">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep4Old">Obwohl ich am liebsten</span> <span class="text-emerald-600 dark:text-emerald-400 font-bold" data-i18n="schemaStep4OldBracket">(altes dysfunktionales Verhalten)</span> <span data-i18n="schemaStep4OldSuffix">... würde,</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep4Old">Obwohl ich am liebsten</span> <span class="text-[#C27838] dark:text-[#D98E4E] font-serif italic font-normal" data-i18n="schemaStep4OldBracket">(altes dysfunktionales Verhalten)</span> <span data-i18n="schemaStep4OldSuffix">... würde,</span>
           </label>
           <textarea id="input-old-behavior" rows="2" placeholder="z. B. mich tagelang zurückgezogen habe..." data-i18n-placeholder="schemaPlaceholderOldBehavior" class="shadcn-input leading-relaxed"></textarea>
         </div>
 
         <div class="space-y-1.5 pt-1">
-          <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-            <span data-i18n="schemaStep4New">Könnte ich stattdessen</span> <span class="text-emerald-600 dark:text-emerald-400 font-bold" data-i18n="schemaStep4NewBracket">(alternative Lösungen)</span>
+          <label class="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300">
+            <span data-i18n="schemaStep4New">Könnte ich stattdessen</span> <span class="text-[#4A7264] dark:text-[#6B9A88] font-serif italic font-normal" data-i18n="schemaStep4NewBracket">(alternative Lösungen)</span>
           </label>
           <div class="flex flex-wrap gap-1.5 py-0.5" id="schema-step4-action-chips">
-            <button type="button" onclick="appendTag('input-new-action', 'Durchatmen')" data-tag="Durchatmen" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Durchatmen</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Bedürfnis ansprechen')" data-tag="Bedürfnis ansprechen" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Bedürfnis ansprechen</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Selbstfürsorge')" data-tag="Selbstfürsorge" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Selbstfürsorge</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Gesunder Erwachsener')" data-tag="Gesunder Erwachsener" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Gesunder Erwachsener</button>
-            <button type="button" onclick="openAddCustomModal('schema_actions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Handlung hinzufügen" data-i18n-title="addCustomActionTooltip"><span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
+            <button type="button" onclick="appendTag('input-new-action', 'Durchatmen')" data-tag="Durchatmen" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Durchatmen</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Bedürfnis ansprechen')" data-tag="Bedürfnis ansprechen" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Bedürfnis ansprechen</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Selbstfürsorge')" data-tag="Selbstfürsorge" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Selbstfürsorge</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Gesunder Erwachsener')" data-tag="Gesunder Erwachsener" class="text-xs px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200/80 dark:hover:bg-stone-700/80 text-stone-700 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50 transition">Gesunder Erwachsener</button>
+            <button type="button" onclick="openAddCustomModal('schema_actions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigene Handlung hinzufügen" data-i18n-title="addCustomActionTooltip"><span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
           </div>
           <textarea id="input-new-action" rows="2" placeholder="z. B. tief durchatmen, mir sagen 'Ich bin sicher', und ruhig nachfragen..." data-i18n-placeholder="schemaPlaceholderNewAction" class="shadcn-input leading-relaxed"></textarea>
         </div>
       </section>
 
       <!-- Save & Preview Action Bar -->
-      <div class="pt-2 flex flex-col sm:flex-row items-center gap-2">
-        <button type="button" onclick="saveCurrentMemo()" class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-sky-500/20 transition flex items-center justify-center gap-2">
+      <div class="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
+        <button type="button" onclick="saveCurrentMemo()" class="w-full sm:flex-1 py-3 px-5 rounded-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm tracking-wide shadow-sm hover:shadow transition active:scale-[0.98] flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span data-i18n="schemaBtnSaveSheet">Speichern & Blatt ansehen</span>
         </button>
 
-        <button type="button" onclick="previewCurrentSheet()" class="w-full sm:w-auto py-3 px-5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-[0.99] font-semibold text-sm transition flex items-center justify-center gap-1.5">
+        <button type="button" onclick="previewCurrentSheet()" class="w-full sm:w-auto py-3 px-5 rounded-full border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] font-medium text-xs sm:text-sm transition flex items-center justify-center gap-1.5">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
           <span data-i18n="schemaBtnPreviewSheet">Blatt-Vorschau</span>
         </button>
@@ -688,25 +715,25 @@
       <!-- Sheet Toolbar -->
       <div class="no-print shadcn-card p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-1.5">
-          <button onclick="switchView('edit')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition flex items-center gap-1.5">
+          <button onclick="switchView('edit')" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 text-xs font-medium transition flex items-center gap-1.5 active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             <span data-i18n="sheetBtnEdit">Bearbeiten</span>
           </button>
 
-          <button onclick="printSheet()" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+          <button onclick="printSheet()" class="px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-stone-100 dark:text-stone-900 text-xs font-medium transition flex items-center gap-1.5 shadow-xs active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span data-i18n="sheetBtnPrint">Drucken / PDF</span>
           </button>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <select id="font-style-select" onchange="changeSheetFont(this.value)" class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
+          <select id="font-style-select" onchange="changeSheetFont(this.value)" class="bg-stone-50 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 rounded-full px-3 py-1 text-xs text-stone-700 dark:text-stone-200 font-medium focus:outline-none">
             <option value="kalam-blue" selected data-i18n="sheetFontKalamBlue">Handschrift Blau</option>
             <option value="caveat-black" data-i18n="sheetFontCaveatBlack">Handschrift Schwarz</option>
             <option value="clean-sans" data-i18n="sheetFontCleanSans">Druckschrift</option>
           </select>
 
-          <button type="button" id="btn-toggle-blank" onclick="toggleBlankMode()" class="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <button type="button" id="btn-toggle-blank" onclick="toggleBlankMode()" class="px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition">
             <span data-i18n="sheetBtnBlank">Vorlage</span>
           </button>
         </div>
@@ -714,25 +741,25 @@
 
       <!-- THE SHEET -->
       <div class="w-full">
-        <div id="worksheet-paper" class="sheet-paper w-full rounded-2xl p-4 sm:p-10 md:p-12 text-slate-900 dark:text-slate-100 font-sheet transition-all">
+        <div id="worksheet-paper" class="sheet-paper w-full rounded-2xl p-4 sm:p-10 md:p-12 text-stone-900 dark:text-stone-100 font-sheet transition-all">
 
           <!-- Header Metadata -->
-          <div id="sheet-header-meta" class="mb-5 pb-2 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-1">
+          <div id="sheet-header-meta" class="mb-5 pb-2 border-b border-stone-200 dark:border-stone-800 flex flex-wrap items-center justify-between text-xs text-stone-500 dark:text-stone-400 gap-1">
             <div class="flex items-center gap-1.5 font-medium">
-              <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]" data-i18n="navSchema">Schema-Memo</span>
-              <span id="sheet-meta-title" class="text-slate-800 dark:text-slate-200 font-semibold"></span>
+              <span class="font-serif font-semibold text-stone-900 dark:text-white uppercase tracking-wider text-[11px]" data-i18n="navSchema">Schema-Memo</span>
+              <span id="sheet-meta-title" class="text-stone-800 dark:text-stone-200 font-medium"></span>
             </div>
-            <div id="sheet-meta-date" class="text-slate-500 dark:text-slate-400"></div>
+            <div id="sheet-meta-date" class="text-stone-500 dark:text-stone-400"></div>
           </div>
 
           <!-- SECTION 1 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5" data-i18n="sheetSec1Title">
+            <h2 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-white mb-2.5" data-i18n="sheetSec1Title">
               1. Benennen des aktualisierten Gefühls
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec1L1">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec1L1">
                 Im Augenblick fühle ich (Emotion)
               </div>
               <div class="dotted-rule">
@@ -744,7 +771,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec1L2">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec1L2">
                 weil (aktuelle Auslösesituation)
               </div>
               <div class="dotted-rule">
@@ -758,12 +785,12 @@
 
           <!-- SECTION 2 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5" data-i18n="sheetSec2Title">
+            <h2 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-white mb-2.5" data-i18n="sheetSec2Title">
               2. Erkennen der aktivierten Schemata/Modi und der Bewältigung
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L1">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L1">
                 Ich weiß, dass das wahrscheinlich mein (Schema/Modus) ... ist,
               </div>
               <div class="dotted-rule">
@@ -772,7 +799,7 @@
             </div>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L2">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L2">
                 das/den ich durch (Kindheitssituation) ... erlernt habe.
               </div>
               <div class="dotted-rule">
@@ -781,7 +808,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L3">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec2L3">
                 Diese Aktivierung löst bei mir (altes Bewältigungsverhalten) ... aus.
               </div>
               <div class="dotted-rule">
@@ -792,12 +819,12 @@
 
           <!-- SECTION 3 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5" data-i18n="sheetSec3Title">
+            <h2 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-white mb-2.5" data-i18n="sheetSec3Title">
               3. Anerkennen der Dysfunktionalität / Realitätsprüfung
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L1">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L1">
                 Obwohl ich glaube (negativer Gedanke/ Innere-Eltern-Stimme),
               </div>
               <div class="dotted-rule">
@@ -806,7 +833,7 @@
             </div>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L2">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L2">
                 ist die Realität (Sicht des Gesunden Erwachsenen),
               </div>
               <div class="dotted-rule">
@@ -815,7 +842,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L3">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec3L3">
                 Beweise für diese Realität sind:
               </div>
               <div class="dotted-rule">
@@ -829,12 +856,12 @@
 
           <!-- SECTION 4 -->
           <div class="mb-6">
-            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2.5" data-i18n="sheetSec4Title">
+            <h2 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-white mb-2.5" data-i18n="sheetSec4Title">
               4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses
             </h2>
 
             <div class="mb-3">
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec4L1">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec4L1">
                 Obwohl ich am liebsten (altes dysfunktionales Verhalten) ... würde,
               </div>
               <div class="dotted-rule">
@@ -843,7 +870,7 @@
             </div>
 
             <div>
-              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec4L2">
+              <div class="font-medium text-stone-800 dark:text-stone-200 text-xs sm:text-[14px] mb-1" data-i18n="sheetSec4L2">
                 Könnte ich stattdessen (alternative Lösungen)
               </div>
               <div class="dotted-rule">
@@ -856,7 +883,7 @@
           </div>
 
           <!-- FOOTER / COPYRIGHT (REQUIRED) -->
-          <div class="mt-8 pt-3 border-t border-slate-200 dark:border-slate-800 text-center text-[10px] text-slate-500 dark:text-slate-400" data-i18n="sheetCopyright">
+          <div class="mt-8 pt-3 border-t border-stone-200 dark:border-stone-800 text-center text-[10px] text-stone-500 dark:text-stone-400 font-serif italic" data-i18n="sheetCopyright">
             Modifiziert nach J. Young 1996/2002. Das Original ist urheberrechtlich geschützt.
           </div>
 
@@ -867,18 +894,18 @@
 
     <!-- VIEW A3: SCHEMA ARCHIV -->
     <div id="view-archive" class="hidden space-y-4">
-      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
+      <div class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white" data-i18n="archiveTitle">Gespeicherte Schema-Memos</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="archiveSubtitle">Verwalte deine reflektierten Memos und verfolge deinen Therapiefortschritt.</p>
+            <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100" data-i18n="archiveTitle">Gespeicherte Schema-Memos</h2>
+            <p class="font-serif italic text-xs text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="archiveSubtitle">Verwalte deine reflektierten Memos und verfolge deinen Therapiefortschritt.</p>
           </div>
 
           <div class="flex items-center gap-1.5">
-            <button onclick="exportJSON()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
+            <button onclick="exportJSON()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 shadow-xs">
               <span data-i18n="btnExport">Export</span>
             </button>
-            <label class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1 cursor-pointer">
+            <label class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 cursor-pointer shadow-xs">
               <span data-i18n="btnImport">Import</span>
               <input type="file" id="import-file" accept=".json" onchange="importJSON(event)" class="hidden">
             </label>
@@ -897,9 +924,9 @@
 
     <!-- VIEW A4: SCHEMA SPICKZETTEL / HILFE -->
     <div id="view-help" class="hidden space-y-4">
-      <div class="shadcn-card p-3 sm:p-5 space-y-2.5">
-        <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white" data-i18n="helpTitle">Schema-Therapie Spickzettel</h2>
-        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="helpSubtitle">
+      <div class="shadcn-card p-3 sm:p-5 space-y-2">
+        <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100" data-i18n="helpTitle">Schema-Therapie Spickzettel</h2>
+        <p class="font-serif italic text-xs text-stone-600 dark:text-stone-400 leading-relaxed" data-i18n="helpSubtitle">
           Kompaktes Nachschlagewerk über die 18 Schemata und Modi nach Jeffrey Young zur schnellen Orientierung während der Reflexion.
         </p>
       </div>
@@ -907,33 +934,33 @@
       <!-- Schemata Accordions/Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
-          <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider" data-i18n="helpDomain1Badge">Bereich 1</span>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="helpDomain1Title">Abweisung & Trennung</h3>
-          <p class="text-xs text-slate-500 leading-relaxed" data-i18n="helpDomain1Desc">
+          <span class="text-[11px] font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider" data-i18n="helpDomain1Badge">Bereich 1</span>
+          <h3 class="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="helpDomain1Title">Abweisung & Trennung</h3>
+          <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed" data-i18n="helpDomain1Desc">
             Verlassenheit / Instabilität, Misstrauen / Missbrauch, Emotionale Vernachlässigung, Unzulänglichkeit / Scham, Soziale Isolation.
           </p>
         </div>
 
         <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
-          <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider" data-i18n="helpDomain2Badge">Bereich 2</span>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="helpDomain2Title">Autonomie & Leistung</h3>
-          <p class="text-xs text-slate-500 leading-relaxed" data-i18n="helpDomain2Desc">
+          <span class="text-[11px] font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider" data-i18n="helpDomain2Badge">Bereich 2</span>
+          <h3 class="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="helpDomain2Title">Autonomie & Leistung</h3>
+          <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed" data-i18n="helpDomain2Desc">
             Abhängigkeit / Inkompetenz, Anfälligkeit für Verletzungen oder Krankheiten, Verstrickung / Unterentwickeltes Selbst, Versagen.
           </p>
         </div>
 
         <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
-          <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider" data-i18n="helpDomain3Badge">Bereich 3</span>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="helpDomain3Title">Beeinträchtigte Grenzen</h3>
-          <p class="text-xs text-slate-500 leading-relaxed" data-i18n="helpDomain3Desc">
+          <span class="text-[11px] font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider" data-i18n="helpDomain3Badge">Bereich 3</span>
+          <h3 class="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="helpDomain3Title">Beeinträchtigte Grenzen</h3>
+          <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed" data-i18n="helpDomain3Desc">
             Anspruchshaltung / Grandiosität, Ungenügende Selbstkontrolle / Selbstdisziplin.
           </p>
         </div>
 
         <div class="shadcn-card p-3 sm:p-4 space-y-1.5">
-          <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider" data-i18n="helpDomain4Badge">Bereich 4</span>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="helpDomain4Title">Fremdbezogenheit</h3>
-          <p class="text-xs text-slate-500 leading-relaxed" data-i18n="helpDomain4Desc">
+          <span class="text-[11px] font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider" data-i18n="helpDomain4Badge">Bereich 4</span>
+          <h3 class="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="helpDomain4Title">Fremdbezogenheit</h3>
+          <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed" data-i18n="helpDomain4Desc">
             Unterwerfung, Aufopferung, Streben nach Anerkennung & Bestätigung.
           </p>
         </div>
@@ -947,25 +974,28 @@
     <div id="view-diary-entry" class="hidden space-y-2.5">
 
       <!-- TOP CONTROL CARD: DATE, VORTAG & FOCUS-NAV -->
-      <section class="shadcn-card p-2.5 sm:p-3 space-y-2">
+      <section class="shadcn-card p-3 sm:p-4 space-y-2.5">
         
-        <!-- Row 1: Check-in Status & Actions -->
-        <div class="flex items-center justify-between pb-1.5 border-b border-slate-100 dark:border-slate-800 gap-2">
-          <div class="flex items-center gap-1.5 min-w-0">
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0" data-i18n="diaryPillCheckin">
-              Check-in
-            </span>
-            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate" data-i18n="diaryCurrentDayInitial">Heute</span>
+        <!-- Row 1: Editorial Greeting, Check-in Status & Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800 gap-2">
+          <div class="min-w-0">
+            <div id="diary-editorial-greeting" class="font-serif italic text-xs sm:text-sm text-stone-500 dark:text-stone-400">Guten Tag · Nimm dir einen Moment zum Innehalten.</div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#4A7264]/10 text-[#385E50] dark:bg-[#4A7264]/20 dark:text-[#A1C9B9] shrink-0" data-i18n="diaryPillCheckin">
+                Check-in
+              </span>
+              <h2 id="diary-current-day-label" class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCurrentDayInitial">Heute</h2>
+            </div>
           </div>
 
-          <div class="flex items-center gap-1.5 shrink-0">
+          <div class="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
             <!-- Quick routine copy from yesterday -->
-            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag" data-i18n-title="diaryVortagTooltip">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag" data-i18n-title="diaryVortagTooltip">
+              <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               <span data-i18n="quickYesterday">Vortag</span>
             </button>
 
-            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shadow-xs" title="Zurücksetzen" data-i18n-title="diaryResetTooltip">
+            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition shadow-xs" title="Zurücksetzen" data-i18n-title="diaryResetTooltip">
               <span data-i18n="quickReset">Leeren</span>
             </button>
           </div>
@@ -973,37 +1003,37 @@
 
         <!-- Row 2: Date Selector & Accordion Toggle -->
         <div class="flex flex-wrap items-center justify-between gap-2 pt-0.5">
-          <div class="flex items-center gap-1.5 min-w-0">
-            <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0" id="label-diary-date" data-i18n="labelDiaryDate">Datum:</label>
-            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-2 min-w-0">
+            <label for="input-diary-date" class="text-[11px] font-semibold text-stone-500 uppercase tracking-wider shrink-0" id="label-diary-date" data-i18n="labelDiaryDate">Datum:</label>
+            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-stone-100 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 rounded-lg px-2.5 py-1 text-xs text-stone-800 dark:text-stone-200 font-medium focus:outline-none cursor-pointer">
           </div>
 
           <div class="flex items-center gap-1.5 shrink-0">
             <!-- Quick Accordion Toggle -->
-            <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen" data-i18n-title="diaryToggleAllTooltip">
+            <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen" data-i18n-title="diaryToggleAllTooltip">
               <span id="label-toggle-all-cards" data-i18n="quickCollapse">⤓ Zuklappen</span>
             </button>
           </div>
         </div>
 
         <!-- Row 3: Section Focus Navigation Bar (Smooth swipe on mobile) -->
-        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-2.5 py-1 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition shrink-0 text-xs" data-i18n="filterAll">
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-stone-100 dark:border-stone-800">
+          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-3 py-1 rounded-full bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 font-medium transition shrink-0 text-xs shadow-xs" data-i18n="filterAll">
             Alles
           </button>
-          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMood">
+          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMood">
             Mood
           </button>
-          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMeds">
+          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMeds">
             Medis
           </button>
-          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterVital">
+          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterVital">
             Vitales
           </button>
-          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterAdhs">
+          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterAdhs">
             ADHS & Steps
           </button>
-          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMind">
+          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMind">
             Journal
           </button>
         </div>
@@ -1013,20 +1043,20 @@
       <!-- ======================================================== -->
       <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
       <!-- ======================================================== -->
-      <section id="card-diary-mood" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mood" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mood')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard1Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard1Title">
               1. Gemüt, Energie & Gefühle
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mood" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
+            <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               8/10 · Gut
             </span>
-            <svg id="chevron-mood" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mood" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -1130,20 +1160,20 @@
       <!-- ======================================================== -->
       <!-- CARD 2: MEDIKATION, WIRKUNG & REBOUND                     -->
       <!-- ======================================================== -->
-      <section id="card-diary-meds" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-meds" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('meds')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard2Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard2Title">
               2. Medikation & Wirkung
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-meds" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-950/70 text-violet-700 dark:text-violet-300">
+            <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 erfasst
             </span>
-            <svg id="chevron-meds" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-meds" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -1237,20 +1267,20 @@
       <!-- ======================================================== -->
       <!-- CARD 3: VITAL-HUB: ESSEN, TRINKEN & SCHLAF                 -->
       <!-- ======================================================== -->
-      <section id="card-diary-vital" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-vital" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('vital')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard3Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard3Title">
               3. Vital-Hub: Mahlzeiten, Trinken & Schlaf
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-vital" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950/70 text-sky-800 dark:text-sky-300">
+            <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 ml · 7.5h
             </span>
-            <svg id="chevron-vital" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-vital" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -1434,20 +1464,20 @@
       <!-- ======================================================== -->
       <!-- CARD 4: NEURO & BODY: ADHS, FOKUS & SCHRITTE              -->
       <!-- ======================================================== -->
-      <section id="card-diary-adhs" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-adhs" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('adhs')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard4Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard4Title">
               4. Neuro & Body: ADHS, Fokus & Schritte
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-adhs" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300">
+            <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               Fokus 7/10 · 0 Steps
             </span>
-            <svg id="chevron-adhs" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-adhs" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -1587,20 +1617,20 @@
       <!-- ======================================================== -->
       <!-- CARD 5: JOURNAL, 3 POSITIVE DINGE & SPEICHERN             -->
       <!-- ======================================================== -->
-      <section id="card-diary-mind" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mind" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mind')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard5Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard5Title">
               5. Journal, 3 Positive Dinge & Notizen
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mind" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
+            <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 / 3 Positiv
             </span>
-            <svg id="chevron-mind" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mind" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -1666,11 +1696,11 @@
           </div>
 
           <!-- ACTION FOOTER: SPEICHERN BUTTON -->
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
-            <div class="text-[10px] text-slate-400 flex items-center gap-1">
+          <div class="pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-2">
+            <div class="text-[10px] text-stone-400 flex items-center gap-1">
               <span data-i18n="privacyNote">100% lokal & privat</span>
             </div>
-            <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5">
+            <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
               <span data-i18n="saveEntry">Tages-Eintrag speichern</span>
             </button>
@@ -1681,23 +1711,23 @@
 
       <!-- Global Fallback Save Button (shown if Card 5 is hidden but at least one card is visible) -->
       <div id="diary-fallback-save-bar" class="hidden pt-2 flex items-center justify-between gap-2">
-        <div class="text-[10px] text-slate-400 flex items-center gap-1">
+        <div class="text-[10px] text-stone-400 flex items-center gap-1">
           <span data-i18n="privacyNote">100% lokal & privat</span>
         </div>
-        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5">
+        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span id="label-fallback-save-btn" data-i18n="saveEntry">Tages-Eintrag speichern</span>
         </button>
       </div>
 
       <!-- ALL MODULES DISABLED NOTICE -->
-      <div id="diary-all-disabled-notice" class="hidden p-6 rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 text-center space-y-3 bg-slate-50/50 dark:bg-slate-900/50 my-4">
-        <div class="w-12 h-12 mx-auto rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+      <div id="diary-all-disabled-notice" class="hidden p-6 rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 text-center space-y-3 bg-stone-100/50 dark:bg-stone-900/50 my-4">
+        <div class="w-12 h-12 mx-auto rounded-full bg-stone-200/60 dark:bg-stone-800 flex items-center justify-center text-stone-500">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h3 class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-200" id="all-disabled-title" data-i18n="allDisabledTitle">Alle Tracking-Module sind deaktiviert</h3>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto" id="all-disabled-desc" data-i18n="allDisabledDesc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
-        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-xs transition inline-flex items-center gap-1.5">
+        <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-800 dark:text-stone-200" id="all-disabled-title" data-i18n="allDisabledTitle">Alle Tracking-Module sind deaktiviert</h3>
+        <p class="text-xs text-stone-500 max-w-sm mx-auto" id="all-disabled-desc" data-i18n="allDisabledDesc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
+        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-full bg-[#4A7264] hover:bg-[#3D5F53] text-white font-medium text-xs shadow-xs transition inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span id="all-disabled-btn" data-i18n="allDisabledBtn">Module anpassen</span>
         </button>
@@ -1711,19 +1741,19 @@
       <div class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div>
-            <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white" data-i18n="diaryListTitle">Mein Tagebuch & Lebens-Chronik</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="diaryListSubtitle">Alle Einträge mit Medikation, Essen, Schlaf, Steps und ADHS-Fokus chronologisch.</p>
+            <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100" data-i18n="diaryListTitle">Mein Tagebuch & Lebens-Chronik</h2>
+            <p class="font-serif italic text-xs text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="diaryListSubtitle">Alle Einträge mit Medikation, Essen, Schlaf, Steps und ADHS-Fokus chronologisch.</p>
           </div>
 
           <div class="flex flex-wrap items-center gap-1.5">
-            <button onclick="printDiaryJournal()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-xs">
+            <button onclick="printDiaryJournal()" class="px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-stone-100 dark:text-stone-900 text-xs font-medium transition flex items-center gap-1.5 shadow-xs active:scale-[0.98]">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
               <span data-i18n="btnPrint">Drucken</span>
             </button>
-            <button onclick="exportDiaryJSON()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1">
+            <button onclick="exportDiaryJSON()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 shadow-xs">
               <span data-i18n="btnBackup">Backup</span>
             </button>
-            <label class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1 cursor-pointer">
+            <label class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 cursor-pointer shadow-xs">
               <span data-i18n="btnImport">Import</span>
               <input type="file" id="import-diary-file" accept=".json" onchange="importDiaryJSON(event)" class="hidden">
             </label>
@@ -1736,20 +1766,20 @@
         </div>
 
         <!-- Filter Folders / Months -->
-        <div class="space-y-1 pt-0.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="diaryFoldersTitle">Monats-Ordner:</span>
+        <div class="space-y-1.5 pt-1">
+          <span class="text-[10px] font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400" data-i18n="diaryFoldersTitle">Monats-Ordner:</span>
           <div class="flex flex-wrap items-center gap-1 pb-0.5" id="diary-folders-container">
             <!-- Dynamically populated month folders -->
           </div>
         </div>
 
         <!-- Quick Filter Tags -->
-        <div class="flex flex-wrap items-center gap-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-          <span class="text-[10px] font-bold text-slate-500 uppercase mr-1" data-i18n="labelFilter">Filter:</span>
-          <button type="button" onclick="setDiaryQuickFilter('all')" id="qf-all" class="qf-btn active text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold transition" data-i18n="qfAll">Alle Einträge</button>
-          <button type="button" onclick="setDiaryQuickFilter('meds')" id="qf-meds" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-i18n="qfMeds">Medikation</button>
-          <button type="button" onclick="setDiaryQuickFilter('food')" id="qf-food" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-i18n="qfFood">Mahlzeiten</button>
-          <button type="button" onclick="setDiaryQuickFilter('steps')" id="qf-steps" class="qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-i18n="qfSteps">&gt; 8k Schritte</button>
+        <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-stone-200/60 dark:border-stone-800">
+          <span class="text-[10px] font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wide mr-1" data-i18n="labelFilter">Filter:</span>
+          <button type="button" onclick="setDiaryQuickFilter('all')" id="qf-all" class="qf-btn active text-xs px-3 py-1 rounded-full border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 font-medium transition shadow-xs" data-i18n="qfAll">Alle Einträge</button>
+          <button type="button" onclick="setDiaryQuickFilter('meds')" id="qf-meds" class="qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition" data-i18n="qfMeds">Medikation</button>
+          <button type="button" onclick="setDiaryQuickFilter('food')" id="qf-food" class="qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition" data-i18n="qfFood">Mahlzeiten</button>
+          <button type="button" onclick="setDiaryQuickFilter('steps')" id="qf-steps" class="qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition" data-i18n="qfSteps">&gt; 8k Schritte</button>
         </div>
       </div>
 
@@ -1766,24 +1796,24 @@
       <div class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div>
-            <h2 class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white" data-i18n="statsTitle">Statistiken, Trends & Neuro-Insights</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="statsSubtitle">Verstehe Zusammenhänge zwischen Medikation, Schlaf, Essen, Bewegung und mentalem Fokus.</p>
+            <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100" data-i18n="statsTitle">Statistiken, Trends & Neuro-Insights</h2>
+            <p class="font-serif italic text-xs text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="statsSubtitle">Verstehe Zusammenhänge zwischen Medikation, Schlaf, Essen, Bewegung und mentalem Fokus.</p>
           </div>
 
-          <button onclick="printStatsSummary()" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1 self-start sm:self-auto">
+          <button onclick="printStatsSummary()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 transition flex items-center gap-1.5 self-start sm:self-auto shadow-xs active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span data-i18n="btnPrint">Drucken</span>
           </button>
         </div>
 
         <!-- Time Range Selector -->
-        <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 w-full flex-wrap gap-1">
-          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-xs" data-days="7" data-i18n="statsDays7">7 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="14" data-i18n="statsDays14">14 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="30" data-i18n="statsDays30">30 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="90" data-i18n="statsDays90">90 Tage</button>
-          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="month" data-i18n="statsDaysMonth">Monat</button>
-          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-2.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition" data-days="all" data-i18n="statsDaysAll">Alle</button>
+        <div class="inline-flex p-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-200/60 dark:border-stone-800 w-full flex-wrap gap-1">
+          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs" data-days="7" data-i18n="statsDays7">7 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="14" data-i18n="statsDays14">14 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="30" data-i18n="statsDays30">30 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="90" data-i18n="statsDays90">90 Tage</button>
+          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="month" data-i18n="statsDaysMonth">Monat</button>
+          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="all" data-i18n="statsDaysAll">Alle</button>
         </div>
       </div>
 
@@ -1791,45 +1821,45 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
         
         <!-- 1. Mood -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiMood">Ø Stimmung</span>
-          <div id="stats-kpi-avg" class="text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
-          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiTrendDefault">Mehr Daten nötig</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiMood">Ø Stimmung</span>
+          <div id="stats-kpi-avg" class="font-serif text-lg sm:text-2xl font-semibold text-[#4A7264] dark:text-[#6B9A88]">--</div>
+          <div id="stats-kpi-trend" class="text-[10px] text-stone-400 dark:text-stone-500 truncate" data-i18n="statsKpiTrendDefault">Mehr Daten nötig</div>
         </div>
 
         <!-- 2. Sleep -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSleep">Ø Schlaf</span>
-          <div id="stats-kpi-sleep" class="text-lg sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">--</div>
-          <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiSleepQualDefault">-- Qualität</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiSleep">Ø Schlaf</span>
+          <div id="stats-kpi-sleep" class="font-serif text-lg sm:text-2xl font-semibold text-stone-800 dark:text-stone-200">--</div>
+          <div id="stats-kpi-sleep-qual" class="text-[10px] text-stone-400 dark:text-stone-500 truncate" data-i18n="statsKpiSleepQualDefault">-- Qualität</div>
         </div>
 
         <!-- 3. Steps -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSteps">Ø Schritte</span>
-          <div id="stats-kpi-steps" class="text-lg sm:text-2xl font-black text-blue-600 dark:text-blue-400">--</div>
-          <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiStepsTotalDefault">0 Schritte gesamt</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiSteps">Ø Schritte</span>
+          <div id="stats-kpi-steps" class="font-serif text-lg sm:text-2xl font-semibold text-stone-800 dark:text-stone-200">--</div>
+          <div id="stats-kpi-steps-total" class="text-[10px] text-stone-400 dark:text-stone-500 truncate" data-i18n="statsKpiStepsTotalDefault">0 Schritte gesamt</div>
         </div>
 
         <!-- 4. Med Adherence -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiMeds">Med-Treue</span>
-          <div id="stats-kpi-meds" class="text-lg sm:text-2xl font-black text-violet-600 dark:text-violet-400">--</div>
-          <div class="text-[10px] text-slate-400" data-i18n="statsKpiMedsDesc">Tage mit Medis</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiMeds">Med-Treue</span>
+          <div id="stats-kpi-meds" class="font-serif text-lg sm:text-2xl font-semibold text-stone-800 dark:text-stone-200">--</div>
+          <div class="text-[10px] text-stone-400 dark:text-stone-500" data-i18n="statsKpiMedsDesc">Tage mit Medis</div>
         </div>
 
         <!-- 5. ADHD Focus -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiFocus">Ø ADHS-Fokus</span>
-          <div id="stats-kpi-focus" class="text-lg sm:text-2xl font-black text-violet-600 dark:text-violet-400">--</div>
-          <div class="text-[10px] text-slate-400" data-i18n="statsKpiFocusDesc">Fokus (1-10)</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiFocus">Ø ADHS-Fokus</span>
+          <div id="stats-kpi-focus" class="font-serif text-lg sm:text-2xl font-semibold text-[#C27838] dark:text-[#D98E4E]">--</div>
+          <div class="text-[10px] text-stone-400 dark:text-stone-500" data-i18n="statsKpiFocusDesc">Fokus (1-10)</div>
         </div>
 
         <!-- 6. Streak -->
-        <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
-          <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiStreak">Aktive Serie</span>
-          <div id="stats-kpi-streak" class="text-lg sm:text-2xl font-black text-amber-500">0 d</div>
-          <div class="text-[10px] text-slate-400" data-i18n="statsKpiStreakDesc">Tage in Folge</div>
+        <div class="shadcn-card p-3 space-y-0.5">
+          <span class="text-stone-500 dark:text-stone-400 text-[10px] font-medium uppercase tracking-wider" data-i18n="statsKpiStreak">Aktive Serie</span>
+          <div id="stats-kpi-streak" class="font-serif text-lg sm:text-2xl font-semibold text-stone-800 dark:text-stone-200">0 d</div>
+          <div class="text-[10px] text-stone-400 dark:text-stone-500" data-i18n="statsKpiStreakDesc">Tage in Folge</div>
         </div>
 
       </div>
@@ -1838,17 +1868,17 @@
       <section class="shadcn-card p-3 sm:p-5 space-y-2.5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
           <div>
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2" data-i18n="statsChartTitle">
+            <h3 class="font-serif text-xs sm:text-sm font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2" data-i18n="statsChartTitle">
               Stimmung & ADHS-Fokus im Verlauf
             </h3>
-            <p class="text-[11px] text-slate-500" data-i18n="statsChartSubtitle">Vergleiche deine Stimmungskurve direkt mit deinem Konzentrationslevel</p>
+            <p class="font-serif italic text-[11px] text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="statsChartSubtitle">Vergleiche deine Stimmungskurve direkt mit deinem Konzentrationslevel</p>
           </div>
-          <div class="flex items-center gap-3 text-xs font-semibold">
-            <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> <span data-i18n="statsLegendMood">Stimmung</span>
+          <div class="flex items-center gap-3 text-xs font-medium">
+            <span class="flex items-center gap-1.5 text-[#4A7264] dark:text-[#6B9A88]">
+              <span class="w-2 h-2 rounded-full bg-[#4A7264] dark:bg-[#6B9A88]"></span> <span data-i18n="statsLegendMood">Stimmung</span>
             </span>
-            <span class="flex items-center gap-1 text-violet-600 dark:text-violet-400">
-              <span class="w-2.5 h-2.5 rounded-full bg-violet-500"></span> <span data-i18n="statsLegendFocus">ADHS-Fokus</span>
+            <span class="flex items-center gap-1.5 text-[#C27838] dark:text-[#D98E4E]">
+              <span class="w-2 h-2 rounded-full bg-[#C27838] dark:bg-[#D98E4E]"></span> <span data-i18n="statsLegendFocus">ADHS-Fokus</span>
             </span>
           </div>
         </div>
@@ -1862,12 +1892,12 @@
       </section>
 
       <!-- NEURO-INSIGHT CORRELATION CARD -->
-      <section class="p-3 sm:p-4 rounded-2xl bg-gradient-to-tr from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800/60 space-y-1.5">
+      <section class="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F5] dark:bg-[#1E1C1A] border border-stone-200/80 dark:border-stone-800 space-y-1.5 shadow-xs">
         <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-violet-600 dark:text-violet-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-          <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="statsInsightTitle">Neuro-Insight & Lebensstil-Muster</h4>
+          <svg class="w-4 h-4 text-[#4A7264] dark:text-[#6B9A88] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <h4 class="font-serif text-xs sm:text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="statsInsightTitle">Neuro-Insight & Lebensstil-Muster</h4>
         </div>
-        <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed" data-i18n="statsInsightDefault">
+        <p id="stats-insight-text" class="font-serif italic text-xs text-stone-600 dark:text-stone-300 leading-relaxed" data-i18n="statsInsightDefault">
           Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.
         </p>
       </section>
@@ -1878,11 +1908,11 @@
         <!-- Day of Week Analysis (Mo - So) -->
         <div class="shadcn-card p-3 sm:p-4 space-y-2">
           <div class="flex items-center justify-between">
-            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="statsWeekdayTitle">
+            <h4 class="font-serif text-xs sm:text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="statsWeekdayTitle">
               Tendenzen nach Wochentag
             </h4>
           </div>
-          <p class="text-[11px] text-slate-500" data-i18n="statsWeekdaySubtitle">An welchen Wochentagen geht es dir im Schnitt am besten?</p>
+          <p class="font-serif italic text-[11px] text-stone-500 dark:text-stone-400" data-i18n="statsWeekdaySubtitle">An welchen Wochentagen geht es dir im Schnitt am besten?</p>
           <div id="stats-weekday-bars" class="space-y-1.5 pt-1">
             <!-- Injected via JavaScript -->
           </div>
@@ -1890,10 +1920,10 @@
 
         <!-- Top Emotions Frequency -->
         <div class="shadcn-card p-3 sm:p-4 space-y-2">
-          <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="statsTopEmotionsTitle">
+          <h4 class="font-serif text-xs sm:text-sm font-semibold text-stone-900 dark:text-stone-100" data-i18n="statsTopEmotionsTitle">
             Häufigste Emotionen
           </h4>
-          <p class="text-[11px] text-slate-500" data-i18n="statsTopEmotionsSubtitle">Welche Gefühle haben dich im gewählten Zeitraum am meisten begleitet?</p>
+          <p class="font-serif italic text-[11px] text-stone-500 dark:text-stone-400" data-i18n="statsTopEmotionsSubtitle">Welche Gefühle haben dich im gewählten Zeitraum am meisten begleitet?</p>
           <div id="stats-top-emotions" class="space-y-1.5 pt-1">
             <!-- Injected via JavaScript -->
           </div>
@@ -1907,29 +1937,32 @@
   <!-- ======================================================== -->
   <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
   <!-- ======================================================== -->
-  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 py-1.5 shadow-lg shadow-black/10">
+  <!-- ======================================================== -->
+  <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
+  <!-- ======================================================== -->
+  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-t border-stone-200/80 dark:border-stone-800/80 flex items-center justify-around px-2 py-1.5 shadow-xs">
     <!-- Populated dynamically via switchAppMode() -->
   </nav>
 
   <!-- Toast Notification -->
-  <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-700 text-xs font-semibold backdrop-blur-md">
-    <div id="toast-icon" class="text-emerald-400 font-bold">✓</div>
+  <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-stone-900/95 dark:bg-stone-800/95 text-stone-100 px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 border border-stone-700/60 text-xs font-medium backdrop-blur-md">
+    <div id="toast-icon" class="text-[#6B9A88] font-bold">✓</div>
     <span id="toast-message" data-i18n="toastSaved">Gespeichert</span>
   </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: EIGENE OPTION PERMANENT HINZUFÜGEN (+)            -->
   <!-- ======================================================== -->
-  <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl animate-in fade-in zoom-in-95">
+  <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
+    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+      <div class="flex items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800">
         <div class="flex items-center gap-2">
-          <span id="custom-modal-icon" class="text-base font-bold text-sky-600 dark:text-sky-400">+</span>
-          <h3 id="custom-modal-title" class="text-sm font-bold" data-i18n="customModalTitle">Eigene Option hinzufügen</h3>
+          <span id="custom-modal-icon" class="text-base font-bold text-[#4A7264] dark:text-[#7BA896]">+</span>
+          <h3 id="custom-modal-title" class="font-serif text-sm font-semibold" data-i18n="customModalTitle">Eigene Option hinzufügen</h3>
         </div>
-        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" aria-label="Schließen" data-i18n-title="btnClose">
+        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
@@ -1940,19 +1973,19 @@
       </div>
 
       <!-- Existing Custom Items List (User can delete them anytime) -->
-      <div id="custom-modal-existing-wrapper" class="space-y-1.5 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400" data-i18n="customModalExistingTitle">Deine bisherigen eigenen Einträge:</span>
+      <div id="custom-modal-existing-wrapper" class="space-y-1.5 pt-1 border-t border-stone-100 dark:border-stone-800 hidden">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400" data-i18n="customModalExistingTitle">Deine bisherigen eigenen Einträge:</span>
         <div id="custom-modal-existing-list" class="flex flex-wrap gap-1 max-h-28 overflow-y-auto p-0.5">
           <!-- Injected items with delete button -->
         </div>
       </div>
 
       <!-- Modal Action Buttons -->
-      <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
-        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-stone-100 dark:border-stone-800">
+        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-semibold hover:bg-stone-100 dark:hover:bg-stone-800 transition">
           <span data-i18n="btnCancel">Abbrechen</span>
         </button>
-        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs">
+        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-xs font-semibold transition shadow-xs">
           <span data-i18n="btnSavePermanent">Dauerhaft speichern</span>
         </button>
       </div>
@@ -1963,32 +1996,32 @@
   <!-- ======================================================== -->
   <!-- MODAL: APP-EINSTELLUNGEN & MODUL-MANAGER (SETTINGS)       -->
   <!-- ======================================================== -->
-  <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
+  <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
+    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 shrink-0">
-        <div class="flex items-center gap-2 min-w-0">
-          <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 shrink-0">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-600 dark:text-stone-300 shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div class="min-w-0">
-            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
-            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
+            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 leading-tight truncate">Einstellungen & Module</h3>
+            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[11px] text-stone-500 dark:text-stone-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
           </div>
         </div>
-        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
+        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
       <!-- Segmented Tab Navigation inside Modal -->
-      <div class="px-4 pt-2.5 pb-1 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shrink-0">
-        <div class="grid grid-cols-2 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-xs font-bold shadow-inner">
-          <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
+      <div class="px-4 pt-2.5 pb-1 border-b border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/50 shrink-0">
+        <div class="grid grid-cols-2 p-1 rounded-xl bg-stone-200/70 dark:bg-stone-800 border border-stone-300/60 dark:border-stone-700 text-xs font-semibold shadow-inner">
+          <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold">
             <span id="tab-label-modules" data-i18n="tabLabelModules">Tracking-Module</span>
           </button>
-          <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium">
             <span id="tab-label-general" data-i18n="tabLabelGeneral">Allgemein & Sprache</span>
           </button>
         </div>
@@ -2003,24 +2036,24 @@
         <div id="settings-tab-modules" class="space-y-3.5">
           
           <!-- Banner & Presets -->
-          <div class="p-3 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40 space-y-2">
+          <div class="p-3 rounded-xl bg-stone-100/70 dark:bg-stone-900/40 border border-stone-200/80 dark:border-stone-800 space-y-2">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
+              <span class="text-xs font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                 <span id="settings-presets-title" data-i18n="settingsPresetsTitle">Schnell-Vorlagen:</span>
               </span>
-              <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold" id="settings-active-count-badge">13 aktiv</span>
+              <span class="text-[10px] text-[#4A7264] dark:text-[#7BA896] font-bold" id="settings-active-count-badge">13 aktiv</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
+            <p class="text-[11px] text-stone-600 dark:text-stone-400 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
-              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-xs" data-i18n="presetAll">
+              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white font-semibold transition shadow-xs" data-i18n="presetAll">
                 Alle an
               </button>
-              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMinimal">
+              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMinimal">
                 Nur Kern (Minimal)
               </button>
-              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMindfulness">
+              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMindfulness">
                 Achtsamkeit
               </button>
             </div>
@@ -3034,16 +3067,16 @@
 
     // Mood Configurations (1 - 10)
     const MOOD_CONFIG = {
-      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', title_en: 'Crisis / Acute Distress', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', desc_en: 'Extremely distressing, barely bearable. Please rest and seek support.', bg: 'bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border border-rose-300 dark:border-rose-800' },
-      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', title_en: 'Very Down / Exhausted', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', desc_en: 'Heavy emotional burden, grief or severe exhaustion.', bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900' },
-      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', title_en: 'Low & Drained', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', desc_en: 'Everything felt difficult, low motivation or persistent worries.', bg: 'bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-800' },
-      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', title_en: 'Dissatisfied / Tense', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', desc_en: 'A challenging day with frustrations or inner restlessness.', bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900' },
-      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', title_en: 'Average / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', desc_en: 'Neither particularly good nor bad. A solid, normal day.', bg: 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700' },
-      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', title_en: 'Pretty Okay / Mildly Positive', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', desc_en: 'Mostly alright with a few pleasant moments.', bg: 'bg-sky-50 dark:bg-sky-950/50 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-900' },
-      7: { emoji: '😊', title: 'Gut & Ausgeglichen', title_en: 'Good & Balanced', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', desc_en: 'Stable day with positive baseline mood and good energy.', bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900' },
-      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', title_en: 'Very Content & Productive', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', desc_en: 'Fulfilling, stable, with many enriching moments.', bg: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800' },
-      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', title_en: 'Great & Driven', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', desc_en: 'Outstanding mood, strong connection to yourself or others.', bg: 'bg-teal-100 dark:bg-teal-950/80 text-teal-900 dark:text-teal-200 border border-teal-300 dark:border-teal-800' },
-      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', title_en: 'Extraordinary / Flow State', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', desc_en: 'An absolute highlight day filled with joy, gratitude, and clarity.', bg: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700' }
+      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', title_en: 'Crisis / Acute Distress', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', desc_en: 'Extremely distressing, barely bearable. Please rest and seek support.', bg: 'bg-[#F7EBEB] dark:bg-[#2A1D1D] text-stone-900 dark:text-stone-100 border border-[#E8C8C8] dark:border-[#523333]' },
+      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', title_en: 'Very Down / Exhausted', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', desc_en: 'Heavy emotional burden, grief or severe exhaustion.', bg: 'bg-[#FBF0EE] dark:bg-[#251A19] text-stone-900 dark:text-stone-100 border border-[#EED7D2] dark:border-[#462F2C]' },
+      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', title_en: 'Low & Drained', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', desc_en: 'Everything felt difficult, low motivation or persistent worries.', bg: 'bg-[#FDF3EA] dark:bg-[#271E18] text-stone-900 dark:text-stone-100 border border-[#F2DAC6] dark:border-[#4B3727]' },
+      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', title_en: 'Dissatisfied / Tense', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', desc_en: 'A challenging day with frustrations or inner restlessness.', bg: 'bg-[#FAF5EE] dark:bg-[#231F1B] text-stone-900 dark:text-stone-100 border border-[#ECE0D0] dark:border-[#3D332A]' },
+      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', title_en: 'Average / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', desc_en: 'Neither particularly good nor bad. A solid, normal day.', bg: 'bg-[#F5F4F0] dark:bg-[#1E1C1A] text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800' },
+      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', title_en: 'Pretty Okay / Mildly Positive', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', desc_en: 'Mostly alright with a few pleasant moments.', bg: 'bg-[#F2F6F3] dark:bg-[#1B211E] text-stone-900 dark:text-stone-100 border border-[#D5E3DB] dark:border-[#2C3B34]' },
+      7: { emoji: '😊', title: 'Gut & Ausgeglichen', title_en: 'Good & Balanced', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', desc_en: 'Stable day with positive baseline mood and good energy.', bg: 'bg-[#EDF4F0] dark:bg-[#19231E] text-stone-900 dark:text-stone-100 border border-[#C6DDD1] dark:border-[#283E34]' },
+      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', title_en: 'Very Content & Productive', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', desc_en: 'Fulfilling, stable, with many enriching moments.', bg: 'bg-[#E8F2EC] dark:bg-[#17251E] text-stone-900 dark:text-stone-100 border border-[#B9D7C7] dark:border-[#254234]' },
+      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', title_en: 'Great & Driven', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', desc_en: 'Outstanding mood, strong connection to yourself or others.', bg: 'bg-[#E2EFE7] dark:bg-[#15271E] text-stone-900 dark:text-stone-100 border border-[#ACD1BD] dark:border-[#214633]' },
+      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', title_en: 'Extraordinary / Flow State', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', desc_en: 'An absolute highlight day filled with joy, gratitude, and clarity.', bg: 'bg-[#FBF4E7] dark:bg-[#2A2317] text-stone-900 dark:text-stone-100 border border-[#EAD4AB] dark:border-[#544324]' }
     };
 
     const PLEASANT_EMOTIONS = [
@@ -3217,22 +3250,22 @@
       const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       if (mode === 'schema') {
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300';
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
         titleEl.innerText = 'Schema-Memo';
         subTitleEl.innerText = t.brandSubtitle;
         headerNewBtnText.innerText = t.headerNewMemo;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForSchema();
         switchView(targetView || 'edit');
       } else {
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-300';
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
         titleEl.innerText = 'Daily Diary & Neuro';
         subTitleEl.innerText = t.diarySubtitle;
         headerNewBtnText.innerText = t.headerNewCheckin;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
+        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForDiary();
         switchView(targetView || 'diary-entry');
@@ -3258,33 +3291,33 @@
       const memos = getStoredMemos();
       const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
-        <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-edit" type="button" onclick="switchView('edit')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabEdit}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabEdit}</span>
         </button>
 
-        <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-sheet" type="button" onclick="switchView('sheet')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabSheet}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabSheet}</span>
         </button>
 
-        <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+        <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-sky-600 text-white text-[9px] font-bold flex items-center justify-center">${memos.length}</span>
+            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${memos.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabMemos}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabMemos}</span>
         </button>
 
-        <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-help" type="button" onclick="switchView('help')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabHelp}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabHelp}</span>
         </button>
       `;
     }
@@ -3295,26 +3328,26 @@
       const diary = getStoredDiaryEntries();
       const t = I18N[appSettings.language || 'de'] || I18N.de;
       nav.innerHTML = `
-        <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-diary-entry" type="button" onclick="switchView('diary-entry')" class="bottom-nav-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabCheckin}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabCheckin}</span>
         </button>
 
-        <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition relative">
+        <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-600 text-white text-[9px] font-bold flex items-center justify-center">${diary.length}</span>
+            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${diary.length}</span>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabHistory}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabHistory}</span>
         </button>
 
-        <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 transition">
+        <button id="nav-btn-diary-stats" type="button" onclick="switchView('diary-stats')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">${t.tabTrends}</span>
+          <span class="text-[11px] font-medium tracking-tight">${t.tabTrends}</span>
         </button>
       `;
     }
@@ -4384,6 +4417,17 @@
           } else {
             label.innerText = dayStr;
           }
+        }
+        const greetingEl = document.getElementById('diary-editorial-greeting');
+        if (greetingEl) {
+          const hour = new Date().getHours();
+          let greeting = '';
+          if (isEn) {
+            greeting = hour < 12 ? 'Good morning' : (hour < 18 ? 'Good afternoon' : 'Good evening');
+          } else {
+            greeting = hour < 12 ? 'Guten Morgen' : (hour < 18 ? 'Guten Tag' : 'Guten Abend');
+          }
+          greetingEl.innerText = greeting;
         }
       } catch (e) {}
     }
@@ -5956,11 +6000,11 @@
     function setDiaryQuickFilter(qfKey) {
       activeDiaryQuickFilter = qfKey;
       document.querySelectorAll('.qf-btn').forEach(btn => {
-        btn.className = 'qf-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition';
+        btn.className = 'qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition';
       });
       const activeBtn = document.getElementById('qf-' + qfKey);
       if (activeBtn) {
-        activeBtn.className = 'qf-btn active text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold transition';
+        activeBtn.className = 'qf-btn active text-xs px-3 py-1 rounded-full border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 font-medium transition shadow-xs';
       }
       renderDiaryEntriesList();
     }
@@ -5980,7 +6024,7 @@
 
       const sorted = Object.keys(folders).sort().reverse();
       let html = `
-        <button type="button" onclick="setDiaryFolder('all')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+        <button type="button" onclick="setDiaryFolder('all')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
           ${isEn ? 'All' : 'Alle'} (${entries.length})
         </button>
       `;
@@ -5990,7 +6034,7 @@
         const dObj = new Date(parseInt(y), parseInt(m) - 1, 1);
         const label = dObj.toLocaleDateString(isEn ? 'en-US' : 'de-DE', { month: 'short', year: 'numeric' });
         html += `
-          <button type="button" onclick="setDiaryFolder('${key}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+          <button type="button" onclick="setDiaryFolder('${key}')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
             ${label} (${folders[key]})
           </button>
         `;
@@ -6397,9 +6441,9 @@
       document.querySelectorAll('.stats-time-btn').forEach(btn => {
         const d = btn.getAttribute('data-days');
         if (d == days) {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition active bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 shadow-xs';
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs';
         } else {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 transition';
+          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition';
         }
       });
       renderStatsView();
@@ -6568,24 +6612,24 @@
       container.innerHTML = `
         <svg viewBox="0 0 ${w} ${h}" class="w-full h-full overflow-hidden block">
           <!-- Horizontal Grid Lines -->
-          <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">10</text>
+          <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">10</text>
 
-          <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + innerH / 2 + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">5</text>
+          <line x1="${padL}" y1="${padT + innerH / 2}" x2="${w - padR}" y2="${padT + innerH / 2}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + innerH / 2 + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">5</text>
 
-          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#94a3b8" stroke-dasharray="2 3" stroke-opacity="0.3"/>
-          <text x="${padL - 4}" y="${padT + innerH + 3}" fill="#94a3b8" font-size="9" text-anchor="end" font-weight="600">1</text>
+          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#a8a29e" stroke-dasharray="2 3" stroke-opacity="0.25"/>
+          <text x="${padL - 4}" y="${padT + innerH + 3}" fill="#a8a29e" font-size="9" text-anchor="end" font-weight="600">1</text>
 
           <!-- Polylines -->
-          <polyline points="${polyMood}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="${polyFocus}" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${polyMood}" fill="none" stroke="#4A7264" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${polyFocus}" fill="none" stroke="#C27838" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- Circles for Mood -->
           ${moodPoints.map((p, idx) => `
             <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'Mood' : 'Stimmung'} ${p.val}/10')">
-              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
-              <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#64748b" font-size="8.5" text-anchor="middle" font-weight="500">
+              <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#FAF9F5" stroke="#4A7264" stroke-width="2"/>
+              <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#78716c" font-size="8.5" text-anchor="middle" font-weight="500">
                 ${p.date ? p.date.substring(8, 10) + '.' : ''}
               </text>
             </g>
@@ -6593,7 +6637,7 @@
 
           <!-- Circles for Focus -->
           ${focusPoints.map((p, idx) => `
-            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'ADHD Focus' : 'ADHS-Fokus'} ${p.val}/10')"/>
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#FAF9F5" stroke="#C27838" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'ADHD Focus' : 'ADHS-Fokus'} ${p.val}/10')"/>
           `).join('')}
         </svg>
       `;
@@ -6625,11 +6669,11 @@
         const pct = item.count > 0 ? (avg / 10) * 100 : 0;
         return `
           <div class="flex items-center gap-2 text-xs">
-            <span class="w-7 font-bold text-slate-600 dark:text-slate-400">${dayName}</span>
-            <div class="flex-1 bg-slate-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden flex">
-              <div class="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            <span class="w-7 font-serif font-semibold text-stone-600 dark:text-stone-400">${dayName}</span>
+            <div class="flex-1 bg-stone-200/70 dark:bg-stone-800 h-2.5 rounded-full overflow-hidden flex">
+              <div class="bg-[#4A7264] dark:bg-[#6B9A88] rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
-            <span class="w-10 text-right font-bold text-slate-700 dark:text-slate-300">${item.count > 0 ? avg : '-'}</span>
+            <span class="w-10 text-right font-serif font-medium text-stone-700 dark:text-stone-300">${item.count > 0 ? avg : '-'}</span>
           </div>
         `;
       }).join('');
@@ -6649,7 +6693,7 @@
 
       const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
       if (sorted.length === 0) {
-        container.innerHTML = `<div class="text-xs text-slate-400 italic py-4">${isEn ? 'No emotions recorded yet.' : 'Noch keine Emotionen erfasst.'}</div>`;
+        container.innerHTML = `<div class="text-xs text-stone-400 italic py-4">${isEn ? 'No emotions recorded yet.' : 'Noch keine Emotionen erfasst.'}</div>`;
         return;
       }
 
@@ -6661,11 +6705,11 @@
         return `
           <div class="space-y-1 text-xs">
             <div class="flex justify-between items-center font-medium">
-              <span class="text-slate-800 dark:text-slate-200 font-semibold">${escapeHtml(displayEmo)}</span>
-              <span class="text-slate-500">${count}x</span>
+              <span class="font-serif text-stone-800 dark:text-stone-200 font-medium">${escapeHtml(displayEmo)}</span>
+              <span class="text-stone-500 text-[11px]">${count}x</span>
             </div>
-            <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden flex">
-              <div class="${isPleasant ? 'bg-emerald-500' : 'bg-amber-500'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            <div class="w-full bg-stone-200/70 dark:bg-stone-800 h-2 rounded-full overflow-hidden flex">
+              <div class="${isPleasant ? 'bg-[#4A7264] dark:bg-[#6B9A88]' : 'bg-[#C27838] dark:bg-[#D98E4E]'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
           </div>
         `;
@@ -6782,7 +6826,7 @@
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=23').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=24').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

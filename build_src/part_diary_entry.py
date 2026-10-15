@@ -9,25 +9,28 @@ def get_diary_entry_view_html():
     <div id="view-diary-entry" class="hidden space-y-2.5">
 
       <!-- TOP CONTROL CARD: DATE, VORTAG & FOCUS-NAV -->
-      <section class="shadcn-card p-2.5 sm:p-3 space-y-2">
+      <section class="shadcn-card p-3 sm:p-4 space-y-2.5">
         
-        <!-- Row 1: Check-in Status & Actions -->
-        <div class="flex items-center justify-between pb-1.5 border-b border-slate-100 dark:border-slate-800 gap-2">
-          <div class="flex items-center gap-1.5 min-w-0">
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0" data-i18n="diaryPillCheckin">
-              Check-in
-            </span>
-            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate" data-i18n="diaryCurrentDayInitial">Heute</span>
+        <!-- Row 1: Editorial Greeting, Check-in Status & Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800 gap-2">
+          <div class="min-w-0">
+            <div id="diary-editorial-greeting" class="font-serif italic text-xs sm:text-sm text-stone-500 dark:text-stone-400">Guten Tag · Nimm dir einen Moment zum Innehalten.</div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#4A7264]/10 text-[#385E50] dark:bg-[#4A7264]/20 dark:text-[#A1C9B9] shrink-0" data-i18n="diaryPillCheckin">
+                Check-in
+              </span>
+              <h2 id="diary-current-day-label" class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCurrentDayInitial">Heute</h2>
+            </div>
           </div>
 
-          <div class="flex items-center gap-1.5 shrink-0">
+          <div class="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
             <!-- Quick routine copy from yesterday -->
-            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-bold px-2 py-1 rounded-lg border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 hover:bg-sky-100 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag" data-i18n-title="diaryVortagTooltip">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <button type="button" onclick="copyRoutineFromPreviousDay()" class="text-[11px] font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition flex items-center gap-1 shadow-xs" title="Kopiert Medikation & Ziele vom Vortag" data-i18n-title="diaryVortagTooltip">
+              <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               <span data-i18n="quickYesterday">Vortag</span>
             </button>
 
-            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-semibold px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition shadow-xs" title="Zurücksetzen" data-i18n-title="diaryResetTooltip">
+            <button type="button" onclick="resetDiaryFormWithConfirm()" class="text-[11px] font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition shadow-xs" title="Zurücksetzen" data-i18n-title="diaryResetTooltip">
               <span data-i18n="quickReset">Leeren</span>
             </button>
           </div>
@@ -35,37 +38,37 @@ def get_diary_entry_view_html():
 
         <!-- Row 2: Date Selector & Accordion Toggle -->
         <div class="flex flex-wrap items-center justify-between gap-2 pt-0.5">
-          <div class="flex items-center gap-1.5 min-w-0">
-            <label for="input-diary-date" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0" id="label-diary-date" data-i18n="labelDiaryDate">Datum:</label>
-            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-800 dark:text-slate-200 font-semibold focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-2 min-w-0">
+            <label for="input-diary-date" class="text-[11px] font-semibold text-stone-500 uppercase tracking-wider shrink-0" id="label-diary-date" data-i18n="labelDiaryDate">Datum:</label>
+            <input type="date" id="input-diary-date" onchange="updateDiaryDateDisplay()" class="bg-stone-100 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 rounded-lg px-2.5 py-1 text-xs text-stone-800 dark:text-stone-200 font-medium focus:outline-none cursor-pointer">
           </div>
 
           <div class="flex items-center gap-1.5 shrink-0">
             <!-- Quick Accordion Toggle -->
-            <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen" data-i18n-title="diaryToggleAllTooltip">
+            <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen" data-i18n-title="diaryToggleAllTooltip">
               <span id="label-toggle-all-cards" data-i18n="quickCollapse">⤓ Zuklappen</span>
             </button>
           </div>
         </div>
 
         <!-- Row 3: Section Focus Navigation Bar (Smooth swipe on mobile) -->
-        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-2.5 py-1 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition shrink-0 text-xs" data-i18n="filterAll">
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-stone-100 dark:border-stone-800">
+          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-3 py-1 rounded-full bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 font-medium transition shrink-0 text-xs shadow-xs" data-i18n="filterAll">
             Alles
           </button>
-          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMood">
+          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMood">
             Mood
           </button>
-          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMeds">
+          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMeds">
             Medis
           </button>
-          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterVital">
+          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterVital">
             Vitales
           </button>
-          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterAdhs">
+          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterAdhs">
             ADHS & Steps
           </button>
-          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition shrink-0 text-xs" data-i18n="filterMind">
+          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMind">
             Journal
           </button>
         </div>
@@ -75,20 +78,20 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
       <!-- ======================================================== -->
-      <section id="card-diary-mood" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mood" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mood')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard1Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard1Title">
               1. Gemüt, Energie & Gefühle
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mood" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
+            <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               8/10 · Gut
             </span>
-            <svg id="chevron-mood" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mood" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -192,20 +195,20 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 2: MEDIKATION, WIRKUNG & REBOUND                     -->
       <!-- ======================================================== -->
-      <section id="card-diary-meds" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-meds" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('meds')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard2Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard2Title">
               2. Medikation & Wirkung
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-meds" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-950/70 text-violet-700 dark:text-violet-300">
+            <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 erfasst
             </span>
-            <svg id="chevron-meds" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-meds" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -299,20 +302,20 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 3: VITAL-HUB: ESSEN, TRINKEN & SCHLAF                 -->
       <!-- ======================================================== -->
-      <section id="card-diary-vital" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-vital" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('vital')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard3Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard3Title">
               3. Vital-Hub: Mahlzeiten, Trinken & Schlaf
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-vital" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950/70 text-sky-800 dark:text-sky-300">
+            <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 ml · 7.5h
             </span>
-            <svg id="chevron-vital" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-vital" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -496,20 +499,20 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 4: NEURO & BODY: ADHS, FOKUS & SCHRITTE              -->
       <!-- ======================================================== -->
-      <section id="card-diary-adhs" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-adhs" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('adhs')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard4Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard4Title">
               4. Neuro & Body: ADHS, Fokus & Schritte
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-adhs" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300">
+            <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               Fokus 7/10 · 0 Steps
             </span>
-            <svg id="chevron-adhs" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-adhs" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -649,20 +652,20 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 5: JOURNAL, 3 POSITIVE DINGE & SPEICHERN             -->
       <!-- ======================================================== -->
-      <section id="card-diary-mind" class="checkin-card shadcn-card p-2.5 sm:p-3.5 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mind" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mind')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="diaryCard5Title">
+            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard5Title">
               5. Journal, 3 Positive Dinge & Notizen
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mind" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
+            <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 / 3 Positiv
             </span>
-            <svg id="chevron-mind" class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mind" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
@@ -728,11 +731,11 @@ def get_diary_entry_view_html():
           </div>
 
           <!-- ACTION FOOTER: SPEICHERN BUTTON -->
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
-            <div class="text-[10px] text-slate-400 flex items-center gap-1">
+          <div class="pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-2">
+            <div class="text-[10px] text-stone-400 flex items-center gap-1">
               <span data-i18n="privacyNote">100% lokal & privat</span>
             </div>
-            <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5">
+            <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
               <span data-i18n="saveEntry">Tages-Eintrag speichern</span>
             </button>
@@ -743,23 +746,23 @@ def get_diary_entry_view_html():
 
       <!-- Global Fallback Save Button (shown if Card 5 is hidden but at least one card is visible) -->
       <div id="diary-fallback-save-bar" class="hidden pt-2 flex items-center justify-between gap-2">
-        <div class="text-[10px] text-slate-400 flex items-center gap-1">
+        <div class="text-[10px] text-stone-400 flex items-center gap-1">
           <span data-i18n="privacyNote">100% lokal & privat</span>
         </div>
-        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-1.5">
+        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span id="label-fallback-save-btn" data-i18n="saveEntry">Tages-Eintrag speichern</span>
         </button>
       </div>
 
       <!-- ALL MODULES DISABLED NOTICE -->
-      <div id="diary-all-disabled-notice" class="hidden p-6 rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 text-center space-y-3 bg-slate-50/50 dark:bg-slate-900/50 my-4">
-        <div class="w-12 h-12 mx-auto rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+      <div id="diary-all-disabled-notice" class="hidden p-6 rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 text-center space-y-3 bg-stone-100/50 dark:bg-stone-900/50 my-4">
+        <div class="w-12 h-12 mx-auto rounded-full bg-stone-200/60 dark:bg-stone-800 flex items-center justify-center text-stone-500">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h3 class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-200" id="all-disabled-title" data-i18n="allDisabledTitle">Alle Tracking-Module sind deaktiviert</h3>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto" id="all-disabled-desc" data-i18n="allDisabledDesc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
-        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-xs transition inline-flex items-center gap-1.5">
+        <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-800 dark:text-stone-200" id="all-disabled-title" data-i18n="allDisabledTitle">Alle Tracking-Module sind deaktiviert</h3>
+        <p class="text-xs text-stone-500 max-w-sm mx-auto" id="all-disabled-desc" data-i18n="allDisabledDesc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
+        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-full bg-[#4A7264] hover:bg-[#3D5F53] text-white font-medium text-xs shadow-xs transition inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span id="all-disabled-btn" data-i18n="allDisabledBtn">Module anpassen</span>
         </button>

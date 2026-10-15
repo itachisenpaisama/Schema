@@ -19,6 +19,30 @@ def get_head_and_styles():
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
 
+  <!-- Immediate Theme Initialization to prevent white flash / theme loss on restart -->
+  <script>
+    (function() {
+      try {
+        var rawSettings = localStorage.getItem('schema_settings_v1');
+        var theme = 'auto';
+        if (rawSettings) {
+          var parsed = JSON.parse(rawSettings);
+          if (parsed && parsed.theme) theme = parsed.theme;
+        }
+        if (theme === 'auto') {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'dark' || legacy === 'light') theme = legacy;
+        }
+        var isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 

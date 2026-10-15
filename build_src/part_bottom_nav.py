@@ -169,7 +169,7 @@ def get_bottom_nav_and_toast():
                 <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                 <span class="text-[11px]" data-i18n="themeDark">Dunkel</span>
               </button>
-              <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-1">
+              <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-center transition flex flex-col items-center gap-1">
                 <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 <span class="text-[11px]" data-i18n="themeAuto">System</span>
               </button>
@@ -201,8 +201,9 @@ def get_bottom_nav_and_toast():
               <div class="flex items-center justify-between gap-2 pt-1">
                 <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view" data-i18n="labelStartView">Startansicht beim Öffnen:</span>
                 <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
-                  <option value="schema" data-i18n="navSchema">Schema-Memo</option>
-                  <option value="diary" data-i18n="navDiary">Daily Diary</option>
+                  <option value="diary" data-i18n="startViewDiary">Daily Diary & Tracker</option>
+                  <option value="schema" data-i18n="startViewSchema">Schema-Memo</option>
+                  <option value="last" data-i18n="startViewLast">Zuletzt geöffnet (Auto-Merken)</option>
                 </select>
               </div>
             </div>

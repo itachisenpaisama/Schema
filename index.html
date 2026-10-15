@@ -16,6 +16,30 @@
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
 
+  <!-- Immediate Theme Initialization to prevent white flash / theme loss on restart -->
+  <script>
+    (function() {
+      try {
+        var rawSettings = localStorage.getItem('schema_settings_v1');
+        var theme = 'auto';
+        if (rawSettings) {
+          var parsed = JSON.parse(rawSettings);
+          if (parsed && parsed.theme) theme = parsed.theme;
+        }
+        if (theme === 'auto') {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'dark' || legacy === 'light') theme = legacy;
+        }
+        var isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -2046,7 +2070,7 @@
                 <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                 <span class="text-[11px]" data-i18n="themeDark">Dunkel</span>
               </button>
-              <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-1">
+              <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-center transition flex flex-col items-center gap-1">
                 <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 <span class="text-[11px]" data-i18n="themeAuto">System</span>
               </button>
@@ -2078,8 +2102,9 @@
               <div class="flex items-center justify-between gap-2 pt-1">
                 <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view" data-i18n="labelStartView">Startansicht beim Öffnen:</span>
                 <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
-                  <option value="schema" data-i18n="navSchema">Schema-Memo</option>
-                  <option value="diary" data-i18n="navDiary">Daily Diary</option>
+                  <option value="diary" data-i18n="startViewDiary">Daily Diary & Tracker</option>
+                  <option value="schema" data-i18n="startViewSchema">Schema-Memo</option>
+                  <option value="last" data-i18n="startViewLast">Zuletzt geöffnet (Auto-Merken)</option>
                 </select>
               </div>
             </div>
@@ -2135,6 +2160,7 @@
     const STORAGE_KEY_MEMOS = 'schema_therapy_memos_v1';
     const STORAGE_KEY_DIARY = 'schema_daily_diary_v1';
     const STORAGE_KEY_MODE = 'schema_app_active_mode';
+    const STORAGE_KEY_VIEW = 'schema_app_active_view';
     const STORAGE_KEY_SETTINGS = 'schema_settings_v1';
 
     // ==========================================
@@ -2163,7 +2189,7 @@
       stepsGoal: 10000,
       waterGoal: 2500,
       compactMode: false,
-      startView: 'schema', // 'schema' | 'diary'
+      startView: 'last',   // 'last' | 'diary' | 'schema'
       features: {
         'mood': true,
         'emotions': true,
@@ -2527,7 +2553,10 @@
         statsKpiSleepQualDefault: '-- Qualität',
         statsKpiStepsTotalDefault: '0 Schritte gesamt',
         statsKpiTrendDefault: 'Mehr Daten nötig',
-        statsInsightDefault: 'Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.'
+        statsInsightDefault: 'Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.',
+        startViewDiary: 'Daily Diary & Tracker',
+        startViewSchema: 'Schema-Memo',
+        startViewLast: 'Zuletzt geöffnet (Auto-Merken)'
       },
       en: {
         brandSubtitle: 'By J. Young · Schema Therapy',
@@ -2856,7 +2885,10 @@
         statsKpiSleepQualDefault: '-- Quality',
         statsKpiStepsTotalDefault: '0 total steps',
         statsKpiTrendDefault: 'More data needed',
-        statsInsightDefault: 'Log your entries regularly so the app automatically discovers patterns between sleep duration, medication, activity, and focus.'
+        statsInsightDefault: 'Log your entries regularly so the app automatically discovers patterns between sleep duration, medication, activity, and focus.',
+        startViewDiary: 'Daily Diary & Tracker',
+        startViewSchema: 'Schema-Memo',
+        startViewLast: 'Last opened (Auto-restore)'
       }
     };
 
@@ -2909,6 +2941,7 @@
     }
 
     let currentAppMode = 'schema'; // 'schema' | 'diary'
+    let currentView = 'edit';
     let currentMemoId = null;
     let isBlankMode = false;
     let currentSheetFont = 'kalam-blue';
@@ -3059,8 +3092,30 @@
       updateCardSummaryBadges();
       applyDiaryFeatureVisibility();
       
-      const savedMode = localStorage.getItem(STORAGE_KEY_MODE) || (appSettings.startView || 'schema');
-      switchAppMode(savedMode, false);
+      // Determine startup mode & view based on user settings
+      let targetMode = 'schema';
+      let targetView = null;
+      if (appSettings.startView === 'diary') {
+        targetMode = 'diary';
+        targetView = 'diary-entry';
+      } else if (appSettings.startView === 'schema') {
+        targetMode = 'schema';
+        targetView = 'edit';
+      } else {
+        // 'last' or auto: restore previously active mode and view
+        targetMode = localStorage.getItem(STORAGE_KEY_MODE) || 'schema';
+        const lastView = localStorage.getItem(STORAGE_KEY_VIEW);
+        const schemaViews = ['edit', 'sheet', 'archive', 'help'];
+        const diaryViews = ['diary-entry', 'diary-list', 'diary-stats'];
+        if (targetMode === 'diary' && diaryViews.includes(lastView)) {
+          targetView = lastView;
+        } else if (targetMode === 'schema' && schemaViews.includes(lastView)) {
+          targetView = lastView;
+        } else {
+          targetView = (targetMode === 'diary') ? 'diary-entry' : 'edit';
+        }
+      }
+      switchAppMode(targetMode, false, targetView);
 
       if (appSettings.compactMode) {
         ['mood', 'meds', 'vital', 'adhs', 'mind'].forEach(k => {
@@ -3096,12 +3151,9 @@
     });
 
     // Theme Management
-    function initTheme() {
-      if (appSettings && appSettings.theme && appSettings.theme !== 'auto') {
-        setAppThemeSetting(appSettings.theme);
-        return;
-      }
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    function applyTheme(theme) {
+      const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) {
         document.documentElement.classList.add('dark');
         document.getElementById('theme-icon-sun')?.classList.remove('hidden');
         document.getElementById('theme-icon-moon')?.classList.add('hidden');
@@ -3110,14 +3162,29 @@
         document.getElementById('theme-icon-sun')?.classList.add('hidden');
         document.getElementById('theme-icon-moon')?.classList.remove('hidden');
       }
+      updateThemeButtonsUI(theme);
+    }
+
+    function initTheme() {
+      const savedTheme = (appSettings && appSettings.theme) ? appSettings.theme : (localStorage.getItem('theme') || 'auto');
+      applyTheme(savedTheme);
+    }
+
+    function setAppThemeSetting(theme, showToastNotification = true) {
+      appSettings.theme = theme;
+      saveAppSettings();
+      localStorage.setItem('theme', theme);
+      applyTheme(theme);
+      if (showToastNotification) {
+        const isDe = (appSettings.language || 'de') === 'de';
+        showToast(isDe ? 'Design angepasst' : 'Theme updated');
+      }
     }
 
     function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-        setAppThemeSetting('light');
-      } else {
-        setAppThemeSetting('dark');
-      }
+      const currentIsDark = document.documentElement.classList.contains('dark');
+      const nextTheme = currentIsDark ? 'light' : 'dark';
+      setAppThemeSetting(nextTheme, true);
     }
 
     function initDefaultDates() {
@@ -3135,7 +3202,7 @@
     // ==========================================
     // PRIMARY MODE SWITCHER
     // ==========================================
-    function switchAppMode(mode, doScroll = true) {
+    function switchAppMode(mode, doScroll = true, targetView = null) {
       currentAppMode = mode;
       localStorage.setItem(STORAGE_KEY_MODE, mode);
 
@@ -3158,7 +3225,7 @@
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-sky-500/20';
 
         renderBottomNavForSchema();
-        switchView('edit');
+        switchView(targetView || 'edit');
       } else {
         btnDiary.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-300';
         btnSchema.className = 'flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
@@ -3168,7 +3235,7 @@
         logoIcon.className = 'w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20';
 
         renderBottomNavForDiary();
-        switchView('diary-entry');
+        switchView(targetView || 'diary-entry');
       }
 
       if (doScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3293,7 +3360,7 @@
       if (setCompact) setCompact.checked = !!appSettings.compactMode;
 
       const setStart = document.getElementById('setting-start-view');
-      if (setStart) setStart.value = appSettings.startView || 'schema';
+      if (setStart) setStart.value = appSettings.startView || 'last';
 
       // Apply theme setting buttons
       updateThemeButtonsUI(appSettings.theme || 'auto');
@@ -3470,36 +3537,6 @@
       showToast(lang === 'de' ? 'Sprache auf Deutsch gestellt' : 'Language set to English');
     }
 
-    function setAppThemeSetting(theme) {
-      appSettings.theme = theme;
-      saveAppSettings();
-      updateThemeButtonsUI(theme);
-
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
-        document.getElementById('theme-icon-sun')?.classList.add('hidden');
-        document.getElementById('theme-icon-moon')?.classList.remove('hidden');
-      } else if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-        document.getElementById('theme-icon-sun')?.classList.remove('hidden');
-        document.getElementById('theme-icon-moon')?.classList.add('hidden');
-      } else { // auto
-        delete localStorage.theme;
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.classList.add('dark');
-          document.getElementById('theme-icon-sun')?.classList.remove('hidden');
-          document.getElementById('theme-icon-moon')?.classList.add('hidden');
-        } else {
-          document.documentElement.classList.remove('dark');
-          document.getElementById('theme-icon-sun')?.classList.add('hidden');
-          document.getElementById('theme-icon-moon')?.classList.remove('hidden');
-        }
-      }
-      showToast(appSettings.language === 'en' ? 'Theme updated' : 'Design angepasst');
-    }
-
     function updateThemeButtonsUI(activeTheme) {
       const opts = ['light', 'dark', 'auto'];
       opts.forEach(opt => {
@@ -3544,6 +3581,13 @@
 
       if (startInput) {
         appSettings.startView = startInput.value;
+        if (appSettings.startView === 'diary') {
+          localStorage.setItem(STORAGE_KEY_MODE, 'diary');
+          localStorage.setItem(STORAGE_KEY_VIEW, 'diary-entry');
+        } else if (appSettings.startView === 'schema') {
+          localStorage.setItem(STORAGE_KEY_MODE, 'schema');
+          localStorage.setItem(STORAGE_KEY_VIEW, 'edit');
+        }
       }
 
       saveAppSettings();
@@ -3756,6 +3800,22 @@
     function openSettingsModal() {
       const modal = document.getElementById('settings-modal');
       if (!modal) return;
+
+      const setStepsGoal = document.getElementById('setting-steps-goal');
+      if (setStepsGoal) setStepsGoal.value = appSettings.stepsGoal || 10000;
+      const setWaterGoal = document.getElementById('setting-water-goal');
+      if (setWaterGoal) setWaterGoal.value = appSettings.waterGoal || 2500;
+      const setCompact = document.getElementById('setting-compact-mode');
+      if (setCompact) setCompact.checked = !!appSettings.compactMode;
+      const setStart = document.getElementById('setting-start-view');
+      if (setStart) setStart.value = appSettings.startView || 'last';
+
+      const langBadge = document.getElementById('current-lang-badge');
+      if (langBadge) {
+        langBadge.textContent = (appSettings.language === 'en') ? 'English' : 'Deutsch';
+      }
+      updateThemeButtonsUI(appSettings.theme || 'auto');
+
       renderSettingsFeatureToggles();
       updateSettingsDataStats();
       modal.classList.remove('hidden');
@@ -3860,6 +3920,9 @@
     }
 
     function switchView(viewName) {
+      currentView = viewName;
+      localStorage.setItem(STORAGE_KEY_VIEW, viewName);
+
       const allViews = ['edit', 'sheet', 'archive', 'help', 'diary-entry', 'diary-list', 'diary-stats'];
       allViews.forEach(v => {
         const el = document.getElementById('view-' + v);
@@ -6719,7 +6782,7 @@
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=22').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=23').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

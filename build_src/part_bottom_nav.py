@@ -179,6 +179,22 @@ def get_bottom_nav_and_toast():
             </div>
           </div>
 
+          <!-- 2.5 FARBPROFILE (Hintergrund & Text) -->
+          <div class="p-3 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-[#FAF9F5]/60 dark:bg-[#1E1C1A]/40 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                <span id="label-setting-color-profile" data-i18n="labelSettingColorProfile">Farbprofil (Hintergrund & Text):</span>
+              </span>
+              <span id="current-profile-badge" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300">Stoic</span>
+            </div>
+            <p class="text-[11px] text-stone-500 dark:text-stone-400 leading-snug" data-i18n="colorProfileDesc">
+              Wähle aus verschiedenen beruhigenden Farbprofilen für Hintergrund, Karten, Text und Nuancen.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-1" id="color-profiles-container">
+              <!-- Dynamically populated via renderColorProfilesUI() -->
+            </div>
+          </div>
+
           <!-- 3. TAGESZIELE & START-ANSICHT -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2.5">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">

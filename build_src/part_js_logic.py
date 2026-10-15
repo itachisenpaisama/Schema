@@ -35,6 +35,7 @@ def get_javascript_code():
     const DEFAULT_SETTINGS = {
       language: 'de',      // 'de' | 'en'
       theme: 'auto',       // 'light' | 'dark' | 'auto'
+      colorProfile: 'stoic', // 'stoic' | 'sepia' | 'sage' | 'nordic' | 'terracotta' | 'lavender' | 'matcha' | 'rose' | 'obsidian' | 'eink'
       stepsGoal: 10000,
       waterGoal: 2500,
       compactMode: false,
@@ -126,6 +127,8 @@ def get_javascript_code():
         themeLight: 'Hell',
         themeDark: 'Dunkel',
         themeAuto: 'System',
+        labelSettingColorProfile: 'Farbprofil (Hintergrund & Text):',
+        colorProfileDesc: 'Wähle aus verschiedenen beruhigenden Farbprofilen für Hintergrund, Karten, Text und Nuancen.',
         labelSettingTargets: 'Tagesziele & Verhalten:',
         labelTargetSteps: 'Standard Schritte-Ziel:',
         labelTargetWater: 'Standard Wasser-Ziel (ml):',
@@ -297,6 +300,11 @@ def get_javascript_code():
         sleepQualOpt2: '2 / 5 · Schlecht / oft aufgewacht',
         sleepQualOpt1: '1 / 5 · Erschöpft & zerschlagen',
         sleepFactorsTitle: 'Schlaf-Faktoren:',
+        napTitle: 'Power-Nap & Nervensystem-Reset:',
+        napDurationLabel: 'Dauer (Minuten):',
+        napNotesLabel: 'Art des Resets / Notiz:',
+        napNotesPlaceholder: 'z. B. Power-Nap, NSDR / Yoga Nidra, Augen zu & Ruhen...',
+        napBadgeDefault: '0 min',
         diaryCard4Title: '4. Neuro & Body: ADHS, Fokus & Schritte',
         adhsFocus: 'Fokus:',
         adhsFocusLow: 'Zerstreut',
@@ -458,6 +466,8 @@ def get_javascript_code():
         themeLight: 'Light',
         themeDark: 'Dark',
         themeAuto: 'System',
+        labelSettingColorProfile: 'Color Profile (Background & Text):',
+        colorProfileDesc: 'Choose from various calming color profiles for background, cards, text, and accents.',
         labelSettingTargets: 'Daily Goals & Behavior:',
         labelTargetSteps: 'Default Steps Goal:',
         labelTargetWater: 'Default Water Goal (ml):',
@@ -629,6 +639,11 @@ def get_javascript_code():
         sleepQualOpt2: '2 / 5 · Poor / woke up frequently',
         sleepQualOpt1: '1 / 5 · Exhausted & drained',
         sleepFactorsTitle: 'Sleep Factors:',
+        napTitle: 'Power-Nap & Nervous System Reset:',
+        napDurationLabel: 'Duration (Minutes):',
+        napNotesLabel: 'Reset Type / Notes:',
+        napNotesPlaceholder: 'e.g. Power nap, NSDR / Yoga Nidra, eyes closed rest...',
+        napBadgeDefault: '0 min',
         diaryCard4Title: '4. Neuro & Body: ADHD, Focus & Steps',
         adhsFocus: 'Focus:',
         adhsFocusLow: 'Scattered',
@@ -851,10 +866,7 @@ def get_javascript_code():
 
     const DEFAULT_MED_PRESETS = [
       { name: 'Elvanse Adult', dose: '30 mg' },
-      { name: 'Elvanse Adult', dose: '50 mg' },
-      { name: 'Elvanse Adult', dose: '70 mg' },
       { name: 'Medikinet adult', dose: '10 mg' },
-      { name: 'Medikinet adult', dose: '20 mg' },
       { name: 'Ritalin adult', dose: '10 mg' },
       { name: 'Concerta', dose: '27 mg' },
       { name: 'Attentin', dose: '5 mg' },
@@ -1012,11 +1024,13 @@ def get_javascript_code():
         document.getElementById('theme-icon-moon')?.classList.remove('hidden');
       }
       updateThemeButtonsUI(theme);
+      renderColorProfilesUI();
     }
 
     function initTheme() {
       const savedTheme = (appSettings && appSettings.theme) ? appSettings.theme : (localStorage.getItem('theme') || 'auto');
       applyTheme(savedTheme);
+      initColorProfile();
     }
 
     function setAppThemeSetting(theme, showToastNotification = true) {
@@ -1034,6 +1048,81 @@ def get_javascript_code():
       const currentIsDark = document.documentElement.classList.contains('dark');
       const nextTheme = currentIsDark ? 'light' : 'dark';
       setAppThemeSetting(nextTheme, true);
+    }
+
+    // ==========================================
+    // COLOR PROFILES SYSTEM (10 CALM PALETTES)
+    // ==========================================
+    const COLOR_PROFILES = [
+      { id: 'stoic', name_de: 'Stoic Naturpapier', name_en: 'Stoic Parchment', desc_de: 'Warmes Papier & tiefes Anthrazit (Standard)', desc_en: 'Warm natural paper & deep ink (Default)', lightBg: '#FAF9F5', darkBg: '#121110', text: '#1C1917', accent: '#4A7264' },
+      { id: 'sepia', name_de: 'Warm Sepia', name_en: 'Warm Sepia', desc_de: 'Vintage Notizbuch & warmer Kaffee', desc_en: 'Vintage journal & warm roasted coffee', lightBg: '#F5EFE6', darkBg: '#1A1410', text: '#2A1F18', accent: '#965B32' },
+      { id: 'sage', name_de: 'Wald & Salbei', name_en: 'Forest & Sage', desc_de: 'Beruhigende Kräuter- & Waldgrün-Nuancen', desc_en: 'Calming herbal & evergreen tones', lightBg: '#EFF4F1', darkBg: '#0E1612', text: '#16241C', accent: '#33614C' },
+      { id: 'nordic', name_de: 'Nordisch Schiefer', name_en: 'Nordic Slate', desc_de: 'Kühle, klare arktische Schiefertöne', desc_en: 'Cool, focused arctic slate', lightBg: '#EEF2F6', darkBg: '#0D131A', text: '#16202B', accent: '#325B7E' },
+      { id: 'terracotta', name_de: 'Terrakotta & Sand', name_en: 'Terracotta & Sand', desc_de: 'Warme Wüstenerde & sanfter Ton', desc_en: 'Warm desert clay & soft sand', lightBg: '#F8F2EC', darkBg: '#19110B', text: '#2D1E16', accent: '#A8512C' },
+      { id: 'lavender', name_de: 'Lavendel Dämmerung', name_en: 'Lavender Dusk', desc_de: 'Sanftes Abendlicht & Iris zur Entlastung', desc_en: 'Gentle twilight iris & evening violet', lightBg: '#F4F1F7', darkBg: '#130E19', text: '#22192A', accent: '#634785' },
+      { id: 'matcha', name_de: 'Matcha & Creme', name_en: 'Matcha & Cream', desc_de: 'Sanfte organische Grün- und Vanilletöne', desc_en: 'Organic matcha green & warm cream', lightBg: '#F2F5EC', darkBg: '#10150C', text: '#1E2517', accent: '#4A662C' },
+      { id: 'rose', name_de: 'Rosenquarz & Puder', name_en: 'Rose Quartz', desc_de: 'Milder Rosenholz-Ton für warmes Wohlbefinden', desc_en: 'Warm rosewood & soft blush', lightBg: '#F7F1F2', darkBg: '#180D11', text: '#2A191E', accent: '#8E3E53' },
+      { id: 'obsidian', name_de: 'OLED Tiefschwarz', name_en: 'OLED Obsidian', desc_de: 'Reines Schwarz für maximale Akku-Schonung', desc_en: 'True pitch black for deep focus & battery saver', lightBg: '#F6F7F9', darkBg: '#000000', text: '#050505', accent: '#171717' },
+      { id: 'eink', name_de: 'E-Ink Reines Papier', name_en: 'E-Ink Pure Paper', desc_de: 'Monochromer Maximal-Kontrast ohne Ablenkung', desc_en: 'Monochrome maximum contrast & razor sharp', lightBg: '#FFFFFF', darkBg: '#080808', text: '#000000', accent: '#000000' }
+    ];
+
+    function setColorProfile(profileId, showToastNotification = true) {
+      if (!COLOR_PROFILES.some(p => p.id === profileId)) profileId = 'stoic';
+      appSettings.colorProfile = profileId;
+      saveAppSettings();
+      localStorage.setItem('color_profile', profileId);
+      document.documentElement.setAttribute('data-theme-profile', profileId);
+      renderColorProfilesUI();
+      if (showToastNotification) {
+        const isDe = (appSettings.language || 'de') === 'de';
+        const pObj = COLOR_PROFILES.find(p => p.id === profileId);
+        const pName = pObj ? (isDe ? pObj.name_de : pObj.name_en) : profileId;
+        showToast(isDe ? `Farbprofil: ${pName}` : `Color profile: ${pName}`);
+      }
+    }
+
+    function initColorProfile() {
+      const savedProfile = (appSettings && appSettings.colorProfile) ? appSettings.colorProfile : (localStorage.getItem('color_profile') || 'stoic');
+      setColorProfile(savedProfile, false);
+    }
+
+    function renderColorProfilesUI() {
+      const container = document.getElementById('color-profiles-container');
+      if (!container) return;
+      const current = appSettings.colorProfile || 'stoic';
+      const isDe = (appSettings.language || 'de') === 'de';
+      const isDark = document.documentElement.classList.contains('dark');
+
+      const badge = document.getElementById('current-profile-badge');
+      if (badge) {
+        const activeObj = COLOR_PROFILES.find(p => p.id === current) || COLOR_PROFILES[0];
+        badge.textContent = isDe ? activeObj.name_de : activeObj.name_en;
+      }
+
+      container.innerHTML = COLOR_PROFILES.map(p => {
+        const isSelected = p.id === current;
+        const bgPreview = isDark ? p.darkBg : p.lightBg;
+        const name = isDe ? p.name_de : p.name_en;
+        const desc = isDe ? p.desc_de : p.desc_en;
+
+        return `
+          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-stone-900 dark:border-stone-100 ring-2 ring-stone-900/15 dark:ring-stone-100/20 bg-white dark:bg-stone-800 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 bg-stone-50/70 dark:bg-stone-900/40 hover:bg-white dark:hover:bg-stone-800/60'}">
+            <div class="flex items-center justify-between gap-1 w-full">
+              <span class="font-serif font-semibold text-[11px] sm:text-xs text-stone-900 dark:text-stone-100 truncate">${escapeHtml(name)}</span>
+              ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-bold flex items-center justify-center shrink-0">✓</span>' : ''}
+            </div>
+
+            <!-- Mini Swatch Preview -->
+            <div class="flex items-center gap-1.5 p-1 rounded-lg border border-stone-200/60 dark:border-stone-700/60 w-full" style="background-color: ${bgPreview};">
+              <span class="w-3.5 h-3.5 rounded-full shrink-0 shadow-xs" style="background-color: ${p.accent};"></span>
+              <span class="text-[10px] font-serif font-bold opacity-80" style="color: ${isDark ? '#F5F3EF' : p.text};">Aa</span>
+              <span class="flex-1 h-1.5 rounded-full opacity-60" style="background-color: ${p.accent};"></span>
+            </div>
+
+            <span class="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1 leading-tight">${escapeHtml(desc)}</span>
+          </button>
+        `;
+      }).join('');
     }
 
     function initDefaultDates() {
@@ -1211,8 +1300,9 @@ def get_javascript_code():
       const setStart = document.getElementById('setting-start-view');
       if (setStart) setStart.value = appSettings.startView || 'last';
 
-      // Apply theme setting buttons
+      // Apply theme setting buttons & color profile
       updateThemeButtonsUI(appSettings.theme || 'auto');
+      initColorProfile();
 
       // Apply Language
       applyLanguageStrings();
@@ -1392,9 +1482,9 @@ def get_javascript_code():
         const el = document.getElementById(`theme-opt-${opt}`);
         if (!el) return;
         if (opt === activeTheme) {
-          el.className = 'theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-0.5 shadow-xs';
+          el.className = 'theme-choice-btn active py-2 px-2 rounded-xl border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-xs font-semibold text-stone-100 dark:text-stone-900 text-center transition flex flex-col items-center gap-0.5 shadow-xs';
         } else {
-          el.className = 'theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-center transition flex flex-col items-center gap-0.5';
+          el.className = 'theme-choice-btn py-2 px-2 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-xs font-medium text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white text-center transition flex flex-col items-center gap-0.5';
         }
       });
     }
@@ -1664,6 +1754,7 @@ def get_javascript_code():
         langBadge.textContent = (appSettings.language === 'en') ? 'English' : 'Deutsch';
       }
       updateThemeButtonsUI(appSettings.theme || 'auto');
+      renderColorProfilesUI();
 
       renderSettingsFeatureToggles();
       updateSettingsDataStats();
@@ -2808,8 +2899,10 @@ def get_javascript_code():
 
       const vitalBadge = document.getElementById('badge-summary-vital');
       const duration = document.getElementById('input-sleep-duration')?.value || '7.5';
+      const napMins = parseInt(document.getElementById('input-nap-duration')?.value) || 0;
       if (vitalBadge) {
-        vitalBadge.textContent = `${currentWaterMl} ml · ${duration}h ${isDe ? 'Schlaf' : 'Sleep'}`;
+        const napText = napMins > 0 ? ` · +${napMins}m Nap` : '';
+        vitalBadge.textContent = `${currentWaterMl} ml · ${duration}h ${isDe ? 'Schlaf' : 'Sleep'}${napText}`;
       }
 
       const adhsBadge = document.getElementById('badge-summary-adhs');
@@ -3257,6 +3350,39 @@ def get_javascript_code():
       renderSleepTagChips();
     }
 
+    function quickSetNap(mins) {
+      const inp = document.getElementById('input-nap-duration');
+      if (inp) {
+        inp.value = mins > 0 ? mins : '';
+      }
+      updateNapDisplay();
+    }
+
+    function updateNapDisplay() {
+      const inp = document.getElementById('input-nap-duration');
+      const badge = document.getElementById('nap-badge');
+      const mins = parseInt(inp?.value) || 0;
+      if (badge) {
+        if (mins > 0) {
+          badge.textContent = `${mins} min`;
+          badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-100 dark:bg-teal-950/70 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800';
+        } else {
+          badge.textContent = '0 min';
+          badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-medium bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50';
+        }
+      }
+      document.querySelectorAll('.nap-quick-btn').forEach(btn => {
+        const text = btn.textContent.trim();
+        const btnMins = parseInt(text);
+        if (mins > 0 && btnMins === mins) {
+          btn.className = 'nap-quick-btn active text-xs px-2.5 py-1 rounded-full border border-teal-500 bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 transition font-bold shadow-xs';
+        } else {
+          btn.className = 'nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium';
+        }
+      });
+      updateCardSummaryBadges();
+    }
+
     function formatTagDisplay(tag) {
       if (!tag) return '';
       const trimmed = tag.trim();
@@ -3524,6 +3650,8 @@ def get_javascript_code():
       const sleepDuration = parseFloat(document.getElementById('input-sleep-duration')?.value) || 0;
       const sleepBed = (document.getElementById('input-sleep-bedtime')?.value || '').trim();
       const sleepWake = (document.getElementById('input-sleep-waketime')?.value || '').trim();
+      const napMinutes = parseInt(document.getElementById('input-nap-duration')?.value) || 0;
+      const napNotes = (document.getElementById('input-nap-notes')?.value || '').trim();
 
       // Steps
       const steps = parseInt(document.getElementById('input-steps-count')?.value) || 0;
@@ -3572,7 +3700,9 @@ def get_javascript_code():
           bedTime: sleepBed,
           wakeTime: sleepWake,
           quality: currentSleepQuality || 4,
-          tags: Array.from(selectedSleepTags)
+          tags: Array.from(selectedSleepTags),
+          napMinutes: napMinutes,
+          napNotes: napNotes
         },
         steps: steps,
         stepGoal: stepGoal,
@@ -3671,10 +3801,13 @@ def get_javascript_code():
       if (document.getElementById('input-sleep-duration')) document.getElementById('input-sleep-duration').value = slp.durationHours || 7.5;
       if (document.getElementById('input-sleep-bedtime')) document.getElementById('input-sleep-bedtime').value = slp.bedTime || '';
       if (document.getElementById('input-sleep-waketime')) document.getElementById('input-sleep-waketime').value = slp.wakeTime || '';
+      if (document.getElementById('input-nap-duration')) document.getElementById('input-nap-duration').value = slp.napMinutes || '';
+      if (document.getElementById('input-nap-notes')) document.getElementById('input-nap-notes').value = slp.napNotes || '';
       setSleepQuality(slp.quality || 4);
       selectedSleepTags = new Set(slp.tags || []);
       renderSleepTagChips();
       updateSleepDurationDisplay();
+      updateNapDisplay();
 
       // Steps
       const stp = typeof data.steps === 'number' ? data.steps : 0;
@@ -3772,10 +3905,13 @@ def get_javascript_code():
       if (document.getElementById('input-sleep-duration')) document.getElementById('input-sleep-duration').value = 7.5;
       if (document.getElementById('input-sleep-bedtime')) document.getElementById('input-sleep-bedtime').value = '';
       if (document.getElementById('input-sleep-waketime')) document.getElementById('input-sleep-waketime').value = '';
+      if (document.getElementById('input-nap-duration')) document.getElementById('input-nap-duration').value = '';
+      if (document.getElementById('input-nap-notes')) document.getElementById('input-nap-notes').value = '';
       setSleepQuality(4);
       selectedSleepTags.clear();
       renderSleepTagChips();
       updateSleepDurationDisplay();
+      updateNapDisplay();
 
       if (document.getElementById('input-steps-count')) document.getElementById('input-steps-count').value = 0;
       selectedActivities.clear();
@@ -3982,6 +4118,12 @@ def get_javascript_code():
                 </span>
               ` : ''}
 
+              ${(slp.napMinutes && slp.napMinutes > 0) ? `
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-300 border border-teal-200/50 dark:border-teal-800/40">
+                  <span>${isEn ? 'Nap/Reset:' : 'Nap/Reset:'}</span> ${slp.napMinutes}m${slp.napNotes ? ` · ${escapeHtml(slp.napNotes)}` : ''}
+                </span>
+              ` : ''}
+
               ${steps > 0 ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/40">
                   <span>${isEn ? 'Steps:' : 'Schritte:'}</span> ${steps.toLocaleString(isEn ? 'en-US' : 'de-DE')}
@@ -4079,7 +4221,7 @@ def get_javascript_code():
             ` : ''}
 
             <!-- ADHD & Body Details -->
-            ${(adhs.notes || (item.activities && item.activities.length > 0) || (slp.tags && slp.tags.length > 0)) ? `
+            ${(adhs.notes || (item.activities && item.activities.length > 0) || (slp.tags && slp.tags.length > 0) || (slp.napMinutes && slp.napMinutes > 0) || slp.napNotes) ? `
               <div class="p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-1.5 text-xs">
                 ${(item.activities && item.activities.length > 0) ? `
                   <div class="flex items-center gap-1 flex-wrap">
@@ -4091,6 +4233,12 @@ def get_javascript_code():
                   <div class="flex items-center gap-1 flex-wrap">
                     <span class="text-slate-400 font-semibold">${isEn ? 'Sleep:' : 'Schlaf:'}</span>
                     ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold">${escapeHtml(translateTag(t))}</span>`).join('')}
+                  </div>
+                ` : ''}
+                ${(slp.napMinutes && slp.napMinutes > 0 || slp.napNotes) ? `
+                  <div class="flex items-center gap-1 flex-wrap">
+                    <span class="text-teal-600 dark:text-teal-400 font-semibold">${isEn ? 'Rest/Nap:' : 'Rest/Nap:'}</span>
+                    <span class="px-2 py-0.5 rounded-full bg-teal-100 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-[10px] font-bold">${slp.napMinutes ? `${slp.napMinutes} min` : ''}${slp.napNotes ? ` · ${escapeHtml(slp.napNotes)}` : ''}</span>
                   </div>
                 ` : ''}
                 ${adhs.notes ? `
@@ -4642,7 +4790,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=24').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=25').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

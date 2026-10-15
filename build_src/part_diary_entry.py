@@ -491,6 +491,43 @@ def get_diary_entry_view_html():
               </div>
             </div>
 
+            <!-- POWER-NAP & NERVENSYSTEM-RESET (REST) -->
+            <div class="pt-2.5 border-t border-stone-200/60 dark:border-stone-800/80 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                  <span data-i18n="napTitle">Power-Nap & Nervensystem-Reset:</span>
+                </span>
+                <span id="nap-badge" class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50">
+                  0 min
+                </span>
+              </div>
+
+              <!-- Quick Nap Chips -->
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" onclick="quickSetNap(15)" class="nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium">15m</button>
+                <button type="button" onclick="quickSetNap(20)" class="nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium">20m</button>
+                <button type="button" onclick="quickSetNap(30)" class="nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium">30m</button>
+                <button type="button" onclick="quickSetNap(45)" class="nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium">45m</button>
+                <button type="button" onclick="quickSetNap(60)" class="nap-quick-btn text-xs px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition font-medium">60m</button>
+                <button type="button" onclick="quickSetNap(0)" class="text-xs px-2 py-1 rounded-full text-stone-400 hover:text-rose-500 transition font-medium" title="Zurücksetzen">✕</button>
+              </div>
+
+              <!-- Nap Duration Number & Rest Details -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div>
+                  <label class="block text-[9px] font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napDurationLabel">Dauer (Minuten):</label>
+                  <div class="flex items-center gap-1.5">
+                    <input type="number" id="input-nap-duration" min="0" max="360" step="5" placeholder="0" oninput="updateNapDisplay()" class="shadcn-input text-xs font-medium py-1.5 flex-1 min-w-0 block">
+                    <span class="text-xs font-medium text-stone-400 shrink-0">min</span>
+                  </div>
+                </div>
+                <div class="sm:col-span-2">
+                  <label class="block text-[9px] font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napNotesLabel">Art des Resets / Notiz:</label>
+                  <input type="text" id="input-nap-notes" placeholder="z. B. Power-Nap, NSDR / Yoga Nidra, Augen zu & Ruhen..." data-i18n-placeholder="napNotesPlaceholder" class="shadcn-input text-xs font-medium py-1.5 block w-full">
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>

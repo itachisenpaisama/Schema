@@ -81,7 +81,13 @@ def get_javascript_code():
         navDiary: 'Diary & Tracker',
         headerNewMemo: 'Memo',
         headerNewCheckin: 'Check-in',
+        headerNewText: 'Neu',
+        headerNewTooltip: 'Neu anlegen',
+        pwaInstallTitle: 'Als echte App installieren',
         btnInstall: 'Installieren',
+        settingsTooltip: 'Einstellungen',
+        forceUpdateTooltip: 'App aktualisieren & Cache leeren',
+        themeToggleTooltip: 'Design umschalten',
         tabEdit: 'Eingabe',
         tabSheet: 'Blatt',
         tabMemos: 'Memos',
@@ -134,7 +140,254 @@ def get_javascript_code():
         toastBackupExported: 'Gesamt-Backup erfolgreich heruntergeladen!',
         toastBackupImported: 'Backup erfolgreich wiederhergestellt!',
         toastLanguageChanged: 'Sprache auf Deutsch gestellt',
-        toastThemeChanged: 'Design angepasst'
+        toastThemeChanged: 'Design angepasst',
+        btnExample: 'Beispiel',
+        btnPrint: 'Drucken',
+        btnBackup: 'Backup',
+        btnImport: 'Import',
+        btnExport: 'Export',
+        btnCancel: 'Abbrechen',
+        btnClose: 'Schließen',
+        btnSavePermanent: 'Dauerhaft speichern',
+        labelFilter: 'Filter:',
+        schemaReflectBanner: 'Situation reflektieren',
+        schemaLabelTitle: 'Titel des Memos',
+        schemaPlaceholderTitle: 'z. B. Konflikt im Meeting, Absage, Einsamkeit...',
+        schemaLabelDate: 'Datum',
+        schemaStep1Title: '1. Benennen des aktualisierten Gefühls',
+        schemaStep1Prompt: 'Im Augenblick fühle ich',
+        schemaStep1PromptBracket: '(Emotion)',
+        schemaPlaceholderEmotion: 'z. B. tiefe Traurigkeit, Angst vor Ablehnung und Hilflosigkeit...',
+        schemaStep1Because: 'Weil',
+        schemaStep1BecauseBracket: '(aktuelle Auslösesituation)',
+        schemaPlaceholderSituation: 'z. B. mein Partner mir heute morgen nur kurz angebunden geantwortet hat...',
+        schemaStep2Title: '2. Erkennen der aktivierten Schemata/Modi und der Bewältigung',
+        schemaStep2Prompt: 'Ich weiß, dass das wahrscheinlich mein',
+        schemaStep2PromptBracket: '(Schema/Modus)',
+        schemaStep2PromptSuffix: '... ist,',
+        schemaPlaceholderSchema: 'z. B. Verlassenheits-Schema und der Modus des verletzten Kindes...',
+        schemaStep2Childhood: 'das/den ich durch',
+        schemaStep2ChildhoodBracket: '(Kindheitssituation)',
+        schemaStep2ChildhoodSuffix: '... erlernt habe.',
+        schemaPlaceholderChildhood: 'z. B. frühere Erfahrungen, in denen Eltern emotional distanziert waren...',
+        schemaStep2Coping: 'Diese Aktivierung löst bei mir',
+        schemaStep2CopingBracket: '(altes Bewältigungsverhalten)',
+        schemaStep2CopingSuffix: '... aus.',
+        schemaPlaceholderCoping: 'z. B. innerer Rückzug, gekränktes Schweigen...',
+        schemaStep3Title: '3. Anerkennen der Dysfunktionalität / Realitätsprüfung',
+        schemaStep3Thought: 'Obwohl ich glaube',
+        schemaStep3ThoughtBracket: '(negativer Gedanke/ Innere-Eltern-Stimme)',
+        schemaPlaceholderThought: 'z. B. dass ich nichts wert bin und niemand mich wirklich mag...',
+        schemaStep3Reality: 'ist die Realität',
+        schemaStep3RealityBracket: '(Sicht des Gesunden Erwachsenen)',
+        schemaPlaceholderReality: 'z. B. eine kurze Nachricht nicht bedeutet, dass kein Interesse da ist...',
+        schemaStep3Evidence: 'Beweise für diese Realität sind:',
+        schemaPlaceholderEvidence: 'z. B. gestern haben wir noch herzlich gelacht; die Person hat viel Stress...',
+        schemaStep4Title: '4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses',
+        schemaStep4Old: 'Obwohl ich am liebsten',
+        schemaStep4OldBracket: '(altes dysfunktionales Verhalten)',
+        schemaStep4OldSuffix: '... würde,',
+        schemaPlaceholderOldBehavior: 'z. B. mich tagelang zurückgezogen habe...',
+        schemaStep4New: 'Könnte ich stattdessen',
+        schemaStep4NewBracket: '(alternative Lösungen)',
+        schemaPlaceholderNewAction: 'z. B. tief durchatmen, mir sagen \'Ich bin sicher\', und ruhig nachfragen...',
+        schemaBtnSaveSheet: 'Speichern & Blatt ansehen',
+        schemaBtnPreviewSheet: 'Blatt-Vorschau',
+        sheetBtnEdit: 'Bearbeiten',
+        sheetBtnPrint: 'Drucken / PDF',
+        sheetBtnBlank: 'Vorlage',
+        sheetFontKalamBlue: 'Handschrift Blau',
+        sheetFontCaveatBlack: 'Handschrift Schwarz',
+        sheetFontCleanSans: 'Druckschrift',
+        sheetSec1Title: '1. Benennen des aktualisierten Gefühls',
+        sheetSec1L1: 'Im Augenblick fühle ich (Emotion)',
+        sheetSec1L2: 'weil (aktuelle Auslösesituation)',
+        sheetSec2Title: '2. Erkennen der aktivierten Schemata/Modi und der Bewältigung',
+        sheetSec2L1: 'Ich weiß, dass das wahrscheinlich mein (Schema/Modus) ... ist,',
+        sheetSec2L2: 'das/den ich durch (Kindheitssituation) ... erlernt habe.',
+        sheetSec2L3: 'Diese Aktivierung löst bei mir (altes Bewältigungsverhalten) ... aus.',
+        sheetSec3Title: '3. Anerkennen der Dysfunktionalität / Realitätsprüfung',
+        sheetSec3L1: 'Obwohl ich glaube (negativer Gedanke/ Innere-Eltern-Stimme),',
+        sheetSec3L2: 'ist die Realität (Sicht des Gesunden Erwachsenen),',
+        sheetSec3L3: 'Beweise für diese Realität sind:',
+        sheetSec4Title: '4. Trennen vom alten und Einbrennen des neuen Verhaltensimpulses',
+        sheetSec4L1: 'Obwohl ich am liebsten (altes dysfunktionales Verhalten) ... würde,',
+        sheetSec4L2: 'Könnte ich stattdessen (alternative Lösungen)',
+        sheetCopyright: 'Modifiziert nach J. Young 1996/2002. Das Original ist urheberrechtlich geschützt.',
+        archiveTitle: 'Gespeicherte Schema-Memos',
+        archiveSubtitle: 'Verwalte deine reflektierten Memos und verfolge deinen Therapiefortschritt.',
+        archiveSearchPlaceholder: 'Memos nach Titel, Situation oder Schema durchsuchen...',
+        archiveEmptyTitle: 'Keine Memos gefunden',
+        archiveEmptyDesc: 'Erstelle ein neues Schema-Memo oder passe die Suche an.',
+        helpTitle: 'Schema-Therapie Spickzettel',
+        helpSubtitle: 'Kompaktes Nachschlagewerk über die 18 Schemata und Modi nach Jeffrey Young zur schnellen Orientierung während der Reflexion.',
+        helpDomain1Badge: 'Bereich 1',
+        helpDomain1Title: 'Abweisung & Trennung',
+        helpDomain1Desc: 'Verlassenheit / Instabilität, Misstrauen / Missbrauch, Emotionale Vernachlässigung, Unzulänglichkeit / Scham, Soziale Isolation.',
+        helpDomain2Badge: 'Bereich 2',
+        helpDomain2Title: 'Autonomie & Leistung',
+        helpDomain2Desc: 'Abhängigkeit / Inkompetenz, Anfälligkeit für Verletzungen oder Krankheiten, Verstrickung / Unterentwickeltes Selbst, Versagen.',
+        helpDomain3Badge: 'Bereich 3',
+        helpDomain3Title: 'Beeinträchtigte Grenzen',
+        helpDomain3Desc: 'Anspruchshaltung / Grandiosität, Ungenügende Selbstkontrolle / Selbstdisziplin.',
+        helpDomain4Badge: 'Bereich 4',
+        helpDomain4Title: 'Fremdbezogenheit',
+        helpDomain4Desc: 'Unterwerfung, Aufopferung, Streben nach Anerkennung & Bestätigung.',
+        diaryPillCheckin: 'Check-in',
+        labelDiaryDate: 'Datum:',
+        diaryCard1Title: '1. Gemüt, Energie & Gefühle',
+        diaryPromptMood: 'Wie ging es dir heute?',
+        diaryMoodGuide1: '1 = Tiefpunkt / Krise',
+        diaryMoodGuide5: '5 = Neutral',
+        diaryMoodGuide10: '10 = Hervorragend',
+        diaryPromptEnergy: 'Energielevel & Vitalität',
+        diaryEnergyGuide1: '1 = Erschöpft',
+        diaryEnergyGuide5: '5 = Normal',
+        diaryEnergyGuide10: '10 = Voll aufgeladen',
+        diaryPromptEmotions: 'Gefühle heute:',
+        diaryMultiSelectNotice: '(Mehrfachauswahl möglich)',
+        diaryMultiSelectNoticeTags: '(Mehrfachauswahl für Tags)',
+        diaryMultiSelectNoticeShort: '(Mehrfachauswahl)',
+        diaryEmotionsPleasant: 'Angenehm:',
+        diaryEmotionsChallenging: 'Fordernd:',
+        diaryEmotionNotesTitle: 'Gefühls-Reflexion:',
+        diaryCard2Title: '2. Medikation & Wirkung',
+        diaryMedsQuickSelect: 'Schnell-Auswahl (1-Klick):',
+        diaryMedsLoggedToday: 'Heute eingenommen:',
+        diaryMedsEfficacyQuestion: 'Wie haben die Medis heute gewirkt?',
+        diaryMedsEfficacyPlaceholder: 'Wirkungsbeobachtung (z. B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)...',
+        diaryMedsReboundQuestion: 'Rebound / Wirkungsende?',
+        diaryMedsReboundTimePlaceholder: 'Uhrzeit',
+        diaryMedsReboundTimeTitle: 'Rebound Uhrzeit',
+        diaryMedsReboundNotesPlaceholder: 'Symptome (z. B. Konzentrationsabfall, Müdigkeit)...',
+        medEffOptNone: '-- Wirkung auswählen (Einzelauswahl) --',
+        medEffOptOptimal: 'Optimal / Flow (fokussiert & ruhig)',
+        medEffOptGood: 'Gut & Stabil (gute Unterstützung)',
+        medEffOptWeak: 'Kaum Wirkung / Zu schwach',
+        medEffOptTooStrong: 'Zu intensiv / Überstimuliert',
+        medEffOptSideEffects: 'Nebenwirkungen / Unangenehm',
+        medReboundOptNone: 'Kein Rebound (sanftes Ausklingen)',
+        medReboundOptMild: 'Leicht (milde Erschöpfung)',
+        medReboundOptModerate: 'Moderat (Reizbarkeit / Unruhe)',
+        medReboundOptSevere: 'Stark (Crasherlebnis / Tiefe Erschöpfung)',
+        diaryCard3Title: '3. Vital-Hub: Mahlzeiten, Trinken & Schlaf',
+        diaryMealsTitle: 'Mahlzeiten:',
+        mealBreakfast: 'Frühstück:',
+        mealBreakfastPlaceholder: 'z. B. Rühreier mit Vollkornbrot...',
+        mealLunch: 'Mittag:',
+        mealLunchPlaceholder: 'z. B. Reisbowl mit Gemüse & Hähnchen...',
+        mealDinner: 'Abend:',
+        mealDinnerPlaceholder: 'z. B. Gemüsesuppe, Salat, Lachs...',
+        mealSnacks: 'Snacks:',
+        mealSnacksPlaceholder: 'z. B. Nüsse, Proteinriegel, Apfel...',
+        vitalWaterTitle: 'Wasser:',
+        vitalCaffeineTitle: 'Koffein & Stimulanzien:',
+        vitalCaffeineHint: 'Getrennt tracken und mixen · Wechselwirkung mit Medis beachten.',
+        caffeineCoffee: 'Kaffee',
+        caffeineEnergy: 'Energy Drink',
+        vitalSleepTitle: 'Schlaf & Erholung:',
+        sleepBedtime: 'Zubettgehzeit:',
+        sleepWaketime: 'Aufwachzeit:',
+        sleepDuration: 'Schlafdauer (Std):',
+        sleepQuality: 'Schlafqualität (Einzelauswahl):',
+        sleepQualOpt5: '5 / 5 · Sehr erholsam & tief',
+        sleepQualOpt4: '4 / 5 · Gut & ausreichend',
+        sleepQualOpt3: '3 / 5 · Mittelmäßig / unruhig',
+        sleepQualOpt2: '2 / 5 · Schlecht / oft aufgewacht',
+        sleepQualOpt1: '1 / 5 · Erschöpft & zerschlagen',
+        sleepFactorsTitle: 'Schlaf-Faktoren:',
+        diaryCard4Title: '4. Neuro & Body: ADHS, Fokus & Schritte',
+        adhsFocus: 'Fokus:',
+        adhsFocusLow: 'Zerstreut',
+        adhsFocusHigh: 'Im Flow',
+        adhsRestlessness: 'Unruhe:',
+        adhsRestlessnessLow: 'Ruhig',
+        adhsRestlessnessHigh: 'Getrieben',
+        adhsBrainfog: 'Brainfog:',
+        adhsBrainfogLow: 'Klar',
+        adhsBrainfogHigh: 'Nebel',
+        adhsExecutive: 'Exekutive Funktion (Einzelauswahl):',
+        adhsExecOptFlow: 'Flow & Fokussiert',
+        adhsExecOptStruggle: 'Mühsam / Zerstreut',
+        adhsExecOptParalysis: 'Paralysis / Blockade',
+        adhsExecOptHyperfocus: 'Hyperfokus (stark vertieft)',
+        adhsSensory: 'Reizoffenheit (Einzelauswahl):',
+        adhsSensoryOptLow: 'Reizarm / Entspannt',
+        adhsSensoryOptMild: 'Leicht empfindlich',
+        adhsSensoryOptModerate: 'Hohe Reizoffenheit',
+        adhsSensoryOptSevere: 'Sensorischer Overload / Reizflut',
+        adhsNotesPrompt: 'ADHS-Erkenntnis, Dopamin-Hack oder Tagessieg:',
+        adhsNotesPlaceholder: 'z. B. 5-Minuten-Regel hat geholfen, Timer gestellt...',
+        stepsTitle: 'Schritte & Bewegung:',
+        stepsDailyGoal: 'Tagesziel',
+        stepsToday: 'Schritte heute:',
+        stepsGoal: 'Ziel:',
+        steps10kGoal: '10k Ziel',
+        activitiesTitle: 'Aktivitäten & Sport:',
+        diaryCard5Title: '5. Journal, 3 Positive Dinge & Notizen',
+        posThingsTitle: '3 Positive Dinge (Dopamin-Anker):',
+        posThing1Placeholder: 'Ein schöner Moment heute...',
+        posThing2Placeholder: 'Ein Erfolg oder Lob...',
+        posThing3Placeholder: 'Zeit genommen für mich...',
+        highlightsTitle: 'Highlights & Erlebnisse:',
+        highlightsPlaceholder: 'Was waren heute die wichtigsten Momente deines Tages?...',
+        notesTitle: 'Freie Gedanken & Brain Dump:',
+        notesPlaceholder: 'Schreibe ungefiltert auf, was dich heute beschäftigt hat...',
+        diaryListTitle: 'Mein Tagebuch & Lebens-Chronik',
+        diaryListSubtitle: 'Alle Einträge mit Medikation, Essen, Schlaf, Steps und ADHS-Fokus chronologisch.',
+        diarySearchPlaceholder: 'Tagebuch durchsuchen (Medis, Essen, Emotionen, Tags)...',
+        diaryFoldersTitle: 'Monats-Ordner:',
+        qfAll: 'Alle Einträge',
+        qfMeds: 'Medikation',
+        qfFood: 'Mahlzeiten',
+        qfSteps: '> 8k Schritte',
+        diaryEmptyTitle: 'Keine Tagebucheinträge im ausgewählten Filter',
+        diaryEmptyDesc: 'Notiere deinen täglichen Check-in mit Medis, Essen, Schlaf, Steps und Stimmung.',
+        diaryBtnNewCheckin: '+ Neuen Check-in verfassen',
+        statsTitle: 'Statistiken, Trends & Neuro-Insights',
+        statsSubtitle: 'Verstehe Zusammenhänge zwischen Medikation, Schlaf, Essen, Bewegung und mentalem Fokus.',
+        statsDays7: '7 Tage',
+        statsDays14: '14 Tage',
+        statsDays30: '30 Tage',
+        statsDays90: '90 Tage',
+        statsDaysMonth: 'Monat',
+        statsDaysAll: 'Alle',
+        statsKpiMood: 'Ø Stimmung',
+        statsKpiSleep: 'Ø Schlaf',
+        statsKpiSteps: 'Ø Schritte',
+        statsKpiMeds: 'Med-Treue',
+        statsKpiMedsDesc: 'Tage mit Medis',
+        statsKpiFocus: 'Ø ADHS-Fokus',
+        statsKpiFocusDesc: 'Fokus (1-10)',
+        statsKpiStreak: 'Aktive Serie',
+        statsKpiStreakDesc: 'Tage in Folge',
+        statsChartTitle: 'Stimmung & ADHS-Fokus im Verlauf',
+        statsChartSubtitle: 'Vergleiche deine Stimmungskurve direkt mit deinem Konzentrationslevel',
+        statsLegendMood: 'Stimmung',
+        statsLegendFocus: 'ADHS-Fokus',
+        statsInsightTitle: 'Neuro-Insight & Lebensstil-Muster',
+        statsWeekdayTitle: 'Tendenzen nach Wochentag',
+        statsWeekdaySubtitle: 'An welchen Wochentagen geht es dir im Schnitt am besten?',
+        statsTopEmotionsTitle: 'Häufigste Emotionen',
+        statsTopEmotionsSubtitle: 'Welche Gefühle haben dich im gewählten Zeitraum am meisten begleitet?',
+        customModalTitle: 'Eigene Option hinzufügen',
+        customModalExistingTitle: 'Deine bisherigen eigenen Einträge:',
+        addCustomEmotionTooltip: 'Eigene Emotion hinzufügen',
+        addCustomCopingTooltip: 'Eigenes Bewältigungsverhalten hinzufügen',
+        addCustomActionTooltip: 'Eigene Handlung hinzufügen',
+        addCustomMedTooltip: 'Eigenes Medikament hinzufügen',
+        addCustomMealTagTooltip: 'Eigenen Mahlzeiten-Tag hinzufügen',
+        addCustomSleepFactorTooltip: 'Eigenen Schlaffaktor hinzufügen',
+        addCustomActivityTooltip: 'Eigene Aktivität hinzufügen',
+        addCustomPosThingTooltip: 'Weiteren positiven Moment hinzufügen',
+        addCustomMemoryTagTooltip: 'Eigenen Erlebnis-Tag hinzufügen',
+        coffeeMinusTooltip: '1 Tasse abziehen',
+        coffeePlusTooltip: '1 Tasse hinzufügen',
+        energyMinusTooltip: '1 Dose abziehen',
+        energyPlusTooltip: '1 Dose hinzufügen',
+        diaryVortagTooltip: 'Kopiert Medikation & Ziele vom Vortag',
+        diaryResetTooltip: 'Zurücksetzen',
+        diaryToggleAllTooltip: 'Alle Karten ein-/ausklappen'
       },
       en: {
         brandSubtitle: 'By J. Young · Schema Therapy',
@@ -143,7 +396,13 @@ def get_javascript_code():
         navDiary: 'Diary & Tracker',
         headerNewMemo: 'Memo',
         headerNewCheckin: 'Check-in',
+        headerNewText: 'New',
+        headerNewTooltip: 'Create new',
+        pwaInstallTitle: 'Install as native app',
         btnInstall: 'Install',
+        settingsTooltip: 'Settings',
+        forceUpdateTooltip: 'Update app & clear cache',
+        themeToggleTooltip: 'Toggle theme',
         tabEdit: 'Form',
         tabSheet: 'Sheet',
         tabMemos: 'Memos',
@@ -196,9 +455,304 @@ def get_javascript_code():
         toastBackupExported: 'Full backup exported successfully!',
         toastBackupImported: 'Backup restored successfully!',
         toastLanguageChanged: 'Language set to English',
-        toastThemeChanged: 'Theme updated'
+        toastThemeChanged: 'Theme updated',
+        btnExample: 'Example',
+        btnPrint: 'Print',
+        btnBackup: 'Backup',
+        btnImport: 'Import',
+        btnExport: 'Export',
+        btnCancel: 'Cancel',
+        btnClose: 'Close',
+        btnSavePermanent: 'Save permanently',
+        labelFilter: 'Filter:',
+        schemaReflectBanner: 'Reflect situation',
+        schemaLabelTitle: 'Memo Title',
+        schemaPlaceholderTitle: 'e.g. Conflict in meeting, rejection, loneliness...',
+        schemaLabelDate: 'Date',
+        schemaStep1Title: '1. Naming the Activated Feeling',
+        schemaStep1Prompt: 'At this moment I feel',
+        schemaStep1PromptBracket: '(Emotion)',
+        schemaPlaceholderEmotion: 'e.g. deep sadness, fear of rejection and helplessness...',
+        schemaStep1Because: 'Because',
+        schemaStep1BecauseBracket: '(current trigger situation)',
+        schemaPlaceholderSituation: 'e.g. my partner answered me abruptly this morning...',
+        schemaStep2Title: '2. Identifying Activated Schemas/Modes and Coping',
+        schemaStep2Prompt: 'I know that this is probably my',
+        schemaStep2PromptBracket: '(Schema/Mode)',
+        schemaStep2PromptSuffix: '... mode/schema,',
+        schemaPlaceholderSchema: 'e.g. Abandonment schema and vulnerable child mode...',
+        schemaStep2Childhood: 'which I learned through',
+        schemaStep2ChildhoodBracket: '(childhood experience)',
+        schemaStep2ChildhoodSuffix: '... in the past.',
+        schemaPlaceholderChildhood: 'e.g. early experiences where parents were emotionally distant...',
+        schemaStep2Coping: 'This activation triggers my',
+        schemaStep2CopingBracket: '(old coping behavior)',
+        schemaStep2CopingSuffix: '... as a response.',
+        schemaPlaceholderCoping: 'e.g. inner withdrawal, hurt silence...',
+        schemaStep3Title: '3. Acknowledging Dysfunction / Reality Check',
+        schemaStep3Thought: 'Although I believe',
+        schemaStep3ThoughtBracket: '(negative thought / inner parent voice)',
+        schemaPlaceholderThought: 'e.g. that I am worthless and no one truly likes me...',
+        schemaStep3Reality: 'the reality is',
+        schemaStep3RealityBracket: '(Healthy Adult perspective)',
+        schemaPlaceholderReality: 'e.g. a short reply doesn\'t mean lack of interest...',
+        schemaStep3Evidence: 'Evidence for this reality is:',
+        schemaPlaceholderEvidence: 'e.g. yesterday we laughed together; the person is under lots of stress...',
+        schemaStep4Title: '4. Breaking Old Patterns and Establishing New Responses',
+        schemaStep4Old: 'Even though I would most like to',
+        schemaStep4OldBracket: '(old dysfunctional behavior)',
+        schemaStep4OldSuffix: '... ,',
+        schemaPlaceholderOldBehavior: 'e.g. withdraw for days...',
+        schemaStep4New: 'Instead, I could',
+        schemaStep4NewBracket: '(alternative solutions)',
+        schemaPlaceholderNewAction: 'e.g. breathe deeply, remind myself \'I am safe\', and ask calmly...',
+        schemaBtnSaveSheet: 'Save & View Sheet',
+        schemaBtnPreviewSheet: 'Sheet Preview',
+        sheetBtnEdit: 'Edit',
+        sheetBtnPrint: 'Print / PDF',
+        sheetBtnBlank: 'Template',
+        sheetFontKalamBlue: 'Handwriting Blue',
+        sheetFontCaveatBlack: 'Handwriting Black',
+        sheetFontCleanSans: 'Clean Sans',
+        sheetSec1Title: '1. Naming the Activated Feeling',
+        sheetSec1L1: 'At this moment I feel (Emotion)',
+        sheetSec1L2: 'because (current trigger situation)',
+        sheetSec2Title: '2. Identifying Activated Schemas/Modes and Coping',
+        sheetSec2L1: 'I know that this is probably my (Schema/Mode)...',
+        sheetSec2L2: 'which I learned through (childhood experience)...',
+        sheetSec2L3: 'This activation triggers my (old coping behavior)...',
+        sheetSec3Title: '3. Acknowledging Dysfunction / Reality Check',
+        sheetSec3L1: 'Although I believe (negative thought / inner parent voice),',
+        sheetSec3L2: 'the reality is (Healthy Adult perspective),',
+        sheetSec3L3: 'Evidence for this reality is:',
+        sheetSec4Title: '4. Breaking Old Patterns and Establishing New Responses',
+        sheetSec4L1: 'Even though I would most like to (old dysfunctional behavior)...',
+        sheetSec4L2: 'Instead, I could (alternative solutions)',
+        sheetCopyright: 'Modified after J. Young 1996/2002. The original is protected by copyright.',
+        archiveTitle: 'Saved Schema Memos',
+        archiveSubtitle: 'Manage your reflected memos and track your therapy progress.',
+        archiveSearchPlaceholder: 'Search memos by title, situation, or schema...',
+        archiveEmptyTitle: 'No memos found',
+        archiveEmptyDesc: 'Create a new schema memo or adjust your search.',
+        helpTitle: 'Schema Therapy Cheat Sheet',
+        helpSubtitle: 'Compact reference of the 18 schemas and modes according to Jeffrey Young for quick guidance during reflection.',
+        helpDomain1Badge: 'Domain 1',
+        helpDomain1Title: 'Disconnection & Rejection',
+        helpDomain1Desc: 'Abandonment / Instability, Mistrust / Abuse, Emotional Deprivation, Defectiveness / Shame, Social Isolation.',
+        helpDomain2Badge: 'Domain 2',
+        helpDomain2Title: 'Impaired Autonomy & Performance',
+        helpDomain2Desc: 'Dependence / Incompetence, Vulnerability to Harm or Illness, Enmeshment / Undeveloped Self, Failure.',
+        helpDomain3Badge: 'Domain 3',
+        helpDomain3Title: 'Impaired Limits',
+        helpDomain3Desc: 'Entitlement / Grandiosity, Insufficient Self-Control / Self-Discipline.',
+        helpDomain4Badge: 'Domain 4',
+        helpDomain4Title: 'Other-Directedness',
+        helpDomain4Desc: 'Subjugation, Self-Sacrifice, Approval-Seeking / Recognition-Seeking.',
+        diaryPillCheckin: 'Check-in',
+        labelDiaryDate: 'Date:',
+        diaryCard1Title: '1. Mood, Energy & Emotions',
+        diaryPromptMood: 'How did you feel today?',
+        diaryMoodGuide1: '1 = Crisis / Low',
+        diaryMoodGuide5: '5 = Neutral',
+        diaryMoodGuide10: '10 = Outstanding',
+        diaryPromptEnergy: 'Energy Level & Vitality',
+        diaryEnergyGuide1: '1 = Exhausted',
+        diaryEnergyGuide5: '5 = Normal',
+        diaryEnergyGuide10: '10 = Fully charged',
+        diaryPromptEmotions: 'Emotions today:',
+        diaryMultiSelectNotice: '(Multi-select enabled)',
+        diaryMultiSelectNoticeTags: '(Multi-select for tags)',
+        diaryMultiSelectNoticeShort: '(Multi-select)',
+        diaryEmotionsPleasant: 'Pleasant:',
+        diaryEmotionsChallenging: 'Challenging:',
+        diaryEmotionNotesTitle: 'Emotion Reflection:',
+        diaryCard2Title: '2. Medication & Efficacy',
+        diaryMedsQuickSelect: 'Quick Select (1-click):',
+        diaryMedsLoggedToday: 'Logged today:',
+        diaryMedsEfficacyQuestion: 'How did medications work today?',
+        diaryMedsEfficacyPlaceholder: 'Efficacy observations (e.g. focus started after 45 min, slight restlessness at 3 PM, no palpitations)...',
+        diaryMedsReboundQuestion: 'Rebound / Wearing off?',
+        diaryMedsReboundTimePlaceholder: 'Time',
+        diaryMedsReboundTimeTitle: 'Rebound Time',
+        diaryMedsReboundNotesPlaceholder: 'Symptoms (e.g. drop in focus, fatigue)...',
+        medEffOptNone: '-- Select efficacy (Single select) --',
+        medEffOptOptimal: 'Optimal / Flow (focused & calm)',
+        medEffOptGood: 'Good & Stable (effective support)',
+        medEffOptWeak: 'Barely noticeable / Too weak',
+        medEffOptTooStrong: 'Too intense / Overstimulated',
+        medEffOptSideEffects: 'Side effects / Uncomfortable',
+        medReboundOptNone: 'No rebound (smooth fade-out)',
+        medReboundOptMild: 'Mild (slight fatigue)',
+        medReboundOptModerate: 'Moderate (irritability / restlessness)',
+        medReboundOptSevere: 'Severe (crash / deep exhaustion)',
+        diaryCard3Title: '3. Vitals Hub: Meals, Hydration & Sleep',
+        diaryMealsTitle: 'Meals:',
+        mealBreakfast: 'Breakfast:',
+        mealBreakfastPlaceholder: 'e.g. Scrambled eggs with whole grain toast...',
+        mealLunch: 'Lunch:',
+        mealLunchPlaceholder: 'e.g. Rice bowl with veggies & chicken...',
+        mealDinner: 'Dinner:',
+        mealDinnerPlaceholder: 'e.g. Veggie soup, salad, salmon...',
+        mealSnacks: 'Snacks:',
+        mealSnacksPlaceholder: 'e.g. Nuts, protein bar, apple...',
+        vitalWaterTitle: 'Water:',
+        vitalCaffeineTitle: 'Caffeine & Boosters:',
+        vitalCaffeineHint: 'Track independently and mix · Mind medication interactions.',
+        caffeineCoffee: 'Coffee',
+        caffeineEnergy: 'Energy Drink',
+        vitalSleepTitle: 'Sleep & Recovery:',
+        sleepBedtime: 'Bedtime:',
+        sleepWaketime: 'Wake time:',
+        sleepDuration: 'Sleep duration (hrs):',
+        sleepQuality: 'Sleep quality (Single select):',
+        sleepQualOpt5: '5 / 5 · Very restful & deep',
+        sleepQualOpt4: '4 / 5 · Good & sufficient',
+        sleepQualOpt3: '3 / 5 · Moderate / restless',
+        sleepQualOpt2: '2 / 5 · Poor / woke up frequently',
+        sleepQualOpt1: '1 / 5 · Exhausted & drained',
+        sleepFactorsTitle: 'Sleep Factors:',
+        diaryCard4Title: '4. Neuro & Body: ADHD, Focus & Steps',
+        adhsFocus: 'Focus:',
+        adhsFocusLow: 'Scattered',
+        adhsFocusHigh: 'In Flow',
+        adhsRestlessness: 'Restlessness:',
+        adhsRestlessnessLow: 'Calm',
+        adhsRestlessnessHigh: 'Driven',
+        adhsBrainfog: 'Brain Fog:',
+        adhsBrainfogLow: 'Clear',
+        adhsBrainfogHigh: 'Foggy',
+        adhsExecutive: 'Executive Function (Single select):',
+        adhsExecOptFlow: 'Flow & Focused',
+        adhsExecOptStruggle: 'Struggling / Scattered',
+        adhsExecOptParalysis: 'Paralysis / Stuck',
+        adhsExecOptHyperfocus: 'Hyperfocus (deeply absorbed)',
+        adhsSensory: 'Sensory Load (Single select):',
+        adhsSensoryOptLow: 'Low sensory / Relaxed',
+        adhsSensoryOptMild: 'Slightly sensitive',
+        adhsSensoryOptModerate: 'High sensory sensitivity',
+        adhsSensoryOptSevere: 'Sensory overload / Flooded',
+        adhsNotesPrompt: 'ADHD insight, dopamine hack, or daily win:',
+        adhsNotesPlaceholder: 'e.g. 5-minute rule helped, set a visual timer...',
+        stepsTitle: 'Steps & Movement:',
+        stepsDailyGoal: 'Daily Goal',
+        stepsToday: 'Steps today:',
+        stepsGoal: 'Goal:',
+        steps10kGoal: '10k Goal',
+        activitiesTitle: 'Activities & Sports:',
+        diaryCard5Title: '5. Journal, 3 Positive Things & Notes',
+        posThingsTitle: '3 Positive Things (Dopamine anchors):',
+        posThing1Placeholder: 'A pleasant moment today...',
+        posThing2Placeholder: 'An achievement or compliment...',
+        posThing3Placeholder: 'Took time for myself...',
+        highlightsTitle: 'Highlights & Moments:',
+        highlightsPlaceholder: 'What were today\'s most important moments?...',
+        notesTitle: 'Free Thoughts & Brain Dump:',
+        notesPlaceholder: 'Write freely whatever was on your mind today...',
+        diaryListTitle: 'My Diary & Life Journal',
+        diaryListSubtitle: 'All entries with medication, meals, sleep, steps, and ADHD focus chronologically.',
+        diarySearchPlaceholder: 'Search diary (meds, meals, emotions, tags)...',
+        diaryFoldersTitle: 'Month folders:',
+        qfAll: 'All entries',
+        qfMeds: 'Medication',
+        qfFood: 'Meals',
+        qfSteps: '> 8k Steps',
+        diaryEmptyTitle: 'No diary entries in selected filter',
+        diaryEmptyDesc: 'Log your daily check-in with meds, meals, sleep, steps, and mood.',
+        diaryBtnNewCheckin: '+ Write new check-in',
+        statsTitle: 'Statistics, Trends & Neuro Insights',
+        statsSubtitle: 'Understand connections between medication, sleep, nutrition, activity, and mental focus.',
+        statsDays7: '7 Days',
+        statsDays14: '14 Days',
+        statsDays30: '30 Days',
+        statsDays90: '90 Days',
+        statsDaysMonth: 'Month',
+        statsDaysAll: 'All',
+        statsKpiMood: 'Avg Mood',
+        statsKpiSleep: 'Avg Sleep',
+        statsKpiSteps: 'Avg Steps',
+        statsKpiMeds: 'Med Adherence',
+        statsKpiMedsDesc: 'Days with meds',
+        statsKpiFocus: 'Avg ADHD Focus',
+        statsKpiFocusDesc: 'Focus (1-10)',
+        statsKpiStreak: 'Current Streak',
+        statsKpiStreakDesc: 'Days in a row',
+        statsChartTitle: 'Mood & ADHD Focus over time',
+        statsChartSubtitle: 'Directly compare your mood curve with your concentration level',
+        statsLegendMood: 'Mood',
+        statsLegendFocus: 'ADHD Focus',
+        statsInsightTitle: 'Neuro Insights & Lifestyle Patterns',
+        statsWeekdayTitle: 'Tendencies by Day of Week',
+        statsWeekdaySubtitle: 'On which days of the week do you feel best on average?',
+        statsTopEmotionsTitle: 'Most Frequent Emotions',
+        statsTopEmotionsSubtitle: 'Which emotions accompanied you most during the selected period?',
+        customModalTitle: 'Add Custom Option',
+        customModalExistingTitle: 'Your existing custom entries:',
+        addCustomEmotionTooltip: 'Add custom emotion',
+        addCustomCopingTooltip: 'Add custom coping behavior',
+        addCustomActionTooltip: 'Add custom action',
+        addCustomMedTooltip: 'Add custom medication',
+        addCustomMealTagTooltip: 'Add custom meal tag',
+        addCustomSleepFactorTooltip: 'Add custom sleep factor',
+        addCustomActivityTooltip: 'Add custom activity',
+        addCustomPosThingTooltip: 'Add another positive moment',
+        addCustomMemoryTagTooltip: 'Add custom moment tag',
+        coffeeMinusTooltip: 'Subtract 1 cup',
+        coffeePlusTooltip: 'Add 1 cup',
+        energyMinusTooltip: 'Subtract 1 can',
+        energyPlusTooltip: 'Add 1 can',
+        diaryVortagTooltip: 'Copies medications & goals from yesterday',
+        diaryResetTooltip: 'Reset',
+        diaryToggleAllTooltip: 'Expand / Collapse all cards'
       }
     };
+
+    const TAG_TRANSLATIONS = {
+      // Pleasant emotions
+      'Freude': 'Joy', 'Dankbarkeit': 'Gratitude', 'Ruhe': 'Calm', 'Zufriedenheit': 'Contentment', 'Energie': 'Energy',
+      'Stolz': 'Pride', 'Hoffnung': 'Hope', 'Erleichterung': 'Relief', 'Liebe': 'Love', 'Gelassenheit': 'Serenity',
+      'Verbundenheit': 'Connection', 'Zuversicht': 'Confidence', 'Fokus': 'Focus',
+      // Challenging emotions
+      'Überforderung': 'Overwhelm', 'Erschöpfung': 'Exhaustion', 'Angst': 'Anxiety', 'Wut': 'Anger', 'Trauer': 'Sadness',
+      'Frustration': 'Frustration', 'Einsamkeit': 'Loneliness', 'Unruhe': 'Restlessness', 'Zweifel': 'Doubt', 'Schuld': 'Guilt',
+      'Scham': 'Shame', 'Stress': 'Stress', 'Reizüberflutung': 'Sensory Overload',
+      // Schema emotions
+      'Traurig': 'Sad', 'Ängstlich': 'Anxious', 'Wütend': 'Angry', 'Einsam': 'Lonely', 'Überfordert': 'Overwhelmed', 'Hilflosigkeit': 'Helplessness', 'Kränkung': 'Hurt',
+      // Sleep factors
+      'Gedankenkreisen': 'Racing thoughts', 'Nachts wach': 'Awake at night', 'Melatonin': 'Melatonin', 'Zu spät ins Bett': 'Late to bed', 'Erholt': 'Refreshed', 'Träume': 'Vivid dreams',
+      // Activities
+      'Spaziergang': 'Walk', 'Gym': 'Gym', 'Laufen': 'Running', 'Radfahren': 'Cycling', 'Yoga': 'Yoga', 'Ruhetag': 'Rest day',
+      // Meal tags
+      'Proteinreich': 'High-protein', 'Ausgewogen': 'Balanced', 'Leicht': 'Light', 'Fast Food': 'Fast Food', 'Appetitmangel': 'Low appetite', 'Heißhunger': 'Cravings',
+      // Memory tags
+      'Erfolg': 'Success', 'Natur': 'Nature', 'Freunde': 'Friends', 'Familie': 'Family', 'Kreativ': 'Creative', 'Dopamin-Win': 'Dopamine Win', 'Gelernt': 'Learned', 'Sport': 'Workout', 'Me-Time': 'Me-Time',
+      // Schema coping
+      'Rückzug & Mauern': 'Withdrawal & stonewalling', 'Überanpassung': 'Overcompliance', 'Vorwürfe & Wutausbruch': 'Blame & anger outbursts', 'Vorwürfe & Wut': 'Blame & anger', 'Gefühle betäuben / Ablenken': 'Numbing feelings / Distraction', 'Ablenken': 'Distraction',
+      // Schema actions
+      'Einmal tief durchatmen und mich erden': 'Take a deep breath and ground myself', 'Durchatmen': 'Deep breath', 'Freundlich nachfragen oder Bedürfnis ansprechen': 'Ask kindly or express need', 'Bedürfnis ansprechen': 'Express need', 'Selbstfürsorge (Tee, Spaziergang, Ruhe)': 'Self-care (tea, walk, rest)', 'Selbstfürsorge': 'Self-care', 'Gesunden Erwachsenen liebevoll stärken': 'Nurture Healthy Adult lovingly', 'Gesunder Erwachsener': 'Healthy Adult',
+      // Schema names
+      'Verlassenheit / Instabilität (Verletztes Kind)': 'Abandonment / Instability (Vulnerable Child)',
+      'Verlassenheit / Verletztes Kind': 'Abandonment / Vulnerable Child',
+      'Unzulänglichkeit / Scham (Strafender Modus)': 'Defectiveness / Shame (Punitive Mode)',
+      'Unzulänglichkeit / Scham': 'Defectiveness / Shame',
+      'Überhöhte Standards (Fordernder Modus)': 'Unrelenting Standards (Demanding Mode)',
+      'Überhöhte Standards': 'Unrelenting Standards',
+      'Unterwerfung / Aufopferung': 'Subjugation / Self-Sacrifice',
+      'Unterwerfung': 'Subjugation',
+      'Distanzierter Beschützer (Rückzug)': 'Detached Protector (Withdrawal)',
+      'Distanzierter Beschützer': 'Detached Protector'
+    };
+
+    function translateTag(tag) {
+      if (!tag) return tag;
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (!isEn) return tag;
+      const trimmed = tag.trim().replace(/^#/, '');
+      const translated = TAG_TRANSLATIONS[trimmed];
+      if (translated) {
+        return tag.trim().startsWith('#') ? '#' + translated : translated;
+      }
+      return tag;
+    }
 
     let currentAppMode = 'schema'; // 'schema' | 'diary'
     let currentMemoId = null;
@@ -293,16 +847,16 @@ def get_javascript_code():
 
     // Mood Configurations (1 - 10)
     const MOOD_CONFIG = {
-      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', bg: 'bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border border-rose-300 dark:border-rose-800' },
-      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900' },
-      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', bg: 'bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-800' },
-      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900' },
-      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', bg: 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700' },
-      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', bg: 'bg-sky-50 dark:bg-sky-950/50 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-900' },
-      7: { emoji: '😊', title: 'Gut & Ausgeglichen', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900' },
-      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', bg: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800' },
-      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', bg: 'bg-teal-100 dark:bg-teal-950/80 text-teal-900 dark:text-teal-200 border border-teal-300 dark:border-teal-800' },
-      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', bg: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700' }
+      1: { emoji: '😭', title: 'Krise / Akute Verzweiflung', title_en: 'Crisis / Acute Distress', desc: 'Extrem belastend, kaum aushaltbar. Bitte nimm dir Ruhe und suche Unterstützung.', desc_en: 'Extremely distressing, barely bearable. Please rest and seek support.', bg: 'bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border border-rose-300 dark:border-rose-800' },
+      2: { emoji: '😞', title: 'Sehr Niedergeschlagen / Erschöpft', title_en: 'Very Down / Exhausted', desc: 'Schwere emotionale Last, Trauer oder massive Erschöpfung.', desc_en: 'Heavy emotional burden, grief or severe exhaustion.', bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900' },
+      3: { emoji: '😔', title: 'Gedrückt & Kraftlos', title_en: 'Low & Drained', desc: 'Vieles fiel schwer, geringe Motivation oder anhaltende Sorgen.', desc_en: 'Everything felt difficult, low motivation or persistent worries.', bg: 'bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-800' },
+      4: { emoji: '😕', title: 'Eher Unzufrieden / Angespannt', title_en: 'Dissatisfied / Tense', desc: 'Ein fordernder Tag mit Frustrationen oder innerer Unruhe.', desc_en: 'A challenging day with frustrations or inner restlessness.', bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900' },
+      5: { emoji: '😐', title: 'Durchschnittlich / Neutral', title_en: 'Average / Neutral', desc: 'Weder besonders gut noch schlecht. Ein solider, normaler Alltag.', desc_en: 'Neither particularly good nor bad. A solid, normal day.', bg: 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700' },
+      6: { emoji: '🙂', title: 'Ganz Okay / Leicht Positiv', title_en: 'Pretty Okay / Mildly Positive', desc: 'Mehrheitlich in Ordnung mit ein paar angenehmen Momenten.', desc_en: 'Mostly alright with a few pleasant moments.', bg: 'bg-sky-50 dark:bg-sky-950/50 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-900' },
+      7: { emoji: '😊', title: 'Gut & Ausgeglichen', title_en: 'Good & Balanced', desc: 'Stabiler Tag mit positiver Grundstimmung und guter Energie.', desc_en: 'Stable day with positive baseline mood and good energy.', bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900' },
+      8: { emoji: '😁', title: 'Sehr Zufrieden & Produktiv', title_en: 'Very Content & Productive', desc: 'Erfüllend, stabil und mit vielen bereichernden Momenten.', desc_en: 'Fulfilling, stable, with many enriching moments.', bg: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800' },
+      9: { emoji: '🥳', title: 'Großartig & Voller Tatendrang', title_en: 'Great & Driven', desc: 'Hervorragende Stimmung, starke Verbindung zu dir selbst oder anderen.', desc_en: 'Outstanding mood, strong connection to yourself or others.', bg: 'bg-teal-100 dark:bg-teal-950/80 text-teal-900 dark:text-teal-200 border border-teal-300 dark:border-teal-800' },
+      10: { emoji: '🌟', title: 'Herausragend / Flow-Erlebnis', title_en: 'Extraordinary / Flow State', desc: 'Ein absoluter Highlight-Tag voller Freude, Dankbarkeit und Klarheit.', desc_en: 'An absolute highlight day filled with joy, gratitude, and clarity.', bg: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700' }
     };
 
     const PLEASANT_EMOTIONS = [
@@ -593,8 +1147,64 @@ def get_javascript_code():
 
     function applyLanguageStrings() {
       const lang = appSettings.language || 'de';
+      const isEn = lang === 'en';
       const t = I18N[lang] || I18N.de;
 
+      // 1. Text elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+
+      // 2. Placeholders with data-i18n-placeholder
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) {
+          el.setAttribute('placeholder', t[key]);
+        }
+      });
+
+      // 3. Titles / tooltips with data-i18n-title
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (t[key] !== undefined) {
+          el.setAttribute('title', t[key]);
+        }
+      });
+
+      // 4. Standardized add-button labels
+      document.querySelectorAll('.add-btn-label').forEach(el => {
+        el.textContent = isEn ? 'New' : 'Neu';
+      });
+
+      // 5. Schema static tags with data-tag
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        const raw = el.getAttribute('data-tag');
+        if (raw) {
+          const isHash = raw.startsWith('#');
+          const clean = isHash ? raw.substring(1) : raw;
+          const trans = (isEn && TAG_TRANSLATIONS[clean]) ? TAG_TRANSLATIONS[clean] : clean;
+          el.textContent = isHash ? ('#' + trans) : trans;
+        }
+      });
+
+      // 6. Header titles and subtitles
+      const titleEl = document.getElementById('app-main-title');
+      const subTitleEl = document.getElementById('app-main-subtitle');
+      const headerNewBtnText = document.getElementById('header-btn-new-text');
+      if (currentAppMode === 'schema') {
+        if (titleEl) titleEl.innerText = 'Schema-Memo';
+        if (subTitleEl) subTitleEl.innerText = t.brandSubtitle;
+        if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewMemo;
+      } else {
+        if (titleEl) titleEl.innerText = 'Daily Diary & Neuro';
+        if (subTitleEl) subTitleEl.innerText = t.diarySubtitle;
+        if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewCheckin;
+      }
+
+      // 7. Safe fallback for specific IDs
       const safeSetText = (id, text) => {
         const el = document.getElementById(id);
         if (el) el.textContent = text;
@@ -655,6 +1265,28 @@ def get_javascript_code():
       if (currentAppMode === 'schema') renderBottomNavForSchema();
       else renderBottomNavForDiary();
       renderSettingsFeatureToggles();
+      renderEmotionChips();
+      renderSleepTagChips();
+      renderActivitiesChips();
+      renderMealTagChips();
+      renderMemoryTagChips();
+      renderSchemaCustomChips();
+      renderQuickMedsChips();
+      renderMedicationsList();
+
+      const moodVal = document.getElementById('diary-mood-slider')?.value;
+      if (moodVal) updateMoodScore(moodVal);
+      const energyVal = document.getElementById('diary-energy-slider')?.value;
+      if (energyVal) updateEnergyScore(energyVal);
+      updateStepsProgressDisplay();
+      updateSleepDurationDisplay();
+      updateCaffeineDisplay();
+      updateDiaryDateDisplay();
+      updateCardSummaryBadges();
+      renderArchiveList();
+      renderDiaryEntriesList();
+      if (currentView === 'diary-stats') renderStatsView();
+      if (currentView === 'sheet') populateSheetView();
     }
 
     function setAppLanguage(lang) {
@@ -1046,7 +1678,8 @@ def get_javascript_code():
           closeSettingsModal();
         } catch (err) {
           console.error('Import error:', err);
-          alert('Fehler beim Einlesen der Backup-Datei: ' + err.message);
+          const isDe = (appSettings.language || 'de') === 'de';
+          alert(isDe ? ('Fehler beim Einlesen der Backup-Datei: ' + err.message) : ('Error reading backup file: ' + err.message));
         }
       };
       reader.readAsText(file);
@@ -1140,13 +1773,14 @@ def get_javascript_code():
       document.getElementById('input-old-behavior').value = '';
       document.getElementById('input-new-action').value = '';
       switchView('edit');
-      showToast('Neues Schema-Memo angelegt');
+      showToast((appSettings.language || 'de') === 'en' ? 'New schema memo created' : 'Neues Schema-Memo angelegt');
     }
 
     function getFormData() {
+      const isEn = (appSettings.language || 'de') === 'en';
       return {
         id: currentMemoId || ('memo_' + Date.now()),
-        title: document.getElementById('input-title').value.trim() || 'Unbenanntes Schema-Memo',
+        title: document.getElementById('input-title').value.trim() || (isEn ? 'Untitled Schema Memo' : 'Unbenanntes Schema-Memo'),
         date: document.getElementById('input-date').value || new Date().toISOString().split('T')[0],
         updatedAt: new Date().toISOString(),
         emotion: document.getElementById('input-emotion').value.trim(),
@@ -1190,7 +1824,7 @@ def get_javascript_code():
       currentMemoId = data.id;
 
       if (notify) {
-        showToast('Schema-Memo gespeichert!');
+        showToast((appSettings.language || 'de') === 'en' ? 'Schema memo saved!' : 'Schema-Memo gespeichert!');
         switchView('sheet');
       }
     }
@@ -1201,7 +1835,8 @@ def get_javascript_code():
     }
 
     function resetFormWithConfirm() {
-      if (confirm('Möchtest du alle Eingabefelder dieses Memos leeren?')) {
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (confirm(isEn ? 'Do you want to clear all input fields of this memo?' : 'Möchtest du alle Eingabefelder dieses Memos leeren?')) {
         createNewMemo();
       }
     }
@@ -1209,21 +1844,37 @@ def get_javascript_code():
     function appendTag(fieldId, text) {
       const field = document.getElementById(fieldId);
       if (!field) return;
-      if (field.value.trim().length > 0) field.value += ', ' + text;
-      else field.value = text;
+      const translated = translateTag(text);
+      if (field.value.trim().length > 0) field.value += ', ' + translated;
+      else field.value = translated;
       field.focus();
     }
 
     function setFieldValue(fieldId, text) {
       const field = document.getElementById(fieldId);
       if (field) {
-        field.value = text;
+        field.value = translateTag(text);
         field.focus();
       }
     }
 
     function loadExampleMemo(notify = true) {
-      const sample = {
+      const isEn = (appSettings.language || 'de') === 'en';
+      const sample = isEn ? {
+        id: 'memo_example_sample',
+        title: 'Abrupt response in team meeting',
+        date: new Date().toISOString().split('T')[0],
+        emotion: 'Deep insecurity, fear of rejection, tightness in the chest',
+        situation: 'My colleague replied briefly with "no time" to my inquiry and turned away.',
+        schema: 'Abandonment / Instability & Vulnerable Child mode',
+        childhood: 'Early experiences where primary caregivers were unpredictably distant or emotionally unavailable during stress.',
+        coping: 'Inner withdrawal, hurt silence, rumination, and searching for faults within myself.',
+        thought: 'I did something wrong, they no longer respect me, and I will soon be excluded.',
+        reality: 'A short reply under time pressure is not a judgment on my worth or our relationship.',
+        evidence: 'They have a tight deadline today at 2 PM. Yesterday we worked constructively and warmly together.',
+        oldBehavior: 'Withdraw for the entire day, act passive-aggressively, or cling needy.',
+        newAction: 'Take a deep breath, remind myself "I am safe and worthy", and offer them a coffee calmly after their deadline.'
+      } : {
         id: 'memo_example_sample',
         title: 'Kurz angebundene Antwort im Meeting',
         date: new Date().toISOString().split('T')[0],
@@ -1239,13 +1890,14 @@ def get_javascript_code():
         newAction: 'Einmal tief durchatmen, mir sagen "Ich bin in Sicherheit und wertvoll", und ihm nach seiner Deadline ruhig einen Kaffee anbieten.'
       };
       setFormData(sample);
-      if (notify) showToast('Beispiel-Memo geladen');
+      if (notify) showToast(isEn ? 'Example memo loaded' : 'Beispiel-Memo geladen');
     }
 
     function populateSheetView() {
       const data = getFormData();
-      document.getElementById('sheet-meta-title').innerText = isBlankMode ? 'Arbeitsblatt (Vorlage)' : (data.title || 'Unbenannt');
-      document.getElementById('sheet-meta-date').innerText = isBlankMode ? 'Datum: ____________' : formatDateDE(data.date);
+      const isEn = (appSettings.language || 'de') === 'en';
+      document.getElementById('sheet-meta-title').innerText = isBlankMode ? (isEn ? 'Worksheet (Template)' : 'Arbeitsblatt (Vorlage)') : (data.title || (isEn ? 'Untitled' : 'Unbenannt'));
+      document.getElementById('sheet-meta-date').innerText = isBlankMode ? (isEn ? 'Date: ____________' : 'Datum: ____________') : formatDateDE(data.date);
 
       const splitToLines = (text) => {
         if (!text) return { l1: '', l2: '' };
@@ -1303,12 +1955,13 @@ def get_javascript_code():
     function toggleBlankMode() {
       isBlankMode = !isBlankMode;
       const btn = document.getElementById('btn-toggle-blank');
+      const isEn = (appSettings.language || 'de') === 'en';
       if (isBlankMode) {
         btn.classList.add('bg-sky-600', 'text-white');
-        btn.innerText = '✓ Leere Vorlage';
+        btn.innerText = isEn ? '✓ Blank Template' : '✓ Leere Vorlage';
       } else {
         btn.classList.remove('bg-sky-600', 'text-white');
-        btn.innerText = 'Vorlage';
+        btn.innerText = isEn ? 'Template' : 'Vorlage';
       }
       populateSheetView();
     }
@@ -1323,6 +1976,8 @@ def get_javascript_code():
       if (!container) return;
       const memos = getStoredMemos();
       const term = (document.getElementById('archive-search-input')?.value || '').toLowerCase().trim();
+      const isEn = (appSettings.language || 'de') === 'en';
+      const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       const filtered = memos.filter(m => {
         if (!term) return true;
@@ -1335,8 +1990,8 @@ def get_javascript_code():
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="shadcn-card p-8 text-center space-y-2">
-            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">Keine Memos gefunden</p>
-            <p class="text-xs text-slate-500">Erstelle ein neues Schema-Memo oder passe die Suche an.</p>
+            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">${t.archiveEmptyTitle}</p>
+            <p class="text-xs text-slate-500">${t.archiveEmptyDesc}</p>
           </div>
         `;
         return;
@@ -1350,16 +2005,16 @@ def get_javascript_code():
               <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h3>
             </div>
             <div class="flex items-center gap-1">
-              <button onclick="editMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="Bearbeiten">
+              <button onclick="editMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
               </button>
-              <button onclick="deleteMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-rose-50 text-rose-500 text-xs transition" title="Löschen">
+              <button onclick="deleteMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-rose-50 text-rose-500 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </button>
             </div>
           </div>
-          ${item.emotion ? `<p class="text-xs text-slate-600 dark:text-slate-300"><span class="font-bold text-slate-800 dark:text-slate-200">Gefühl:</span> ${escapeHtml(item.emotion)}</p>` : ''}
-          ${item.schema ? `<p class="text-xs text-indigo-600 dark:text-indigo-400"><span class="font-bold">Schema/Modus:</span> ${escapeHtml(item.schema)}</p>` : ''}
+          ${item.emotion ? `<p class="text-xs text-slate-600 dark:text-slate-300"><span class="font-bold text-slate-800 dark:text-slate-200">${isEn ? 'Emotion:' : 'Gefühl:'}</span> ${escapeHtml(item.emotion)}</p>` : ''}
+          ${item.schema ? `<p class="text-xs text-indigo-600 dark:text-indigo-400"><span class="font-bold">${isEn ? 'Schema/Mode:' : 'Schema/Modus:'}</span> ${escapeHtml(item.schema)}</p>` : ''}
         </article>
       `).join('');
     }
@@ -1373,11 +2028,12 @@ def get_javascript_code():
     }
 
     function deleteMemo(id) {
-      if (confirm('Dieses Schema-Memo wirklich löschen?')) {
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (confirm(isEn ? 'Really delete this schema memo?' : 'Dieses Schema-Memo wirklich löschen?')) {
         const memos = getStoredMemos().filter(m => m.id !== id);
         saveStoredMemos(memos);
         renderArchiveList();
-        showToast('Memo gelöscht');
+        showToast(isEn ? 'Memo deleted' : 'Memo gelöscht');
       }
     }
 
@@ -1402,10 +2058,10 @@ def get_javascript_code():
           if (Array.isArray(parsed)) {
             saveStoredMemos(parsed);
             renderArchiveList();
-            showToast('Memos erfolgreich importiert!');
+            showToast((appSettings.language || 'de') === 'en' ? 'Memos imported successfully!' : 'Memos erfolgreich importiert!');
           }
         } catch (err) {
-          alert('Ungültige JSON Datei');
+          alert((appSettings.language || 'de') === 'en' ? 'Invalid JSON file' : 'Ungültige JSON Datei');
         }
       };
       reader.readAsText(file);
@@ -1479,7 +2135,10 @@ def get_javascript_code():
       if (!dateVal) return;
       try {
         const d = new Date(dateVal + 'T12:00:00');
-        const dayStr = d.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
+        const isEn = (appSettings.language || 'de') === 'en';
+        const dayStr = isEn 
+          ? d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+          : d.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
         const label = document.getElementById('diary-current-day-label');
         if (label) label.innerText = dayStr;
       } catch (e) {}
@@ -1489,11 +2148,15 @@ def get_javascript_code():
     function updateMoodScore(score) {
       score = parseInt(score);
       const conf = MOOD_CONFIG[score] || MOOD_CONFIG[8];
+      const isEn = (appSettings.language || 'de') === 'en';
+      const mTitle = (isEn && conf.title_en) ? conf.title_en : conf.title;
+      const mDesc = (isEn && conf.desc_en) ? conf.desc_en : conf.desc;
+
       document.getElementById('diary-mood-slider').value = score;
-      document.getElementById('diary-mood-badge').innerText = `${score} / 10 · ${conf.title.split('/')[0].trim()}`;
+      document.getElementById('diary-mood-badge').innerText = `${score} / 10 · ${mTitle.split('/')[0].trim()}`;
       document.getElementById('diary-mood-emoji').innerText = conf.emoji;
-      document.getElementById('diary-mood-title').innerText = conf.title;
-      document.getElementById('diary-mood-desc').innerText = conf.desc;
+      document.getElementById('diary-mood-title').innerText = mTitle;
+      document.getElementById('diary-mood-desc').innerText = mDesc;
       document.getElementById('diary-mood-number').innerText = score;
 
       const banner = document.getElementById('diary-mood-banner');
@@ -1506,9 +2169,10 @@ def get_javascript_code():
       score = parseInt(score);
       document.getElementById('diary-energy-slider').value = score;
       const badge = document.getElementById('diary-energy-badge');
-      let text = 'Aktiv & Ausgeglichen';
-      if (score <= 3) text = 'Erschöpft / Niedrig';
-      else if (score >= 8) text = 'Hochenergetisch / Tatendrang';
+      const isEn = (appSettings.language || 'de') === 'en';
+      let text = isEn ? 'Active & Balanced' : 'Aktiv & Ausgeglichen';
+      if (score <= 3) text = isEn ? 'Exhausted / Low' : 'Erschöpft / Niedrig';
+      else if (score >= 8) text = isEn ? 'High Energy / Driven' : 'Hochenergetisch / Tatendrang';
       badge.innerText = `${score} / 10 · ${text}`;
     }
 
@@ -1520,6 +2184,7 @@ def get_javascript_code():
     function renderEmotionChips() {
       const pleasantContainer = document.getElementById('pleasant-emotions-chips');
       const challengingContainer = document.getElementById('challenging-emotions-chips');
+      const isEn = (appSettings.language || 'de') === 'en';
 
       const customs = customOptions.emotions || [];
       const pleasantCustoms = [];
@@ -1540,16 +2205,16 @@ def get_javascript_code():
       if (pleasantContainer) {
         const defHtml = PLEASANT_EMOTIONS.map(emo => `
           <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip pleasant-emo text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="pleasant">
-            ${escapeHtml(emo)}
+            ${escapeHtml(translateTag(emo))}
           </button>
         `).join('');
 
         const custHtml = pleasantCustoms.map(emo => `
           <span class="emotion-chip-custom pleasant-custom inline-flex items-center text-xs rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="pleasant">
             <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="py-1 pl-2.5 pr-1 focus:outline-none">
-              ${escapeHtml(emo)}
+              ${escapeHtml(translateTag(emo))}
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('emotions', '${escapeHtml(emo)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('emotions', '${escapeHtml(emo)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
 
@@ -1559,16 +2224,16 @@ def get_javascript_code():
       if (challengingContainer) {
         const defHtml = CHALLENGING_EMOTIONS.map(emo => `
           <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="emotion-chip challenging-emo text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="challenging">
-            ${escapeHtml(emo)}
+            ${escapeHtml(translateTag(emo))}
           </button>
         `).join('');
 
         const custHtml = challengingCustoms.map(emo => `
           <span class="emotion-chip-custom challenging-custom inline-flex items-center text-xs rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition" data-emotion="${escapeHtml(emo)}" data-type="challenging">
             <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="py-1 pl-2.5 pr-1 focus:outline-none">
-              ${escapeHtml(emo)}
+              ${escapeHtml(translateTag(emo))}
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('emotions', '${escapeHtml(emo)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('emotions', '${escapeHtml(emo)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
 
@@ -1624,7 +2289,8 @@ def get_javascript_code():
       if (!container || !wrapper) return;
 
       const emos = Array.from(selectedDiaryEmotions);
-      badge.innerText = `${emos.length} ausgewählt`;
+      const isEn = (appSettings.language || 'de') === 'en';
+      badge.innerText = isEn ? `${emos.length} selected` : `${emos.length} ausgewählt`;
 
       if (emos.length === 0) {
         wrapper.classList.add('hidden');
@@ -1636,10 +2302,10 @@ def get_javascript_code():
       container.innerHTML = emos.map(emo => `
         <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 space-y-1.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Gefühl: <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">${escapeHtml(emo)}</span></span>
-            <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-[10px] text-rose-500 hover:text-rose-700 font-semibold">Entfernen</button>
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">${isEn ? 'Emotion:' : 'Gefühl:'} <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">${escapeHtml(translateTag(emo))}</span></span>
+            <button type="button" onclick="toggleDiaryEmotion('${escapeHtml(emo)}')" class="text-[10px] text-rose-500 hover:text-rose-700 font-semibold">${isEn ? 'Remove' : 'Entfernen'}</button>
           </div>
-          <textarea rows="2" oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" placeholder="Was hat ${escapeHtml(emo)} ausgelöst und wie bist du damit umgegangen?" class="shadcn-input text-xs block w-full resize-none min-h-[50px] leading-relaxed">${escapeHtml(diaryEmotionNotes[emo] || '')}</textarea>
+          <textarea rows="2" oninput="diaryEmotionNotes['${escapeHtml(emo)}'] = this.value" placeholder="${isEn ? `What triggered ${escapeHtml(translateTag(emo))} and how did you cope with it?` : `Was hat ${escapeHtml(emo)} ausgelöst und wie bist du damit umgegangen?`}" class="shadcn-input text-xs block w-full resize-none min-h-[50px] leading-relaxed">${escapeHtml(diaryEmotionNotes[emo] || '')}</textarea>
         </div>
       `).join('');
     }
@@ -1711,56 +2377,57 @@ def get_javascript_code():
 
       if (!modal) return;
 
+      const isEn = (appSettings.language || 'de') === 'en';
       const configs = {
-        'meds': { title: 'Eigenes Medikament hinzufügen', icon: '+' },
-        'emotions': { title: 'Eigene Emotion hinzufügen', icon: '+' },
-        'sleep_factors': { title: 'Eigenen Schlaffaktor hinzufügen', icon: '+' },
-        'activities': { title: 'Eigene Aktivität / Sport hinzufügen', icon: '+' },
-        'meal_tags': { title: 'Eigenen Mahlzeiten-Tag hinzufügen', icon: '+' },
-        'memory_tags': { title: 'Eigenen Erlebnis-Tag (#) hinzufügen', icon: '+' },
-        'schema_emotions': { title: 'Eigene Schema-Emotion hinzufügen', icon: '+' },
-        'schema_coping': { title: 'Eigenes Bewältigungsverhalten hinzufügen', icon: '+' },
-        'schema_actions': { title: 'Eigene Handlung hinzufügen', icon: '+' }
+        'meds': { title: isEn ? 'Add Custom Medication' : 'Eigenes Medikament hinzufügen', icon: '+' },
+        'emotions': { title: isEn ? 'Add Custom Emotion' : 'Eigene Emotion hinzufügen', icon: '+' },
+        'sleep_factors': { title: isEn ? 'Add Custom Sleep Factor' : 'Eigenen Schlaffaktor hinzufügen', icon: '+' },
+        'activities': { title: isEn ? 'Add Custom Activity / Sport' : 'Eigene Aktivität / Sport hinzufügen', icon: '+' },
+        'meal_tags': { title: isEn ? 'Add Custom Meal Tag' : 'Eigenen Mahlzeiten-Tag hinzufügen', icon: '+' },
+        'memory_tags': { title: isEn ? 'Add Custom Moment Tag (#)' : 'Eigenen Erlebnis-Tag (#) hinzufügen', icon: '+' },
+        'schema_emotions': { title: isEn ? 'Add Custom Schema Emotion' : 'Eigene Schema-Emotion hinzufügen', icon: '+' },
+        'schema_coping': { title: isEn ? 'Add Custom Coping Behavior' : 'Eigenes Bewältigungsverhalten hinzufügen', icon: '+' },
+        'schema_actions': { title: isEn ? 'Add Custom Action' : 'Eigene Handlung hinzufügen', icon: '+' }
       };
 
-      const cfg = configs[category] || { title: 'Eigene Option hinzufügen', icon: '+' };
+      const cfg = configs[category] || { title: isEn ? 'Add Custom Option' : 'Eigene Option hinzufügen', icon: '+' };
       if (icon) icon.textContent = cfg.icon;
       if (title) title.textContent = cfg.title;
 
       if (category === 'meds') {
         fields.innerHTML = `
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Name des Medikaments / Supplements:</label>
-            <input type="text" id="input-custom-modal-name" placeholder="z. B. Attentin, Magnesium, Elvanse..." class="shadcn-input text-xs block w-full">
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">${isEn ? 'Medication / Supplement Name:' : 'Name des Medikaments / Supplements:'}</label>
+            <input type="text" id="input-custom-modal-name" placeholder="${isEn ? 'e.g. Magnesium, Elvanse, Adderall...' : 'z. B. Attentin, Magnesium, Elvanse...'}" class="shadcn-input text-xs block w-full">
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Standard-Dosis:</label>
-            <input type="text" id="input-custom-modal-dose" placeholder="z. B. 10 mg, 400 mg, 1 Kapsel..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">${isEn ? 'Standard Dose:' : 'Standard-Dosis:'}</label>
+            <input type="text" id="input-custom-modal-dose" placeholder="${isEn ? 'e.g. 10 mg, 400 mg, 1 capsule...' : 'z. B. 10 mg, 400 mg, 1 Kapsel...'}" class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
       } else if (category === 'emotions') {
         fields.innerHTML = `
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Kategorie des Gefühls:</label>
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">${isEn ? 'Emotion Category:' : 'Kategorie des Gefühls:'}</label>
             <div class="grid grid-cols-2 gap-2 mb-2.5">
               <label class="flex items-center gap-1.5 p-2 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50/60 dark:bg-emerald-950/40 cursor-pointer">
                 <input type="radio" name="custom-emotion-cat" value="pleasant" checked class="text-emerald-600 focus:ring-emerald-500">
-                <span class="text-xs font-bold text-emerald-800 dark:text-emerald-200">Angenehm / Positiv</span>
+                <span class="text-xs font-bold text-emerald-800 dark:text-emerald-200">${isEn ? 'Pleasant / Positive' : 'Angenehm / Positiv'}</span>
               </label>
               <label class="flex items-center gap-1.5 p-2 rounded-xl border border-rose-300 dark:border-rose-800 bg-rose-50/60 dark:bg-rose-950/40 cursor-pointer">
                 <input type="radio" name="custom-emotion-cat" value="challenging" class="text-rose-600 focus:ring-rose-500">
-                <span class="text-xs font-bold text-rose-800 dark:text-rose-200">Fordernd / Negativ</span>
+                <span class="text-xs font-bold text-rose-800 dark:text-rose-200">${isEn ? 'Challenging / Negative' : 'Fordernd / Negativ'}</span>
               </label>
             </div>
-            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Name des Gefühls:</label>
-            <input type="text" id="input-custom-modal-val" placeholder="z. B. Inspiriert, Überreizt, Erleichtert..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">${isEn ? 'Emotion Name:' : 'Name des Gefühls:'}</label>
+            <input type="text" id="input-custom-modal-val" placeholder="${isEn ? 'e.g. Inspired, Overstimulated, Relieved...' : 'z. B. Inspiriert, Überreizt, Erleichtert...'}" class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
       } else {
         fields.innerHTML = `
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">Bezeichnung:</label>
-            <input type="text" id="input-custom-modal-val" placeholder="z. B. Neue Bezeichnung..." class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
+            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-0.5">${isEn ? 'Name / Label:' : 'Bezeichnung:'}</label>
+            <input type="text" id="input-custom-modal-val" placeholder="${isEn ? 'e.g. New custom entry...' : 'z. B. Neue Bezeichnung...'}" class="shadcn-input text-xs block w-full" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomOptionFromModal();}">
           </div>
         `;
       }
@@ -1779,6 +2446,7 @@ def get_javascript_code():
       const existingList = document.getElementById('custom-modal-existing-list');
       if (!existingWrapper || !existingList || !activeCustomModalCategory) return;
 
+      const isEn = (appSettings.language || 'de') === 'en';
       const items = customOptions[activeCustomModalCategory] || [];
       if (items.length === 0) {
         existingWrapper.classList.add('hidden');
@@ -1793,18 +2461,18 @@ def get_javascript_code():
           if (activeCustomModalCategory === 'meds') {
             label = `${item.name} (${item.dose})`;
           } else if (activeCustomModalCategory === 'emotions') {
-            const catBadge = item.category === 'challenging' ? '[Negativ]' : '[Positiv]';
-            label = `${catBadge} ${item.name}`;
+            const catBadge = item.category === 'challenging' ? (isEn ? '[Negative]' : '[Negativ]') : (isEn ? '[Positive]' : '[Positiv]');
+            label = `${catBadge} ${translateTag(item.name)}`;
           } else {
             label = item.name || JSON.stringify(item);
           }
         } else {
-          label = item;
+          label = translateTag(item);
         }
         return `
           <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
             <span>${escapeHtml(label)}</span>
-            <button type="button" onclick="deleteCustomOptionItem('${activeCustomModalCategory}', ${idx})" class="text-rose-500 hover:text-rose-700 font-bold ml-1 text-xs" title="Löschen">×</button>
+            <button type="button" onclick="deleteCustomOptionItem('${activeCustomModalCategory}', ${idx})" class="text-rose-500 hover:text-rose-700 font-bold ml-1 text-xs" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `;
       }).join('');
@@ -1818,12 +2486,13 @@ def get_javascript_code():
 
     function saveCustomOptionFromModal() {
       if (!activeCustomModalCategory) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       if (activeCustomModalCategory === 'meds') {
         const name = stripAllEmojis((document.getElementById('input-custom-modal-name')?.value || '').trim());
-        const dose = stripAllEmojis((document.getElementById('input-custom-modal-dose')?.value || '').trim()) || '1 Dosis';
+        const dose = stripAllEmojis((document.getElementById('input-custom-modal-dose')?.value || '').trim()) || (isEn ? '1 dose' : '1 Dosis');
         if (!name) {
-          alert('Bitte gib mindestens den Namen des Medikaments ein.');
+          alert(isEn ? 'Please enter at least the medication name.' : 'Bitte gib mindestens den Namen des Medikaments ein.');
           return;
         }
         customOptions.meds = customOptions.meds || [];
@@ -1831,11 +2500,11 @@ def get_javascript_code():
         saveCustomOptionsToStorage();
         renderQuickMedsChips();
         quickAddMedication(name, dose);
-        showToast(`${name} gespeichert & eingetragen!`);
+        showToast(isEn ? `${name} saved & logged!` : `${name} gespeichert & eingetragen!`);
       } else if (activeCustomModalCategory === 'emotions') {
         const val = stripAllEmojis((document.getElementById('input-custom-modal-val')?.value || '').trim());
         if (!val) {
-          alert('Bitte gib eine Bezeichnung ein.');
+          alert(isEn ? 'Please enter a name.' : 'Bitte gib eine Bezeichnung ein.');
           return;
         }
         const catRadio = document.querySelector('input[name="custom-emotion-cat"]:checked');
@@ -1847,11 +2516,11 @@ def get_javascript_code():
 
         renderEmotionChips();
         toggleDiaryEmotion(val);
-        showToast(`Emotion "${val}" gespeichert!`);
+        showToast(isEn ? `Emotion "${val}" saved!` : `Emotion "${val}" gespeichert!`);
       } else {
         const val = stripAllEmojis((document.getElementById('input-custom-modal-val')?.value || '').trim());
         if (!val) {
-          alert('Bitte gib eine Bezeichnung ein.');
+          alert(isEn ? 'Please enter a name.' : 'Bitte gib eine Bezeichnung ein.');
           return;
         }
         customOptions[activeCustomModalCategory] = customOptions[activeCustomModalCategory] || [];
@@ -1880,7 +2549,7 @@ def get_javascript_code():
           renderSchemaCustomChips();
           appendTag('input-new-action', val);
         }
-        showToast(`"${val}" dauerhaft gespeichert!`);
+        showToast(isEn ? `"${val}" saved permanently!` : `"${val}" dauerhaft gespeichert!`);
       }
 
       closeCustomOptionModal();
@@ -1917,7 +2586,7 @@ def get_javascript_code():
         renderMemoryTagChips();
       } else if (category.startsWith('schema_')) renderSchemaCustomChips();
 
-      showToast('Eintrag gelöscht');
+      showToast((appSettings.language || 'de') === 'en' ? 'Entry deleted' : 'Eintrag gelöscht');
     }
 
     function deleteCustomOptionByName(category, name) {
@@ -1952,7 +2621,7 @@ def get_javascript_code():
         } else if (category.startsWith('schema_')) {
           renderSchemaCustomChips();
         }
-        showToast(`"${name}" gelöscht`);
+        showToast((appSettings.language || 'de') === 'en' ? `"${name}" deleted` : `"${name}" gelöscht`);
       }
     }
 
@@ -2083,6 +2752,7 @@ def get_javascript_code():
     }
 
     function renderSchemaCustomChips() {
+      const isEn = (appSettings.language || 'de') === 'en';
       const s1 = document.getElementById('schema-step1-chips');
       if (s1 && customOptions.schema_emotions) {
         s1.querySelectorAll('.custom-schema-chip').forEach(b => b.remove());
@@ -2091,8 +2761,8 @@ def get_javascript_code():
           const span = document.createElement('span');
           span.className = 'custom-schema-chip inline-flex items-center text-xs rounded-full bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-medium border border-sky-300 dark:border-sky-800 transition';
           span.innerHTML = `
-            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-sky-100 dark:hover:bg-sky-900/50 rounded-l-full transition">${escapeHtml(emo)}</button>
-            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-sky-100 dark:hover:bg-sky-900/50 rounded-l-full transition">${escapeHtml(translateTag(emo))}</button>
+            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           `;
           span.firstElementChild.onclick = () => appendTag('input-emotion', emo);
           span.lastElementChild.onclick = (e) => { e.stopPropagation(); deleteCustomOptionByName('schema_emotions', emo); };
@@ -2109,8 +2779,8 @@ def get_javascript_code():
           const span = document.createElement('span');
           span.className = 'custom-schema-chip inline-flex items-center text-xs rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 font-medium border border-indigo-300 dark:border-indigo-800 transition';
           span.innerHTML = `
-            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 rounded-l-full transition">${escapeHtml(c)}</button>
-            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 rounded-l-full transition">${escapeHtml(translateTag(c))}</button>
+            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           `;
           span.firstElementChild.onclick = () => appendTag('input-coping', c);
           span.lastElementChild.onclick = (e) => { e.stopPropagation(); deleteCustomOptionByName('schema_coping', c); };
@@ -2127,8 +2797,8 @@ def get_javascript_code():
           const span = document.createElement('span');
           span.className = 'custom-schema-chip inline-flex items-center text-xs rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-medium border border-emerald-300 dark:border-emerald-800 transition';
           span.innerHTML = `
-            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 rounded-l-full transition">${escapeHtml(a)}</button>
-            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 rounded-l-full transition">${escapeHtml(translateTag(a))}</button>
+            <button type="button" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           `;
           span.firstElementChild.onclick = () => appendTag('input-new-action', a);
           span.lastElementChild.onclick = (e) => { e.stopPropagation(); deleteCustomOptionByName('schema_actions', a); };
@@ -2147,6 +2817,7 @@ def get_javascript_code():
     }
 
     function quickAddMedication(name, dose) {
+      const isEn = (appSettings.language || 'de') === 'en';
       const med = {
         id: 'med_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
         name: name,
@@ -2157,14 +2828,15 @@ def get_javascript_code():
       };
       currentDayMedications.push(med);
       renderMedicationsList();
-      showToast(`${name} (${dose}) um ${med.time} erfasst!`);
+      showToast(isEn ? `${name} (${dose}) logged at ${med.time}!` : `${name} (${dose}) um ${med.time} erfasst!`);
     }
 
     function updateMedTime(id, newTime) {
       const med = currentDayMedications.find(m => m.id === id);
       if (med) {
         med.time = newTime;
-        showToast(`Uhrzeit für ${med.name} auf ${newTime} gesetzt`);
+        const isEn = (appSettings.language || 'de') === 'en';
+        showToast(isEn ? `Time for ${med.name} set to ${newTime}` : `Uhrzeit für ${med.name} auf ${newTime} gesetzt`);
       }
     }
 
@@ -2174,7 +2846,14 @@ def get_javascript_code():
       if (sel && sel.value !== currentMedEfficacyRating) {
         sel.value = currentMedEfficacyRating || 'none';
       }
-      const labels = {
+      const isEn = (appSettings.language || 'de') === 'en';
+      const labels = isEn ? {
+        'optimal': 'Optimal / Flow',
+        'gut': 'Good & Stable',
+        'schwach': 'Too weak',
+        'zu_stark': 'Too intense',
+        'nebenwirkung': 'Side effects'
+      } : {
         'optimal': 'Optimal / Flow',
         'gut': 'Gut & Stabil',
         'schwach': 'Kaum Wirkung',
@@ -2193,7 +2872,7 @@ def get_javascript_code():
             badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-600 text-white';
           }
         } else {
-          badge.textContent = 'Noch offen';
+          badge.textContent = isEn ? 'Pending' : 'Noch offen';
           badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400';
         }
       }
@@ -2223,14 +2902,15 @@ def get_javascript_code():
     function renderMedicationsList() {
       const container = document.getElementById('today-meds-list');
       const badge = document.getElementById('meds-count-badge');
-      if (badge) badge.innerText = `${currentDayMedications.length} Medis`;
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (badge) badge.innerText = isEn ? `${currentDayMedications.length} Meds` : `${currentDayMedications.length} Medis`;
 
       if (!container) return;
 
       if (currentDayMedications.length === 0) {
         container.innerHTML = `
           <div class="text-xs text-slate-400 italic py-1.5">
-            Noch keine Medikamente für heute eingetragen. Tippe oben auf einen Schnell-Button oder (+).
+            ${isEn ? 'No medications logged for today yet. Tap a quick-button above or (+).' : 'Noch keine Medikamente für heute eingetragen. Tippe oben auf einen Schnell-Button oder (+).'}
           </div>
         `;
         updateCardSummaryBadges();
@@ -2250,9 +2930,9 @@ def get_javascript_code():
           <div class="flex items-center gap-1.5 shrink-0">
             <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
               <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 7v5l3 2"/></svg>
-              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="Einnahme-Uhrzeit anpassen">
+              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="${isEn ? 'Adjust intake time' : 'Einnahme-Uhrzeit anpassen'}">
             </div>
-            <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="Löschen">
+            <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="${isEn ? 'Delete' : 'Löschen'}">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
@@ -2268,16 +2948,17 @@ def get_javascript_code():
       if (sel && sel.value !== currentReboundLevel) {
         sel.value = currentReboundLevel;
       }
+      const isEn = (appSettings.language || 'de') === 'en';
       const badge = document.getElementById('rebound-badge');
       if (badge) {
         if (level === 'none') {
-          badge.innerText = 'Kein Rebound';
+          badge.innerText = isEn ? 'No Rebound' : 'Kein Rebound';
           badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-200';
         } else if (level === 'leicht') {
-          badge.innerText = 'Leichter Rebound';
+          badge.innerText = isEn ? 'Mild Rebound' : 'Leichter Rebound';
           badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-200';
         } else {
-          badge.innerText = (level === 'stark' ? 'Starker Rebound' : 'Spürbarer Rebound');
+          badge.innerText = level === 'stark' ? (isEn ? 'Severe Rebound' : 'Starker Rebound') : (isEn ? 'Noticeable Rebound' : 'Spürbarer Rebound');
           badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 text-white shadow-xs';
         }
       }
@@ -2296,8 +2977,9 @@ def get_javascript_code():
     function appendMealTag(mealType, tag) {
       const input = document.getElementById('input-meal-' + mealType);
       if (input) {
-        if (input.value.trim().length > 0) input.value += ', ' + tag;
-        else input.value = tag;
+        const translated = translateTag(tag);
+        if (input.value.trim().length > 0) input.value += ', ' + translated;
+        else input.value = translated;
         input.focus();
       }
     }
@@ -2309,13 +2991,15 @@ def get_javascript_code():
     }
 
     function renderMealTagChips() {
-      document.querySelectorAll('.meal-tag-btn').forEach(btn => {
-        const tag = btn.getAttribute('data-tag');
-        if (selectedMealTags.has(tag)) {
-          btn.className = 'meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold transition';
-        } else {
-          btn.className = 'meal-tag-btn text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium transition';
-        }
+      renderGenericChipGroup({
+        containerId: 'meal-tags-container',
+        categoryKey: 'meal_tags',
+        defaults: DEFAULT_MEAL_TAGS,
+        customs: customOptions.meal_tags || [],
+        activeSet: selectedMealTags,
+        toggleFnName: 'toggleMealTag',
+        activeClass: 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold shadow-xs',
+        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
       });
     }
 
@@ -2339,25 +3023,28 @@ def get_javascript_code():
     }
 
     function changeCoffee(delta) {
+      const isEn = (appSettings.language || 'de') === 'en';
       currentCoffeeCups = Math.max(0, currentCoffeeCups + delta);
       currentCaffeineCups = currentCoffeeCups + currentEnergyCups;
       updateCaffeineDisplay();
-      if (delta > 0) showToast('+1 Kaffee erfasst');
+      if (delta > 0) showToast(isEn ? '+1 Coffee logged' : '+1 Kaffee erfasst');
     }
 
     function changeEnergyDrink(delta) {
+      const isEn = (appSettings.language || 'de') === 'en';
       currentEnergyCups = Math.max(0, currentEnergyCups + delta);
       currentCaffeineCups = currentCoffeeCups + currentEnergyCups;
       updateCaffeineDisplay();
-      if (delta > 0) showToast('+1 Energy Drink erfasst');
+      if (delta > 0) showToast(isEn ? '+1 Energy Drink logged' : '+1 Energy Drink erfasst');
     }
 
     function resetCaffeine() {
+      const isEn = (appSettings.language || 'de') === 'en';
       currentCoffeeCups = 0;
       currentEnergyCups = 0;
       currentCaffeineCups = 0;
       updateCaffeineDisplay();
-      showToast('Koffein zurückgesetzt');
+      showToast(isEn ? 'Caffeine reset' : 'Koffein zurückgesetzt');
     }
 
     function updateCaffeineDisplay() {
@@ -2366,6 +3053,7 @@ def get_javascript_code():
       const badgeEl = document.getElementById('caffeine-total-badge');
       const dispEl = document.getElementById('caffeine-display');
       const mixEl = document.getElementById('caffeine-mix-label');
+      const isEn = (appSettings.language || 'de') === 'en';
 
       if (coffeeEl) coffeeEl.textContent = String(currentCoffeeCups);
       if (energyEl) energyEl.textContent = String(currentEnergyCups);
@@ -2378,7 +3066,9 @@ def get_javascript_code():
         dispEl.textContent = `${totalMg} mg`;
       }
       if (mixEl) {
-        mixEl.textContent = `Mix: ${currentCoffeeCups}x Kaffee · ${currentEnergyCups}x Energy (~${totalMg} mg)`;
+        mixEl.textContent = isEn 
+          ? `Mix: ${currentCoffeeCups}x Coffee · ${currentEnergyCups}x Energy (~${totalMg} mg)`
+          : `Mix: ${currentCoffeeCups}x Kaffee · ${currentEnergyCups}x Energy (~${totalMg} mg)`;
       }
       updateCardSummaryBadges();
     }
@@ -2414,9 +3104,13 @@ def get_javascript_code():
     function updateSleepDurationDisplay() {
       const dur = parseFloat(document.getElementById('input-sleep-duration').value) || 0;
       const badge = document.getElementById('sleep-badge');
-      const qualLabels = ['', 'Sehr schlecht', 'Unruhig', 'Geht so', 'Erholsam', 'Perfekt'];
+      const isEn = (appSettings.language || 'de') === 'en';
+      const qualLabelsDe = ['', 'Sehr schlecht', 'Unruhig', 'Geht so', 'Erholsam', 'Perfekt'];
+      const qualLabelsEn = ['', 'Very poor', 'Restless', 'Fair', 'Restful', 'Perfect'];
+      const qualLabels = isEn ? qualLabelsEn : qualLabelsDe;
+      const hrsUnit = isEn ? 'hrs' : 'Std';
       if (badge) {
-        badge.innerText = `${dur} Std · ${qualLabels[currentSleepQuality] || 'Erholsam'}`;
+        badge.innerText = `${dur} ${hrsUnit} · ${qualLabels[currentSleepQuality] || (isEn ? 'Restful' : 'Erholsam')}`;
       }
     }
 
@@ -2426,7 +3120,14 @@ def get_javascript_code():
       if (sel && parseInt(sel.value) !== currentSleepQuality) {
         sel.value = String(currentSleepQuality);
       }
-      const labels = {
+      const isEn = (appSettings.language || 'de') === 'en';
+      const labels = isEn ? {
+        1: '1 / 5 · Very poor',
+        2: '2 / 5 · Restless',
+        3: '3 / 5 · Moderate',
+        4: '4 / 5 · Good & sufficient',
+        5: '5 / 5 · Very restful & deep'
+      } : {
         1: '1 / 5 · Sehr schlecht',
         2: '2 / 5 · Schlecht',
         3: '3 / 5 · Mittelmäßig',
@@ -2462,10 +3163,12 @@ def get_javascript_code():
     function renderGenericChipGroup({ containerId, categoryKey, defaults, customs = [], activeSet, toggleFnName, activeClass, inactiveClass, isHashtag = false }) {
       const container = document.getElementById(containerId);
       if (!container) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       const defaultsHtml = defaults.map(item => {
         const isSelected = activeSet.has(item);
-        const displayLabel = isHashtag ? formatTagDisplay(item) : item;
+        const translated = translateTag(item);
+        const displayLabel = isHashtag ? (translated.startsWith('#') ? translated : '#' + translated) : translated;
         return `
           <button type="button" onclick="${toggleFnName}('${escapeHtml(item)}')" class="text-xs px-2.5 py-1 rounded-full border transition ${isSelected ? activeClass : inactiveClass}" data-tag="${escapeHtml(item)}">
             ${escapeHtml(displayLabel)}
@@ -2475,13 +3178,14 @@ def get_javascript_code():
 
       const customsHtml = customs.map(item => {
         const isSelected = activeSet.has(item);
-        const displayLabel = isHashtag ? formatTagDisplay(item) : item;
+        const translated = translateTag(item);
+        const displayLabel = isHashtag ? (translated.startsWith('#') ? translated : '#' + translated) : translated;
         return `
           <span class="inline-flex items-center text-xs rounded-full border transition ${isSelected ? activeClass : inactiveClass}">
             <button type="button" onclick="${toggleFnName}('${escapeHtml(item)}')" class="py-1 pl-2.5 pr-1 focus:outline-none">
               ${escapeHtml(displayLabel)}
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('${categoryKey}', '${escapeHtml(item)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('${categoryKey}', '${escapeHtml(item)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `;
       }).join('');
@@ -2526,10 +3230,14 @@ def get_javascript_code():
       const bar = document.getElementById('steps-progress-bar');
       const text = document.getElementById('steps-progress-percent');
       const badge = document.getElementById('steps-display-badge');
+      const isEn = (appSettings.language || 'de') === 'en';
+      const loc = isEn ? 'en-US' : 'de-DE';
 
       if (bar) bar.style.width = pct + '%';
-      if (text) text.innerText = `${pct}% erreicht (${steps.toLocaleString('de-DE')} / ${goal.toLocaleString('de-DE')})`;
-      if (badge) badge.innerText = `${steps.toLocaleString('de-DE')} Schritte`;
+      if (text) text.innerText = isEn 
+        ? `${pct}% reached (${steps.toLocaleString(loc)} / ${goal.toLocaleString(loc)})`
+        : `${pct}% erreicht (${steps.toLocaleString(loc)} / ${goal.toLocaleString(loc)})`;
+      if (badge) badge.innerText = isEn ? `${steps.toLocaleString(loc)} steps` : `${steps.toLocaleString(loc)} Schritte`;
     }
 
     function toggleActivityTag(tag) {
@@ -2547,19 +3255,6 @@ def get_javascript_code():
         activeSet: selectedActivities,
         toggleFnName: 'toggleActivityTag',
         activeClass: 'border-blue-500 bg-blue-100 dark:bg-blue-950/70 text-blue-900 dark:text-blue-200 font-bold shadow-xs',
-        inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
-      });
-    }
-
-    function renderMealTagChips() {
-      renderGenericChipGroup({
-        containerId: 'meal-tags-container',
-        categoryKey: 'meal_tags',
-        defaults: DEFAULT_MEAL_TAGS,
-        customs: customOptions.meal_tags || [],
-        activeSet: selectedMealTags,
-        toggleFnName: 'toggleMealTag',
-        activeClass: 'border-amber-500 bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-200 font-bold shadow-xs',
         inactiveClass: 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium'
       });
     }
@@ -2678,7 +3373,7 @@ def get_javascript_code():
         .sort((a, b) => b.date.localeCompare(a.date))[0];
 
       if (!prev) {
-        showToast('Kein vorheriger Eintrag gefunden zum Kopieren.', false);
+        showToast((appSettings.language || 'de') === 'en' ? 'No previous entry found to copy from.' : 'Kein vorheriger Eintrag gefunden zum Kopieren.', false);
         return;
       }
 
@@ -2696,7 +3391,8 @@ def get_javascript_code():
       updateStepsProgressDisplay();
       updateWaterDisplay();
 
-      showToast(`Routine vom ${formatDateDE(prev.date)} übernommen!`);
+      const isEn = (appSettings.language || 'de') === 'en';
+      showToast(isEn ? `Routine from ${formatDateDE(prev.date)} applied!` : `Routine vom ${formatDateDE(prev.date)} übernommen!`);
     }
 
     // Collect & Save Diary Form Data
@@ -2907,7 +3603,8 @@ def get_javascript_code():
 
       saveStoredDiaryEntries(entries);
       currentDiaryEntryId = data.id;
-      showToast('Tagebucheintrag gespeichert!');
+      const isEn = (appSettings.language || 'de') === 'en';
+      showToast(isEn ? 'Diary entry saved!' : 'Tagebucheintrag gespeichert!');
       switchView('diary-list');
     }
 
@@ -2924,22 +3621,25 @@ def get_javascript_code():
       document.getElementById('input-diary-notes').value = '';
 
       // Reset Positives
+      const isEn = (appSettings.language || 'de') === 'en';
       const container = document.getElementById('positive-things-inputs-container');
-      container.innerHTML = `
-        <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">1</span>
-          <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein ruhiger, wärmender Morgenkaffee..." class="notebook-input-area py-2.5">
-        </div>
-        <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">2</span>
-          <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="z. B. Ein unerwartetes Lächeln oder schönes Feedback..." class="notebook-input-area py-2.5">
-        </div>
-        <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">3</span>
-          <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="z. B. Zeit genommen für mich und durchgeatmet..." class="notebook-input-area py-2.5">
-        </div>
-      `;
-      updatePositiveThingsCounter();
+      if (container) {
+        container.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">1</span>
+            <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="${isEn ? 'e.g. A peaceful, warm morning coffee...' : 'z. B. Ein ruhiger, wärmender Morgenkaffee...'}" class="notebook-input-area py-2.5">
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">2</span>
+            <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="${isEn ? 'e.g. An unexpected smile or nice feedback...' : 'z. B. Ein unerwartetes Lächeln oder schönes Feedback...'}" class="notebook-input-area py-2.5">
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center flex-shrink-0 text-center shadow-xs">3</span>
+            <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="${isEn ? 'e.g. Took time for myself to breathe...' : 'z. B. Zeit genommen für mich und durchgeatmet...'}" class="notebook-input-area py-2.5">
+          </div>
+        `;
+        updatePositiveThingsCounter();
+      }
 
       // Reset Meds & Meals
       currentDayMedications = [];
@@ -2990,11 +3690,12 @@ def get_javascript_code():
       updateCardSummaryBadges();
 
       switchView('diary-entry');
-      showToast('Neuer Check-in geöffnet');
+      showToast(isEn ? 'New check-in opened' : 'Neuer Check-in geöffnet');
     }
 
     function resetDiaryFormWithConfirm() {
-      if (confirm('Möchtest du das heutige Check-in Formular komplett zurücksetzen?')) {
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (confirm(isEn ? 'Do you really want to reset today\'s check-in form completely?' : 'Möchtest du das heutige Check-in Formular komplett zurücksetzen?')) {
         createNewDiaryEntry();
       }
     }
@@ -3024,6 +3725,7 @@ def get_javascript_code():
       const entries = getStoredDiaryEntries();
       const container = document.getElementById('diary-folders-container');
       if (!container) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       const folders = {};
       entries.forEach(e => {
@@ -3035,14 +3737,14 @@ def get_javascript_code():
       const sorted = Object.keys(folders).sort().reverse();
       let html = `
         <button type="button" onclick="setDiaryFolder('all')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
-          Alle (${entries.length})
+          ${isEn ? 'All' : 'Alle'} (${entries.length})
         </button>
       `;
 
       sorted.forEach(key => {
         const [y, m] = key.split('-');
         const dObj = new Date(parseInt(y), parseInt(m) - 1, 1);
-        const label = dObj.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' });
+        const label = dObj.toLocaleDateString(isEn ? 'en-US' : 'de-DE', { month: 'short', year: 'numeric' });
         html += `
           <button type="button" onclick="setDiaryFolder('${key}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
             ${label} (${folders[key]})
@@ -3060,6 +3762,8 @@ def get_javascript_code():
       if (!container) return;
 
       const searchTerm = (document.getElementById('diary-search-input')?.value || '').toLowerCase().trim();
+      const isEn = (appSettings.language || 'de') === 'en';
+      const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       const filtered = entries.filter(e => {
         // Folder filter
@@ -3092,10 +3796,10 @@ def get_javascript_code():
             <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto flex items-center justify-center text-xl">
               <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             </div>
-            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">Keine Tagebucheinträge im ausgewählten Filter</p>
-            <p class="text-xs text-slate-500 max-w-sm mx-auto">Notiere deinen täglichen Check-in mit Medis, Essen, Schlaf, Steps und Stimmung.</p>
+            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">${t.diaryEmptyTitle}</p>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto">${t.diaryEmptyDesc}</p>
             <button onclick="createNewDiaryEntry()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs">
-              + Neuen Check-in verfassen
+              ${t.diaryBtnNewCheckin}
             </button>
           </div>
         `;
@@ -3104,8 +3808,9 @@ def get_javascript_code():
 
       container.innerHTML = filtered.map(item => {
         const moodConf = MOOD_CONFIG[item.mood || 5] || MOOD_CONFIG[5];
+        const mTitle = (isEn && moodConf.title_en) ? moodConf.title_en : moodConf.title;
         const dateObj = new Date(item.date);
-        const formattedFullDate = dateObj.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const formattedFullDate = dateObj.toLocaleDateString(isEn ? 'en-US' : 'de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
         const slp = item.sleep || {};
         const steps = item.steps || 0;
@@ -3128,14 +3833,14 @@ def get_javascript_code():
               <div class="flex items-center gap-1.5">
                 <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${moodConf.bg} shadow-xs">
                   <span>${moodConf.emoji}</span>
-                  <span>${item.mood}/10 · ${moodConf.title.split('/')[0].trim()}</span>
+                  <span>${item.mood}/10 · ${mTitle.split('/')[0].trim()}</span>
                 </div>
 
                 <div class="flex items-center gap-1">
-                  <button onclick="editDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="Bearbeiten">
+                  <button onclick="editDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                   </button>
-                  <button onclick="deleteDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="Löschen">
+                  <button onclick="deleteDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                   </button>
                 </div>
@@ -3146,37 +3851,37 @@ def get_javascript_code():
             <div class="flex flex-wrap items-center gap-1 pt-0.5">
               ${slp.durationHours ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-800/40">
-                  <span>Schlaf:</span> ${slp.durationHours}h (${slp.quality || 4}/5)
+                  <span>${isEn ? 'Sleep:' : 'Schlaf:'}</span> ${slp.durationHours}h (${slp.quality || 4}/5)
                 </span>
               ` : ''}
 
               ${steps > 0 ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/40">
-                  <span>Schritte:</span> ${steps.toLocaleString('de-DE')}
+                  <span>${isEn ? 'Steps:' : 'Schritte:'}</span> ${steps.toLocaleString(isEn ? 'en-US' : 'de-DE')}
                 </span>
               ` : ''}
 
               ${meds.length > 0 ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
-                  <span>Medis:</span> ${meds.length}
+                  <span>${isEn ? 'Meds:' : 'Medis:'}</span> ${meds.length}
                 </span>
               ` : ''}
 
               ${water > 0 ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
-                  <span>Wasser:</span> ${water} ml
+                  <span>${isEn ? 'Water:' : 'Wasser:'}</span> ${water} ml
                 </span>
               ` : ''}
 
               ${(item.coffeeCups || item.energyCups || caffeine > 0) ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40">
-                  ${item.coffeeCups !== undefined ? `${item.coffeeCups || 0}x Kaffee · ${item.energyCups || 0}x Energy` : `Koffein: ${caffeine}x`}
+                  ${item.coffeeCups !== undefined ? `${item.coffeeCups || 0}x ${isEn ? 'Coffee' : 'Kaffee'} · ${item.energyCups || 0}x Energy` : `${isEn ? 'Caffeine:' : 'Koffein:'} ${caffeine}x`}
                 </span>
               ` : ''}
 
               ${adhs.focus ? `
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
-                  <span>Fokus:</span> ${adhs.focus}/10
+                  <span>${isEn ? 'Focus:' : 'Fokus:'}</span> ${adhs.focus}/10
                 </span>
               ` : ''}
             </div>
@@ -3185,14 +3890,14 @@ def get_javascript_code():
             ${item.highlights ? `
               <div class="bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-500 p-2.5 sm:p-3 rounded-r-xl space-y-1">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 flex items-center justify-between">
-                  <span>Key Highlights & Erlebnisse</span>
+                  <span>${isEn ? 'Key Highlights & Moments' : 'Key Highlights & Erlebnisse'}</span>
                 </div>
                 <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
                   ${escapeHtml(item.highlights)}
                 </p>
                 ${(item.memoryTags && item.memoryTags.length > 0) ? `
                   <div class="flex flex-wrap gap-1 pt-0.5">
-                    ${item.memoryTags.map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">#${escapeHtml(t)}</span>`).join('')}
+                    ${item.memoryTags.map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">#${escapeHtml(translateTag(t))}</span>`).join('')}
                   </div>
                 ` : ''}
               </div>
@@ -3202,7 +3907,7 @@ def get_javascript_code():
             ${(meds.length > 0 || (item.rebound && item.rebound.level !== 'none')) ? `
               <div class="p-2.5 sm:p-3 rounded-xl border border-violet-100 dark:border-violet-900/40 bg-violet-50/40 dark:bg-violet-950/20 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 flex items-center justify-between">
-                  <span>Eingenommene Medikation & Supplements:</span>
+                  <span>${isEn ? 'Logged Medications & Supplements:' : 'Eingenommene Medikation & Supplements:'}</span>
                 </div>
                 <div class="flex flex-wrap gap-1">
                   ${meds.map(m => `
@@ -3210,14 +3915,14 @@ def get_javascript_code():
                       <span class="text-emerald-500 font-bold">✓</span>
                       <span class="font-bold">${escapeHtml(m.name)}</span>
                       <span class="text-violet-600 dark:text-violet-400 font-semibold">${escapeHtml(m.dose)}</span>
-                      ${m.time ? `<span class="text-violet-600 dark:text-violet-400 text-[10px] font-bold">${escapeHtml(m.time)} Uhr</span>` : ''}
+                      ${m.time ? `<span class="text-violet-600 dark:text-violet-400 text-[10px] font-bold">${escapeHtml(m.time)}</span>` : ''}
                     </span>
                   `).join('')}
                 </div>
                 ${(item.medEfficacyRating || item.medEfficacy) ? `
                   <div class="p-2 rounded-lg border border-violet-200/80 dark:border-violet-900/40 bg-violet-100/40 dark:bg-violet-950/30 space-y-0.5 text-xs">
                     <div class="text-[10px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300 flex items-center gap-1">
-                      <span>Wirkung der Medikation:</span>
+                      <span>${isEn ? 'Medication Efficacy:' : 'Wirkung der Medikation:'}</span>
                       ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(item.medEfficacyRating)}</span>` : ''}
                     </div>
                     ${item.medEfficacy ? `<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-[11px]">${escapeHtml(item.medEfficacy)}</p>` : ''}
@@ -3225,7 +3930,7 @@ def get_javascript_code():
                 ` : ''}
                 ${(item.rebound && item.rebound.level && item.rebound.level !== 'none') ? `
                   <div class="text-[11px] text-violet-700 dark:text-violet-300 pt-0.5 font-medium flex items-center gap-1.5">
-                    <strong>Rebound:</strong> ${escapeHtml(item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)} Uhr)` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
+                    <strong>Rebound:</strong> ${escapeHtml(item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
                   </div>
                 ` : ''}
               </div>
@@ -3235,13 +3940,13 @@ def get_javascript_code():
             ${(mls.breakfast || mls.lunch || mls.dinner || mls.snacks) ? `
               <div class="p-2.5 sm:p-3 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/30 dark:bg-amber-950/15 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">
-                  Mahlzeiten & Ernährung:
+                  ${isEn ? 'Meals & Nutrition:' : 'Mahlzeiten & Ernährung:'}
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-700 dark:text-slate-300">
-                  ${mls.breakfast ? `<div><strong class="text-slate-900 dark:text-white">Frühstück:</strong> ${escapeHtml(mls.breakfast)}</div>` : ''}
-                  ${mls.lunch ? `<div><strong class="text-slate-900 dark:text-white">Mittag:</strong> ${escapeHtml(mls.lunch)}</div>` : ''}
-                  ${mls.dinner ? `<div><strong class="text-slate-900 dark:text-white">Abend:</strong> ${escapeHtml(mls.dinner)}</div>` : ''}
-                  ${mls.snacks ? `<div><strong class="text-slate-900 dark:text-white">Snacks:</strong> ${escapeHtml(mls.snacks)}</div>` : ''}
+                  ${mls.breakfast ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Breakfast:' : 'Frühstück:'}</strong> ${escapeHtml(mls.breakfast)}</div>` : ''}
+                  ${mls.lunch ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Lunch:' : 'Mittag:'}</strong> ${escapeHtml(mls.lunch)}</div>` : ''}
+                  ${mls.dinner ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Dinner:' : 'Abend:'}</strong> ${escapeHtml(mls.dinner)}</div>` : ''}
+                  ${mls.snacks ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Snacks:' : 'Snacks:'}</strong> ${escapeHtml(mls.snacks)}</div>` : ''}
                 </div>
               </div>
             ` : ''}
@@ -3251,19 +3956,19 @@ def get_javascript_code():
               <div class="p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-1.5 text-xs">
                 ${(item.activities && item.activities.length > 0) ? `
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="text-slate-400 font-semibold">Sport:</span>
-                    ${item.activities.map(a => `<span class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold">${escapeHtml(a)}</span>`).join('')}
+                    <span class="text-slate-400 font-semibold">${isEn ? 'Activity:' : 'Sport:'}</span>
+                    ${item.activities.map(a => `<span class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold">${escapeHtml(translateTag(a))}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${(slp.tags && slp.tags.length > 0) ? `
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="text-slate-400 font-semibold">Schlaf:</span>
-                    ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold">${escapeHtml(t)}</span>`).join('')}
+                    <span class="text-slate-400 font-semibold">${isEn ? 'Sleep:' : 'Schlaf:'}</span>
+                    ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold">${escapeHtml(translateTag(t))}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${adhs.notes ? `
                   <div class="pt-0.5 text-slate-800 dark:text-slate-200">
-                    <strong class="text-violet-600 dark:text-violet-400">ADHS-Erkenntnis:</strong> ${escapeHtml(adhs.notes)}
+                    <strong class="text-violet-600 dark:text-violet-400">${isEn ? 'ADHD insight:' : 'ADHS-Erkenntnis:'}</strong> ${escapeHtml(adhs.notes)}
                   </div>
                 ` : ''}
               </div>
@@ -3273,7 +3978,7 @@ def get_javascript_code():
             ${(item.positiveThings && item.positiveThings.length > 0) ? `
               <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-2.5 sm:p-3 space-y-1.5">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
-                  Das war heute positiv:
+                  ${isEn ? 'Positive moments today:' : 'Das war heute positiv:'}
                 </div>
                 <div class="space-y-1">
                   ${item.positiveThings.map(pt => `
@@ -3289,7 +3994,7 @@ def get_javascript_code():
             <!-- Free Diary Notes -->
             ${item.notes ? `
               <div class="space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tagebuch-Notizen:</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${isEn ? 'Diary notes:' : 'Tagebuch-Notizen:'}</span>
                 <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed font-sans">
                   ${escapeHtml(item.notes)}
                 </p>
@@ -3310,11 +4015,12 @@ def get_javascript_code():
     }
 
     function deleteDiaryEntry(id) {
-      if (confirm('Diesen Tagebucheintrag wirklich unwiderruflich löschen?')) {
+      const isEn = (appSettings.language || 'de') === 'en';
+      if (confirm(isEn ? 'Really delete this diary entry permanently?' : 'Diesen Tagebucheintrag wirklich unwiderruflich löschen?')) {
         const entries = getStoredDiaryEntries().filter(e => e.id !== id);
         saveStoredDiaryEntries(entries);
         renderDiaryEntriesList();
-        showToast('Eintrag gelöscht');
+        showToast(isEn ? 'Diary entry deleted' : 'Eintrag gelöscht');
       }
     }
 
@@ -3343,10 +4049,10 @@ def get_javascript_code():
           if (Array.isArray(parsed)) {
             saveStoredDiaryEntries(parsed);
             renderDiaryEntriesList();
-            showToast('Tagebuch erfolgreich importiert!');
+            showToast((appSettings.language || 'de') === 'en' ? 'Diary imported successfully!' : 'Tagebuch erfolgreich importiert!');
           }
         } catch (err) {
-          alert('Ungültige JSON Datei');
+          alert((appSettings.language || 'de') === 'en' ? 'Invalid JSON file' : 'Ungültige JSON Datei');
         }
       };
       reader.readAsText(file);
@@ -3435,6 +4141,7 @@ def get_javascript_code():
     function renderStatsView() {
       const entries = getStoredDiaryEntries();
       const now = new Date();
+      const isEn = (appSettings.language || 'de') === 'en';
 
       const filtered = entries.filter(e => {
         if (!e.date) return false;
@@ -3463,11 +4170,11 @@ def get_javascript_code():
         const avg1 = firstHalf.reduce((acc, c) => acc + (c.mood || 5), 0) / firstHalf.length;
         const avg2 = secondHalf.reduce((acc, c) => acc + (c.mood || 5), 0) / secondHalf.length;
         const diff = (avg2 - avg1).toFixed(1);
-        if (diff > 0.3) trendEl.innerHTML = `<span class="text-emerald-500 font-bold">+${diff} ↑ Steigend</span>`;
-        else if (diff < -0.3) trendEl.innerHTML = `<span class="text-rose-500 font-bold">${diff} ↓ Sinkend</span>`;
-        else trendEl.innerHTML = `<span class="text-slate-400 font-medium">±0.0 → Stabil</span>`;
+        if (diff > 0.3) trendEl.innerHTML = `<span class="text-emerald-500 font-bold">+${diff} ↑ ${isEn ? 'Rising' : 'Steigend'}</span>`;
+        else if (diff < -0.3) trendEl.innerHTML = `<span class="text-rose-500 font-bold">${diff} ↓ ${isEn ? 'Falling' : 'Sinkend'}</span>`;
+        else trendEl.innerHTML = `<span class="text-slate-400 font-medium">±0.0 → ${isEn ? 'Stable' : 'Stabil'}</span>`;
       } else {
-        trendEl.innerText = 'Mehr Daten für Trend nötig';
+        trendEl.innerText = isEn ? 'More data needed for trend' : 'Mehr Daten für Trend nötig';
       }
 
       // 2. Avg Sleep
@@ -3484,7 +4191,7 @@ def get_javascript_code():
       const avgSleep = sleepCount > 0 ? (sleepSum / sleepCount).toFixed(1) : '--';
       const avgSleepQual = sleepCount > 0 ? (sleepQualSum / sleepCount).toFixed(1) : '--';
       document.getElementById('stats-kpi-sleep').innerText = avgSleep !== '--' ? `${avgSleep} h` : '--';
-      document.getElementById('stats-kpi-sleep-qual').innerText = avgSleepQual !== '--' ? `Ø ${avgSleepQual} / 5 Qualität` : '--';
+      document.getElementById('stats-kpi-sleep-qual').innerText = avgSleepQual !== '--' ? `Ø ${avgSleepQual} / 5 ${isEn ? 'Quality' : 'Qualität'}` : '--';
 
       // 3. Avg Steps
       let stepsSum = 0;
@@ -3496,8 +4203,9 @@ def get_javascript_code():
         }
       });
       const avgSteps = stepsCount > 0 ? Math.round(stepsSum / stepsCount) : '--';
-      document.getElementById('stats-kpi-steps').innerText = avgSteps !== '--' ? avgSteps.toLocaleString('de-DE') : '--';
-      document.getElementById('stats-kpi-steps-total').innerText = `${stepsSum.toLocaleString('de-DE')} Schritte gesamt`;
+      const locale = isEn ? 'en-US' : 'de-DE';
+      document.getElementById('stats-kpi-steps').innerText = avgSteps !== '--' ? avgSteps.toLocaleString(locale) : '--';
+      document.getElementById('stats-kpi-steps-total').innerText = `${stepsSum.toLocaleString(locale)} ${isEn ? 'total steps' : 'Schritte gesamt'}`;
 
       // 4. Med Adherence
       let medsDays = 0;
@@ -3549,11 +4257,12 @@ def get_javascript_code():
     function renderDualTimelineChart(items) {
       const container = document.getElementById('stats-chart-container');
       if (!container) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       if (items.length < 2) {
         container.innerHTML = `
           <div class="text-xs text-slate-400 italic py-8 text-center">
-            Mindestens 2 Tage im Zeitraum erforderlich für den Kurvenverlauf.
+            ${isEn ? 'At least 2 days needed in timeframe to display trend curve.' : 'Mindestens 2 Tage im Zeitraum erforderlich für den Kurvenverlauf.'}
           </div>
         `;
         return;
@@ -3607,7 +4316,7 @@ def get_javascript_code():
 
           <!-- Circles for Mood -->
           ${moodPoints.map((p, idx) => `
-            <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: Stimmung ${p.val}/10')">
+            <g class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'Mood' : 'Stimmung'} ${p.val}/10')">
               <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
               <text x="${p.x.toFixed(1)}" y="${h - 6}" fill="#64748b" font-size="8.5" text-anchor="middle" font-weight="500">
                 ${p.date ? p.date.substring(8, 10) + '.' : ''}
@@ -3617,7 +4326,7 @@ def get_javascript_code():
 
           <!-- Circles for Focus -->
           ${focusPoints.map((p, idx) => `
-            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ADHS-Fokus ${p.val}/10')"/>
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" class="cursor-pointer" onclick="showToast('${formatDateDE(p.date)}: ${isEn ? 'ADHD Focus' : 'ADHS-Fokus'} ${p.val}/10')"/>
           `).join('')}
         </svg>
       `;
@@ -3626,8 +4335,9 @@ def get_javascript_code():
     function renderWeekdayTendency(entries) {
       const container = document.getElementById('stats-weekday-bars');
       if (!container) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
-      const days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+      const days = isEn ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] : ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
       const stats = [
         { sum: 0, count: 0 }, { sum: 0, count: 0 }, { sum: 0, count: 0 },
         { sum: 0, count: 0 }, { sum: 0, count: 0 }, { sum: 0, count: 0 }, { sum: 0, count: 0 }
@@ -3648,7 +4358,7 @@ def get_javascript_code():
         const pct = item.count > 0 ? (avg / 10) * 100 : 0;
         return `
           <div class="flex items-center gap-2 text-xs">
-            <span class="w-6 font-bold text-slate-600 dark:text-slate-400">${dayName}</span>
+            <span class="w-7 font-bold text-slate-600 dark:text-slate-400">${dayName}</span>
             <div class="flex-1 bg-slate-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden flex">
               <div class="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
@@ -3661,6 +4371,7 @@ def get_javascript_code():
     function renderTopEmotions(entries) {
       const container = document.getElementById('stats-top-emotions');
       if (!container) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       const counts = {};
       entries.forEach(e => {
@@ -3671,7 +4382,7 @@ def get_javascript_code():
 
       const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
       if (sorted.length === 0) {
-        container.innerHTML = `<div class="text-xs text-slate-400 italic py-4">Noch keine Emotionen erfasst.</div>`;
+        container.innerHTML = `<div class="text-xs text-slate-400 italic py-4">${isEn ? 'No emotions recorded yet.' : 'Noch keine Emotionen erfasst.'}</div>`;
         return;
       }
 
@@ -3679,10 +4390,11 @@ def get_javascript_code():
       container.innerHTML = sorted.map(([emo, count]) => {
         const pct = Math.round((count / maxCount) * 100);
         const isPleasant = PLEASANT_EMOTIONS.includes(emo);
+        const displayEmo = translateTag(emo);
         return `
           <div class="space-y-1 text-xs">
             <div class="flex justify-between items-center font-medium">
-              <span class="text-slate-800 dark:text-slate-200 font-semibold">${escapeHtml(emo)}</span>
+              <span class="text-slate-800 dark:text-slate-200 font-semibold">${escapeHtml(displayEmo)}</span>
               <span class="text-slate-500">${count}x</span>
             </div>
             <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden flex">
@@ -3696,9 +4408,12 @@ def get_javascript_code():
     function renderNeuroInsights(items) {
       const el = document.getElementById('stats-insight-text');
       if (!el) return;
+      const isEn = (appSettings.language || 'de') === 'en';
 
       if (items.length < 3) {
-        el.innerText = 'Trage mindestens 3 Tage lang deine Medis, Mahlzeiten, Schlaf und Schritte ein, um automatisierte Auswertungen über dein Nervensystem zu erhalten.';
+        el.innerText = isEn
+          ? 'Log at least 3 days of meds, meals, sleep and steps to unlock automated nervous system insights.'
+          : 'Trage mindestens 3 Tage lang deine Medis, Mahlzeiten, Schlaf und Schritte ein, um automatisierte Auswertungen über dein Nervensystem zu erhalten.';
         return;
       }
 
@@ -3710,18 +4425,28 @@ def get_javascript_code():
       if (goodSleepEntries.length > 0 && lowSleepEntries.length > 0) {
         const avgGoodFocus = (goodSleepEntries.reduce((acc, c) => acc + ((c.adhs && c.adhs.focus) || 5), 0) / goodSleepEntries.length).toFixed(1);
         const avgLowFocus = (lowSleepEntries.reduce((acc, c) => acc + ((c.adhs && c.adhs.focus) || 5), 0) / lowSleepEntries.length).toFixed(1);
-        insight += `<strong>Schlaf & Fokus:</strong> An Tagen mit ≥ 7 Std Schlaf lag dein mentaler Fokus im Schnitt bei <strong>${avgGoodFocus}/10</strong> (gegenüber ${avgLowFocus}/10 bei Schlafmangel). `;
+        if (isEn) {
+          insight += `<strong>Sleep & Focus:</strong> On days with ≥ 7 hrs sleep, your mental focus averaged <strong>${avgGoodFocus}/10</strong> (compared to ${avgLowFocus}/10 with sleep deprivation). `;
+        } else {
+          insight += `<strong>Schlaf & Fokus:</strong> An Tagen mit ≥ 7 Std Schlaf lag dein mentaler Fokus im Schnitt bei <strong>${avgGoodFocus}/10</strong> (gegenüber ${avgLowFocus}/10 bei Schlafmangel). `;
+        }
       }
 
       // Check steps vs mood
       const highSteps = items.filter(e => (e.steps || 0) >= 8000);
       if (highSteps.length > 0) {
         const avgMoodActive = (highSteps.reduce((acc, c) => acc + (c.mood || 5), 0) / highSteps.length).toFixed(1);
-        insight += `<br><strong>Bewegung:</strong> An Tagen mit über 8.000 Schritten lag deine durchschnittliche Stimmung bei <strong>${avgMoodActive}/10</strong>.`;
+        if (isEn) {
+          insight += `<br><strong>Physical Activity:</strong> On days with over 8,000 steps, your average mood was <strong>${avgMoodActive}/10</strong>.`;
+        } else {
+          insight += `<br><strong>Bewegung:</strong> An Tagen mit über 8.000 Schritten lag deine durchschnittliche Stimmung bei <strong>${avgMoodActive}/10</strong>.`;
+        }
       }
 
       if (!insight) {
-        insight = 'Deine Daten zeigen eine solide Ausgeglichenheit. Achte weiterhin auf ausreichend Wasser und proteinreiche Mahlzeiten vor deiner Medikation!';
+        insight = isEn
+          ? 'Your data shows solid balance. Keep hydrating and having protein-rich meals before your medication!'
+          : 'Deine Daten zeigen eine solide Ausgeglichenheit. Achte weiterhin auf ausreichend Wasser und proteinreiche Mahlzeiten vor deiner Medikation!';
       }
 
       el.innerHTML = insight;
@@ -3790,14 +4515,14 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=16').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=21').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  showToast('App aktualisiert! Lade neu...');
+                  showToast((appSettings.language || 'de') === 'en' ? 'App updated! Reloading...' : 'App aktualisiert! Lade neu...');
                   setTimeout(() => window.location.reload(), 1000);
                 }
               });
@@ -3818,7 +4543,7 @@ def get_javascript_code():
     }
 
     async function forceAppUpdate() {
-      showToast('Cache wird geleert...');
+      showToast((appSettings.language || 'de') === 'en' ? 'Clearing cache...' : 'Cache wird geleert...');
       try {
         if ('caches' in window) {
           const keys = await caches.keys();
@@ -3853,12 +4578,12 @@ def get_javascript_code():
           if (installBtn) installBtn.classList.add('hidden');
         });
       } else {
-        alert('Tippe im Browser-Menü auf "Zum Startbildschirm hinzufügen" oder "App installieren".');
+        alert((appSettings.language || 'de') === 'en' ? 'Tap "Add to Home Screen" or "Install App" in your browser menu.' : 'Tippe im Browser-Menü auf "Zum Startbildschirm hinzufügen" oder "App installieren".');
       }
     }
 
     window.addEventListener('appinstalled', () => {
-      showToast('Erfolgreich als App installiert!');
+      showToast((appSettings.language || 'de') === 'en' ? 'Successfully installed as App!' : 'Erfolgreich als App installiert!');
       const installBtn = document.getElementById('btn-pwa-install');
       if (installBtn) installBtn.classList.add('hidden');
       deferredPrompt = null;

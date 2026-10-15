@@ -13,7 +13,7 @@ def get_bottom_nav_and_toast():
   <!-- Toast Notification -->
   <div id="toast" class="no-print pointer-events-none fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 max-w-xs w-auto bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-700 text-xs font-semibold backdrop-blur-md">
     <div id="toast-icon" class="text-emerald-400 font-bold">✓</div>
-    <span id="toast-message">Gespeichert</span>
+    <span id="toast-message" data-i18n="toastSaved">Gespeichert</span>
   </div>
 
   <!-- ======================================================== -->
@@ -26,9 +26,9 @@ def get_bottom_nav_and_toast():
       <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
         <div class="flex items-center gap-2">
           <span id="custom-modal-icon" class="text-base font-bold text-sky-600 dark:text-sky-400">+</span>
-          <h3 id="custom-modal-title" class="text-sm font-bold">Eigene Option hinzufügen</h3>
+          <h3 id="custom-modal-title" class="text-sm font-bold" data-i18n="customModalTitle">Eigene Option hinzufügen</h3>
         </div>
-        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" aria-label="Schließen">
+        <button type="button" onclick="closeCustomOptionModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
@@ -40,7 +40,7 @@ def get_bottom_nav_and_toast():
 
       <!-- Existing Custom Items List (User can delete them anytime) -->
       <div id="custom-modal-existing-wrapper" class="space-y-1.5 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Deine bisherigen eigenen Einträge:</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400" data-i18n="customModalExistingTitle">Deine bisherigen eigenen Einträge:</span>
         <div id="custom-modal-existing-list" class="flex flex-wrap gap-1 max-h-28 overflow-y-auto p-0.5">
           <!-- Injected items with delete button -->
         </div>
@@ -49,10 +49,10 @@ def get_bottom_nav_and_toast():
       <!-- Modal Action Buttons -->
       <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
         <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          Abbrechen
+          <span data-i18n="btnCancel">Abbrechen</span>
         </button>
         <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs">
-          Dauerhaft speichern
+          <span data-i18n="btnSavePermanent">Dauerhaft speichern</span>
         </button>
       </div>
 
@@ -76,7 +76,7 @@ def get_bottom_nav_and_toast():
             <p id="settings-modal-subheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
           </div>
         </div>
-        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen">
+        <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
@@ -113,13 +113,13 @@ def get_bottom_nav_and_toast():
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
-              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-xs">
+              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-xs" data-i18n="presetAll">
                 Alle an
               </button>
-              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs">
+              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMinimal">
                 Nur Kern (Minimal)
               </button>
-              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs">
+              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 font-semibold transition shadow-xs" data-i18n="presetMindfulness">
                 Achtsamkeit
               </button>
             </div>
@@ -163,15 +163,15 @@ def get_bottom_nav_and_toast():
             <div class="grid grid-cols-3 gap-1.5 pt-0.5">
               <button type="button" onclick="setAppThemeSetting('light')" id="theme-opt-light" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-1">
                 <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                <span class="text-[11px]">Hell</span>
+                <span class="text-[11px]" data-i18n="themeLight">Hell</span>
               </button>
               <button type="button" onclick="setAppThemeSetting('dark')" id="theme-opt-dark" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-1">
                 <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-                <span class="text-[11px]">Dunkel</span>
+                <span class="text-[11px]" data-i18n="themeDark">Dunkel</span>
               </button>
               <button type="button" onclick="setAppThemeSetting('auto')" id="theme-opt-auto" class="theme-choice-btn active py-2 px-2 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-xs font-bold text-sky-800 dark:text-sky-300 text-center transition flex flex-col items-center gap-1">
                 <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <span class="text-[11px]">System</span>
+                <span class="text-[11px]" data-i18n="themeAuto">System</span>
               </button>
             </div>
           </div>
@@ -201,8 +201,8 @@ def get_bottom_nav_and_toast():
               <div class="flex items-center justify-between gap-2 pt-1">
                 <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view">Startansicht beim Öffnen:</span>
                 <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
-                  <option value="schema">Schema-Memo</option>
-                  <option value="diary">Daily Diary</option>
+                  <option value="schema" data-i18n="navSchema">Schema-Memo</option>
+                  <option value="diary" data-i18n="navDiary">Daily Diary</option>
                 </select>
               </div>
             </div>

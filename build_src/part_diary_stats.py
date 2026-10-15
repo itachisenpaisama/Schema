@@ -36,21 +36,21 @@ def get_diary_stats_view_html():
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiMood">Ø Stimmung</span>
           <div id="stats-kpi-avg" class="text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
-          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate">Trend...</div>
+          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiTrendDefault">Mehr Daten nötig</div>
         </div>
 
         <!-- 2. Sleep -->
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSleep">Ø Schlaf</span>
           <div id="stats-kpi-sleep" class="text-lg sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">--</div>
-          <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate">-- Qualität</div>
+          <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiSleepQualDefault">-- Qualität</div>
         </div>
 
         <!-- 3. Steps -->
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSteps">Ø Schritte</span>
           <div id="stats-kpi-steps" class="text-lg sm:text-2xl font-black text-blue-600 dark:text-blue-400">--</div>
-          <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate">0 gesamt</div>
+          <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiStepsTotalDefault">0 Schritte gesamt</div>
         </div>
 
         <!-- 4. Med Adherence -->
@@ -109,7 +109,7 @@ def get_diary_stats_view_html():
           <svg class="w-4 h-4 text-violet-600 dark:text-violet-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="statsInsightTitle">Neuro-Insight & Lebensstil-Muster</h4>
         </div>
-        <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+        <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed" data-i18n="statsInsightDefault">
           Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.
         </p>
       </section>

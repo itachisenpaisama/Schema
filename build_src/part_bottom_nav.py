@@ -72,8 +72,8 @@ def get_bottom_nav_and_toast():
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div class="min-w-0">
-            <h3 id="settings-modal-heading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
-            <p id="settings-modal-subheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
+            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
+            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
           </div>
         </div>
         <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
@@ -85,10 +85,10 @@ def get_bottom_nav_and_toast():
       <div class="px-4 pt-2.5 pb-1 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shrink-0">
         <div class="grid grid-cols-2 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-xs font-bold shadow-inner">
           <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
-            <span id="tab-label-modules">Tracking-Module</span>
+            <span id="tab-label-modules" data-i18n="tabLabelModules">Tracking-Module</span>
           </button>
           <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-            <span id="tab-label-general">Allgemein & Sprache</span>
+            <span id="tab-label-general" data-i18n="tabLabelGeneral">Allgemein & Sprache</span>
           </button>
         </div>
       </div>
@@ -105,11 +105,11 @@ def get_bottom_nav_and_toast():
           <div class="p-3 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40 space-y-2">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
-                <span id="settings-presets-title">Schnell-Vorlagen:</span>
+                <span id="settings-presets-title" data-i18n="settingsPresetsTitle">Schnell-Vorlagen:</span>
               </span>
               <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold" id="settings-active-count-badge">13 aktiv</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc">
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
@@ -141,7 +141,7 @@ def get_bottom_nav_and_toast():
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                <span id="label-setting-language">Sprache / Language:</span>
+                <span id="label-setting-language" data-i18n="labelSettingLanguage">Sprache / Language:</span>
               </span>
               <span id="current-lang-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Deutsch</span>
             </div>
@@ -158,7 +158,7 @@ def get_bottom_nav_and_toast():
           <!-- 2. ERSCHEINUNGSBILD / THEME -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-              <span id="label-setting-theme">Erscheinungsbild:</span>
+              <span id="label-setting-theme" data-i18n="labelSettingTheme">Erscheinungsbild:</span>
             </span>
             <div class="grid grid-cols-3 gap-1.5 pt-0.5">
               <button type="button" onclick="setAppThemeSetting('light')" id="theme-opt-light" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-1">
@@ -179,27 +179,27 @@ def get_bottom_nav_and_toast():
           <!-- 3. TAGESZIELE & START-ANSICHT -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2.5">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-              <span id="label-setting-targets">Tagesziele & Verhalten:</span>
+              <span id="label-setting-targets" data-i18n="labelSettingTargets">Tagesziele & Verhalten:</span>
             </span>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-steps">Standard Schritte-Ziel:</label>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-steps" data-i18n="labelTargetSteps">Standard Schritte-Ziel:</label>
                 <input type="number" id="setting-steps-goal" min="1000" step="500" value="10000" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-water">Standard Wasser-Ziel (ml):</label>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-water" data-i18n="labelTargetWater">Standard Wasser-Ziel (ml):</label>
                 <input type="number" id="setting-water-goal" min="500" step="250" value="2500" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
               </div>
             </div>
 
             <div class="pt-1 border-t border-slate-200/60 dark:border-slate-800 space-y-2">
               <label class="flex items-center justify-between gap-2 cursor-pointer">
-                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-compact-mode">Karten beim Start standardmäßig zuklappen (Fokus-Modus)</span>
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-compact-mode" data-i18n="labelCompactMode">Karten beim Start standardmäßig zuklappen (Fokus-Modus)</span>
                 <input type="checkbox" id="setting-compact-mode" onchange="updateGoalSettings()" class="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 cursor-pointer accent-sky-600">
               </label>
 
               <div class="flex items-center justify-between gap-2 pt-1">
-                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view">Startansicht beim Öffnen:</span>
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view" data-i18n="labelStartView">Startansicht beim Öffnen:</span>
                 <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
                   <option value="schema" data-i18n="navSchema">Schema-Memo</option>
                   <option value="diary" data-i18n="navDiary">Daily Diary</option>
@@ -212,22 +212,22 @@ def get_bottom_nav_and_toast():
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                <span id="label-setting-backup">Gesamt-Backup & Datensicherung:</span>
+                <span id="label-setting-backup" data-i18n="labelSettingBackup">Gesamt-Backup & Datensicherung:</span>
               </span>
               <span id="settings-data-stats" class="text-[10px] text-slate-400">Berechne...</span>
             </div>
-            <p class="text-[11px] text-slate-500 leading-snug" id="settings-backup-desc">
+            <p class="text-[11px] text-slate-500 leading-snug" id="settings-backup-desc" data-i18n="settingsBackupDesc">
               Erstelle ein Komplett-Backup aller Memos, Tagebuch-Tage und Einstellungen in einer einzigen sicheren Datei.
             </p>
             <div class="flex flex-wrap gap-2 pt-1">
               <button type="button" onclick="exportFullBackupJSON()" class="flex-1 min-w-[140px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-black text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                <span id="btn-export-backup-text">Gesamt-Backup laden</span>
+                <span id="btn-export-backup-text" data-i18n="btnExportBackup">Gesamt-Backup laden</span>
               </button>
 
               <label class="flex-1 min-w-[140px] py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
-                <span id="btn-import-backup-text">Backup einspielen</span>
+                <span id="btn-import-backup-text" data-i18n="btnImportBackup">Backup einspielen</span>
                 <input type="file" id="full-backup-import-file" accept=".json" onchange="importFullBackupJSON(event)" class="hidden">
               </label>
             </div>
@@ -241,10 +241,10 @@ def get_bottom_nav_and_toast():
       <div class="flex items-center justify-between px-4 py-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 shrink-0">
         <span class="text-[10px] text-slate-400 flex items-center gap-1">
           <span class="text-emerald-500 font-bold">●</span>
-          <span id="settings-footer-privacy">100% lokal & privat auf diesem Gerät</span>
+          <span id="settings-footer-privacy" data-i18n="privacyNote">100% lokal & privat auf diesem Gerät</span>
         </span>
         <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-xs">
-          <span id="settings-btn-done">Fertig</span>
+          <span id="settings-btn-done" data-i18n="settingsDone">Fertig</span>
         </button>
       </div>
 

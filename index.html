@@ -101,12 +101,23 @@
       -moz-appearance: textfield;
     }
 
-    /* Native date/time inputs on iOS/iPadOS Safari */
+    /* Native date/time inputs on iOS/iPadOS Safari & Chrome */
     input[type="date"],
     input[type="time"] {
       min-height: 2.25rem;
-      -webkit-appearance: none;
-      appearance: none;
+      cursor: pointer;
+    }
+
+    /* Hide the small native clock icon on time inputs so clicking anywhere triggers the picker directly */
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      display: none !important;
+      -webkit-appearance: none !important;
+      opacity: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      pointer-events: none !important;
     }
 
     /* Ensure all inputs and textareas have rigid box models and never overflow containers */
@@ -622,10 +633,10 @@
             <span data-i18n="schemaStep4New">Könnte ich stattdessen</span> <span class="text-emerald-600 dark:text-emerald-400 font-bold" data-i18n="schemaStep4NewBracket">(alternative Lösungen)</span>
           </label>
           <div class="flex flex-wrap gap-1.5 py-0.5" id="schema-step4-action-chips">
-            <button type="button" onclick="appendTag('input-new-action', 'Einmal tief durchatmen und mich erden')" data-tag="Einmal tief durchatmen und mich erden" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Durchatmen</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Freundlich nachfragen oder Bedürfnis ansprechen')" data-tag="Freundlich nachfragen oder Bedürfnis ansprechen" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Bedürfnis ansprechen</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Selbstfürsorge (Tee, Spaziergang, Ruhe)')" data-tag="Selbstfürsorge (Tee, Spaziergang, Ruhe)" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Selbstfürsorge</button>
-            <button type="button" onclick="appendTag('input-new-action', 'Gesunden Erwachsenen liebevoll stärken')" data-tag="Gesunden Erwachsenen liebevoll stärken" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Gesunder Erwachsener</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Durchatmen')" data-tag="Durchatmen" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Durchatmen</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Bedürfnis ansprechen')" data-tag="Bedürfnis ansprechen" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Bedürfnis ansprechen</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Selbstfürsorge')" data-tag="Selbstfürsorge" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Selbstfürsorge</button>
+            <button type="button" onclick="appendTag('input-new-action', 'Gesunder Erwachsener')" data-tag="Gesunder Erwachsener" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300 transition">Gesunder Erwachsener</button>
             <button type="button" onclick="openAddCustomModal('schema_actions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Handlung hinzufügen" data-i18n-title="addCustomActionTooltip"><span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span></button>
           </div>
           <textarea id="input-new-action" rows="2" placeholder="z. B. tief durchatmen, mir sagen 'Ich bin sicher', und ruhig nachfragen..." data-i18n-placeholder="schemaPlaceholderNewAction" class="shadcn-input leading-relaxed"></textarea>
@@ -920,7 +931,7 @@
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0" data-i18n="diaryPillCheckin">
               Check-in
             </span>
-            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">Heute</span>
+            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate" data-i18n="diaryCurrentDayInitial">Heute</span>
           </div>
 
           <div class="flex items-center gap-1.5 shrink-0">
@@ -1004,7 +1015,7 @@
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptMood">Wie ging es dir heute?</span>
-                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs">8 / 10 · Gut</span>
+                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs" data-i18n="moodDefaultBadge">8 / 10 · Gut</span>
               </div>
 
               <!-- Compact Visual Mood Banner -->
@@ -1012,8 +1023,8 @@
                 <div class="flex items-center gap-2 min-w-0">
                   <span id="diary-mood-emoji" class="text-2xl shrink-0">😊</span>
                   <div class="min-w-0">
-                    <div id="diary-mood-title" class="text-xs font-extrabold truncate">Zufrieden & Gut</div>
-                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate">Der Tag war stabil und angenehm.</div>
+                    <div id="diary-mood-title" class="text-xs font-extrabold truncate" data-i18n="moodDefaultTitle">Zufrieden & Gut</div>
+                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate" data-i18n="moodDefaultDesc">Der Tag war stabil und angenehm.</div>
                   </div>
                 </div>
                 <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
@@ -1034,7 +1045,7 @@
             <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptEnergy">Energielevel & Vitalität</span>
-                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300" data-i18n="energyDefaultBadge">
                   7 / 10 · Aktiv
                 </span>
               </div>
@@ -1175,7 +1186,7 @@
                 <label for="select-med-rebound" class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryMedsReboundQuestion">
                   Rebound / Wirkungsende?
                 </label>
-                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Kein Rebound</span>
+                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-i18n="reboundBadgeNone">Kein Rebound</span>
               </div>
 
               <select id="select-med-rebound" onchange="setReboundLevel(this.value)" class="shadcn-input text-xs py-2 font-semibold">
@@ -1187,7 +1198,7 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
                 <div class="sm:col-span-1 min-w-0">
-                  <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" data-i18n-placeholder="diaryMedsReboundTimePlaceholder" title="Rebound Uhrzeit" data-i18n-title="diaryMedsReboundTimeTitle">
+                  <input type="time" id="input-med-rebound-time" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" class="shadcn-input text-xs py-1.5 block w-full cursor-pointer" placeholder="Uhrzeit" data-i18n-placeholder="diaryMedsReboundTimePlaceholder" title="Rebound Uhrzeit" data-i18n-title="diaryMedsReboundTimeTitle">
                 </div>
                 <div class="sm:col-span-3 min-w-0">
                   <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z. B. Konzentrationsabfall, Müdigkeit)..." data-i18n-placeholder="diaryMedsReboundNotesPlaceholder" class="shadcn-input text-xs py-1.5 block w-full">
@@ -1327,7 +1338,7 @@
 
               <!-- Summary Info Line -->
               <div id="caffeine-summary-text" class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-between pt-0.5">
-                <span id="caffeine-mix-label">Mix: 0x Kaffee · 0x Energy</span>
+                <span id="caffeine-mix-label" data-i18n="caffeineMixDefault">Mix: 0x Kaffee · 0x Energy</span>
                 <button type="button" onclick="resetCaffeine()" class="text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" data-i18n="quickReset">Reset</button>
               </div>
             </div>
@@ -1339,7 +1350,7 @@
               <span class="text-xs font-bold text-indigo-900 dark:text-indigo-300" data-i18n="vitalSleepTitle">
                 Schlaf & Erholung:
               </span>
-              <span id="sleep-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300">
+              <span id="sleep-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300" data-i18n="sleepBadgeDefault">
                 7.5 Std · Gut
               </span>
             </div>
@@ -1348,11 +1359,11 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
               <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepBedtime">Zubettgehzeit:</label>
-                <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <input type="time" id="input-sleep-bedtime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
               <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepWaketime">Aufwachzeit:</label>
-                <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <input type="time" id="input-sleep-waketime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
               <div class="col-span-2 sm:col-span-1 min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepDuration">Schlafdauer (Std):</label>
@@ -1501,7 +1512,7 @@
               <span class="text-xs font-bold text-blue-900 dark:text-blue-300" data-i18n="stepsTitle">
                 Schritte & Bewegung:
               </span>
-              <span id="steps-display-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300">
+              <span id="steps-display-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300" data-i18n="stepsBadgeInitial">
                 0 Schritte
               </span>
             </div>
@@ -1510,7 +1521,7 @@
               <div id="steps-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
             <div class="flex items-center justify-between text-[10px] text-slate-500">
-              <span id="steps-progress-percent">0% erreicht (0 / 10.000)</span>
+              <span id="steps-progress-percent" data-i18n="stepsPercentInitial">0% erreicht (0 / 10.000)</span>
               <span data-i18n="stepsDailyGoal">Tagesziel</span>
             </div>
 
@@ -1759,21 +1770,21 @@
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiMood">Ø Stimmung</span>
           <div id="stats-kpi-avg" class="text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">--</div>
-          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate">Trend...</div>
+          <div id="stats-kpi-trend" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiTrendDefault">Mehr Daten nötig</div>
         </div>
 
         <!-- 2. Sleep -->
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSleep">Ø Schlaf</span>
           <div id="stats-kpi-sleep" class="text-lg sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">--</div>
-          <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate">-- Qualität</div>
+          <div id="stats-kpi-sleep-qual" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiSleepQualDefault">-- Qualität</div>
         </div>
 
         <!-- 3. Steps -->
         <div class="shadcn-card p-2.5 sm:p-3 space-y-0.5">
           <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider" data-i18n="statsKpiSteps">Ø Schritte</span>
           <div id="stats-kpi-steps" class="text-lg sm:text-2xl font-black text-blue-600 dark:text-blue-400">--</div>
-          <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate">0 gesamt</div>
+          <div id="stats-kpi-steps-total" class="text-[10px] text-slate-400 truncate" data-i18n="statsKpiStepsTotalDefault">0 Schritte gesamt</div>
         </div>
 
         <!-- 4. Med Adherence -->
@@ -1832,7 +1843,7 @@
           <svg class="w-4 h-4 text-violet-600 dark:text-violet-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="statsInsightTitle">Neuro-Insight & Lebensstil-Muster</h4>
         </div>
-        <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+        <p id="stats-insight-text" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed" data-i18n="statsInsightDefault">
           Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.
         </p>
       </section>
@@ -1938,8 +1949,8 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div class="min-w-0">
-            <h3 id="settings-modal-heading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
-            <p id="settings-modal-subheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
+            <h3 id="settings-modal-heading" data-i18n="settingsHeading" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight truncate">Einstellungen & Module</h3>
+            <p id="settings-modal-subheading" data-i18n="settingsSubheading" class="text-[10px] text-slate-400 truncate">Passe Module, Sprache und Darstellung an deine Bedürfnisse an.</p>
           </div>
         </div>
         <button type="button" onclick="closeSettingsModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition shrink-0" aria-label="Schließen" data-i18n-title="btnClose">
@@ -1951,10 +1962,10 @@
       <div class="px-4 pt-2.5 pb-1 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shrink-0">
         <div class="grid grid-cols-2 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-xs font-bold shadow-inner">
           <button type="button" id="tab-btn-modules" onclick="switchSettingsTab('modules')" class="py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300">
-            <span id="tab-label-modules">Tracking-Module</span>
+            <span id="tab-label-modules" data-i18n="tabLabelModules">Tracking-Module</span>
           </button>
           <button type="button" id="tab-btn-general" onclick="switchSettingsTab('general')" class="py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-            <span id="tab-label-general">Allgemein & Sprache</span>
+            <span id="tab-label-general" data-i18n="tabLabelGeneral">Allgemein & Sprache</span>
           </button>
         </div>
       </div>
@@ -1971,11 +1982,11 @@
           <div class="p-3 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40 space-y-2">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
-                <span id="settings-presets-title">Schnell-Vorlagen:</span>
+                <span id="settings-presets-title" data-i18n="settingsPresetsTitle">Schnell-Vorlagen:</span>
               </span>
               <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold" id="settings-active-count-badge">13 aktiv</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc">
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug" id="settings-presets-desc" data-i18n="settingsPresetsDesc">
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
@@ -2007,7 +2018,7 @@
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                <span id="label-setting-language">Sprache / Language:</span>
+                <span id="label-setting-language" data-i18n="labelSettingLanguage">Sprache / Language:</span>
               </span>
               <span id="current-lang-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Deutsch</span>
             </div>
@@ -2024,7 +2035,7 @@
           <!-- 2. ERSCHEINUNGSBILD / THEME -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-              <span id="label-setting-theme">Erscheinungsbild:</span>
+              <span id="label-setting-theme" data-i18n="labelSettingTheme">Erscheinungsbild:</span>
             </span>
             <div class="grid grid-cols-3 gap-1.5 pt-0.5">
               <button type="button" onclick="setAppThemeSetting('light')" id="theme-opt-light" class="theme-choice-btn py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-center transition flex flex-col items-center gap-1">
@@ -2045,27 +2056,27 @@
           <!-- 3. TAGESZIELE & START-ANSICHT -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2.5">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-              <span id="label-setting-targets">Tagesziele & Verhalten:</span>
+              <span id="label-setting-targets" data-i18n="labelSettingTargets">Tagesziele & Verhalten:</span>
             </span>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-steps">Standard Schritte-Ziel:</label>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-steps" data-i18n="labelTargetSteps">Standard Schritte-Ziel:</label>
                 <input type="number" id="setting-steps-goal" min="1000" step="500" value="10000" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-water">Standard Wasser-Ziel (ml):</label>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-0.5" id="label-target-water" data-i18n="labelTargetWater">Standard Wasser-Ziel (ml):</label>
                 <input type="number" id="setting-water-goal" min="500" step="250" value="2500" onchange="updateGoalSettings()" class="shadcn-input text-xs py-1.5">
               </div>
             </div>
 
             <div class="pt-1 border-t border-slate-200/60 dark:border-slate-800 space-y-2">
               <label class="flex items-center justify-between gap-2 cursor-pointer">
-                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-compact-mode">Karten beim Start standardmäßig zuklappen (Fokus-Modus)</span>
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-compact-mode" data-i18n="labelCompactMode">Karten beim Start standardmäßig zuklappen (Fokus-Modus)</span>
                 <input type="checkbox" id="setting-compact-mode" onchange="updateGoalSettings()" class="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 cursor-pointer accent-sky-600">
               </label>
 
               <div class="flex items-center justify-between gap-2 pt-1">
-                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view">Startansicht beim Öffnen:</span>
+                <span class="text-xs font-medium text-slate-700 dark:text-slate-300" id="label-start-view" data-i18n="labelStartView">Startansicht beim Öffnen:</span>
                 <select id="setting-start-view" onchange="updateGoalSettings()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-200 font-medium focus:outline-none">
                   <option value="schema" data-i18n="navSchema">Schema-Memo</option>
                   <option value="diary" data-i18n="navDiary">Daily Diary</option>
@@ -2078,22 +2089,22 @@
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                <span id="label-setting-backup">Gesamt-Backup & Datensicherung:</span>
+                <span id="label-setting-backup" data-i18n="labelSettingBackup">Gesamt-Backup & Datensicherung:</span>
               </span>
               <span id="settings-data-stats" class="text-[10px] text-slate-400">Berechne...</span>
             </div>
-            <p class="text-[11px] text-slate-500 leading-snug" id="settings-backup-desc">
+            <p class="text-[11px] text-slate-500 leading-snug" id="settings-backup-desc" data-i18n="settingsBackupDesc">
               Erstelle ein Komplett-Backup aller Memos, Tagebuch-Tage und Einstellungen in einer einzigen sicheren Datei.
             </p>
             <div class="flex flex-wrap gap-2 pt-1">
               <button type="button" onclick="exportFullBackupJSON()" class="flex-1 min-w-[140px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-black text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                <span id="btn-export-backup-text">Gesamt-Backup laden</span>
+                <span id="btn-export-backup-text" data-i18n="btnExportBackup">Gesamt-Backup laden</span>
               </button>
 
               <label class="flex-1 min-w-[140px] py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
-                <span id="btn-import-backup-text">Backup einspielen</span>
+                <span id="btn-import-backup-text" data-i18n="btnImportBackup">Backup einspielen</span>
                 <input type="file" id="full-backup-import-file" accept=".json" onchange="importFullBackupJSON(event)" class="hidden">
               </label>
             </div>
@@ -2107,10 +2118,10 @@
       <div class="flex items-center justify-between px-4 py-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 shrink-0">
         <span class="text-[10px] text-slate-400 flex items-center gap-1">
           <span class="text-emerald-500 font-bold">●</span>
-          <span id="settings-footer-privacy">100% lokal & privat auf diesem Gerät</span>
+          <span id="settings-footer-privacy" data-i18n="privacyNote">100% lokal & privat auf diesem Gerät</span>
         </span>
         <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-xs">
-          <span id="settings-btn-done">Fertig</span>
+          <span id="settings-btn-done" data-i18n="settingsDone">Fertig</span>
         </button>
       </div>
 
@@ -2502,7 +2513,21 @@
         energyPlusTooltip: '1 Dose hinzufügen',
         diaryVortagTooltip: 'Kopiert Medikation & Ziele vom Vortag',
         diaryResetTooltip: 'Zurücksetzen',
-        diaryToggleAllTooltip: 'Alle Karten ein-/ausklappen'
+        diaryToggleAllTooltip: 'Alle Karten ein-/ausklappen',
+        diaryCurrentDayInitial: 'Heute · Bitte Datum wählen',
+        moodDefaultTitle: 'Zufrieden / Ausgeglichen',
+        moodDefaultDesc: 'Gute Grundstimmung, entspannt, handlungsfähig',
+        moodDefaultBadge: '8 / 10 · Zufrieden',
+        energyDefaultBadge: '8 / 10 · Aktiv',
+        reboundBadgeNone: 'Kein Rebound',
+        caffeineMixDefault: 'Mix: 0x Kaffee · 0x Energy',
+        sleepBadgeDefault: '7.5 Std · Gut',
+        stepsBadgeInitial: '0 Schritte',
+        stepsPercentInitial: '0% erreicht (0 / 10.000)',
+        statsKpiSleepQualDefault: '-- Qualität',
+        statsKpiStepsTotalDefault: '0 Schritte gesamt',
+        statsKpiTrendDefault: 'Mehr Daten nötig',
+        statsInsightDefault: 'Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.'
       },
       en: {
         brandSubtitle: 'By J. Young · Schema Therapy',
@@ -2817,7 +2842,21 @@
         energyPlusTooltip: 'Add 1 can',
         diaryVortagTooltip: 'Copies medications & goals from yesterday',
         diaryResetTooltip: 'Reset',
-        diaryToggleAllTooltip: 'Expand / Collapse all cards'
+        diaryToggleAllTooltip: 'Expand / Collapse all cards',
+        diaryCurrentDayInitial: 'Today · Please pick a date',
+        moodDefaultTitle: 'Content / Balanced',
+        moodDefaultDesc: 'Good baseline mood, relaxed, capable of action',
+        moodDefaultBadge: '8 / 10 · Content',
+        energyDefaultBadge: '8 / 10 · Active',
+        reboundBadgeNone: 'No Rebound',
+        caffeineMixDefault: 'Mix: 0x Coffee · 0x Energy',
+        sleepBadgeDefault: '7.5 hrs · Good',
+        stepsBadgeInitial: '0 steps',
+        stepsPercentInitial: '0% reached (0 / 10,000)',
+        statsKpiSleepQualDefault: '-- Quality',
+        statsKpiStepsTotalDefault: '0 total steps',
+        statsKpiTrendDefault: 'More data needed',
+        statsInsightDefault: 'Log your entries regularly so the app automatically discovers patterns between sleep duration, medication, activity, and focus.'
       }
     };
 
@@ -3037,6 +3076,17 @@
       renderArchiveList();
       renderDiaryEntriesList();
       registerServiceWorker();
+
+      // Global click trigger for native time pickers on any time input
+      document.addEventListener('click', (e) => {
+        if (!e.target) return;
+        const timeInp = (e.target.matches && e.target.matches('input[type="time"]'))
+          ? e.target 
+          : (e.target.closest ? e.target.closest('input[type="time"]') : null);
+        if (timeInp && typeof timeInp.showPicker === 'function') {
+          try { timeInp.showPicker(); } catch (_) {}
+        }
+      });
 
       window.addEventListener('resize', () => {
         if (currentView === 'diary-stats') {
@@ -3313,10 +3363,12 @@
         if (titleEl) titleEl.innerText = 'Schema-Memo';
         if (subTitleEl) subTitleEl.innerText = t.brandSubtitle;
         if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewMemo;
+        document.title = isEn ? 'Schema-Memo · Schema Therapy Reflection' : 'Schema-Memo · Schematherapie Reflexion';
       } else {
         if (titleEl) titleEl.innerText = 'Daily Diary & Neuro';
         if (subTitleEl) subTitleEl.innerText = t.diarySubtitle;
         if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewCheckin;
+        document.title = isEn ? 'Daily Diary & Neuro · Tracker' : 'Daily Diary & Neuro · Tagebuch';
       }
 
       // 7. Safe fallback for specific IDs
@@ -3393,6 +3445,12 @@
       if (moodVal) updateMoodScore(moodVal);
       const energyVal = document.getElementById('diary-energy-slider')?.value;
       if (energyVal) updateEnergyScore(energyVal);
+      setSleepQuality(currentSleepQuality || 4);
+      setReboundLevel(currentReboundLevel || 'none');
+      setMedEfficacyRating(currentMedEfficacyRating || '');
+      renderEmotionNoteSegments();
+      updateSettingsDataStats();
+      applyDiaryFeatureVisibility();
       updateStepsProgressDisplay();
       updateSleepDurationDisplay();
       updateCaffeineDisplay();
@@ -3400,7 +3458,7 @@
       updateCardSummaryBadges();
       renderArchiveList();
       renderDiaryEntriesList();
-      if (currentView === 'diary-stats') renderStatsView();
+      renderStatsView();
       if (currentView === 'sheet') populateSheetView();
     }
 
@@ -4255,7 +4313,15 @@
           ? d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
           : d.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
         const label = document.getElementById('diary-current-day-label');
-        if (label) label.innerText = dayStr;
+        if (label) {
+          const now = new Date();
+          const localToday = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+          if (dateVal === localToday) {
+            label.innerText = (isEn ? 'Today · ' : 'Heute · ') + dayStr;
+          } else {
+            label.innerText = dayStr;
+          }
+        }
       } catch (e) {}
     }
 
@@ -4843,6 +4909,7 @@
       const container = document.getElementById('quick-meds-chips-container');
       if (!container) return;
 
+      const isEn = (appSettings.language || 'de') === 'en';
       const defaults = DEFAULT_MED_PRESETS;
       const customs = customOptions.meds || [];
 
@@ -4858,7 +4925,7 @@
             <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100/60 transition inline-flex items-center gap-1 rounded-l-lg">
               <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
       }
@@ -5043,9 +5110,8 @@
           </div>
           <!-- Editable time directly on each med pill -->
           <div class="flex items-center gap-1.5 shrink-0">
-            <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
-              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 7v5l3 2"/></svg>
-              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="${isEn ? 'Adjust intake time' : 'Einnahme-Uhrzeit anpassen'}">
+            <div class="flex items-center bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0 cursor-pointer" onclick="const inp = this.querySelector('input[type=time]'); if (inp && typeof inp.showPicker === 'function') { try { inp.showPicker(); } catch(_) {} }">
+              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onclick="if (typeof this.showPicker === 'function') { try { this.showPicker(); } catch(_) {} }" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-16 sm:w-20 cursor-pointer text-center" title="${isEn ? 'Adjust intake time' : 'Einnahme-Uhrzeit anpassen'}">
             </div>
             <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="${isEn ? 'Delete' : 'Löschen'}">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -5935,6 +6001,29 @@
         const caffeine = item.caffeineCups || 0;
         const adhs = item.adhs || {};
 
+        const medEffLabels = isEn ? {
+          'optimal': 'Optimal / Flow',
+          'gut': 'Good & Stable',
+          'schwach': 'Too weak',
+          'zu_stark': 'Too intense',
+          'nebenwirkung': 'Side effects'
+        } : {
+          'optimal': 'Optimal / Flow',
+          'gut': 'Gut & Stabil',
+          'schwach': 'Kaum Wirkung',
+          'zu_stark': 'Zu intensiv',
+          'nebenwirkung': 'Nebenwirkungen'
+        };
+        const reboundLevelLabels = isEn ? {
+          'leicht': 'Mild',
+          'spuerbar': 'Moderate',
+          'stark': 'Severe'
+        } : {
+          'leicht': 'Leicht',
+          'spuerbar': 'Spürbar',
+          'stark': 'Stark'
+        };
+
         return `
           <article class="diary-page-card p-3 sm:p-5 space-y-3 break-words overflow-hidden">
             
@@ -6038,14 +6127,14 @@
                   <div class="p-2 rounded-lg border border-violet-200/80 dark:border-violet-900/40 bg-violet-100/40 dark:bg-violet-950/30 space-y-0.5 text-xs">
                     <div class="text-[10px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300 flex items-center gap-1">
                       <span>${isEn ? 'Medication Efficacy:' : 'Wirkung der Medikation:'}</span>
-                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(item.medEfficacyRating)}</span>` : ''}
+                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(medEffLabels[item.medEfficacyRating] || item.medEfficacyRating)}</span>` : ''}
                     </div>
                     ${item.medEfficacy ? `<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-[11px]">${escapeHtml(item.medEfficacy)}</p>` : ''}
                   </div>
                 ` : ''}
                 ${(item.rebound && item.rebound.level && item.rebound.level !== 'none') ? `
                   <div class="text-[11px] text-violet-700 dark:text-violet-300 pt-0.5 font-medium flex items-center gap-1.5">
-                    <strong>Rebound:</strong> ${escapeHtml(item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
+                    <strong>Rebound:</strong> ${escapeHtml(reboundLevelLabels[item.rebound.level] || item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
                   </div>
                 ` : ''}
               </div>
@@ -6630,7 +6719,7 @@
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=21').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=22').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

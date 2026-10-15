@@ -387,7 +387,21 @@ def get_javascript_code():
         energyPlusTooltip: '1 Dose hinzufügen',
         diaryVortagTooltip: 'Kopiert Medikation & Ziele vom Vortag',
         diaryResetTooltip: 'Zurücksetzen',
-        diaryToggleAllTooltip: 'Alle Karten ein-/ausklappen'
+        diaryToggleAllTooltip: 'Alle Karten ein-/ausklappen',
+        diaryCurrentDayInitial: 'Heute · Bitte Datum wählen',
+        moodDefaultTitle: 'Zufrieden / Ausgeglichen',
+        moodDefaultDesc: 'Gute Grundstimmung, entspannt, handlungsfähig',
+        moodDefaultBadge: '8 / 10 · Zufrieden',
+        energyDefaultBadge: '8 / 10 · Aktiv',
+        reboundBadgeNone: 'Kein Rebound',
+        caffeineMixDefault: 'Mix: 0x Kaffee · 0x Energy',
+        sleepBadgeDefault: '7.5 Std · Gut',
+        stepsBadgeInitial: '0 Schritte',
+        stepsPercentInitial: '0% erreicht (0 / 10.000)',
+        statsKpiSleepQualDefault: '-- Qualität',
+        statsKpiStepsTotalDefault: '0 Schritte gesamt',
+        statsKpiTrendDefault: 'Mehr Daten nötig',
+        statsInsightDefault: 'Erfasse regelmäßig deine Einträge, damit die App automatisch Muster zwischen Schlafdauer, Medikation, Bewegung und deinem Fokus erkennt.'
       },
       en: {
         brandSubtitle: 'By J. Young · Schema Therapy',
@@ -702,7 +716,21 @@ def get_javascript_code():
         energyPlusTooltip: 'Add 1 can',
         diaryVortagTooltip: 'Copies medications & goals from yesterday',
         diaryResetTooltip: 'Reset',
-        diaryToggleAllTooltip: 'Expand / Collapse all cards'
+        diaryToggleAllTooltip: 'Expand / Collapse all cards',
+        diaryCurrentDayInitial: 'Today · Please pick a date',
+        moodDefaultTitle: 'Content / Balanced',
+        moodDefaultDesc: 'Good baseline mood, relaxed, capable of action',
+        moodDefaultBadge: '8 / 10 · Content',
+        energyDefaultBadge: '8 / 10 · Active',
+        reboundBadgeNone: 'No Rebound',
+        caffeineMixDefault: 'Mix: 0x Coffee · 0x Energy',
+        sleepBadgeDefault: '7.5 hrs · Good',
+        stepsBadgeInitial: '0 steps',
+        stepsPercentInitial: '0% reached (0 / 10,000)',
+        statsKpiSleepQualDefault: '-- Quality',
+        statsKpiStepsTotalDefault: '0 total steps',
+        statsKpiTrendDefault: 'More data needed',
+        statsInsightDefault: 'Log your entries regularly so the app automatically discovers patterns between sleep duration, medication, activity, and focus.'
       }
     };
 
@@ -922,6 +950,17 @@ def get_javascript_code():
       renderArchiveList();
       renderDiaryEntriesList();
       registerServiceWorker();
+
+      // Global click trigger for native time pickers on any time input
+      document.addEventListener('click', (e) => {
+        if (!e.target) return;
+        const timeInp = (e.target.matches && e.target.matches('input[type="time"]'))
+          ? e.target 
+          : (e.target.closest ? e.target.closest('input[type="time"]') : null);
+        if (timeInp && typeof timeInp.showPicker === 'function') {
+          try { timeInp.showPicker(); } catch (_) {}
+        }
+      });
 
       window.addEventListener('resize', () => {
         if (currentView === 'diary-stats') {
@@ -1198,10 +1237,12 @@ def get_javascript_code():
         if (titleEl) titleEl.innerText = 'Schema-Memo';
         if (subTitleEl) subTitleEl.innerText = t.brandSubtitle;
         if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewMemo;
+        document.title = isEn ? 'Schema-Memo · Schema Therapy Reflection' : 'Schema-Memo · Schematherapie Reflexion';
       } else {
         if (titleEl) titleEl.innerText = 'Daily Diary & Neuro';
         if (subTitleEl) subTitleEl.innerText = t.diarySubtitle;
         if (headerNewBtnText) headerNewBtnText.innerText = t.headerNewCheckin;
+        document.title = isEn ? 'Daily Diary & Neuro · Tracker' : 'Daily Diary & Neuro · Tagebuch';
       }
 
       // 7. Safe fallback for specific IDs
@@ -1278,6 +1319,12 @@ def get_javascript_code():
       if (moodVal) updateMoodScore(moodVal);
       const energyVal = document.getElementById('diary-energy-slider')?.value;
       if (energyVal) updateEnergyScore(energyVal);
+      setSleepQuality(currentSleepQuality || 4);
+      setReboundLevel(currentReboundLevel || 'none');
+      setMedEfficacyRating(currentMedEfficacyRating || '');
+      renderEmotionNoteSegments();
+      updateSettingsDataStats();
+      applyDiaryFeatureVisibility();
       updateStepsProgressDisplay();
       updateSleepDurationDisplay();
       updateCaffeineDisplay();
@@ -1285,7 +1332,7 @@ def get_javascript_code():
       updateCardSummaryBadges();
       renderArchiveList();
       renderDiaryEntriesList();
-      if (currentView === 'diary-stats') renderStatsView();
+      renderStatsView();
       if (currentView === 'sheet') populateSheetView();
     }
 
@@ -2140,7 +2187,15 @@ def get_javascript_code():
           ? d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
           : d.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
         const label = document.getElementById('diary-current-day-label');
-        if (label) label.innerText = dayStr;
+        if (label) {
+          const now = new Date();
+          const localToday = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+          if (dateVal === localToday) {
+            label.innerText = (isEn ? 'Today · ' : 'Heute · ') + dayStr;
+          } else {
+            label.innerText = dayStr;
+          }
+        }
       } catch (e) {}
     }
 
@@ -2728,6 +2783,7 @@ def get_javascript_code():
       const container = document.getElementById('quick-meds-chips-container');
       if (!container) return;
 
+      const isEn = (appSettings.language || 'de') === 'en';
       const defaults = DEFAULT_MED_PRESETS;
       const customs = customOptions.meds || [];
 
@@ -2743,7 +2799,7 @@ def get_javascript_code():
             <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100/60 transition inline-flex items-center gap-1 rounded-l-lg">
               <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="Löschen">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
       }
@@ -2928,9 +2984,8 @@ def get_javascript_code():
           </div>
           <!-- Editable time directly on each med pill -->
           <div class="flex items-center gap-1.5 shrink-0">
-            <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
-              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 7v5l3 2"/></svg>
-              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-20 sm:w-24 cursor-pointer" title="${isEn ? 'Adjust intake time' : 'Einnahme-Uhrzeit anpassen'}">
+            <div class="flex items-center bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0 cursor-pointer" onclick="const inp = this.querySelector('input[type=time]'); if (inp && typeof inp.showPicker === 'function') { try { inp.showPicker(); } catch(_) {} }">
+              <input type="time" value="${escapeHtml(med.time || getCurrentTimeFormatted())}" onclick="if (typeof this.showPicker === 'function') { try { this.showPicker(); } catch(_) {} }" onchange="updateMedTime('${med.id}', this.value)" class="bg-transparent border-0 p-0 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none w-16 sm:w-20 cursor-pointer text-center" title="${isEn ? 'Adjust intake time' : 'Einnahme-Uhrzeit anpassen'}">
             </div>
             <button type="button" onclick="removeMedication('${med.id}')" class="p-1 text-slate-400 hover:text-rose-500 transition shrink-0" title="${isEn ? 'Delete' : 'Löschen'}">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -3820,6 +3875,29 @@ def get_javascript_code():
         const caffeine = item.caffeineCups || 0;
         const adhs = item.adhs || {};
 
+        const medEffLabels = isEn ? {
+          'optimal': 'Optimal / Flow',
+          'gut': 'Good & Stable',
+          'schwach': 'Too weak',
+          'zu_stark': 'Too intense',
+          'nebenwirkung': 'Side effects'
+        } : {
+          'optimal': 'Optimal / Flow',
+          'gut': 'Gut & Stabil',
+          'schwach': 'Kaum Wirkung',
+          'zu_stark': 'Zu intensiv',
+          'nebenwirkung': 'Nebenwirkungen'
+        };
+        const reboundLevelLabels = isEn ? {
+          'leicht': 'Mild',
+          'spuerbar': 'Moderate',
+          'stark': 'Severe'
+        } : {
+          'leicht': 'Leicht',
+          'spuerbar': 'Spürbar',
+          'stark': 'Stark'
+        };
+
         return `
           <article class="diary-page-card p-3 sm:p-5 space-y-3 break-words overflow-hidden">
             
@@ -3923,14 +4001,14 @@ def get_javascript_code():
                   <div class="p-2 rounded-lg border border-violet-200/80 dark:border-violet-900/40 bg-violet-100/40 dark:bg-violet-950/30 space-y-0.5 text-xs">
                     <div class="text-[10px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300 flex items-center gap-1">
                       <span>${isEn ? 'Medication Efficacy:' : 'Wirkung der Medikation:'}</span>
-                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(item.medEfficacyRating)}</span>` : ''}
+                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(medEffLabels[item.medEfficacyRating] || item.medEfficacyRating)}</span>` : ''}
                     </div>
                     ${item.medEfficacy ? `<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-[11px]">${escapeHtml(item.medEfficacy)}</p>` : ''}
                   </div>
                 ` : ''}
                 ${(item.rebound && item.rebound.level && item.rebound.level !== 'none') ? `
                   <div class="text-[11px] text-violet-700 dark:text-violet-300 pt-0.5 font-medium flex items-center gap-1.5">
-                    <strong>Rebound:</strong> ${escapeHtml(item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
+                    <strong>Rebound:</strong> ${escapeHtml(reboundLevelLabels[item.rebound.level] || item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
                   </div>
                 ` : ''}
               </div>
@@ -4515,7 +4593,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=21').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=22').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

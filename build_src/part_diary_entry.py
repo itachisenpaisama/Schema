@@ -17,7 +17,7 @@ def get_diary_entry_view_html():
             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 shrink-0" data-i18n="diaryPillCheckin">
               Check-in
             </span>
-            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">Heute</span>
+            <span id="diary-current-day-label" class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate" data-i18n="diaryCurrentDayInitial">Heute</span>
           </div>
 
           <div class="flex items-center gap-1.5 shrink-0">
@@ -101,7 +101,7 @@ def get_diary_entry_view_html():
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptMood">Wie ging es dir heute?</span>
-                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs">8 / 10 · Gut</span>
+                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs" data-i18n="moodDefaultBadge">8 / 10 · Gut</span>
               </div>
 
               <!-- Compact Visual Mood Banner -->
@@ -109,8 +109,8 @@ def get_diary_entry_view_html():
                 <div class="flex items-center gap-2 min-w-0">
                   <span id="diary-mood-emoji" class="text-2xl shrink-0">😊</span>
                   <div class="min-w-0">
-                    <div id="diary-mood-title" class="text-xs font-extrabold truncate">Zufrieden & Gut</div>
-                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate">Der Tag war stabil und angenehm.</div>
+                    <div id="diary-mood-title" class="text-xs font-extrabold truncate" data-i18n="moodDefaultTitle">Zufrieden & Gut</div>
+                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate" data-i18n="moodDefaultDesc">Der Tag war stabil und angenehm.</div>
                   </div>
                 </div>
                 <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
@@ -131,7 +131,7 @@ def get_diary_entry_view_html():
             <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptEnergy">Energielevel & Vitalität</span>
-                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300" data-i18n="energyDefaultBadge">
                   7 / 10 · Aktiv
                 </span>
               </div>
@@ -272,7 +272,7 @@ def get_diary_entry_view_html():
                 <label for="select-med-rebound" class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryMedsReboundQuestion">
                   Rebound / Wirkungsende?
                 </label>
-                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Kein Rebound</span>
+                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-i18n="reboundBadgeNone">Kein Rebound</span>
               </div>
 
               <select id="select-med-rebound" onchange="setReboundLevel(this.value)" class="shadcn-input text-xs py-2 font-semibold">
@@ -284,7 +284,7 @@ def get_diary_entry_view_html():
 
               <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-0.5">
                 <div class="sm:col-span-1 min-w-0">
-                  <input type="time" id="input-med-rebound-time" class="shadcn-input text-xs py-1.5 block w-full" placeholder="Uhrzeit" data-i18n-placeholder="diaryMedsReboundTimePlaceholder" title="Rebound Uhrzeit" data-i18n-title="diaryMedsReboundTimeTitle">
+                  <input type="time" id="input-med-rebound-time" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" class="shadcn-input text-xs py-1.5 block w-full cursor-pointer" placeholder="Uhrzeit" data-i18n-placeholder="diaryMedsReboundTimePlaceholder" title="Rebound Uhrzeit" data-i18n-title="diaryMedsReboundTimeTitle">
                 </div>
                 <div class="sm:col-span-3 min-w-0">
                   <input type="text" id="input-med-rebound-notes" placeholder="Symptome (z. B. Konzentrationsabfall, Müdigkeit)..." data-i18n-placeholder="diaryMedsReboundNotesPlaceholder" class="shadcn-input text-xs py-1.5 block w-full">
@@ -424,7 +424,7 @@ def get_diary_entry_view_html():
 
               <!-- Summary Info Line -->
               <div id="caffeine-summary-text" class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-between pt-0.5">
-                <span id="caffeine-mix-label">Mix: 0x Kaffee · 0x Energy</span>
+                <span id="caffeine-mix-label" data-i18n="caffeineMixDefault">Mix: 0x Kaffee · 0x Energy</span>
                 <button type="button" onclick="resetCaffeine()" class="text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" data-i18n="quickReset">Reset</button>
               </div>
             </div>
@@ -436,7 +436,7 @@ def get_diary_entry_view_html():
               <span class="text-xs font-bold text-indigo-900 dark:text-indigo-300" data-i18n="vitalSleepTitle">
                 Schlaf & Erholung:
               </span>
-              <span id="sleep-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300">
+              <span id="sleep-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300" data-i18n="sleepBadgeDefault">
                 7.5 Std · Gut
               </span>
             </div>
@@ -445,11 +445,11 @@ def get_diary_entry_view_html():
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
               <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepBedtime">Zubettgehzeit:</label>
-                <input type="time" id="input-sleep-bedtime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <input type="time" id="input-sleep-bedtime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
               <div class="min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepWaketime">Aufwachzeit:</label>
-                <input type="time" id="input-sleep-waketime" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <input type="time" id="input-sleep-waketime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
               </div>
               <div class="col-span-2 sm:col-span-1 min-w-0">
                 <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepDuration">Schlafdauer (Std):</label>
@@ -598,7 +598,7 @@ def get_diary_entry_view_html():
               <span class="text-xs font-bold text-blue-900 dark:text-blue-300" data-i18n="stepsTitle">
                 Schritte & Bewegung:
               </span>
-              <span id="steps-display-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300">
+              <span id="steps-display-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300" data-i18n="stepsBadgeInitial">
                 0 Schritte
               </span>
             </div>
@@ -607,7 +607,7 @@ def get_diary_entry_view_html():
               <div id="steps-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
             <div class="flex items-center justify-between text-[10px] text-slate-500">
-              <span id="steps-progress-percent">0% erreicht (0 / 10.000)</span>
+              <span id="steps-progress-percent" data-i18n="stepsPercentInitial">0% erreicht (0 / 10.000)</span>
               <span data-i18n="stepsDailyGoal">Tagesziel</span>
             </div>
 

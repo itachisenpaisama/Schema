@@ -104,12 +104,23 @@ def get_head_and_styles():
       -moz-appearance: textfield;
     }
 
-    /* Native date/time inputs on iOS/iPadOS Safari */
+    /* Native date/time inputs on iOS/iPadOS Safari & Chrome */
     input[type="date"],
     input[type="time"] {
       min-height: 2.25rem;
-      -webkit-appearance: none;
-      appearance: none;
+      cursor: pointer;
+    }
+
+    /* Hide the small native clock icon on time inputs so clicking anywhere triggers the picker directly */
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      display: none !important;
+      -webkit-appearance: none !important;
+      opacity: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      pointer-events: none !important;
     }
 
     /* Ensure all inputs and textareas have rigid box models and never overflow containers */

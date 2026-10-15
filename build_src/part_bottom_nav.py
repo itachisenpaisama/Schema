@@ -105,7 +105,7 @@ def get_bottom_nav_and_toast():
         <div id="settings-tab-modules" class="space-y-3.5">
           
           <!-- Banner & Presets -->
-          <div class="p-3 rounded-xl bg-stone-100/70 dark:bg-stone-900/40 border border-stone-200/80 dark:border-stone-800 space-y-2">
+          <div class="p-3 rounded-2xl bg-stone-100/70 dark:bg-stone-900/40 border border-stone-200/80 dark:border-stone-800 space-y-2.5">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                 <span id="settings-presets-title" data-i18n="settingsPresetsTitle">Schnell-Vorlagen:</span>
@@ -116,21 +116,46 @@ def get_bottom_nav_and_toast():
               Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.
             </p>
             <div class="flex flex-wrap gap-1.5 pt-0.5">
-              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white font-semibold transition shadow-xs" data-i18n="presetAll">
+              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white font-medium transition shadow-xs" data-i18n="presetMinimal">
+                Minimal (1-2 Bereiche)
+              </button>
+              <button type="button" onclick="setFeaturePreset('adhs')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetAdhs">
+                ADHS & Fokus
+              </button>
+              <button type="button" onclick="setFeaturePreset('vital')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetVital">
+                Vital & Routine
+              </button>
+              <button type="button" onclick="setFeaturePreset('all')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetAll">
                 Alle an
-              </button>
-              <button type="button" onclick="setFeaturePreset('minimal')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMinimal">
-                Nur Kern (Minimal)
-              </button>
-              <button type="button" onclick="setFeaturePreset('mindfulness')" class="text-xs px-2.5 py-1 rounded-lg bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 font-medium transition shadow-xs" data-i18n="presetMindfulness">
-                Achtsamkeit
               </button>
             </div>
           </div>
 
-          <!-- Feature Toggles List Container (Dynamically populated & synced) -->
-          <div id="settings-feature-toggles-container" class="space-y-2">
-            <!-- Dynamically injected feature rows with iOS-style toggles -->
+          <!-- Card Reordering & Master Visibility Section -->
+          <div class="p-3 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-[#FAF9F5]/60 dark:bg-[#1E1C1A]/40 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                <span data-i18n="cardOrderTitle">Karten-Reihenfolge & Hauptbereiche:</span>
+              </span>
+              <button type="button" onclick="resetCardOrder()" class="text-[10px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition" data-i18n="cardOrderReset">Standard-Reihenfolge</button>
+            </div>
+            <p class="text-[11px] text-stone-500 dark:text-stone-400 leading-snug" data-i18n="cardOrderDesc">
+              Verschiebe die Karten mit den Pfeilen nach oben oder unten, um deinen Check-in genau an deine Routine anzupassen.
+            </p>
+            <div id="settings-card-order-container" class="space-y-1.5 pt-0.5">
+              <!-- Dynamically populated via renderSettingsCardOrderUI() -->
+            </div>
+          </div>
+
+          <!-- Fine-Grained Feature Toggles Section -->
+          <div class="space-y-2 pt-1 border-t border-stone-200/70 dark:border-stone-800">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-stone-800 dark:text-stone-200" data-i18n="subFeaturesTitle">Detail-Optionen pro Bereich:</span>
+            </div>
+            <!-- Feature Toggles List Container (Dynamically populated & synced) -->
+            <div id="settings-feature-toggles-container" class="space-y-2">
+              <!-- Dynamically injected feature rows with iOS-style toggles -->
+            </div>
           </div>
 
         </div>

@@ -46,7 +46,7 @@ def get_diary_entry_view_html():
           <div class="flex items-center gap-1.5 shrink-0">
             <!-- Quick Accordion Toggle -->
             <button type="button" id="btn-toggle-all-cards" onclick="toggleAllCardsState()" class="shrink-0 px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Alle Karten ein-/ausklappen" data-i18n-title="diaryToggleAllTooltip">
-              <span id="label-toggle-all-cards" data-i18n="quickCollapse">⤓ Zuklappen</span>
+              <span id="label-toggle-all-cards" data-i18n="quickExpand">⤢ Aufklappen</span>
             </button>
           </div>
         </div>
@@ -71,9 +71,32 @@ def get_diary_entry_view_html():
           <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMind">
             Journal
           </button>
+          <button type="button" onclick="openSettingsModal('modules')" id="sec-nav-customize" class="px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition shrink-0 text-xs font-medium flex items-center gap-1 ml-auto" title="Bereiche konfigurieren">
+            <span class="text-xs">⚙</span><span data-i18n="navModuleSettings">Module</span>
+          </button>
         </div>
 
       </section>
+
+      <!-- INFO BANNER: GENTLE CUSTOMIZATION HINT -->
+      <div id="diary-customization-hint" class="p-3 sm:p-3.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-900/40 flex items-center justify-between gap-3 text-xs transition">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-7 h-7 rounded-full bg-[#4A7264]/10 dark:bg-[#4A7264]/25 text-[#3D5F53] dark:text-[#8CC4B0] flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="min-w-0 leading-tight">
+            <span class="font-semibold text-stone-800 dark:text-stone-200 block" data-i18n="diaryHintTitle">Dein Check-in, deine Regeln</span>
+            <span class="text-[11px] text-stone-500 dark:text-stone-400" data-i18n="diaryHintDesc">Weitere Bereiche (Vital-Hub, ADHS/Fokus, Medis) jederzeit aktivieren & sortieren.</span>
+          </div>
+        </div>
+        <button type="button" onclick="openSettingsModal('modules')" class="px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 hover:border-stone-400 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-[11px] font-medium shrink-0 transition flex items-center gap-1.5 shadow-xs">
+          <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          <span data-i18n="diaryHintButton">Anpassen</span>
+        </button>
+      </div>
+
+      <!-- CARDS CONTAINER (DYNAMIC REORDERING & SORTING) -->
+      <div id="diary-cards-container" class="space-y-2.5">
 
       <!-- ======================================================== -->
       <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
@@ -91,12 +114,12 @@ def get_diary_entry_view_html():
             <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               8/10 · Gut
             </span>
-            <svg id="chevron-mood" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mood" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-mood" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-mood" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
           <!-- FEATURE CONTAINER: MOOD & ENERGY -->
           <div id="feature-container-mood" class="space-y-2.5">
@@ -208,12 +231,12 @@ def get_diary_entry_view_html():
             <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 erfasst
             </span>
-            <svg id="chevron-meds" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-meds" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-meds" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-meds" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
           <!-- FEATURE CONTAINER: MEDS LOG -->
           <div id="feature-container-meds-log" class="space-y-2.5">
@@ -315,12 +338,12 @@ def get_diary_entry_view_html():
             <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 ml · 7.5h
             </span>
-            <svg id="chevron-vital" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-vital" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-vital" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-vital" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
           <!-- FEATURE CONTAINER: MEALS -->
           <div id="feature-container-meals" class="space-y-1">
@@ -549,12 +572,12 @@ def get_diary_entry_view_html():
             <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               Fokus 7/10 · 0 Steps
             </span>
-            <svg id="chevron-adhs" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-adhs" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-adhs" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-adhs" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
           <!-- FEATURE CONTAINER: ADHS, FOKUS & REIZE -->
           <div id="feature-container-adhs" class="space-y-2.5">
@@ -702,12 +725,12 @@ def get_diary_entry_view_html():
             <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
               0 / 3 Positiv
             </span>
-            <svg id="chevron-mind" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="chevron-mind" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-mind" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-mind" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
           
           <!-- FEATURE CONTAINER: 3 POSITIVE DINGE -->
           <div id="feature-container-positive-things" class="space-y-1.5">
@@ -780,6 +803,8 @@ def get_diary_entry_view_html():
 
         </div>
       </section>
+
+      </div> <!-- /#diary-cards-container -->
 
       <!-- Global Fallback Save Button (shown if Card 5 is hidden but at least one card is visible) -->
       <div id="diary-fallback-save-bar" class="hidden pt-2 flex items-center justify-between gap-2">

@@ -38,26 +38,35 @@ def get_javascript_code():
       colorProfile: 'stoic', // 'stoic' | 'sepia' | 'sage' | 'nordic' | 'terracotta' | 'lavender' | 'matcha' | 'rose' | 'obsidian' | 'eink'
       stepsGoal: 10000,
       waterGoal: 2500,
-      compactMode: false,
+      compactMode: true,
       startView: 'last',   // 'last' | 'diary' | 'schema'
+      cardOrder: ['mood', 'meds', 'vital', 'adhs', 'mind'],
       features: {
         'mood': true,
         'emotions': true,
-        'meds-log': true,
-        'meds-efficacy': true,
-        'meals': true,
-        'water': true,
-        'caffeine': true,
-        'sleep': true,
-        'adhs': true,
-        'steps': true,
+        'meds-log': false,
+        'meds-efficacy': false,
+        'meals': false,
+        'water': false,
+        'caffeine': false,
+        'sleep': false,
+        'adhs': false,
+        'steps': false,
         'positive-things': true,
-        'highlights': true,
-        'notes': true
+        'highlights': false,
+        'notes': false
       }
     };
 
     let appSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+
+    const CARD_METADATA = [
+      { key: 'mood', title_de: 'Gemüt, Energie & Gefühle', title_en: 'Mood, Energy & Emotions', desc_de: '1-10 Skala für Stimmung & Gefühls-Reflexion', desc_en: '1-10 mood scale & emotion reflection' },
+      { key: 'meds', title_de: 'Medikation & Wirkung', title_en: 'Medications & Efficacy', desc_de: 'Medikamenten-Einnahme, Zeiten & Wirkungsbewertung', desc_en: 'Medication intake, timings & efficacy rating' },
+      { key: 'vital', title_de: 'Vital-Hub (Essen, Trinken, Schlaf)', title_en: 'Vital Hub (Meals, Drinks, Sleep)', desc_de: 'Mahlzeiten, Hydration, Koffein-Mix & Schlaf/Naps', desc_en: 'Meals, hydration, caffeine mix & sleep/naps' },
+      { key: 'adhs', title_de: 'Neuro & Body (ADHS, Schritte)', title_en: 'Neuro & Body (ADHD, Steps)', desc_de: 'Fokus, Unruhe, Brainfog, Schritte & Aktivitäten', desc_en: 'Focus, restlessness, brain fog, steps & activities' },
+      { key: 'mind', title_de: 'Journal & 3 Positive Dinge', title_en: 'Journal & 3 Positive Things', desc_de: 'Dopamin-Anker, Highlights (#) & Brain Dump', desc_en: 'Dopamine anchors, highlights (#) & brain dump' }
+    ];
 
     const FEATURE_METADATA = [
       { id: 'mood', card: 'mood', icon: '', title_de: 'Gemüt & Energie', title_en: 'Mood & Energy', desc_de: '1-10 Skala für Stimmung & Energielevel', desc_en: '1-10 scale for mood & energy score' },
@@ -120,8 +129,18 @@ def get_javascript_code():
         settingsPresetsTitle: 'Schnell-Vorlagen:',
         settingsPresetsDesc: 'Passe das Tagebuch so an, dass du dich nicht überfordert fühlst. Schalte nur die Bereiche ein, die du heute wirklich tracken möchtest.',
         presetAll: 'Alle an',
-        presetMinimal: 'Nur Kern (Minimal)',
+        presetMinimal: 'Minimal (1-2 Bereiche)',
+        presetAdhs: 'ADHS & Fokus',
+        presetVital: 'Vital & Routine',
         presetMindfulness: 'Achtsamkeit',
+        cardOrderTitle: 'Karten-Reihenfolge & Hauptbereiche:',
+        cardOrderReset: 'Standard-Reihenfolge',
+        cardOrderDesc: 'Verschiebe die Karten mit den Pfeilen nach oben oder unten, um deinen Check-in genau an deine Routine anzupassen.',
+        subFeaturesTitle: 'Detail-Optionen pro Bereich:',
+        navModuleSettings: 'Module',
+        diaryHintTitle: 'Dein Check-in, deine Regeln',
+        diaryHintDesc: 'Weitere Bereiche (Vital-Hub, ADHS/Fokus, Medis) jederzeit aktivieren & sortieren.',
+        diaryHintButton: 'Anpassen',
         labelSettingLanguage: 'Sprache / Language:',
         labelSettingTheme: 'Erscheinungsbild:',
         themeLight: 'Hell',
@@ -459,8 +478,18 @@ def get_javascript_code():
         settingsPresetsTitle: 'Quick Presets:',
         settingsPresetsDesc: 'Tailor your diary so you never feel overwhelmed. Toggle only the areas you really want to track today.',
         presetAll: 'All on',
-        presetMinimal: 'Core Only (Minimal)',
+        presetMinimal: 'Minimal (1-2 Sections)',
+        presetAdhs: 'ADHD & Focus',
+        presetVital: 'Vital & Routine',
         presetMindfulness: 'Mindfulness',
+        cardOrderTitle: 'Card Order & Main Sections:',
+        cardOrderReset: 'Default Order',
+        cardOrderDesc: 'Move cards up or down with the arrows to match your daily routine.',
+        subFeaturesTitle: 'Detailed options per section:',
+        navModuleSettings: 'Modules',
+        diaryHintTitle: 'Your check-in, your rules',
+        diaryHintDesc: 'Activate and reorder sections (Vital hub, ADHD, Meds) anytime.',
+        diaryHintButton: 'Customize',
         labelSettingLanguage: 'Language / Sprache:',
         labelSettingTheme: 'Appearance:',
         themeLight: 'Light',
@@ -840,15 +869,15 @@ def get_javascript_code():
     let selectedMemoryTags = new Set();
     let currentMedEfficacyRating = '';
 
-    // Accordion State for Diary Entry Cards
+    // Accordion State for Diary Entry Cards (Default collapsed for calm focus)
     let diaryCardsState = {
-      mood: true,
-      meds: true,
-      vital: true,
-      adhs: true,
-      mind: true
+      mood: false,
+      meds: false,
+      vital: false,
+      adhs: false,
+      mind: false
     };
-    let allCardsExpanded = true;
+    let allCardsExpanded = false;
 
     // Custom Options Storage (Permanently saved user additions)
     const STORAGE_KEY_CUSTOM_OPTIONS = 'schema_custom_options_v1';
@@ -1268,6 +1297,9 @@ def get_javascript_code():
           appSettings = {
             ...DEFAULT_SETTINGS,
             ...parsed,
+            cardOrder: (parsed.cardOrder && Array.isArray(parsed.cardOrder) && parsed.cardOrder.length > 0)
+              ? parsed.cardOrder
+              : [...DEFAULT_SETTINGS.cardOrder],
             features: {
               ...DEFAULT_SETTINGS.features,
               ...(parsed.features || {})
@@ -1277,6 +1309,10 @@ def get_javascript_code():
       } catch (e) {
         console.error('Error loading settings:', e);
         appSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+      }
+
+      if (!appSettings.cardOrder || !Array.isArray(appSettings.cardOrder) || appSettings.cardOrder.length === 0) {
+        appSettings.cardOrder = ['mood', 'meds', 'vital', 'adhs', 'mind'];
       }
 
       // Sync water and steps goals
@@ -1574,9 +1610,13 @@ def get_javascript_code():
         }
       }
 
+      // Apply dynamic DOM order for cards and nav pills
+      applyDiaryCardOrder();
+
       // Check card containers and their navigation pills
       let visibleCardsCount = 0;
-      ['mood', 'meds', 'vital', 'adhs', 'mind'].forEach(cardKey => {
+      const order = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      order.forEach(cardKey => {
         const cardEl = document.getElementById('card-diary-' + cardKey);
         const navPill = document.getElementById('sec-nav-' + cardKey);
         const isCardVisible = cardCounts[cardKey] > 0;
@@ -1594,6 +1634,9 @@ def get_javascript_code():
           else navPill.classList.add('hidden');
         }
       });
+
+      // Update sequential numbering on visible cards
+      updateCardHeadersNumbering();
 
       // Fallback save bar & All-disabled notice
       const notice = document.getElementById('diary-all-disabled-notice');
@@ -1618,6 +1661,151 @@ def get_javascript_code():
       }
     }
 
+    function applyDiaryCardOrder() {
+      const order = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      const container = document.getElementById('diary-cards-container');
+      if (container) {
+        order.forEach(cardKey => {
+          const cardEl = document.getElementById('card-diary-' + cardKey);
+          if (cardEl) container.appendChild(cardEl);
+        });
+      }
+
+      // Also reorder the section focus navigation pills in Row 3
+      const navContainer = document.querySelector('#view-diary-entry .overflow-x-auto');
+      if (navContainer) {
+        const allBtn = document.getElementById('sec-nav-all');
+        if (allBtn) navContainer.appendChild(allBtn);
+        order.forEach(cardKey => {
+          const pill = document.getElementById('sec-nav-' + cardKey);
+          if (pill) navContainer.appendChild(pill);
+        });
+        const customizeBtn = document.getElementById('sec-nav-customize');
+        if (customizeBtn) navContainer.appendChild(customizeBtn);
+      }
+    }
+
+    function updateCardHeadersNumbering() {
+      const order = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      const isDe = (appSettings.language || 'de') === 'de';
+      const titles = {
+        mood: isDe ? 'Gemüt, Energie & Gefühle' : 'Mood, Energy & Emotions',
+        meds: isDe ? 'Medikation & Wirkung' : 'Medications & Efficacy',
+        vital: isDe ? 'Vital-Hub: Mahlzeiten, Trinken & Schlaf' : 'Vital Hub: Meals, Drinks & Sleep',
+        adhs: isDe ? 'Neuro & Body: ADHS, Fokus & Schritte' : 'Neuro & Body: ADHD, Focus & Steps',
+        mind: isDe ? 'Journal, 3 Positive Dinge & Notizen' : 'Journal, 3 Positive Things & Notes'
+      };
+
+      let visibleNum = 1;
+      order.forEach(cardKey => {
+        const cardEl = document.getElementById('card-diary-' + cardKey);
+        if (cardEl && !cardEl.classList.contains('hidden')) {
+          const h3 = cardEl.querySelector('h3');
+          if (h3) {
+            h3.textContent = `${visibleNum}. ${titles[cardKey] || ''}`;
+          }
+          visibleNum++;
+        }
+      });
+    }
+
+    function moveCardOrder(cardKey, direction) {
+      if (!appSettings.cardOrder) appSettings.cardOrder = ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      const idx = appSettings.cardOrder.indexOf(cardKey);
+      if (idx === -1) return;
+      const targetIdx = direction === 'up' ? idx - 1 : idx + 1;
+      if (targetIdx < 0 || targetIdx >= appSettings.cardOrder.length) return;
+
+      const temp = appSettings.cardOrder[idx];
+      appSettings.cardOrder[idx] = appSettings.cardOrder[targetIdx];
+      appSettings.cardOrder[targetIdx] = temp;
+
+      saveAppSettings();
+      applyDiaryFeatureVisibility();
+      renderSettingsCardOrderUI();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Reihenfolge verschoben' : 'Card order updated');
+    }
+
+    function resetCardOrder() {
+      appSettings.cardOrder = ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      saveAppSettings();
+      applyDiaryFeatureVisibility();
+      renderSettingsCardOrderUI();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Standard-Reihenfolge wiederhergestellt' : 'Default card order restored');
+    }
+
+    function toggleEntireCard(cardKey, isChecked) {
+      if (!appSettings.features) appSettings.features = {};
+      FEATURE_METADATA.filter(f => f.card === cardKey).forEach(f => {
+        appSettings.features[f.id] = isChecked;
+      });
+      saveAppSettings();
+      applyDiaryFeatureVisibility();
+      renderSettingsCardOrderUI();
+      renderSettingsFeatureToggles();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isChecked ? (isDe ? 'Bereich aktiviert' : 'Section enabled') : (isDe ? 'Bereich deaktiviert' : 'Section disabled'));
+    }
+
+    function renderSettingsCardOrderUI() {
+      const container = document.getElementById('settings-card-order-container');
+      if (!container) return;
+
+      const order = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      const isDe = (appSettings.language || 'de') === 'de';
+
+      let html = '';
+      order.forEach((cardKey, index) => {
+        const meta = CARD_METADATA.find(c => c.key === cardKey) || { key: cardKey, title_de: cardKey, title_en: cardKey, desc_de: '', desc_en: '' };
+        const cardFeatures = FEATURE_METADATA.filter(f => f.card === cardKey);
+        const activeSubFeatures = cardFeatures.filter(f => appSettings.features[f.id] !== false).length;
+        const isCardActive = activeSubFeatures > 0;
+        const title = isDe ? meta.title_de : meta.title_en;
+
+        const isFirst = index === 0;
+        const isLast = index === order.length - 1;
+
+        html += `
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-2xs gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <!-- Reorder Buttons -->
+              <div class="flex flex-col gap-0.5 shrink-0">
+                <button type="button" onclick="moveCardOrder('${cardKey}', 'up')" ${isFirst ? 'disabled' : ''} class="w-6 h-5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[10px] text-stone-600 dark:text-stone-300 ${isFirst ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach oben' : 'Move up'}">
+                  ▲
+                </button>
+                <button type="button" onclick="moveCardOrder('${cardKey}', 'down')" ${isLast ? 'disabled' : ''} class="w-6 h-5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[10px] text-stone-600 dark:text-stone-300 ${isLast ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach unten' : 'Move down'}">
+                  ▼
+                </button>
+              </div>
+
+              <!-- Card Title & Status Badge -->
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-bold text-stone-700 dark:text-stone-300 flex items-center justify-center shrink-0">
+                    ${index + 1}
+                  </span>
+                  <span class="text-xs font-semibold text-stone-900 dark:text-stone-100 truncate">${escapeHtml(title)}</span>
+                </div>
+                <div class="text-[10px] text-stone-400 dark:text-stone-500 truncate pl-6">
+                  ${isCardActive ? `${activeSubFeatures}/${cardFeatures.length} ${isDe ? 'Module aktiv' : 'modules active'}` : (isDe ? 'Deaktiviert' : 'Disabled')}
+                </div>
+              </div>
+            </div>
+
+            <!-- Master Card Toggle -->
+            <div class="relative inline-flex items-center shrink-0">
+              <input type="checkbox" onchange="toggleEntireCard('${cardKey}', this.checked)" ${isCardActive ? 'checked' : ''} class="sr-only peer">
+              <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#4A7264]"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
     function renderSettingsFeatureToggles() {
       const container = document.getElementById('settings-feature-toggles-container');
       if (!container) return;
@@ -1634,16 +1822,18 @@ def get_javascript_code():
       };
 
       let html = '';
+      const order = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
       const grouped = {};
       FEATURE_METADATA.forEach(feat => {
         if (!grouped[feat.card]) grouped[feat.card] = [];
         grouped[feat.card].push(feat);
       });
 
-      Object.keys(grouped).forEach(cardKey => {
+      order.forEach(cardKey => {
+        if (!grouped[cardKey]) return;
         html += `
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-2.5 space-y-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block pb-1 border-b border-slate-200/50 dark:border-slate-800">
+          <div class="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 p-2.5 space-y-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 block pb-1 border-b border-stone-200/50 dark:border-stone-800">
               ${cardTitles[cardKey] || cardKey}
             </span>
             <div class="space-y-1.5">
@@ -1655,17 +1845,17 @@ def get_javascript_code():
           const desc = isDe ? feat.desc_de : feat.desc_en;
 
           html += `
-            <label class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 transition cursor-pointer gap-2">
+            <label class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-stone-850 border border-stone-200/70 dark:border-stone-700/80 hover:border-stone-300 dark:hover:border-stone-600 transition cursor-pointer gap-2">
               <div class="flex items-center gap-2 min-w-0">
                 <div class="min-w-0">
-                  <div class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">${title}</div>
-                  <div class="text-[10px] text-slate-400 truncate leading-tight">${desc}</div>
+                  <div class="text-xs font-medium text-stone-800 dark:text-stone-200 truncate leading-tight">${title}</div>
+                  <div class="text-[10px] text-stone-400 dark:text-stone-500 truncate leading-tight">${desc}</div>
                 </div>
               </div>
               
               <div class="relative inline-flex items-center shrink-0">
                 <input type="checkbox" onchange="toggleFeatureSetting('${feat.id}', this.checked)" ${isChecked ? 'checked' : ''} class="sr-only peer">
-                <div class="w-9 h-5 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#4A7264]"></div>
               </div>
             </label>
           `;
@@ -1685,28 +1875,35 @@ def get_javascript_code():
       appSettings.features[featId] = isChecked;
       saveAppSettings();
       applyDiaryFeatureVisibility();
+      renderSettingsCardOrderUI();
     }
 
     function setFeaturePreset(presetType) {
       if (!appSettings.features) appSettings.features = {};
       
-      if (presetType === 'all') {
+      if (presetType === 'minimal') {
+        const activeSet = new Set(['mood', 'emotions', 'positive-things']);
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = activeSet.has(f.id);
+        });
+      } else if (presetType === 'adhs') {
+        const activeSet = new Set(['mood', 'emotions', 'meds-log', 'meds-efficacy', 'adhs', 'positive-things']);
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = activeSet.has(f.id);
+        });
+      } else if (presetType === 'vital') {
+        const activeSet = new Set(['mood', 'meals', 'water', 'caffeine', 'sleep', 'steps', 'positive-things']);
+        FEATURE_METADATA.forEach(f => {
+          appSettings.features[f.id] = activeSet.has(f.id);
+        });
+      } else if (presetType === 'all') {
         FEATURE_METADATA.forEach(f => {
           appSettings.features[f.id] = true;
-        });
-      } else if (presetType === 'minimal') {
-        const core = new Set(['mood', 'meds-log', 'meds-efficacy', 'water', 'sleep', 'adhs', 'positive-things']);
-        FEATURE_METADATA.forEach(f => {
-          appSettings.features[f.id] = core.has(f.id);
-        });
-      } else if (presetType === 'mindfulness') {
-        const mindful = new Set(['mood', 'emotions', 'meals', 'water', 'sleep', 'steps', 'positive-things', 'highlights', 'notes']);
-        FEATURE_METADATA.forEach(f => {
-          appSettings.features[f.id] = mindful.has(f.id);
         });
       }
 
       saveAppSettings();
+      renderSettingsCardOrderUI();
       renderSettingsFeatureToggles();
       applyDiaryFeatureVisibility();
       const isDe = (appSettings.language || 'de') === 'de';
@@ -1724,19 +1921,21 @@ def get_javascript_code():
       if (tab === 'modules') {
         tabModules.classList.remove('hidden');
         tabGeneral.classList.add('hidden');
-        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 font-bold';
-        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium';
+        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold';
+        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium';
+        renderSettingsCardOrderUI();
+        renderSettingsFeatureToggles();
       } else {
         tabModules.classList.add('hidden');
         tabGeneral.classList.remove('hidden');
-        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 font-bold';
-        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium';
+        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold';
+        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium';
 
         updateSettingsDataStats();
       }
     }
 
-    function openSettingsModal() {
+    function openSettingsModal(tab = 'modules') {
       const modal = document.getElementById('settings-modal');
       if (!modal) return;
 
@@ -1756,8 +1955,14 @@ def get_javascript_code():
       updateThemeButtonsUI(appSettings.theme || 'auto');
       renderColorProfilesUI();
 
+      renderSettingsCardOrderUI();
       renderSettingsFeatureToggles();
       updateSettingsDataStats();
+
+      if (tab) {
+        switchSettingsTab(tab);
+      }
+
       modal.classList.remove('hidden');
     }
 
@@ -4790,7 +4995,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=25').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=26').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

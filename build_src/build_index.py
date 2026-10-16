@@ -616,20 +616,98 @@ def get_head_and_styles():
     .theme-subtle,
     .inner-panel,
     #diary-customization-hint,
-    #settings-tab-modules > .p-3,
-    #settings-tab-general > .p-3,
-    #settings-tab-appearance > .p-3,
-    .settings-panel-row,
-    #settings-card-order-container > div,
     #custom-option-modal .shadcn-card {
       background-color: var(--surface-subtle) !important;
       border-color: var(--border-subtle) !important;
       color: var(--app-text) !important;
     }
 
+    /* ==========================================================
+       SETTINGS MODAL UNIVERSAL THEME INTEGRATION
+       ========================================================== */
     #settings-modal .shadcn-card {
       background-color: var(--card-bg) !important;
+      border: 1px solid var(--card-border) !important;
+      color: var(--app-text) !important;
+    }
+
+    #settings-modal .settings-group-panel,
+    #settings-tab-modules > .p-3,
+    #settings-tab-general > .p-3,
+    .settings-panel-row {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+
+    #settings-modal .settings-feature-toggle-item,
+    #settings-modal .settings-card-order-item,
+    #settings-modal .color-profile-card,
+    #settings-modal .settings-preset-btn:not(.btn-primary-theme),
+    #settings-modal .settings-choice-btn:not(.active),
+    #settings-modal .settings-reset-theme-btn,
+    #settings-modal .settings-backup-import-btn {
+      background-color: var(--card-bg) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+
+    #settings-modal .settings-feature-toggle-item:hover,
+    #settings-modal .settings-card-order-item:hover,
+    #settings-modal .color-profile-card:hover,
+    #settings-modal .settings-preset-btn:not(.btn-primary-theme):hover,
+    #settings-modal .settings-choice-btn:not(.active):hover,
+    #settings-modal .settings-reset-theme-btn:hover,
+    #settings-modal .settings-backup-import-btn:hover {
       border-color: var(--card-border) !important;
+      background-color: var(--surface-subtle-hover) !important;
+    }
+
+    #settings-modal .settings-tab-btn {
+      background-color: transparent !important;
+      color: var(--text-muted) !important;
+      transition: all 0.15s ease;
+    }
+    #settings-modal .settings-tab-btn.active {
+      background-color: var(--card-bg) !important;
+      color: var(--accent-primary) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    #settings-modal .settings-choice-btn.active,
+    #settings-modal .color-profile-card.active {
+      background-color: var(--accent-soft) !important;
+      border-color: var(--accent-primary) !important;
+      color: var(--accent-primary) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    #settings-modal .order-arrow-btn {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+    #settings-modal .order-arrow-btn:hover:not(:disabled) {
+      background-color: var(--accent-soft) !important;
+      border-color: var(--accent-primary) !important;
+    }
+
+    #settings-modal .order-number-badge {
+      background-color: var(--surface-subtle) !important;
+      color: var(--app-text) !important;
+      border: 1px solid var(--border-subtle) !important;
+    }
+
+    #settings-modal select,
+    #setting-start-view {
+      background-color: var(--card-bg) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+    #settings-modal select option {
+      background-color: var(--card-bg) !important;
       color: var(--app-text) !important;
     }
 

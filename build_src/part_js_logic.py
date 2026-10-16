@@ -1147,14 +1147,14 @@ def get_javascript_code():
         const desc = isDe ? p.desc_de : p.desc_en;
 
         return `
-          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]/20 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 hover:border-stone-400 dark:hover:border-stone-600'}">
+          <button type="button" onclick="setColorProfile('${p.id}')" class="color-profile-card p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'active ring-2 ring-[var(--accent-primary)]/20 shadow-xs' : ''}">
             <div class="flex items-center justify-between gap-1 w-full">
               <span class="font-serif font-semibold text-[11px] sm:text-xs truncate" style="color: var(--app-text);">${escapeHtml(name)}</span>
               ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full text-white text-[9px] font-bold flex items-center justify-center shrink-0" style="background-color: var(--accent-primary);">✓</span>' : ''}
             </div>
 
             <!-- Mini Swatch Preview -->
-            <div class="flex items-center gap-1.5 p-1 rounded-lg border border-stone-200/60 dark:border-stone-700/60 w-full" style="background-color: ${bgPreview};">
+            <div class="flex items-center gap-1.5 p-1 rounded-lg border border-[var(--border-subtle)] w-full" style="background-color: ${bgPreview};">
               <span class="w-3.5 h-3.5 rounded-full shrink-0 shadow-xs" style="background-color: ${p.accent};"></span>
               <span class="text-[10px] font-serif font-bold opacity-80" style="color: ${isDark ? '#F5F3EF' : p.text};">Aa</span>
               <span class="flex-1 h-1.5 rounded-full opacity-60" style="background-color: ${p.accent};"></span>
@@ -1474,11 +1474,11 @@ def get_javascript_code():
       const btnEn = document.getElementById('lang-btn-en');
       if (btnDe && btnEn) {
         if (lang === 'de') {
-          btnDe.className = 'py-2 px-3 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs';
-          btnEn.className = 'py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 font-semibold text-xs flex items-center justify-center gap-1.5 transition';
+          btnDe.classList.add('active');
+          btnEn.classList.remove('active');
         } else {
-          btnEn.className = 'py-2 px-3 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs';
-          btnDe.className = 'py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 font-semibold text-xs flex items-center justify-center gap-1.5 transition';
+          btnEn.classList.add('active');
+          btnDe.classList.remove('active');
         }
       }
 
@@ -1530,9 +1530,9 @@ def get_javascript_code():
         const el = document.getElementById(`theme-opt-${opt}`);
         if (!el) return;
         if (opt === activeTheme) {
-          el.className = 'theme-choice-btn active py-2 px-2 rounded-xl border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-xs font-semibold text-stone-100 dark:text-stone-900 text-center transition flex flex-col items-center gap-0.5 shadow-xs';
+          el.classList.add('active');
         } else {
-          el.className = 'theme-choice-btn py-2 px-2 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-xs font-medium text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white text-center transition flex flex-col items-center gap-0.5';
+          el.classList.remove('active');
         }
       });
     }
@@ -1780,18 +1780,18 @@ def get_javascript_code():
         const isLast = index === order.length - 1;
 
         html += `
-          <div data-card-key="${cardKey}" class="settings-card-order-item flex items-center justify-between p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-2xs gap-2 transition-all">
+          <div data-card-key="${cardKey}" class="settings-card-order-item flex items-center justify-between p-2.5 rounded-xl border shadow-2xs gap-2 transition-all">
             <div class="flex items-center gap-2 min-w-0 flex-1">
               <!-- Reorder Buttons & Drag Handle -->
               <div class="flex items-center gap-1 shrink-0">
-                <span class="settings-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none" title="${isDe ? 'Ziehen zum Umsortieren' : 'Drag to reorder'}">
+                <span class="settings-drag-handle p-1 text-[var(--text-muted)] hover:text-[var(--app-text)] cursor-grab active:cursor-grabbing touch-none select-none" title="${isDe ? 'Ziehen zum Umsortieren' : 'Drag to reorder'}">
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
                 </span>
                 <div class="flex flex-col gap-0.5 shrink-0">
-                  <button type="button" onclick="moveCardOrder('${cardKey}', 'up')" ${isFirst ? 'disabled' : ''} class="w-5 h-4.5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[9px] text-stone-600 dark:text-stone-300 ${isFirst ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach oben' : 'Move up'}">
+                  <button type="button" onclick="moveCardOrder('${cardKey}', 'up')" ${isFirst ? 'disabled' : ''} class="order-arrow-btn w-5 h-4.5 rounded flex items-center justify-center text-[9px] ${isFirst ? 'opacity-25 cursor-not-allowed' : 'cursor-pointer'} transition" title="${isDe ? 'Nach oben' : 'Move up'}">
                     ▲
                   </button>
-                  <button type="button" onclick="moveCardOrder('${cardKey}', 'down')" ${isLast ? 'disabled' : ''} class="w-5 h-4.5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[9px] text-stone-600 dark:text-stone-300 ${isLast ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach unten' : 'Move down'}">
+                  <button type="button" onclick="moveCardOrder('${cardKey}', 'down')" ${isLast ? 'disabled' : ''} class="order-arrow-btn w-5 h-4.5 rounded flex items-center justify-center text-[9px] ${isLast ? 'opacity-25 cursor-not-allowed' : 'cursor-pointer'} transition" title="${isDe ? 'Nach unten' : 'Move down'}">
                     ▼
                   </button>
                 </div>
@@ -1800,12 +1800,12 @@ def get_javascript_code():
               <!-- Card Title & Status Badge -->
               <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-bold text-stone-700 dark:text-stone-300 flex items-center justify-center shrink-0">
+                  <span class="order-number-badge w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center shrink-0">
                     ${index + 1}
                   </span>
-                  <span class="text-xs font-semibold text-stone-900 dark:text-stone-100 truncate">${escapeHtml(title)}</span>
+                  <span class="text-xs font-semibold text-[var(--app-text)] truncate">${escapeHtml(title)}</span>
                 </div>
-                <div class="text-[10px] text-stone-400 dark:text-stone-500 truncate pl-6">
+                <div class="text-[10px] text-[var(--text-muted)] truncate pl-6">
                   ${isCardActive ? `${activeSubFeatures}/${cardFeatures.length} ${isDe ? 'Module aktiv' : 'modules active'}` : (isDe ? 'Deaktiviert' : 'Disabled')}
                 </div>
               </div>
@@ -2078,8 +2078,8 @@ def get_javascript_code():
       order.forEach(cardKey => {
         if (!grouped[cardKey]) return;
         html += `
-          <div class="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 p-2.5 space-y-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 block pb-1 border-b border-stone-200/50 dark:border-stone-800">
+          <div class="settings-group-panel rounded-xl p-2.5 space-y-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block pb-1 border-b border-[var(--border-subtle)]">
               ${cardTitles[cardKey] || cardKey}
             </span>
             <div class="space-y-1.5">
@@ -2091,17 +2091,17 @@ def get_javascript_code():
           const desc = isDe ? feat.desc_de : feat.desc_en;
 
           html += `
-            <label class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-stone-850 border border-stone-200/70 dark:border-stone-700/80 hover:border-stone-300 dark:hover:border-stone-600 transition cursor-pointer gap-2">
+            <label class="settings-feature-toggle-item flex items-center justify-between p-2 rounded-xl border transition cursor-pointer gap-2">
               <div class="flex items-center gap-2 min-w-0">
                 <div class="min-w-0">
-                  <div class="text-xs font-medium text-stone-800 dark:text-stone-200 truncate leading-tight">${title}</div>
-                  <div class="text-[10px] text-stone-400 dark:text-stone-500 truncate leading-tight">${desc}</div>
+                  <div class="text-xs font-medium text-[var(--app-text)] truncate leading-tight">${title}</div>
+                  <div class="text-[10px] text-[var(--text-muted)] truncate leading-tight">${desc}</div>
                 </div>
               </div>
               
               <div class="relative inline-flex items-center shrink-0">
                 <input type="checkbox" onchange="toggleFeatureSetting('${feat.id}', this.checked)" ${isChecked ? 'checked' : ''} class="sr-only peer">
-                <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#4A7264]"></div>
+                <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[var(--accent-primary)]"></div>
               </div>
             </label>
           `;
@@ -2167,15 +2167,15 @@ def get_javascript_code():
       if (tab === 'modules') {
         tabModules.classList.remove('hidden');
         tabGeneral.classList.add('hidden');
-        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold';
-        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium';
+        btnModules.classList.add('active');
+        btnGeneral.classList.remove('active');
         renderSettingsCardOrderUI();
         renderSettingsFeatureToggles();
       } else {
         tabModules.classList.add('hidden');
         tabGeneral.classList.remove('hidden');
-        btnGeneral.className = 'py-1.5 px-3 rounded-lg transition text-center shadow-xs bg-white dark:bg-stone-900 text-[#4A7264] dark:text-[#7BA896] font-semibold';
-        btnModules.className = 'py-1.5 px-3 rounded-lg transition text-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white font-medium';
+        btnGeneral.classList.add('active');
+        btnModules.classList.remove('active');
 
         updateSettingsDataStats();
       }
@@ -2194,9 +2194,21 @@ def get_javascript_code():
       const setStart = document.getElementById('setting-start-view');
       if (setStart) setStart.value = appSettings.startView || 'last';
 
+      const lang = appSettings.language || 'de';
       const langBadge = document.getElementById('current-lang-badge');
       if (langBadge) {
-        langBadge.textContent = (appSettings.language === 'en') ? 'English' : 'Deutsch';
+        langBadge.textContent = (lang === 'en') ? 'English' : 'Deutsch';
+      }
+      const btnDe = document.getElementById('lang-btn-de');
+      const btnEn = document.getElementById('lang-btn-en');
+      if (btnDe && btnEn) {
+        if (lang === 'de') {
+          btnDe.classList.add('active');
+          btnEn.classList.remove('active');
+        } else {
+          btnEn.classList.add('active');
+          btnDe.classList.remove('active');
+        }
       }
       updateThemeButtonsUI(appSettings.theme || 'auto');
       renderColorProfilesUI();
@@ -5235,7 +5247,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=28').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=29').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

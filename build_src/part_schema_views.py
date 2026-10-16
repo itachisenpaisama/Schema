@@ -198,7 +198,7 @@ def get_schema_views_html():
 
       <!-- Save & Preview Action Bar -->
       <div class="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
-        <button type="button" onclick="saveCurrentMemo()" class="w-full sm:flex-1 py-3 px-5 rounded-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm tracking-wide shadow-sm hover:shadow transition active:scale-[0.98] flex items-center justify-center gap-2">
+        <button type="button" onclick="saveCurrentMemo()" class="btn-primary-theme w-full sm:flex-1 py-3 px-5 rounded-full font-medium text-xs sm:text-sm tracking-wide shadow-sm hover:shadow transition active:scale-[0.98] flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span data-i18n="schemaBtnSaveSheet">Speichern & Blatt ansehen</span>
         </button>
@@ -222,8 +222,8 @@ def get_schema_views_html():
             <span data-i18n="sheetBtnEdit">Bearbeiten</span>
           </button>
 
-          <button onclick="printSheet()" class="px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-stone-100 dark:text-stone-900 text-xs font-medium transition flex items-center gap-1.5 shadow-xs active:scale-[0.98]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <button onclick="printSheet()" class="px-2.5 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:bg-[var(--surface-subtle-hover)] text-[var(--app-text)] text-xs font-medium transition flex items-center gap-1.5 shadow-2xs active:scale-[0.98]">
+            <svg class="w-3.5 h-3.5 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span data-i18n="sheetBtnPrint">Drucken / PDF</span>
           </button>
         </div>
@@ -399,15 +399,17 @@ def get_schema_views_html():
       <div class="shadcn-card p-3 sm:p-5 space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100" data-i18n="archiveTitle">Gespeicherte Schema-Memos</h2>
-            <p class="font-serif italic text-xs text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="archiveSubtitle">Verwalte deine reflektierten Memos und verfolge deinen Therapiefortschritt.</p>
+            <h2 class="font-serif text-base sm:text-xl font-semibold tracking-tight text-[var(--app-text)]" data-i18n="archiveTitle">Gespeicherte Schema-Memos</h2>
+            <p class="font-serif italic text-xs text-[var(--text-muted)] mt-0.5" data-i18n="archiveSubtitle">Verwalte deine reflektierten Memos und verfolge deinen Therapiefortschritt.</p>
           </div>
 
           <div class="flex items-center gap-1.5">
-            <button onclick="exportJSON()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 shadow-xs">
+            <button type="button" onclick="exportJSON()" class="px-2.5 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:bg-[var(--surface-subtle-hover)] text-[var(--app-text)] text-xs font-medium active:scale-[0.98] transition flex items-center gap-1.5 shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
               <span data-i18n="btnExport">Export</span>
             </button>
-            <label class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-[0.98] transition flex items-center gap-1 cursor-pointer shadow-xs">
+            <label class="px-2.5 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:bg-[var(--surface-subtle-hover)] text-[var(--app-text)] text-xs font-medium active:scale-[0.98] transition flex items-center gap-1.5 cursor-pointer shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
               <span data-i18n="btnImport">Import</span>
               <input type="file" id="import-file" accept=".json" onchange="importJSON(event)" class="hidden">
             </label>

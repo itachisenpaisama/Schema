@@ -838,6 +838,8 @@ def get_head_and_styles():
     .emotion-chip-custom,
     .custom-schema-chip,
     .qf-btn,
+    .diary-folder-btn,
+    .stats-time-btn,
     .nap-quick-btn,
     #quick-meds-chips-container button,
     #quick-meds-chips-container span,
@@ -858,6 +860,8 @@ def get_head_and_styles():
     .tag-chip:hover,
     .emotion-chip:hover,
     .qf-btn:hover,
+    .diary-folder-btn:hover,
+    .stats-time-btn:hover,
     .nap-quick-btn:hover,
     #quick-meds-chips-container button:hover,
     #pleasant-emotions-chips button:hover,
@@ -876,13 +880,46 @@ def get_head_and_styles():
     /* Active Tag Chips */
     .tag-chip.active,
     .emotion-chip.active,
-    .qf-btn.active,
     .nap-quick-btn.active,
     button[data-tag].active {
       background-color: var(--accent-soft) !important;
       border-color: var(--accent-soft-border) !important;
       color: var(--accent-primary) !important;
       font-weight: 600 !important;
+    }
+
+    /* Active Filter & Folder Pills */
+    .qf-btn.active,
+    .diary-folder-btn.active,
+    .stats-time-btn.active {
+      background-color: var(--accent-primary) !important;
+      border-color: var(--accent-primary) !important;
+      color: var(--accent-text) !important;
+      font-weight: 600 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Sub-panels inside History & Feed Cards */
+    .diary-sub-panel {
+      background-color: var(--surface-subtle) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+
+    .med-chip-logged {
+      background-color: var(--card-bg) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+
+    .action-icon-btn {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+    .action-icon-btn:hover {
+      background-color: var(--surface-subtle-hover) !important;
+      border-color: var(--accent-primary) !important;
     }
 
     /* Range slider custom styling */

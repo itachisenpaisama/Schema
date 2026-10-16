@@ -1254,7 +1254,7 @@ def get_javascript_code():
         <button id="nav-btn-archive" type="button" onclick="switchView('archive')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${memos.length}</span>
+            <span id="archive-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[var(--accent-primary)] text-[var(--accent-text)] text-[9px] font-semibold flex items-center justify-center">${memos.length}</span>
           </div>
           <span class="text-[11px] font-medium tracking-tight">${t.tabMemos}</span>
         </button>
@@ -1284,7 +1284,7 @@ def get_javascript_code():
         <button id="nav-btn-diary-list" type="button" onclick="switchView('diary-list')" class="bottom-nav-btn flex-1 py-1.5 flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 transition relative">
           <div class="nav-icon-wrapper w-9 h-7 rounded-full flex items-center justify-center transition mb-0.5 relative">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-semibold flex items-center justify-center">${diary.length}</span>
+            <span id="diary-count-badge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[var(--accent-primary)] text-[var(--accent-text)] text-[9px] font-semibold flex items-center justify-center">${diary.length}</span>
           </div>
           <span class="text-[11px] font-medium tracking-tight">${t.tabHistory}</span>
         </button>
@@ -2629,8 +2629,8 @@ def get_javascript_code():
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="shadcn-card p-8 text-center space-y-2">
-            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">${t.archiveEmptyTitle}</p>
-            <p class="text-xs text-slate-500">${t.archiveEmptyDesc}</p>
+            <p class="text-sm font-bold text-[var(--app-text)]">${t.archiveEmptyTitle}</p>
+            <p class="text-xs text-[var(--app-text-muted)]">${t.archiveEmptyDesc}</p>
           </div>
         `;
         return;
@@ -2638,22 +2638,22 @@ def get_javascript_code():
 
       container.innerHTML = filtered.map(item => `
         <article class="shadcn-card p-4 sm:p-5 space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center justify-between pb-2 border-b border-[var(--border-subtle)]">
             <div>
-              <span class="text-[10px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">${formatDateDE(item.date)}</span>
-              <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h3>
+              <span class="text-[10px] font-bold text-[var(--accent-primary)] uppercase tracking-wider">${formatDateDE(item.date)}</span>
+              <h3 class="text-sm sm:text-base font-extrabold text-[var(--app-text)]">${escapeHtml(item.title)}</h3>
             </div>
             <div class="flex items-center gap-1">
-              <button onclick="editMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
+              <button onclick="editMemo('${item.id}')" class="action-icon-btn p-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:border-[var(--accent-primary)] text-[var(--app-text)] text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
               </button>
-              <button onclick="deleteMemo('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-rose-50 text-rose-500 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
+              <button onclick="deleteMemo('${item.id}')" class="action-icon-btn p-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:bg-rose-500/10 text-rose-500 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </button>
             </div>
           </div>
-          ${item.emotion ? `<p class="text-xs text-slate-600 dark:text-slate-300"><span class="font-bold text-slate-800 dark:text-slate-200">${isEn ? 'Emotion:' : 'Gefühl:'}</span> ${escapeHtml(item.emotion)}</p>` : ''}
-          ${item.schema ? `<p class="text-xs text-indigo-600 dark:text-indigo-400"><span class="font-bold">${isEn ? 'Schema/Mode:' : 'Schema/Modus:'}</span> ${escapeHtml(item.schema)}</p>` : ''}
+          ${item.emotion ? `<p class="text-xs text-[var(--app-text-muted)]"><span class="font-bold text-[var(--app-text)]">${isEn ? 'Emotion:' : 'Gefühl:'}</span> ${escapeHtml(item.emotion)}</p>` : ''}
+          ${item.schema ? `<p class="text-xs text-[var(--accent-primary)]"><span class="font-bold">${isEn ? 'Schema/Mode:' : 'Schema/Modus:'}</span> ${escapeHtml(item.schema)}</p>` : ''}
         </article>
       `).join('');
     }
@@ -4409,11 +4409,11 @@ def get_javascript_code():
     function setDiaryQuickFilter(qfKey) {
       activeDiaryQuickFilter = qfKey;
       document.querySelectorAll('.qf-btn').forEach(btn => {
-        btn.className = 'qf-btn text-xs px-3 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/60 dark:bg-stone-800/60 text-stone-700 dark:text-stone-300 font-medium hover:bg-stone-200/60 dark:hover:bg-stone-700/60 transition';
+        btn.classList.remove('active');
       });
       const activeBtn = document.getElementById('qf-' + qfKey);
       if (activeBtn) {
-        activeBtn.className = 'qf-btn active text-xs px-3 py-1 rounded-full border border-stone-800 dark:border-stone-200 bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 font-medium transition shadow-xs';
+        activeBtn.classList.add('active');
       }
       renderDiaryEntriesList();
     }
@@ -4433,7 +4433,7 @@ def get_javascript_code():
 
       const sorted = Object.keys(folders).sort().reverse();
       let html = `
-        <button type="button" onclick="setDiaryFolder('all')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
+        <button type="button" onclick="setDiaryFolder('all')" class="diary-folder-btn rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === 'all' ? 'active' : ''}">
           ${isEn ? 'All' : 'Alle'} (${entries.length})
         </button>
       `;
@@ -4443,7 +4443,7 @@ def get_javascript_code():
         const dObj = new Date(parseInt(y), parseInt(m) - 1, 1);
         const label = dObj.toLocaleDateString(isEn ? 'en-US' : 'de-DE', { month: 'short', year: 'numeric' });
         html += `
-          <button type="button" onclick="setDiaryFolder('${key}')" class="rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === key ? 'bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs' : 'border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700/60'}">
+          <button type="button" onclick="setDiaryFolder('${key}')" class="diary-folder-btn rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition ${activeDiaryFolder === key ? 'active' : ''}">
             ${label} (${folders[key]})
           </button>
         `;
@@ -4490,12 +4490,12 @@ def get_javascript_code():
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="shadcn-card p-8 text-center space-y-3">
-            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto flex items-center justify-center text-xl">
-              <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <div class="w-12 h-12 rounded-full bg-[var(--surface-subtle)] text-[var(--text-muted)] mx-auto flex items-center justify-center text-xl">
+              <svg class="w-6 h-6 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             </div>
-            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">${t.diaryEmptyTitle}</p>
-            <p class="text-xs text-slate-500 max-w-sm mx-auto">${t.diaryEmptyDesc}</p>
-            <button onclick="createNewDiaryEntry()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs">
+            <p class="text-sm font-bold text-[var(--app-text)]">${t.diaryEmptyTitle}</p>
+            <p class="text-xs text-[var(--app-text-muted)] max-w-sm mx-auto">${t.diaryEmptyDesc}</p>
+            <button onclick="createNewDiaryEntry()" class="btn-primary-theme inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition shadow-xs">
               ${t.diaryBtnNewCheckin}
             </button>
           </div>
@@ -4544,10 +4544,10 @@ def get_javascript_code():
           <article class="diary-page-card p-3 sm:p-5 space-y-3 break-words overflow-hidden">
             
             <!-- Card Header: Date & Mood Badge & Action Buttons -->
-            <div class="flex flex-wrap items-center justify-between pb-2.5 border-b border-slate-100 dark:border-slate-800 gap-2">
+            <div class="flex flex-wrap items-center justify-between pb-2.5 border-b border-[var(--border-subtle)] gap-2">
               <div class="min-w-0">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Daily Life & Neuro Entry</span>
-                <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white capitalize">${formattedFullDate}</h3>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--accent-primary)]">Daily Life & Neuro Entry</span>
+                <h3 class="text-sm sm:text-base font-extrabold text-[var(--app-text)] capitalize">${formattedFullDate}</h3>
               </div>
 
               <div class="flex items-center gap-1.5">
@@ -4557,10 +4557,10 @@ def get_javascript_code():
                 </div>
 
                 <div class="flex items-center gap-1">
-                  <button onclick="editDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
+                  <button onclick="editDiaryEntry('${item.id}')" class="action-icon-btn p-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--app-text)] hover:border-[var(--accent-primary)] text-xs transition" title="${isEn ? 'Edit' : 'Bearbeiten'}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                   </button>
-                  <button onclick="deleteDiaryEntry('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
+                  <button onclick="deleteDiaryEntry('${item.id}')" class="action-icon-btn p-1.5 rounded-lg border border-[var(--border-subtle)] text-rose-500 hover:bg-rose-500/10 text-xs transition" title="${isEn ? 'Delete' : 'Löschen'}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                   </button>
                 </div>
@@ -4570,43 +4570,43 @@ def get_javascript_code():
             <!-- Quick Metrics Overview Bar -->
             <div class="flex flex-wrap items-center gap-1 pt-0.5">
               ${slp.durationHours ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--app-text)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Sleep:' : 'Schlaf:'}</span> ${slp.durationHours}h (${slp.quality || 4}/5)
                 </span>
               ` : ''}
 
               ${(slp.napMinutes && slp.napMinutes > 0) ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-300 border border-teal-200/50 dark:border-teal-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--accent-primary)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Nap/Reset:' : 'Nap/Reset:'}</span> ${slp.napMinutes}m${slp.napNotes ? ` · ${escapeHtml(slp.napNotes)}` : ''}
                 </span>
               ` : ''}
 
               ${steps > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--app-text)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Steps:' : 'Schritte:'}</span> ${steps.toLocaleString(isEn ? 'en-US' : 'de-DE')}
                 </span>
               ` : ''}
 
               ${meds.length > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--accent-primary)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Meds:' : 'Medis:'}</span> ${meds.length}
                 </span>
               ` : ''}
 
               ${water > 0 ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--app-text)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Water:' : 'Wasser:'}</span> ${water} ml
                 </span>
               ` : ''}
 
-              ${(item.coffeeCups || item.energyCups || caffeine > 0) ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40">
+              ${(item.coffeeCups !== undefined || item.energyCups !== undefined || caffeine > 0) ? `
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--app-text)] border border-[var(--border-subtle)]">
                   ${item.coffeeCups !== undefined ? `${item.coffeeCups || 0}x ${isEn ? 'Coffee' : 'Kaffee'} · ${item.energyCups || 0}x Energy` : `${isEn ? 'Caffeine:' : 'Koffein:'} ${caffeine}x`}
                 </span>
               ` : ''}
 
               ${adhs.focus ? `
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-[var(--surface-subtle)] text-[var(--accent-primary)] border border-[var(--border-subtle)]">
                   <span>${isEn ? 'Focus:' : 'Fokus:'}</span> ${adhs.focus}/10
                 </span>
               ` : ''}
@@ -4614,16 +4614,16 @@ def get_javascript_code():
 
             <!-- Key Highlights Box -->
             ${item.highlights ? `
-              <div class="bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-500 p-2.5 sm:p-3 rounded-r-xl space-y-1">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 flex items-center justify-between">
+              <div class="diary-sub-panel border-l-4 border-amber-500 border-y border-r border-[var(--border-subtle)] bg-[var(--surface-subtle)] p-2.5 sm:p-3 rounded-r-xl space-y-1">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-primary)] flex items-center justify-between">
                   <span>${isEn ? 'Key Highlights & Moments' : 'Key Highlights & Erlebnisse'}</span>
                 </div>
-                <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
+                <p class="text-xs sm:text-sm text-[var(--app-text)] leading-relaxed font-medium">
                   ${escapeHtml(item.highlights)}
                 </p>
                 ${(item.memoryTags && item.memoryTags.length > 0) ? `
                   <div class="flex flex-wrap gap-1 pt-0.5">
-                    ${item.memoryTags.map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">#${escapeHtml(translateTag(t))}</span>`).join('')}
+                    ${item.memoryTags.map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--app-text)] border border-[var(--border-subtle)]">#${escapeHtml(translateTag(t))}</span>`).join('')}
                   </div>
                 ` : ''}
               </div>
@@ -4631,32 +4631,32 @@ def get_javascript_code():
 
             <!-- Medications Details Box -->
             ${(meds.length > 0 || (item.rebound && item.rebound.level !== 'none')) ? `
-              <div class="p-2.5 sm:p-3 rounded-xl border border-violet-100 dark:border-violet-900/40 bg-violet-50/40 dark:bg-violet-950/20 space-y-1.5">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-400 flex items-center justify-between">
+              <div class="diary-sub-panel p-2.5 sm:p-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] space-y-1.5">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-primary)] flex items-center justify-between">
                   <span>${isEn ? 'Logged Medications & Supplements:' : 'Eingenommene Medikation & Supplements:'}</span>
                 </div>
                 <div class="flex flex-wrap gap-1">
                   ${meds.map(m => `
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs border border-violet-200/60 dark:border-violet-800/50">
+                    <span class="med-chip-logged inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[var(--card-bg)] text-[var(--app-text)] text-xs border border-[var(--border-subtle)]">
                       <span class="text-emerald-500 font-bold">✓</span>
                       <span class="font-bold">${escapeHtml(m.name)}</span>
-                      <span class="text-violet-600 dark:text-violet-400 font-semibold">${escapeHtml(m.dose)}</span>
-                      ${m.time ? `<span class="text-violet-600 dark:text-violet-400 text-[10px] font-bold">${escapeHtml(m.time)}</span>` : ''}
+                      <span class="text-[var(--accent-primary)] font-semibold">${escapeHtml(m.dose)}</span>
+                      ${m.time ? `<span class="text-[var(--text-muted)] text-[10px] font-bold">${escapeHtml(m.time)}</span>` : ''}
                     </span>
                   `).join('')}
                 </div>
                 ${(item.medEfficacyRating || item.medEfficacy) ? `
-                  <div class="p-2 rounded-lg border border-violet-200/80 dark:border-violet-900/40 bg-violet-100/40 dark:bg-violet-950/30 space-y-0.5 text-xs">
-                    <div class="text-[10px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300 flex items-center gap-1">
+                  <div class="p-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--card-bg)] space-y-0.5 text-xs">
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-[var(--app-text)] flex items-center gap-1">
                       <span>${isEn ? 'Medication Efficacy:' : 'Wirkung der Medikation:'}</span>
-                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-violet-600 text-white font-bold ml-1 text-[9px] uppercase">${escapeHtml(medEffLabels[item.medEfficacyRating] || item.medEfficacyRating)}</span>` : ''}
+                      ${item.medEfficacyRating ? `<span class="px-1.5 py-0.2 rounded bg-[var(--accent-primary)] text-[var(--accent-text)] font-bold ml-1 text-[9px] uppercase">${escapeHtml(medEffLabels[item.medEfficacyRating] || item.medEfficacyRating)}</span>` : ''}
                     </div>
-                    ${item.medEfficacy ? `<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-[11px]">${escapeHtml(item.medEfficacy)}</p>` : ''}
+                    ${item.medEfficacy ? `<p class="text-[var(--app-text)] italic leading-relaxed text-[11px]">${escapeHtml(item.medEfficacy)}</p>` : ''}
                   </div>
                 ` : ''}
                 ${(item.rebound && item.rebound.level && item.rebound.level !== 'none') ? `
-                  <div class="text-[11px] text-violet-700 dark:text-violet-300 pt-0.5 font-medium flex items-center gap-1.5">
-                    <strong>Rebound:</strong> ${escapeHtml(reboundLevelLabels[item.rebound.level] || item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
+                  <div class="text-[11px] text-[var(--app-text-muted)] pt-0.5 font-medium flex items-center gap-1.5">
+                    <strong class="text-[var(--app-text)]">Rebound:</strong> ${escapeHtml(reboundLevelLabels[item.rebound.level] || item.rebound.level)} ${item.rebound.time ? `(${escapeHtml(item.rebound.time)})` : ''} ${item.rebound.notes ? `– ${escapeHtml(item.rebound.notes)}` : ''}
                   </div>
                 ` : ''}
               </div>
@@ -4664,43 +4664,43 @@ def get_javascript_code():
 
             <!-- Meals Box -->
             ${(mls.breakfast || mls.lunch || mls.dinner || mls.snacks) ? `
-              <div class="p-2.5 sm:p-3 rounded-xl border border-amber-100 dark:border-amber-900/40 bg-amber-50/30 dark:bg-amber-950/15 space-y-1.5">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">
+              <div class="diary-sub-panel p-2.5 sm:p-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] space-y-1.5">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-primary)]">
                   ${isEn ? 'Meals & Nutrition:' : 'Mahlzeiten & Ernährung:'}
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-700 dark:text-slate-300">
-                  ${mls.breakfast ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Breakfast:' : 'Frühstück:'}</strong> ${escapeHtml(mls.breakfast)}</div>` : ''}
-                  ${mls.lunch ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Lunch:' : 'Mittag:'}</strong> ${escapeHtml(mls.lunch)}</div>` : ''}
-                  ${mls.dinner ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Dinner:' : 'Abend:'}</strong> ${escapeHtml(mls.dinner)}</div>` : ''}
-                  ${mls.snacks ? `<div><strong class="text-slate-900 dark:text-white">${isEn ? 'Snacks:' : 'Snacks:'}</strong> ${escapeHtml(mls.snacks)}</div>` : ''}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-[var(--app-text)]">
+                  ${mls.breakfast ? `<div><strong class="text-[var(--app-text)]">${isEn ? 'Breakfast:' : 'Frühstück:'}</strong> ${escapeHtml(mls.breakfast)}</div>` : ''}
+                  ${mls.lunch ? `<div><strong class="text-[var(--app-text)]">${isEn ? 'Lunch:' : 'Mittag:'}</strong> ${escapeHtml(mls.lunch)}</div>` : ''}
+                  ${mls.dinner ? `<div><strong class="text-[var(--app-text)]">${isEn ? 'Dinner:' : 'Abend:'}</strong> ${escapeHtml(mls.dinner)}</div>` : ''}
+                  ${mls.snacks ? `<div><strong class="text-[var(--app-text)]">${isEn ? 'Snacks:' : 'Snacks:'}</strong> ${escapeHtml(mls.snacks)}</div>` : ''}
                 </div>
               </div>
             ` : ''}
 
             <!-- ADHD & Body Details -->
             ${(adhs.notes || (item.activities && item.activities.length > 0) || (slp.tags && slp.tags.length > 0) || (slp.napMinutes && slp.napMinutes > 0) || slp.napNotes) ? `
-              <div class="p-2.5 sm:p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-1.5 text-xs">
+              <div class="diary-sub-panel p-2.5 sm:p-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] space-y-1.5 text-xs">
                 ${(item.activities && item.activities.length > 0) ? `
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="text-slate-400 font-semibold">${isEn ? 'Activity:' : 'Sport:'}</span>
-                    ${item.activities.map(a => `<span class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold">${escapeHtml(translateTag(a))}</span>`).join('')}
+                    <span class="text-[var(--text-muted)] font-semibold">${isEn ? 'Activity:' : 'Sport:'}</span>
+                    ${item.activities.map(a => `<span class="px-2 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--app-text)] border border-[var(--border-subtle)] text-[10px] font-bold">${escapeHtml(translateTag(a))}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${(slp.tags && slp.tags.length > 0) ? `
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="text-slate-400 font-semibold">${isEn ? 'Sleep:' : 'Schlaf:'}</span>
-                    ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[10px] font-bold">${escapeHtml(translateTag(t))}</span>`).join('')}
+                    <span class="text-[var(--text-muted)] font-semibold">${isEn ? 'Sleep:' : 'Schlaf:'}</span>
+                    ${slp.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--app-text)] border border-[var(--border-subtle)] text-[10px] font-bold">${escapeHtml(translateTag(t))}</span>`).join('')}
                   </div>
                 ` : ''}
                 ${(slp.napMinutes && slp.napMinutes > 0 || slp.napNotes) ? `
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="text-teal-600 dark:text-teal-400 font-semibold">${isEn ? 'Rest/Nap:' : 'Rest/Nap:'}</span>
-                    <span class="px-2 py-0.5 rounded-full bg-teal-100 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-[10px] font-bold">${slp.napMinutes ? `${slp.napMinutes} min` : ''}${slp.napNotes ? ` · ${escapeHtml(slp.napNotes)}` : ''}</span>
+                    <span class="text-[var(--accent-primary)] font-semibold">${isEn ? 'Rest/Nap:' : 'Rest/Nap:'}</span>
+                    <span class="px-2 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--app-text)] border border-[var(--border-subtle)] text-[10px] font-bold">${slp.napMinutes ? `${slp.napMinutes} min` : ''}${slp.napNotes ? ` · ${escapeHtml(slp.napNotes)}` : ''}</span>
                   </div>
                 ` : ''}
                 ${adhs.notes ? `
-                  <div class="pt-0.5 text-slate-800 dark:text-slate-200">
-                    <strong class="text-violet-600 dark:text-violet-400">${isEn ? 'ADHD insight:' : 'ADHS-Erkenntnis:'}</strong> ${escapeHtml(adhs.notes)}
+                  <div class="pt-0.5 text-[var(--app-text)]">
+                    <strong class="text-[var(--accent-primary)]">${isEn ? 'ADHD insight:' : 'ADHS-Erkenntnis:'}</strong> ${escapeHtml(adhs.notes)}
                   </div>
                 ` : ''}
               </div>
@@ -4708,13 +4708,13 @@ def get_javascript_code():
 
             <!-- 3 Positive Things List -->
             ${(item.positiveThings && item.positiveThings.length > 0) ? `
-              <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-2.5 sm:p-3 space-y-1.5">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
+              <div class="diary-sub-panel bg-[var(--surface-subtle)] border border-[var(--border-subtle)] rounded-xl p-2.5 sm:p-3 space-y-1.5">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-primary)]">
                   ${isEn ? 'Positive moments today:' : 'Das war heute positiv:'}
                 </div>
                 <div class="space-y-1">
                   ${item.positiveThings.map(pt => `
-                    <div class="flex items-start gap-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                    <div class="flex items-start gap-1.5 text-xs sm:text-sm text-[var(--app-text)]">
                       <span class="text-emerald-500 font-bold mt-0.5">✓</span>
                       <span>${escapeHtml(pt)}</span>
                     </div>
@@ -4725,9 +4725,9 @@ def get_javascript_code():
 
             <!-- Free Diary Notes -->
             ${item.notes ? `
-              <div class="space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${isEn ? 'Diary notes:' : 'Tagebuch-Notizen:'}</span>
-                <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed font-sans">
+              <div class="space-y-1 pt-1 border-t border-[var(--border-subtle)]">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">${isEn ? 'Diary notes:' : 'Tagebuch-Notizen:'}</span>
+                <p class="text-xs sm:text-sm text-[var(--app-text)] whitespace-pre-line leading-relaxed font-sans">
                   ${escapeHtml(item.notes)}
                 </p>
               </div>
@@ -4862,9 +4862,9 @@ def get_javascript_code():
       document.querySelectorAll('.stats-time-btn').forEach(btn => {
         const d = btn.getAttribute('data-days');
         if (d == days) {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs';
+          btn.classList.add('active');
         } else {
-          btn.className = 'stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition';
+          btn.classList.remove('active');
         }
       });
       renderStatsView();
@@ -5247,7 +5247,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=29').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=30').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

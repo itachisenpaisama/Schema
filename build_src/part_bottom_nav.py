@@ -270,14 +270,14 @@ def get_bottom_nav_and_toast():
             <p class="text-[11px] text-[var(--text-muted)] leading-snug" id="settings-backup-desc" data-i18n="settingsBackupDesc">
               Erstelle ein Komplett-Backup aller Memos, Tagebuch-Tage und Einstellungen in einer einzigen sicheren Datei.
             </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <button type="button" onclick="exportFullBackupJSON()" class="btn-primary-theme flex-1 min-w-[140px] py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <button type="button" onclick="exportFullBackupJSON()" class="btn-primary-theme px-3.5 py-1.5 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs active:scale-[0.98]">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 <span id="btn-export-backup-text" data-i18n="btnExportBackup">Gesamt-Backup laden</span>
               </button>
 
-              <label class="settings-backup-import-btn flex-1 min-w-[140px] py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
+              <label class="settings-backup-import-btn px-3.5 py-1.5 rounded-xl font-medium text-xs flex items-center justify-center gap-1.5 transition shadow-xs cursor-pointer active:scale-[0.98]">
+                <svg class="w-3.5 h-3.5 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12"/></svg>
                 <span id="btn-import-backup-text" data-i18n="btnImportBackup">Backup einspielen</span>
                 <input type="file" id="full-backup-import-file" accept=".json" onchange="importFullBackupJSON(event)" class="hidden">
               </label>

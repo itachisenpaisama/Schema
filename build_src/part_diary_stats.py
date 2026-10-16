@@ -12,20 +12,20 @@ def get_diary_stats_view_html():
             <p class="font-serif italic text-xs text-stone-500 dark:text-stone-400 mt-0.5" data-i18n="statsSubtitle">Verstehe Zusammenhänge zwischen Medikation, Schlaf, Essen, Bewegung und mentalem Fokus.</p>
           </div>
 
-          <button onclick="printStatsSummary()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 transition flex items-center gap-1.5 self-start sm:self-auto shadow-xs active:scale-[0.98]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <button type="button" onclick="printStatsSummary()" class="px-2.5 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-subtle)] hover:bg-[var(--surface-subtle-hover)] text-[var(--app-text)] text-xs font-medium transition flex items-center gap-1.5 self-start sm:self-auto shadow-2xs active:scale-[0.98]">
+            <svg class="w-3.5 h-3.5 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span data-i18n="btnPrint">Drucken</span>
           </button>
         </div>
 
         <!-- Time Range Selector -->
-        <div class="inline-flex p-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-200/60 dark:border-stone-800 w-full flex-wrap gap-1">
-          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 shadow-xs" data-days="7" data-i18n="statsDays7">7 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="14" data-i18n="statsDays14">14 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="30" data-i18n="statsDays30">30 Tage</button>
-          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="90" data-i18n="statsDays90">90 Tage</button>
-          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="month" data-i18n="statsDaysMonth">Monat</button>
-          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition" data-days="all" data-i18n="statsDaysAll">Alle</button>
+        <div class="inline-flex p-1 rounded-full bg-[var(--surface-subtle)] border border-[var(--border-subtle)] w-full flex-wrap gap-1">
+          <button type="button" onclick="setStatsTimeframe(7)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition active shadow-xs" data-days="7" data-i18n="statsDays7">7 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(14)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition" data-days="14" data-i18n="statsDays14">14 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(30)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition" data-days="30" data-i18n="statsDays30">30 Tage</button>
+          <button type="button" onclick="setStatsTimeframe(90)" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition" data-days="90" data-i18n="statsDays90">90 Tage</button>
+          <button type="button" onclick="setStatsTimeframe('month')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition" data-days="month" data-i18n="statsDaysMonth">Monat</button>
+          <button type="button" onclick="setStatsTimeframe('all')" class="stats-time-btn flex-1 sm:flex-initial px-3 py-1 sm:py-1.5 rounded-full text-xs font-medium transition" data-days="all" data-i18n="statsDaysAll">Alle</button>
         </div>
       </div>
 

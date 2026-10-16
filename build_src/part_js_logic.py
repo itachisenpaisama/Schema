@@ -1135,10 +1135,10 @@ def get_javascript_code():
         const desc = isDe ? p.desc_de : p.desc_en;
 
         return `
-          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-stone-900 dark:border-stone-100 ring-2 ring-stone-900/15 dark:ring-stone-100/20 bg-white dark:bg-stone-800 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 bg-stone-50/70 dark:bg-stone-900/40 hover:bg-white dark:hover:bg-stone-800/60'}">
+          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]/20 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 hover:border-stone-400 dark:hover:border-stone-600'}">
             <div class="flex items-center justify-between gap-1 w-full">
-              <span class="font-serif font-semibold text-[11px] sm:text-xs text-stone-900 dark:text-stone-100 truncate">${escapeHtml(name)}</span>
-              ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-bold flex items-center justify-center shrink-0">✓</span>' : ''}
+              <span class="font-serif font-semibold text-[11px] sm:text-xs truncate" style="color: var(--app-text);">${escapeHtml(name)}</span>
+              ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full text-white text-[9px] font-bold flex items-center justify-center shrink-0" style="background-color: var(--accent-primary);">✓</span>' : ''}
             </div>
 
             <!-- Mini Swatch Preview -->
@@ -1148,7 +1148,7 @@ def get_javascript_code():
               <span class="flex-1 h-1.5 rounded-full opacity-60" style="background-color: ${p.accent};"></span>
             </div>
 
-            <span class="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1 leading-tight">${escapeHtml(desc)}</span>
+            <span class="text-[10px] line-clamp-1 leading-tight" style="color: var(--text-muted);">${escapeHtml(desc)}</span>
           </button>
         `;
       }).join('');
@@ -1184,22 +1184,22 @@ def get_javascript_code():
       const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       if (mode === 'schema') {
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
+        btnSchema.className = 'active flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 opacity-75 hover:opacity-100';
         titleEl.innerText = 'Schema-Memo';
         subTitleEl.innerText = t.brandSubtitle;
         headerNewBtnText.innerText = t.headerNewMemo;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
+        logoIcon.className = 'w-8 h-8 rounded-xl flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForSchema();
         switchView(targetView || 'edit');
       } else {
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
+        btnDiary.className = 'active flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 opacity-75 hover:opacity-100';
         titleEl.innerText = 'Daily Diary & Neuro';
         subTitleEl.innerText = t.diarySubtitle;
         headerNewBtnText.innerText = t.headerNewCheckin;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
+        logoIcon.className = 'w-8 h-8 rounded-xl flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForDiary();
         switchView(targetView || 'diary-entry');
@@ -2664,19 +2664,15 @@ def get_javascript_code():
 
         if (isCustom) {
           if (isSelected) {
-            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border font-bold transition shadow-xs ${isChallenging ? 'border-rose-500 bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200' : 'border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200'}`;
+            chip.className = `emotion-chip-custom active ${isChallenging ? 'challenging-custom text-rose-700 dark:text-rose-300 border-rose-400/80' : 'pleasant-custom text-emerald-700 dark:text-emerald-300 border-emerald-500/80'} inline-flex items-center text-xs rounded-full border font-semibold transition shadow-xs`;
           } else {
-            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition`;
+            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border font-medium transition`;
           }
         } else {
           if (isSelected) {
-            if (isChallenging) {
-              chip.className = 'emotion-chip challenging-emo text-xs px-2.5 py-1 rounded-full border border-rose-500 bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 font-bold transition shadow-xs';
-            } else {
-              chip.className = 'emotion-chip pleasant-emo text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 font-bold transition shadow-xs';
-            }
+            chip.className = `emotion-chip active ${isChallenging ? 'challenging-emo text-rose-700 dark:text-rose-300 border-rose-400/80' : 'pleasant-emo text-emerald-700 dark:text-emerald-300 border-emerald-500/80'} text-xs px-2.5 py-1 rounded-full border font-semibold transition shadow-xs`;
           } else {
-            chip.className = `emotion-chip ${isChallenging ? 'challenging-emo' : 'pleasant-emo'} text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition`;
+            chip.className = `emotion-chip ${isChallenging ? 'challenging-emo' : 'pleasant-emo'} text-xs px-2.5 py-1 rounded-full border font-medium transition`;
           }
         }
       });
@@ -3058,13 +3054,11 @@ def get_javascript_code():
 
     function filterCheckinSections(tab) {
       document.querySelectorAll('.sec-nav-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
-        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+        btn.classList.remove('active');
       });
       const activeBtn = document.getElementById(`sec-nav-${tab}`);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
-        activeBtn.classList.add('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+        activeBtn.classList.add('active');
       }
 
       const keys = ['mood', 'meds', 'vital', 'adhs', 'mind'];
@@ -3135,18 +3129,18 @@ def get_javascript_code():
       const customs = customOptions.meds || [];
 
       let html = defaults.map(m => `
-        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium inline-flex items-center gap-1">
-          <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
+        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="tag-chip text-xs px-2.5 py-1 rounded-full border transition font-medium inline-flex items-center gap-1 active:scale-95">
+          <span>${escapeHtml(m.name)}</span> <span class="opacity-60 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
         </button>
       `).join('');
 
       if (customs.length > 0) {
         html += customs.map(m => `
-          <span class="inline-flex items-center text-xs rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 transition font-medium">
-            <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100/60 transition inline-flex items-center gap-1 rounded-l-lg">
-              <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
+          <span class="inline-flex items-center text-xs rounded-full border border-stone-300 dark:border-stone-700 bg-stone-100/70 dark:bg-stone-800/70 text-stone-800 dark:text-stone-200 transition font-medium">
+            <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:opacity-80 transition inline-flex items-center gap-1 rounded-l-full">
+              <span>${escapeHtml(m.name)}</span> <span class="opacity-60 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-stone-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
       }
@@ -4995,7 +4989,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=26').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=27').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

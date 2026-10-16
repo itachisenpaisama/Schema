@@ -188,208 +188,390 @@
     }
 
     /* ==========================================================
-       THEME COLOR PROFILES (CSS CUSTOM PROPERTIES)
+       THEME COLOR PROFILES (16-TOKEN COMPLETE PALETTES)
        ========================================================== */
     :root, [data-theme-profile="stoic"] {
       --app-bg: #FAF9F5;
       --app-text: #1C1917;
+      --text-muted: #78716C;
       --card-bg: #FFFFFF;
       --card-border: rgba(28, 25, 23, 0.08);
-      --input-bg: #F4F2EC;
-      --input-border: rgba(28, 25, 23, 0.1);
-      --accent-primary: #4A7264;
+      --surface-subtle: #F4F1EA;
+      --surface-subtle-hover: #EBE7DE;
+      --border-subtle: rgba(28, 25, 23, 0.06);
+      --input-bg: #F4F1EA;
+      --input-border: rgba(28, 25, 23, 0.12);
+      --accent-primary: #3D6352;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(61, 99, 82, 0.12);
+      --accent-soft-border: rgba(61, 99, 82, 0.28);
+      --badge-bg: #EAE6DD;
+      --badge-text: #3D6352;
     }
     .dark, .dark[data-theme-profile="stoic"], [data-theme-profile="stoic"].dark {
       --app-bg: #121110;
       --app-text: #F5F3EF;
-      --card-bg: #181715;
-      --card-border: rgba(245, 243, 239, 0.07);
-      --input-bg: #1F1E1B;
-      --input-border: rgba(245, 243, 239, 0.1);
-      --accent-primary: #6B9A88;
+      --text-muted: #A8A29E;
+      --card-bg: #191816;
+      --card-border: rgba(245, 243, 239, 0.08);
+      --surface-subtle: #22201D;
+      --surface-subtle-hover: #2A2723;
+      --border-subtle: rgba(245, 243, 239, 0.06);
+      --input-bg: #22201D;
+      --input-border: rgba(245, 243, 239, 0.12);
+      --accent-primary: #6E9E8B;
+      --accent-text: #121110;
+      --accent-soft: rgba(110, 158, 139, 0.18);
+      --accent-soft-border: rgba(110, 158, 139, 0.35);
+      --badge-bg: #252320;
+      --badge-text: #A1C9B9;
     }
 
     /* 2. Warm Sepia / Vintage Journal */
     [data-theme-profile="sepia"] {
       --app-bg: #F5EFE6;
-      --app-text: #2A1F18;
+      --app-text: #2D2015;
+      --text-muted: #826F5E;
       --card-bg: #FAF6F0;
-      --card-border: rgba(42, 31, 24, 0.09);
-      --input-bg: #EDE3D5;
-      --input-border: rgba(42, 31, 24, 0.12);
-      --accent-primary: #965B32;
+      --card-border: rgba(67, 45, 28, 0.1);
+      --surface-subtle: #EDE2D3;
+      --surface-subtle-hover: #E4D6C4;
+      --border-subtle: rgba(67, 45, 28, 0.07);
+      --input-bg: #EDE2D3;
+      --input-border: rgba(67, 45, 28, 0.14);
+      --accent-primary: #92542B;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(146, 84, 43, 0.14);
+      --accent-soft-border: rgba(146, 84, 43, 0.3);
+      --badge-bg: #E2D4C3;
+      --badge-text: #844A22;
     }
     .dark[data-theme-profile="sepia"], [data-theme-profile="sepia"].dark {
-      --app-bg: #1A1410;
-      --app-text: #EAE0D5;
-      --card-bg: #231B15;
-      --card-border: rgba(234, 224, 213, 0.08);
-      --input-bg: #2D231C;
-      --input-border: rgba(234, 224, 213, 0.12);
-      --accent-primary: #C57E47;
+      --app-bg: #17120E;
+      --app-text: #EFE5DC;
+      --text-muted: #A89686;
+      --card-bg: #221A14;
+      --card-border: rgba(239, 229, 220, 0.09);
+      --surface-subtle: #2D221A;
+      --surface-subtle-hover: #382B21;
+      --border-subtle: rgba(239, 229, 220, 0.06);
+      --input-bg: #2D221A;
+      --input-border: rgba(239, 229, 220, 0.14);
+      --accent-primary: #C9783D;
+      --accent-text: #17120E;
+      --accent-soft: rgba(201, 120, 61, 0.2);
+      --accent-soft-border: rgba(201, 120, 61, 0.38);
+      --badge-bg: #31251D;
+      --badge-text: #E09A67;
     }
 
     /* 3. Forest & Sage */
     [data-theme-profile="sage"] {
-      --app-bg: #EFF4F1;
-      --app-text: #16241C;
+      --app-bg: #EEF4F0;
+      --app-text: #12241A;
+      --text-muted: #5D7566;
       --card-bg: #F7FAF8;
-      --card-border: rgba(22, 36, 28, 0.09);
-      --input-bg: #E1ECE5;
-      --input-border: rgba(22, 36, 28, 0.12);
-      --accent-primary: #33614C;
+      --card-border: rgba(18, 36, 26, 0.1);
+      --surface-subtle: #DFEDE4;
+      --surface-subtle-hover: #D3E4D9;
+      --border-subtle: rgba(18, 36, 26, 0.07);
+      --input-bg: #DFEDE4;
+      --input-border: rgba(18, 36, 26, 0.14);
+      --accent-primary: #2D5F46;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(45, 95, 70, 0.14);
+      --accent-soft-border: rgba(45, 95, 70, 0.3);
+      --badge-bg: #D3E5DA;
+      --badge-text: #2D5F46;
     }
     .dark[data-theme-profile="sage"], [data-theme-profile="sage"].dark {
-      --app-bg: #0E1612;
-      --app-text: #DEEAE2;
-      --card-bg: #15201A;
-      --card-border: rgba(222, 234, 226, 0.08);
-      --input-bg: #1C2B23;
-      --input-border: rgba(222, 234, 226, 0.12);
-      --accent-primary: #59987A;
+      --app-bg: #0B140F;
+      --app-text: #DCE9E0;
+      --text-muted: #82A28F;
+      --card-bg: #121E17;
+      --card-border: rgba(220, 233, 224, 0.09);
+      --surface-subtle: #192B21;
+      --surface-subtle-hover: #22382C;
+      --border-subtle: rgba(220, 233, 224, 0.06);
+      --input-bg: #192B21;
+      --input-border: rgba(220, 233, 224, 0.14);
+      --accent-primary: #5BA47F;
+      --accent-text: #0B140F;
+      --accent-soft: rgba(91, 164, 127, 0.2);
+      --accent-soft-border: rgba(91, 164, 127, 0.38);
+      --badge-bg: #1E3328;
+      --badge-text: #86C5A4;
     }
 
     /* 4. Nordic Slate */
     [data-theme-profile="nordic"] {
-      --app-bg: #EEF2F6;
-      --app-text: #16202B;
+      --app-bg: #EDF2F7;
+      --app-text: #121E2C;
+      --text-muted: #5D748A;
       --card-bg: #F7FAFC;
-      --card-border: rgba(22, 32, 43, 0.09);
-      --input-bg: #E0E7EE;
-      --input-border: rgba(22, 32, 43, 0.12);
-      --accent-primary: #325B7E;
+      --card-border: rgba(18, 30, 44, 0.1);
+      --surface-subtle: #DFE7F0;
+      --surface-subtle-hover: #D2DEEB;
+      --border-subtle: rgba(18, 30, 44, 0.07);
+      --input-bg: #DFE7F0;
+      --input-border: rgba(18, 30, 44, 0.14);
+      --accent-primary: #2B5880;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(43, 88, 128, 0.14);
+      --accent-soft-border: rgba(43, 88, 128, 0.3);
+      --badge-bg: #D2DFEC;
+      --badge-text: #2B5880;
     }
     .dark[data-theme-profile="nordic"], [data-theme-profile="nordic"].dark {
-      --app-bg: #0D131A;
-      --app-text: #DDE5ED;
-      --card-bg: #141C24;
-      --card-border: rgba(221, 229, 237, 0.08);
-      --input-bg: #1C2631;
-      --input-border: rgba(221, 229, 237, 0.12);
-      --accent-primary: #5289B5;
+      --app-bg: #0A1118;
+      --app-text: #DBE5F0;
+      --text-muted: #7D98B2;
+      --card-bg: #111A24;
+      --card-border: rgba(219, 229, 240, 0.09);
+      --surface-subtle: #192533;
+      --surface-subtle-hover: #213042;
+      --border-subtle: rgba(219, 229, 240, 0.06);
+      --input-bg: #192533;
+      --input-border: rgba(219, 229, 240, 0.14);
+      --accent-primary: #5594C9;
+      --accent-text: #0A1118;
+      --accent-soft: rgba(85, 148, 201, 0.2);
+      --accent-soft-border: rgba(85, 148, 201, 0.38);
+      --badge-bg: #1C2B3B;
+      --badge-text: #82B5DE;
     }
 
     /* 5. Terracotta & Sand */
     [data-theme-profile="terracotta"] {
-      --app-bg: #F8F2EC;
-      --app-text: #2D1E16;
-      --card-bg: #FCF8F4;
-      --card-border: rgba(45, 30, 22, 0.09);
-      --input-bg: #EFE2D6;
-      --input-border: rgba(45, 30, 22, 0.12);
-      --accent-primary: #A8512C;
+      --app-bg: #F8EFE9;
+      --app-text: #2C180E;
+      --text-muted: #826353;
+      --card-bg: #FCF7F3;
+      --card-border: rgba(66, 32, 16, 0.1);
+      --surface-subtle: #EDE0D5;
+      --surface-subtle-hover: #E3D1C3;
+      --border-subtle: rgba(66, 32, 16, 0.07);
+      --input-bg: #EDE0D5;
+      --input-border: rgba(66, 32, 16, 0.14);
+      --accent-primary: #9E431E;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(158, 67, 30, 0.14);
+      --accent-soft-border: rgba(158, 67, 30, 0.3);
+      --badge-bg: #E2CEBF;
+      --badge-text: #9E431E;
     }
     .dark[data-theme-profile="terracotta"], [data-theme-profile="terracotta"].dark {
-      --app-bg: #19110B;
-      --app-text: #EFE0D5;
-      --card-bg: #221710;
-      --card-border: rgba(239, 224, 213, 0.08);
-      --input-bg: #2D1F16;
-      --input-border: rgba(239, 224, 213, 0.12);
-      --accent-primary: #D16E44;
+      --app-bg: #170D07;
+      --app-text: #EFE0D4;
+      --text-muted: #A58574;
+      --card-bg: #21130C;
+      --card-border: rgba(239, 224, 212, 0.09);
+      --surface-subtle: #2D1C12;
+      --surface-subtle-hover: #3A2519;
+      --border-subtle: rgba(239, 224, 212, 0.06);
+      --input-bg: #2D1C12;
+      --input-border: rgba(239, 224, 212, 0.14);
+      --accent-primary: #DB6C3F;
+      --accent-text: #170D07;
+      --accent-soft: rgba(219, 108, 63, 0.2);
+      --accent-soft-border: rgba(219, 108, 63, 0.38);
+      --badge-bg: #311F15;
+      --badge-text: #ECA17C;
     }
 
     /* 6. Lavender Dusk */
     [data-theme-profile="lavender"] {
-      --app-bg: #F4F1F7;
-      --app-text: #22192A;
-      --card-bg: #FAF8FC;
-      --card-border: rgba(34, 25, 42, 0.09);
-      --input-bg: #E9E1F0;
-      --input-border: rgba(34, 25, 42, 0.12);
-      --accent-primary: #634785;
+      --app-bg: #F4EEF7;
+      --app-text: #221430;
+      --text-muted: #735687;
+      --card-bg: #FAF5FC;
+      --card-border: rgba(45, 20, 68, 0.1);
+      --surface-subtle: #E9DCF0;
+      --surface-subtle-hover: #DFCBEA;
+      --border-subtle: rgba(45, 20, 68, 0.07);
+      --input-bg: #E9DCF0;
+      --input-border: rgba(45, 20, 68, 0.14);
+      --accent-primary: #643888;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(100, 56, 136, 0.14);
+      --accent-soft-border: rgba(100, 56, 136, 0.3);
+      --badge-bg: #DFCBEA;
+      --badge-text: #643888;
     }
     .dark[data-theme-profile="lavender"], [data-theme-profile="lavender"].dark {
-      --app-bg: #130E19;
-      --app-text: #E8DEEE;
-      --card-bg: #1C1523;
-      --card-border: rgba(232, 222, 238, 0.08);
-      --input-bg: #261D30;
-      --input-border: rgba(232, 222, 238, 0.12);
-      --accent-primary: #8E6BB8;
+      --app-bg: #110817;
+      --app-text: #EADEF0;
+      --text-muted: #9A7BAF;
+      --card-bg: #1A1023;
+      --card-border: rgba(234, 222, 240, 0.09);
+      --surface-subtle: #241631;
+      --surface-subtle-hover: #2F1E40;
+      --border-subtle: rgba(234, 222, 240, 0.06);
+      --input-bg: #241631;
+      --input-border: rgba(234, 222, 240, 0.14);
+      --accent-primary: #9D63CB;
+      --accent-text: #110817;
+      --accent-soft: rgba(157, 99, 203, 0.2);
+      --accent-soft-border: rgba(157, 99, 203, 0.38);
+      --badge-bg: #2B1A3A;
+      --badge-text: #C496E6;
     }
 
     /* 7. Matcha & Cream */
     [data-theme-profile="matcha"] {
-      --app-bg: #F2F5EC;
-      --app-text: #1E2517;
-      --card-bg: #F9FAF4;
-      --card-border: rgba(30, 37, 23, 0.09);
-      --input-bg: #E3E9D7;
-      --input-border: rgba(30, 37, 23, 0.12);
-      --accent-primary: #4A662C;
+      --app-bg: #F1F5EB;
+      --app-text: #192510;
+      --text-muted: #60734E;
+      --card-bg: #F8FAF3;
+      --card-border: rgba(25, 37, 16, 0.1);
+      --surface-subtle: #E1E9D5;
+      --surface-subtle-hover: #D5DFC7;
+      --border-subtle: rgba(25, 37, 16, 0.07);
+      --input-bg: #E1E9D5;
+      --input-border: rgba(25, 37, 16, 0.14);
+      --accent-primary: #466624;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(70, 102, 36, 0.14);
+      --accent-soft-border: rgba(70, 102, 36, 0.3);
+      --badge-bg: #D5DFC7;
+      --badge-text: #466624;
     }
     .dark[data-theme-profile="matcha"], [data-theme-profile="matcha"].dark {
-      --app-bg: #10150C;
-      --app-text: #E2E8D8;
-      --card-bg: #182012;
-      --card-border: rgba(226, 232, 216, 0.08);
-      --input-bg: #212B1A;
-      --input-border: rgba(226, 232, 216, 0.12);
-      --accent-primary: #759B46;
+      --app-bg: #0D1407;
+      --app-text: #E1EAD6;
+      --text-muted: #869B72;
+      --card-bg: #16200F;
+      --card-border: rgba(225, 234, 214, 0.09);
+      --surface-subtle: #1E2B15;
+      --surface-subtle-hover: #28381D;
+      --border-subtle: rgba(225, 234, 214, 0.06);
+      --input-bg: #1E2B15;
+      --input-border: rgba(225, 234, 214, 0.14);
+      --accent-primary: #77A34A;
+      --accent-text: #0D1407;
+      --accent-soft: rgba(119, 163, 74, 0.2);
+      --accent-soft-border: rgba(119, 163, 74, 0.38);
+      --badge-bg: #23321A;
+      --badge-text: #A5CC7C;
     }
 
     /* 8. Rose Quartz */
     [data-theme-profile="rose"] {
-      --app-bg: #F7F1F2;
-      --app-text: #2A191E;
-      --card-bg: #FBF7F8;
-      --card-border: rgba(42, 25, 30, 0.09);
-      --input-bg: #ECE0E3;
-      --input-border: rgba(42, 25, 30, 0.12);
-      --accent-primary: #8E3E53;
+      --app-bg: #F7EFF1;
+      --app-text: #2C141D;
+      --text-muted: #825766;
+      --card-bg: #FAF5F6;
+      --card-border: rgba(58, 20, 34, 0.1);
+      --surface-subtle: #EEDEE2;
+      --surface-subtle-hover: #E3CDD3;
+      --border-subtle: rgba(58, 20, 34, 0.07);
+      --input-bg: #EEDEE2;
+      --input-border: rgba(58, 20, 34, 0.14);
+      --accent-primary: #8E334D;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(142, 51, 77, 0.14);
+      --accent-soft-border: rgba(142, 51, 77, 0.3);
+      --badge-bg: #E3CDD3;
+      --badge-text: #8E334D;
     }
     .dark[data-theme-profile="rose"], [data-theme-profile="rose"].dark {
-      --app-bg: #180D11;
-      --app-text: #EEDEE2;
-      --card-bg: #221318;
-      --card-border: rgba(238, 222, 226, 0.08);
-      --input-bg: #2E1B21;
-      --input-border: rgba(238, 222, 226, 0.12);
-      --accent-primary: #BA5D75;
+      --app-bg: #16080E;
+      --app-text: #EEDFE3;
+      --text-muted: #A47786;
+      --card-bg: #211017;
+      --card-border: rgba(238, 223, 227, 0.09);
+      --surface-subtle: #2D1821;
+      --surface-subtle-hover: #3B202C;
+      --border-subtle: rgba(238, 223, 227, 0.06);
+      --input-bg: #2D1821;
+      --input-border: rgba(238, 223, 227, 0.14);
+      --accent-primary: #C7597A;
+      --accent-text: #16080E;
+      --accent-soft: rgba(199, 89, 122, 0.2);
+      --accent-soft-border: rgba(199, 89, 122, 0.38);
+      --badge-bg: #331C26;
+      --badge-text: #E595AE;
     }
 
     /* 9. OLED Obsidian (Pure Black) */
     [data-theme-profile="obsidian"] {
-      --app-bg: #F6F7F9;
-      --app-text: #050505;
+      --app-bg: #F4F5F7;
+      --app-text: #09090B;
+      --text-muted: #52525B;
       --card-bg: #FFFFFF;
-      --card-border: rgba(0, 0, 0, 0.1);
-      --input-bg: #EBEEF2;
-      --input-border: rgba(0, 0, 0, 0.14);
-      --accent-primary: #171717;
+      --card-border: rgba(0, 0, 0, 0.12);
+      --surface-subtle: #E9ECEF;
+      --surface-subtle-hover: #DFE2E6;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --input-bg: #E9ECEF;
+      --input-border: rgba(0, 0, 0, 0.16);
+      --accent-primary: #09090B;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(9, 9, 11, 0.12);
+      --accent-soft-border: rgba(9, 9, 11, 0.25);
+      --badge-bg: #E2E5E9;
+      --badge-text: #09090B;
     }
     .dark[data-theme-profile="obsidian"], [data-theme-profile="obsidian"].dark {
       --app-bg: #000000;
-      --app-text: #F8F8F8;
+      --app-text: #FAFAFA;
+      --text-muted: #A1A1AA;
       --card-bg: #0A0A0A;
-      --card-border: rgba(255, 255, 255, 0.12);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --surface-subtle: #141416;
+      --surface-subtle-hover: #1F1F22;
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --input-bg: #141414;
       --input-border: rgba(255, 255, 255, 0.18);
       --accent-primary: #FFFFFF;
+      --accent-text: #000000;
+      --accent-soft: rgba(255, 255, 255, 0.16);
+      --accent-soft-border: rgba(255, 255, 255, 0.32);
+      --badge-bg: #1A1A1D;
+      --badge-text: #FAFAFA;
     }
 
     /* 10. E-Ink Pure Paper (Monochrome High Contrast) */
     [data-theme-profile="eink"] {
       --app-bg: #FFFFFF;
       --app-text: #000000;
+      --text-muted: #404040;
       --card-bg: #FFFFFF;
-      --card-border: #000000;
-      --input-bg: #F4F4F4;
+      --card-border: #111111;
+      --surface-subtle: #F2F2F2;
+      --surface-subtle-hover: #E5E5E5;
+      --border-subtle: #D0D0D0;
+      --input-bg: #F5F5F5;
       --input-border: #222222;
       --accent-primary: #000000;
+      --accent-text: #FFFFFF;
+      --accent-soft: #E2E2E2;
+      --accent-soft-border: #777777;
+      --badge-bg: #E8E8E8;
+      --badge-text: #000000;
     }
     .dark[data-theme-profile="eink"], [data-theme-profile="eink"].dark {
       --app-bg: #080808;
       --app-text: #FFFFFF;
+      --text-muted: #BBBBBB;
       --card-bg: #101010;
-      --card-border: #666666;
-      --input-bg: #1A1A1A;
+      --card-border: #888888;
+      --surface-subtle: #181818;
+      --surface-subtle-hover: #242424;
+      --border-subtle: #444444;
+      --input-bg: #181818;
       --input-border: #888888;
       --accent-primary: #FFFFFF;
+      --accent-text: #000000;
+      --accent-soft: #282828;
+      --accent-soft-border: #AAAAAA;
+      --badge-bg: #202020;
+      --badge-text: #FFFFFF;
     }
 
-    /* Core Dynamic Theming Binding */
+    /* ==========================================================
+       UNIVERSAL DYNAMIC THEMING OVERRIDES
+       ========================================================== */
     body {
       background-color: var(--app-bg) !important;
       color: var(--app-text) !important;
@@ -405,18 +587,46 @@
       border-color: var(--card-border) !important;
     }
 
-    .shadcn-card {
+    /* Cards & Containers */
+    .shadcn-card,
+    .checkin-card,
+    .diary-page-card,
+    .notebook-container,
+    .sheet-paper {
       background-color: var(--card-bg) !important;
       border: 1px solid var(--card-border) !important;
+      color: var(--app-text) !important;
       border-radius: 1.25rem;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 8px 24px -4px rgba(0, 0, 0, 0.03);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .dark .shadcn-card {
+    .dark .shadcn-card,
+    .dark .checkin-card,
+    .dark .diary-page-card,
+    .dark .notebook-container,
+    .dark .sheet-paper {
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
-    .shadcn-input {
+    /* Subtle Inner Surfaces & Panels */
+    .theme-subtle,
+    .inner-panel,
+    #diary-customization-hint,
+    #settings-tab-modules > .p-3,
+    #settings-tab-general > .p-3,
+    #custom-option-modal .shadcn-card,
+    #settings-modal .shadcn-card {
+      background-color: var(--card-bg) !important;
+      border-color: var(--card-border) !important;
+      color: var(--app-text) !important;
+    }
+
+    /* Form Controls: Inputs, Textareas, Selects */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    select,
+    textarea,
+    .shadcn-input,
+    .notebook-input-area {
       display: block;
       width: 100%;
       max-width: 100%;
@@ -431,35 +641,130 @@
       transition: all 0.2s ease;
       outline: none;
     }
-    .shadcn-input:focus {
+
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+    select:focus,
+    textarea:focus,
+    .shadcn-input:focus,
+    .notebook-input-area:focus {
       border-color: var(--accent-primary) !important;
-      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.15);
+      box-shadow: 0 0 0 3px var(--accent-soft) !important;
+      outline: none;
     }
 
     textarea.shadcn-input {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
       min-height: 4.5rem;
       resize: vertical;
       line-height: 1.6;
     }
 
-    .notebook-input-area {
-      width: 100%;
-      background-color: var(--input-bg) !important;
-      border: 1.5px solid var(--input-border) !important;
-      border-radius: 0.85rem;
-      padding: 0.7rem 0.9rem;
-      font-size: 0.9rem;
-      color: var(--app-text) !important;
-      transition: all 0.2s ease;
+    /* Primary Buttons */
+    .btn-primary-theme,
+    button[onclick*="saveCurrentDiaryEntry"],
+    button[onclick*="saveCurrentMemo"],
+    button[onclick*="saveCustomOptionFromModal"] {
+      background-color: var(--accent-primary) !important;
+      color: var(--accent-text) !important;
+      border-color: transparent !important;
     }
-    .notebook-input-area:focus {
-      outline: none;
+
+    /* Brand Logo Icon */
+    #brand-logo-icon {
+      background-color: var(--accent-primary) !important;
+      color: var(--accent-text) !important;
+    }
+
+    /* Mode Switcher at Top Header */
+    header .inline-flex.rounded-full {
+      background-color: var(--surface-subtle) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    #mode-btn-schema.active,
+    #mode-btn-diary.active {
+      background-color: var(--card-bg) !important;
+      color: var(--accent-primary) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Section Navigation Buttons */
+    .sec-nav-btn {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-muted) !important;
+    }
+    .sec-nav-btn.active {
+      background-color: var(--accent-primary) !important;
       border-color: var(--accent-primary) !important;
-      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.15);
+      color: var(--accent-text) !important;
+    }
+
+    /* Badges & Summary Counts */
+    [id^="badge-summary-"],
+    #nap-badge,
+    #meds-count-badge,
+    #positive-things-counter,
+    #caffeine-total-badge,
+    #steps-display-badge,
+    #current-profile-badge,
+    #current-lang-badge,
+    #diary-count-badge,
+    #settings-active-count-badge {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--accent-primary) !important;
+    }
+
+    /* Universal Tag Chips & Pill Buttons */
+    .tag-chip,
+    .emotion-chip,
+    .emotion-chip-custom,
+    .custom-schema-chip,
+    .qf-btn,
+    .nap-quick-btn,
+    #quick-meds-chips-container button,
+    #quick-meds-chips-container span,
+    #pleasant-emotions-chips button,
+    #challenging-emotions-chips button,
+    #meal-tags-container button,
+    #sleep-factors-chips-container button,
+    #memory-tags-container button,
+    #activities-chips-container button,
+    #schema-step1-chips button,
+    #schema-step2-chips button,
+    #schema-step3-chips button {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+      transition: all 0.15s ease;
+    }
+    .tag-chip:hover,
+    .emotion-chip:hover,
+    .qf-btn:hover,
+    .nap-quick-btn:hover,
+    #quick-meds-chips-container button:hover,
+    #pleasant-emotions-chips button:hover,
+    #challenging-emotions-chips button:hover,
+    #meal-tags-container button:hover,
+    #sleep-factors-chips-container button:hover,
+    #memory-tags-container button:hover,
+    #activities-chips-container button:hover,
+    #schema-step1-chips button:hover,
+    #schema-step2-chips button:hover,
+    #schema-step3-chips button:hover {
+      background-color: var(--surface-subtle-hover) !important;
+      border-color: var(--card-border) !important;
+    }
+
+    /* Active Tag Chips */
+    .tag-chip.active,
+    .emotion-chip.active,
+    .qf-btn.active,
+    .nap-quick-btn.active,
+    button[data-tag].active {
+      background-color: var(--accent-soft) !important;
+      border-color: var(--accent-soft-border) !important;
+      color: var(--accent-primary) !important;
+      font-weight: 600 !important;
     }
 
     /* Range slider custom styling */
@@ -492,43 +797,16 @@
       transform: scale(1.18);
     }
 
-    /* Worksheet Paper Styling */
-    .sheet-paper {
-      background-color: var(--card-bg) !important;
-      color: var(--app-text) !important;
-      box-shadow: 0 2px 14px -3px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--card-border) !important;
-      position: relative;
-    }
-
-    .dotted-rule {
-      border-bottom: 1.5px dotted #78716C;
-      min-height: 24px;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 2px;
-      width: 100%;
-    }
-    .dark .dotted-rule {
-      border-bottom-color: #57534E;
-    }
-
     /* Bottom Navigation Active State */
+    .bottom-nav-btn {
+      color: var(--text-muted) !important;
+    }
     .bottom-nav-btn.active {
-      color: var(--app-text);
+      color: var(--app-text) !important;
     }
     .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: rgba(74, 114, 100, 0.15);
-      color: var(--accent-primary);
-    }
-
-    /* Diary Book Entry Styling */
-    .diary-page-card {
-      background-color: var(--card-bg) !important;
-      border: 1px solid var(--card-border) !important;
-      border-radius: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px -4px rgba(0, 0, 0, 0.03);
-      position: relative;
+      background-color: var(--accent-soft) !important;
+      color: var(--accent-primary) !important;
     }
 
     /* Interactive Notebook Styling */
@@ -590,21 +868,18 @@
   <!-- ======================================================== -->
   <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
   <!-- ======================================================== -->
-  <!-- ======================================================== -->
-  <!-- TOP APP HEADER WITH MODE SWITCHER                         -->
-  <!-- ======================================================== -->
-  <header class="no-print sticky top-0 z-30 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800/70 px-2.5 sm:px-6 py-1.5 sm:py-2">
+  <header class="no-print sticky top-0 z-30 backdrop-blur-md border-b px-2.5 sm:px-6 py-1.5 sm:py-2 transition-colors duration-200">
     <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
       
       <!-- Brand Logo & Title -->
       <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="handleBrandClick()">
-        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center font-bold shadow-xs shrink-0 transition-all">
+        <div id="brand-logo-icon" class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold shadow-xs shrink-0 transition-all">
           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
         </div>
         <div class="min-w-0">
-          <h1 id="app-main-title" class="font-serif text-sm sm:text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100 leading-tight truncate">Schema-Memo</h1>
+          <h1 id="app-main-title" class="font-serif text-sm sm:text-base font-semibold tracking-tight leading-tight truncate">Schema-Memo</h1>
           <p id="app-main-subtitle" class="font-serif italic text-[11px] text-stone-500 dark:text-stone-400 font-normal hidden sm:block truncate" data-i18n="brandSubtitle">Nach J. Young · Schematherapie</p>
         </div>
       </div>
@@ -612,29 +887,29 @@
       <!-- Header Quick Actions -->
       <div class="flex items-center gap-1 shrink-0">
         <!-- PWA Install Button -->
-        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Als echte App installieren" data-i18n-title="pwaInstallTitle">
+        <button id="btn-pwa-install" type="button" onclick="triggerPwaInstall()" class="hidden px-2.5 py-1 rounded-full btn-primary-theme text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Als echte App installieren" data-i18n-title="pwaInstallTitle">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span data-i18n="btnInstall">Installieren</span>
         </button>
 
         <!-- New Item Quick Button -->
-        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2.5 py-1 rounded-lg bg-stone-200/60 dark:bg-stone-800/80 text-stone-800 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700 text-[11px] font-medium transition flex items-center gap-1 shadow-xs border border-stone-300/40 dark:border-stone-700/50" title="Neu anlegen" data-i18n-title="headerNewTooltip">
+        <button type="button" id="header-btn-new" onclick="handleHeaderNewClick()" class="px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-100/70 dark:bg-stone-800/70 hover:bg-stone-200 text-[11px] font-medium transition flex items-center gap-1 shadow-xs" title="Neu anlegen" data-i18n-title="headerNewTooltip">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           <span id="header-btn-new-text">Neu</span>
         </button>
 
         <!-- Settings Button -->
-        <button type="button" id="header-btn-settings" onclick="openSettingsModal()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Einstellungen" data-i18n-title="settingsTooltip">
+        <button type="button" id="header-btn-settings" onclick="openSettingsModal()" class="p-1.5 rounded-full text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Einstellungen" data-i18n-title="settingsTooltip">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </button>
 
         <!-- Quick Update / Cache Clear Button -->
-        <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="App aktualisieren & Cache leeren" data-i18n-title="forceUpdateTooltip">
+        <button type="button" onclick="forceAppUpdate()" class="p-1.5 rounded-full text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="App aktualisieren & Cache leeren" data-i18n-title="forceUpdateTooltip">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         </button>
 
         <!-- Dark Mode Toggle -->
-        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Design umschalten" data-i18n-title="themeToggleTooltip">
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-full text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition" title="Design umschalten" data-i18n-title="themeToggleTooltip">
           <svg id="theme-icon-sun" class="w-4 h-4 hidden text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
           <svg id="theme-icon-moon" class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -644,11 +919,11 @@
 
     <!-- PRIMARY MODULE SWITCHER: Schema-Memo vs. Daily Life & Neuro-Tracker Diary -->
     <div class="max-w-4xl mx-auto pt-1 sm:pt-1.5 flex items-center justify-center">
-      <div class="inline-flex p-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/50 w-full max-w-xs shadow-inner">
-        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="flex-1 py-1 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100">
+      <div class="inline-flex p-1 rounded-full border w-full max-w-xs shadow-inner">
+        <button id="mode-btn-schema" type="button" onclick="switchAppMode('schema')" class="active flex-1 py-1 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs">
           <span data-i18n="navSchema">Schema-Memo</span>
         </button>
-        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100">
+        <button id="mode-btn-diary" type="button" onclick="switchAppMode('diary')" class="flex-1 py-1 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5">
           <span data-i18n="navDiary">Diary & Tracker</span>
         </button>
       </div>
@@ -1130,8 +1405,8 @@
     <!-- MODULE B: DAILY LIFE DIARY & NEURO-TRACKER VIEWS          -->
     <!-- ======================================================== -->
 
-    <!-- VIEW B1: TAGES-CHECK-IN (Ultra-Kompakt, 5 Unified Cards, Accordion & Focus-Modus) -->
-    <div id="view-diary-entry" class="hidden space-y-2.5">
+    <!-- VIEW B1: TAGES-CHECK-IN (Calm, Mindful & Human Editorial Journal) -->
+    <div id="view-diary-entry" class="hidden space-y-3">
 
       <!-- TOP CONTROL CARD: DATE, VORTAG & FOCUS-NAV -->
       <section class="shadcn-card p-3 sm:p-4 space-y-2.5">
@@ -1178,22 +1453,22 @@
 
         <!-- Row 3: Section Focus Navigation Bar (Smooth swipe on mobile) -->
         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 pt-1.5 border-t border-stone-100 dark:border-stone-800">
-          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-3 py-1 rounded-full bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 font-medium transition shrink-0 text-xs shadow-xs" data-i18n="filterAll">
+          <button type="button" onclick="filterCheckinSections('all')" id="sec-nav-all" class="sec-nav-btn active px-3 py-1 rounded-full font-medium transition shrink-0 text-xs shadow-xs" data-i18n="filterAll">
             Alles
           </button>
-          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMood">
+          <button type="button" onclick="filterCheckinSections('mood')" id="sec-nav-mood" class="sec-nav-btn px-3 py-1 rounded-full transition shrink-0 text-xs font-medium" data-i18n="filterMood">
             Mood
           </button>
-          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMeds">
+          <button type="button" onclick="filterCheckinSections('meds')" id="sec-nav-meds" class="sec-nav-btn px-3 py-1 rounded-full transition shrink-0 text-xs font-medium" data-i18n="filterMeds">
             Medis
           </button>
-          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterVital">
+          <button type="button" onclick="filterCheckinSections('vital')" id="sec-nav-vital" class="sec-nav-btn px-3 py-1 rounded-full transition shrink-0 text-xs font-medium" data-i18n="filterVital">
             Vitales
           </button>
-          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterAdhs">
+          <button type="button" onclick="filterCheckinSections('adhs')" id="sec-nav-adhs" class="sec-nav-btn px-3 py-1 rounded-full transition shrink-0 text-xs font-medium" data-i18n="filterAdhs">
             ADHS & Steps
           </button>
-          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition shrink-0 text-xs font-medium" data-i18n="filterMind">
+          <button type="button" onclick="filterCheckinSections('mind')" id="sec-nav-mind" class="sec-nav-btn px-3 py-1 rounded-full transition shrink-0 text-xs font-medium" data-i18n="filterMind">
             Journal
           </button>
           <button type="button" onclick="openSettingsModal('modules')" id="sec-nav-customize" class="px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition shrink-0 text-xs font-medium flex items-center gap-1 ml-auto" title="Bereiche konfigurieren">
@@ -1221,22 +1496,22 @@
       </div>
 
       <!-- CARDS CONTAINER (DYNAMIC REORDERING & SORTING) -->
-      <div id="diary-cards-container" class="space-y-2.5">
+      <div id="diary-cards-container" class="space-y-3">
 
       <!-- ======================================================== -->
       <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
       <!-- ======================================================== -->
-      <section id="card-diary-mood" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mood" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mood')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard1Title">
+            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard1Title">
               1. Gemüt, Energie & Gefühle
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
+            <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               8/10 · Gut
             </span>
             <svg id="chevron-mood" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1244,33 +1519,33 @@
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-mood" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-mood" class="hidden space-y-3 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
           
           <!-- FEATURE CONTAINER: MOOD & ENERGY -->
-          <div id="feature-container-mood" class="space-y-2.5">
+          <div id="feature-container-mood" class="space-y-3">
             <!-- Mood (1 - 10) -->
-            <div class="space-y-1.5">
+            <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptMood">Wie ging es dir heute?</span>
-                <span id="diary-mood-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold shadow-xs" data-i18n="moodDefaultBadge">8 / 10 · Gut</span>
+                <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="diaryPromptMood">Wie ging es dir heute?</span>
+                <span id="diary-mood-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-medium shadow-xs" data-i18n="moodDefaultBadge">8 / 10 · Gut</span>
               </div>
 
               <!-- Compact Visual Mood Banner -->
-              <div id="diary-mood-banner" class="rounded-xl p-2 sm:p-2.5 flex items-center justify-between transition-colors duration-200 gap-2">
-                <div class="flex items-center gap-2 min-w-0">
+              <div id="diary-mood-banner" class="rounded-2xl p-2.5 sm:p-3 flex items-center justify-between transition-colors duration-200 gap-2 border border-stone-200/50 dark:border-stone-800/60 bg-stone-50/70 dark:bg-stone-900/40">
+                <div class="flex items-center gap-2.5 min-w-0">
                   <span id="diary-mood-emoji" class="text-2xl shrink-0">😊</span>
                   <div class="min-w-0">
-                    <div id="diary-mood-title" class="text-xs font-extrabold truncate" data-i18n="moodDefaultTitle">Zufrieden & Gut</div>
-                    <div id="diary-mood-desc" class="text-[10px] opacity-90 truncate" data-i18n="moodDefaultDesc">Der Tag war stabil und angenehm.</div>
+                    <div id="diary-mood-title" class="text-xs font-semibold text-stone-900 dark:text-stone-100 truncate" data-i18n="moodDefaultTitle">Zufrieden & Gut</div>
+                    <div id="diary-mood-desc" class="text-[11px] text-stone-500 dark:text-stone-400 truncate" data-i18n="moodDefaultDesc">Der Tag war stabil und angenehm.</div>
                   </div>
                 </div>
-                <div id="diary-mood-number" class="w-7 h-7 rounded-lg bg-white/40 dark:bg-black/20 flex items-center justify-center text-center text-sm font-black shrink-0">8</div>
+                <div id="diary-mood-number" class="w-7 h-7 rounded-xl bg-white/60 dark:bg-black/30 border border-stone-200/40 dark:border-stone-800/40 flex items-center justify-center text-center text-xs font-bold text-stone-800 dark:text-stone-200 shrink-0">8</div>
               </div>
 
               <!-- Responsive Mood Slider -->
               <div class="space-y-1 pt-0.5">
-                <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                <div class="flex justify-between text-[10px] text-slate-400 px-0.5 font-medium">
+                <input type="range" id="diary-mood-slider" min="1" max="10" value="8" step="1" oninput="updateMoodScore(this.value)" class="w-full h-2 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-[10px] text-stone-400 px-0.5 font-medium">
                   <span data-i18n="diaryMoodGuide1">1 = Tiefpunkt / Krise</span>
                   <span data-i18n="diaryMoodGuide5">5 = Neutral</span>
                   <span data-i18n="diaryMoodGuide10">10 = Hervorragend</span>
@@ -1279,15 +1554,15 @@
             </div>
 
             <!-- Energy Level (1 - 10) -->
-            <div class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+            <div class="space-y-1.5 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryPromptEnergy">Energielevel & Vitalität</span>
-                <span id="diary-energy-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300" data-i18n="energyDefaultBadge">
+                <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="diaryPromptEnergy">Energielevel & Vitalität</span>
+                <span id="diary-energy-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-medium" data-i18n="energyDefaultBadge">
                   7 / 10 · Aktiv
                 </span>
               </div>
-              <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-              <div class="flex justify-between text-[9px] text-slate-400 px-0.5">
+              <input type="range" id="diary-energy-slider" min="1" max="10" value="7" step="1" oninput="updateEnergyScore(this.value)" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer">
+              <div class="flex justify-between text-[9px] text-stone-400 px-0.5">
                 <span data-i18n="diaryEnergyGuide1">1 = Erschöpft</span>
                 <span data-i18n="diaryEnergyGuide5">5 = Normal</span>
                 <span data-i18n="diaryEnergyGuide10">10 = Voll aufgeladen</span>
@@ -1296,42 +1571,42 @@
           </div>
 
           <!-- FEATURE CONTAINER: EMOTIONS & REFLECTION -->
-          <div id="feature-container-emotions" class="space-y-2 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+          <div id="feature-container-emotions" class="space-y-2.5 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
             <!-- Emotionen Chips with Permanent Add (+) Button -->
-            <div class="space-y-1.5">
+            <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">
-                  <span data-i18n="diaryPromptEmotions">Gefühle heute:</span> <span class="text-[10px] text-slate-400 font-normal" data-i18n="diaryMultiSelectNotice">(Mehrfachauswahl möglich)</span>
+                <span class="text-xs font-medium text-stone-800 dark:text-stone-200">
+                  <span data-i18n="diaryPromptEmotions">Gefühle heute:</span> <span class="text-[10px] text-stone-400 font-normal" data-i18n="diaryMultiSelectNotice">(Mehrfachauswahl möglich)</span>
                 </span>
-                <button type="button" onclick="openAddCustomModal('emotions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen" data-i18n-title="addCustomEmotionTooltip">
-                  <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+                <button type="button" onclick="openAddCustomModal('emotions')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigene Emotion hinzufügen" data-i18n-title="addCustomEmotionTooltip">
+                  <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
                 </button>
               </div>
 
               <!-- Pleasant Emotions -->
-              <div class="space-y-0.5">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400" data-i18n="diaryEmotionsPleasant">Angenehm:</span>
-                <div class="flex flex-wrap gap-1" id="pleasant-emotions-chips">
+              <div class="space-y-1">
+                <span class="text-[9px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400" data-i18n="diaryEmotionsPleasant">Angenehm:</span>
+                <div class="flex flex-wrap gap-1.5" id="pleasant-emotions-chips">
                   <!-- Dynamically populated -->
                 </div>
               </div>
 
               <!-- Challenging Emotions -->
-              <div class="space-y-0.5 pt-0.5">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400" data-i18n="diaryEmotionsChallenging">Fordernd:</span>
-                <div class="flex flex-wrap gap-1" id="challenging-emotions-chips">
+              <div class="space-y-1 pt-1">
+                <span class="text-[9px] font-semibold uppercase tracking-wider text-rose-500 dark:text-rose-400" data-i18n="diaryEmotionsChallenging">Fordernd:</span>
+                <div class="flex flex-wrap gap-1.5" id="challenging-emotions-chips">
                   <!-- Dynamically populated -->
                 </div>
               </div>
             </div>
 
             <!-- Dynamic Emotion Reflection Notes -->
-            <div id="diary-emotion-notes-wrapper" class="space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800 hidden">
+            <div id="diary-emotion-notes-wrapper" class="space-y-1.5 pt-1.5 border-t border-stone-200/60 dark:border-stone-800/80 hidden">
               <div class="flex items-center justify-between">
-                <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300" data-i18n="diaryEmotionNotesTitle">Gefühls-Reflexion:</h4>
-                <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500">0</span>
+                <h4 class="text-xs font-medium text-stone-700 dark:text-stone-300" data-i18n="diaryEmotionNotesTitle">Gefühls-Reflexion:</h4>
+                <span id="emotion-notes-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-medium">0</span>
               </div>
-              <div id="diary-emotion-notes-container" class="space-y-1.5">
+              <div id="diary-emotion-notes-container" class="space-y-2">
                 <!-- Dynamically injected cards -->
               </div>
             </div>
@@ -1343,17 +1618,17 @@
       <!-- ======================================================== -->
       <!-- CARD 2: MEDIKATION, WIRKUNG & REBOUND                     -->
       <!-- ======================================================== -->
-      <section id="card-diary-meds" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-meds" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('meds')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard2Title">
+            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard2Title">
               2. Medikation & Wirkung
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
+            <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 erfasst
             </span>
             <svg id="chevron-meds" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1361,50 +1636,50 @@
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-meds" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-meds" class="hidden space-y-3 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
           
           <!-- FEATURE CONTAINER: MEDS LOG -->
-          <div id="feature-container-meds-log" class="space-y-2.5">
+          <div id="feature-container-meds-log" class="space-y-3">
             <!-- 1-Click Quick Meds Presets + Small (+) Button -->
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="diaryMedsQuickSelect">Schnell-Auswahl (1-Klick):</span>
-                <button type="button" onclick="openAddCustomModal('meds')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenes Medikament hinzufügen" data-i18n-title="addCustomMedTooltip">
-                  <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-500" data-i18n="diaryMedsQuickSelect">Schnell-Auswahl (1-Klick):</span>
+                <button type="button" onclick="openAddCustomModal('meds')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigenes Medikament hinzufügen" data-i18n-title="addCustomMedTooltip">
+                  <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
                 </button>
               </div>
-              <div class="flex flex-wrap gap-1" id="quick-meds-chips-container">
+              <div class="flex flex-wrap gap-1.5" id="quick-meds-chips-container">
                 <!-- Dynamically populated with defaults + user custom meds -->
               </div>
             </div>
 
             <!-- Today's Logged Medications with Editable Time Field -->
-            <div class="space-y-1.5">
+            <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="diaryMedsLoggedToday">Heute eingenommen:</span>
-                <span id="meds-count-badge" class="text-[10px] font-bold text-violet-600 dark:text-violet-400">0 Medis</span>
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-500" data-i18n="diaryMedsLoggedToday">Heute eingenommen:</span>
+                <span id="meds-count-badge" class="text-[10px] font-medium">0 Medis</span>
               </div>
-              <div id="today-meds-list" class="space-y-1">
+              <div id="today-meds-list" class="space-y-1.5">
                 <!-- Dynamically populated with direct time input right on the pill -->
               </div>
             </div>
           </div>
 
           <!-- FEATURE CONTAINER: MEDS EFFICACY & REBOUND -->
-          <div id="feature-container-meds-efficacy" class="space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+          <div id="feature-container-meds-efficacy" class="space-y-3 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
             <!-- EFFICACY / WIRKUNGSBEWERTUNG (Single-Select Dropdown) -->
-            <div class="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/30 space-y-2">
+            <div class="p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2">
               <div class="flex items-center justify-between">
-                <label for="select-med-efficacy" class="text-xs font-bold text-violet-900 dark:text-violet-300" data-i18n="diaryMedsEfficacyQuestion">
+                <label for="select-med-efficacy" class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="diaryMedsEfficacyQuestion">
                   Wie haben die Medis heute gewirkt?
                 </label>
-                <span id="med-efficacy-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/60 text-violet-700 dark:text-violet-300">
+                <span id="med-efficacy-badge" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
                   Noch offen
                 </span>
               </div>
 
               <!-- Single-select Dropdown -->
-              <select id="select-med-efficacy" onchange="setMedEfficacyRating(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+              <select id="select-med-efficacy" onchange="setMedEfficacyRating(this.value)" class="shadcn-input text-xs py-2 font-medium">
                 <option value="none" data-i18n="medEffOptNone">-- Wirkung auswählen (Einzelauswahl) --</option>
                 <option value="optimal" data-i18n="medEffOptOptimal">Optimal / Flow (fokussiert & ruhig)</option>
                 <option value="gut" data-i18n="medEffOptGood">Gut & Stabil (gute Unterstützung)</option>
@@ -1414,19 +1689,19 @@
               </select>
 
               <!-- Efficacy Notes Textarea -->
-              <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z. B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." data-i18n-placeholder="diaryMedsEfficacyPlaceholder" class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
+              <textarea id="input-med-efficacy" rows="2" placeholder="Wirkungsbeobachtung (z. B. Fokus setzte nach 45 Min ein, ab 15 Uhr leichte Unruhe, kein Herzrasen)..." data-i18n-placeholder="diaryMedsEfficacyPlaceholder" class="shadcn-input text-xs py-2 leading-relaxed"></textarea>
             </div>
 
             <!-- Rebound & Wirkungsende Box (Single-Select Dropdown) -->
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
+            <div class="p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2">
               <div class="flex items-center justify-between">
-                <label for="select-med-rebound" class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="diaryMedsReboundQuestion">
+                <label for="select-med-rebound" class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="diaryMedsReboundQuestion">
                   Rebound / Wirkungsende?
                 </label>
-                <span id="rebound-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-i18n="reboundBadgeNone">Kein Rebound</span>
+                <span id="rebound-badge" class="text-[10px] font-medium px-2 py-0.5 rounded-full" data-i18n="reboundBadgeNone">Kein Rebound</span>
               </div>
 
-              <select id="select-med-rebound" onchange="setReboundLevel(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+              <select id="select-med-rebound" onchange="setReboundLevel(this.value)" class="shadcn-input text-xs py-2 font-medium">
                 <option value="none" data-i18n="medReboundOptNone">Kein Rebound (sanftes Ausklingen)</option>
                 <option value="leicht" data-i18n="medReboundOptMild">Leicht (milde Erschöpfung)</option>
                 <option value="spuerbar" data-i18n="medReboundOptModerate">Moderat (Reizbarkeit / Unruhe)</option>
@@ -1450,17 +1725,17 @@
       <!-- ======================================================== -->
       <!-- CARD 3: VITAL-HUB: ESSEN, TRINKEN & SCHLAF                 -->
       <!-- ======================================================== -->
-      <section id="card-diary-vital" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-vital" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('vital')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard3Title">
+            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard3Title">
               3. Vital-Hub: Mahlzeiten, Trinken & Schlaf
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
+            <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 ml · 7.5h
             </span>
             <svg id="chevron-vital" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1468,145 +1743,163 @@
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-vital" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-vital" class="hidden space-y-3 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
           
-          <!-- FEATURE CONTAINER: MEALS -->
-          <div id="feature-container-meals" class="space-y-1">
+          <!-- FEATURE CONTAINER: MEALS (Airy, De-blocked Journal Fields) -->
+          <div id="feature-container-meals" class="space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500"><span data-i18n="diaryMealsTitle">Mahlzeiten:</span> <span class="text-[9px] text-slate-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeTags">(Mehrfachauswahl für Tags)</span></span>
-              <button type="button" onclick="openAddCustomModal('meal_tags')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen" data-i18n-title="addCustomMealTagTooltip">
-                <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-500"><span data-i18n="diaryMealsTitle">Mahlzeiten:</span> <span class="text-[9px] text-stone-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeTags">(Mehrfachauswahl für Tags)</span></span>
+              <button type="button" onclick="openAddCustomModal('meal_tags')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigenen Mahlzeiten-Tag hinzufügen" data-i18n-title="addCustomMealTagTooltip">
+                <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
               </button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <!-- Airy 2-Col Journal Grid (No heavy nested card boxes!) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <!-- Breakfast -->
-              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
-                <span class="text-[11px] font-bold text-slate-900 dark:text-white block" data-i18n="mealBreakfast">Frühstück:</span>
-                <textarea id="input-meal-breakfast" rows="2" placeholder="z. B. Rühreier mit Vollkornbrot..." data-i18n-placeholder="mealBreakfastPlaceholder" class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
+              <div class="space-y-1 min-w-0">
+                <label for="input-meal-breakfast" class="text-[11px] font-medium text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500/80"></span>
+                  <span data-i18n="mealBreakfast">Frühstück:</span>
+                </label>
+                <textarea id="input-meal-breakfast" rows="2" placeholder="z. B. Rühreier mit Vollkornbrot..." data-i18n-placeholder="mealBreakfastPlaceholder" class="shadcn-input text-xs py-2 px-3 block w-full resize-none !min-h-[48px]"></textarea>
               </div>
 
               <!-- Lunch -->
-              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
-                <span class="text-[11px] font-bold text-slate-900 dark:text-white block" data-i18n="mealLunch">Mittag:</span>
-                <textarea id="input-meal-lunch" rows="2" placeholder="z. B. Reisbowl mit Gemüse & Hähnchen..." data-i18n-placeholder="mealLunchPlaceholder" class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
+              <div class="space-y-1 min-w-0">
+                <label for="input-meal-lunch" class="text-[11px] font-medium text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+                  <span data-i18n="mealLunch">Mittag:</span>
+                </label>
+                <textarea id="input-meal-lunch" rows="2" placeholder="z. B. Reisbowl mit Gemüse & Hähnchen..." data-i18n-placeholder="mealLunchPlaceholder" class="shadcn-input text-xs py-2 px-3 block w-full resize-none !min-h-[48px]"></textarea>
               </div>
 
               <!-- Dinner -->
-              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
-                <span class="text-[11px] font-bold text-slate-900 dark:text-white block" data-i18n="mealDinner">Abend:</span>
-                <textarea id="input-meal-dinner" rows="2" placeholder="z. B. Gemüsesuppe, Salat, Lachs..." data-i18n-placeholder="mealDinnerPlaceholder" class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
+              <div class="space-y-1 min-w-0">
+                <label for="input-meal-dinner" class="text-[11px] font-medium text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-500/80"></span>
+                  <span data-i18n="mealDinner">Abend:</span>
+                </label>
+                <textarea id="input-meal-dinner" rows="2" placeholder="z. B. Gemüsesuppe, Salat, Lachs..." data-i18n-placeholder="mealDinnerPlaceholder" class="shadcn-input text-xs py-2 px-3 block w-full resize-none !min-h-[48px]"></textarea>
               </div>
 
               <!-- Snacks -->
-              <div class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1.5 min-w-0">
-                <span class="text-[11px] font-bold text-slate-900 dark:text-white block" data-i18n="mealSnacks">Snacks:</span>
-                <textarea id="input-meal-snacks" rows="2" placeholder="z. B. Nüsse, Proteinriegel, Apfel..." data-i18n-placeholder="mealSnacksPlaceholder" class="shadcn-input text-xs py-1.5 px-2.5 block w-full resize-none !min-h-[46px]"></textarea>
+              <div class="space-y-1 min-w-0">
+                <label for="input-meal-snacks" class="text-[11px] font-medium text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500/80"></span>
+                  <span data-i18n="mealSnacks">Snacks:</span>
+                </label>
+                <textarea id="input-meal-snacks" rows="2" placeholder="z. B. Nüsse, Proteinriegel, Apfel..." data-i18n-placeholder="mealSnacksPlaceholder" class="shadcn-input text-xs py-2 px-3 block w-full resize-none !min-h-[48px]"></textarea>
               </div>
             </div>
 
             <!-- Meal Tags Chips Container -->
-            <div class="flex flex-wrap items-center gap-1 pt-0.5" id="meal-tags-container">
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="meal-tags-container">
               <!-- Dynamically populated -->
             </div>
           </div>
 
-          <!-- Hydration & Koffein Side-by-Side (Compact 2 Cols) -->
-          <div id="vital-drinks-row" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+          <!-- Hydration & Koffein Side-by-Side (Calm Subtle Panels) -->
+          <div id="vital-drinks-row" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
             <!-- FEATURE CONTAINER: WATER -->
-            <div id="feature-container-water" class="p-2 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/40 dark:bg-sky-950/20 space-y-1.5 min-w-0">
+            <div id="feature-container-water" class="p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-sky-900 dark:text-sky-300" data-i18n="vitalWaterTitle">Wasser:</span>
-                <span id="water-display" class="text-xs font-bold text-sky-600 dark:text-sky-400">0 ml / 2500 ml</span>
+                <span class="text-xs font-medium text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                  <span data-i18n="vitalWaterTitle">Wasser:</span>
+                </span>
+                <span id="water-display" class="text-xs font-semibold text-stone-700 dark:text-stone-300">0 ml / 2500 ml</span>
               </div>
-              <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
-                <div id="water-progress-bar" class="h-full bg-gradient-to-r from-sky-500 to-teal-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
+              <div class="w-full bg-stone-200/60 dark:bg-stone-800 h-2 rounded-full overflow-hidden">
+                <div id="water-progress-bar" class="h-full bg-sky-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
               </div>
-              <div class="flex items-center gap-1">
-                <button type="button" onclick="addWater(250)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 250 ml</button>
-                <button type="button" onclick="addWater(500)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition shadow-xs">+ 500 ml</button>
-                <button type="button" onclick="addWater(-250)" class="text-[11px] font-semibold px-1.5 py-0.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">- 250</button>
-                <button type="button" onclick="resetWater()" class="text-[10px] text-slate-400 hover:text-slate-600 ml-auto transition" data-i18n="quickReset">Reset</button>
+              <div class="flex items-center gap-1.5 pt-0.5">
+                <button type="button" onclick="addWater(250)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 transition shadow-xs">+ 250 ml</button>
+                <button type="button" onclick="addWater(500)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 transition shadow-xs">+ 500 ml</button>
+                <button type="button" onclick="addWater(-250)" class="text-xs font-medium px-2 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-stone-500 hover:bg-stone-100 transition">- 250</button>
+                <button type="button" onclick="resetWater()" class="text-[11px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 ml-auto transition font-medium" data-i18n="quickReset">Reset</button>
               </div>
             </div>
 
             <!-- FEATURE CONTAINER: CAFFEINE (INDEPENDENT COFFEE & ENERGY TRACKING) -->
-            <div id="feature-container-caffeine" class="p-2.5 rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/20 space-y-1.5 min-w-0">
+            <div id="feature-container-caffeine" class="p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-amber-900 dark:text-amber-300" data-i18n="vitalCaffeineTitle">
-                  Koffein & Stimulanzien:
+                <span class="text-xs font-medium text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                  <span data-i18n="vitalCaffeineTitle">Koffein & Stimulanzien:</span>
                 </span>
-                <span id="caffeine-total-badge" class="text-xs font-extrabold text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 shadow-xs">
+                <span id="caffeine-total-badge" class="text-xs font-semibold px-2 py-0.5 rounded-full">
                   <span id="caffeine-display">0 mg</span>
                 </span>
               </div>
-              <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-tight" data-i18n="vitalCaffeineHint">
+              <p class="text-[10px] text-stone-500 dark:text-stone-400 leading-tight" data-i18n="vitalCaffeineHint">
                 Getrennt tracken und mixen · Wechselwirkung mit Medis beachten.
               </p>
 
               <!-- Two Independent Counters: Coffee & Energy Drink -->
               <div class="space-y-1.5 pt-0.5">
                 <!-- Coffee Row -->
-                <div class="flex items-center justify-between p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-amber-200/70 dark:border-amber-800/40">
+                <div class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-stone-800/80 border border-stone-200/60 dark:border-stone-700/60">
                   <div class="min-w-0">
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="caffeineCoffee">Kaffee</span>
-                    <span class="text-[10px] text-slate-400 block sm:inline sm:ml-1">(~80 mg)</span>
+                    <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="caffeineCoffee">Kaffee</span>
+                    <span class="text-[10px] text-stone-400 block sm:inline sm:ml-1">(~80 mg)</span>
                   </div>
                   <div class="flex items-center gap-1.5 shrink-0">
-                    <button type="button" onclick="changeCoffee(-1)" class="w-6 h-6 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center transition" title="1 Tasse abziehen" data-i18n-title="coffeeMinusTooltip">-</button>
-                    <span id="coffee-count-display" class="w-8 text-center text-xs font-black text-amber-800 dark:text-amber-300">0</span>
-                    <button type="button" onclick="changeCoffee(1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center justify-center transition shadow-xs" title="1 Tasse hinzufügen" data-i18n-title="coffeePlusTooltip">+</button>
+                    <button type="button" onclick="changeCoffee(-1)" class="w-6 h-6 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-medium text-xs flex items-center justify-center transition" title="1 Tasse abziehen" data-i18n-title="coffeeMinusTooltip">-</button>
+                    <span id="coffee-count-display" class="w-8 text-center text-xs font-bold text-stone-800 dark:text-stone-200">0</span>
+                    <button type="button" onclick="changeCoffee(1)" class="w-6 h-6 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-medium text-xs flex items-center justify-center transition" title="1 Tasse hinzufügen" data-i18n-title="coffeePlusTooltip">+</button>
                   </div>
                 </div>
 
                 <!-- Energy Drink Row -->
-                <div class="flex items-center justify-between p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-amber-200/70 dark:border-amber-800/40">
+                <div class="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-stone-800/80 border border-stone-200/60 dark:border-stone-700/60">
                   <div class="min-w-0">
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="caffeineEnergy">Energy Drink</span>
-                    <span class="text-[10px] text-slate-400 block sm:inline sm:ml-1">(~150 mg)</span>
+                    <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="caffeineEnergy">Energy Drink</span>
+                    <span class="text-[10px] text-stone-400 block sm:inline sm:ml-1">(~150 mg)</span>
                   </div>
                   <div class="flex items-center gap-1.5 shrink-0">
-                    <button type="button" onclick="changeEnergyDrink(-1)" class="w-6 h-6 rounded-md border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center transition" title="1 Dose abziehen" data-i18n-title="energyMinusTooltip">-</button>
-                    <span id="energy-count-display" class="w-8 text-center text-xs font-black text-amber-800 dark:text-amber-300">0</span>
-                    <button type="button" onclick="changeEnergyDrink(1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center justify-center transition shadow-xs" title="1 Dose hinzufügen" data-i18n-title="energyPlusTooltip">+</button>
+                    <button type="button" onclick="changeEnergyDrink(-1)" class="w-6 h-6 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-medium text-xs flex items-center justify-center transition" title="1 Dose abziehen" data-i18n-title="energyMinusTooltip">-</button>
+                    <span id="energy-count-display" class="w-8 text-center text-xs font-bold text-stone-800 dark:text-stone-200">0</span>
+                    <button type="button" onclick="changeEnergyDrink(1)" class="w-6 h-6 rounded-full border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-medium text-xs flex items-center justify-center transition" title="1 Dose hinzufügen" data-i18n-title="energyPlusTooltip">+</button>
                   </div>
                 </div>
               </div>
 
               <!-- Summary Info Line -->
-              <div id="caffeine-summary-text" class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-between pt-0.5">
+              <div id="caffeine-summary-text" class="text-[10px] text-stone-500 dark:text-stone-400 flex items-center justify-between pt-0.5">
                 <span id="caffeine-mix-label" data-i18n="caffeineMixDefault">Mix: 0x Kaffee · 0x Energy</span>
-                <button type="button" onclick="resetCaffeine()" class="text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" data-i18n="quickReset">Reset</button>
+                <button type="button" onclick="resetCaffeine()" class="text-[10px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition font-medium" data-i18n="quickReset">Reset</button>
               </div>
             </div>
           </div>
 
           <!-- FEATURE CONTAINER: SLEEP -->
-          <div id="feature-container-sleep" class="p-2.5 rounded-xl border border-indigo-100 dark:border-indigo-900/40 bg-indigo-50/30 dark:bg-indigo-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div id="feature-container-sleep" class="p-3 sm:p-3.5 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2.5 pt-2.5 border-t border-stone-200/60 dark:border-stone-800">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-indigo-900 dark:text-indigo-300" data-i18n="vitalSleepTitle">
-                Schlaf & Erholung:
+              <span class="text-xs font-medium text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                <span data-i18n="vitalSleepTitle">Schlaf & Erholung:</span>
               </span>
-              <span id="sleep-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300" data-i18n="sleepBadgeDefault">
+              <span id="sleep-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-medium" data-i18n="sleepBadgeDefault">
                 7.5 Std · Gut
               </span>
             </div>
 
             <!-- Times & Auto Calculator -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <div class="min-w-0">
-                <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepBedtime">Zubettgehzeit:</label>
-                <input type="time" id="input-sleep-bedtime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <label class="block text-[9px] font-semibold text-stone-500 uppercase tracking-wider mb-1" data-i18n="sleepBedtime">Zubettgehzeit:</label>
+                <input type="time" id="input-sleep-bedtime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-medium cursor-pointer py-1.5 block w-full">
               </div>
               <div class="min-w-0">
-                <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepWaketime">Aufwachzeit:</label>
-                <input type="time" id="input-sleep-waketime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-semibold cursor-pointer py-1.5 block w-full">
+                <label class="block text-[9px] font-semibold text-stone-500 uppercase tracking-wider mb-1" data-i18n="sleepWaketime">Aufwachzeit:</label>
+                <input type="time" id="input-sleep-waketime" onclick="if(typeof this.showPicker==='function'){try{this.showPicker();}catch(_){}}" onchange="calculateSleepFromTimes()" class="shadcn-input text-xs font-medium cursor-pointer py-1.5 block w-full">
               </div>
               <div class="col-span-2 sm:col-span-1 min-w-0">
-                <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="sleepDuration">Schlafdauer (Std):</label>
-                <div class="flex items-center gap-1">
-                  <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-bold py-1.5 flex-1 min-w-0 block">
-                  <span class="text-xs font-bold text-slate-400 shrink-0">h</span>
+                <label class="block text-[9px] font-semibold text-stone-500 uppercase tracking-wider mb-1" data-i18n="sleepDuration">Schlafdauer (Std):</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="number" id="input-sleep-duration" step="0.25" min="0" max="24" value="7.5" oninput="updateSleepDurationDisplay()" class="shadcn-input text-xs font-semibold py-1.5 flex-1 min-w-0 block">
+                  <span class="text-xs font-medium text-stone-400 shrink-0">h</span>
                 </div>
               </div>
             </div>
@@ -1614,10 +1907,10 @@
             <!-- Sleep Quality Rating (Single-Select Dropdown) -->
             <div class="space-y-1">
               <div class="flex items-center justify-between">
-                <label for="select-sleep-quality" class="text-[11px] font-bold text-slate-700 dark:text-slate-300" data-i18n="sleepQuality">Schlafqualität (Einzelauswahl):</label>
-                <span id="sleep-quality-label" class="text-xs font-bold text-indigo-600 dark:text-indigo-400">4 / 5 · Gut</span>
+                <label for="select-sleep-quality" class="text-[11px] font-medium text-stone-700 dark:text-stone-300" data-i18n="sleepQuality">Schlafqualität (Einzelauswahl):</label>
+                <span id="sleep-quality-label" class="text-xs font-medium text-stone-600 dark:text-stone-300">4 / 5 · Gut</span>
               </div>
-              <select id="select-sleep-quality" onchange="setSleepQuality(parseInt(this.value))" class="shadcn-input text-xs py-2 font-semibold">
+              <select id="select-sleep-quality" onchange="setSleepQuality(parseInt(this.value))" class="shadcn-input text-xs py-2 font-medium">
                 <option value="5" data-i18n="sleepQualOpt5">5 / 5 · Sehr erholsam & tief</option>
                 <option value="4" selected data-i18n="sleepQualOpt4">4 / 5 · Gut & ausreichend</option>
                 <option value="3" data-i18n="sleepQualOpt3">3 / 5 · Mittelmäßig / unruhig</option>
@@ -1627,25 +1920,25 @@
             </div>
 
             <!-- Sleep Factors with (+) Button (Multi-Select) -->
-            <div class="space-y-1 pt-0.5">
+            <div class="space-y-1.5 pt-1">
               <div class="flex items-center justify-between">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500"><span data-i18n="sleepFactorsTitle">Schlaf-Faktoren:</span> <span class="text-[9px] text-slate-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span></span>
-                <button type="button" onclick="openAddCustomModal('sleep_factors')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Schlaffaktor hinzufügen" data-i18n-title="addCustomSleepFactorTooltip">
-                  <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+                <span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500"><span data-i18n="sleepFactorsTitle">Schlaf-Faktoren:</span> <span class="text-[9px] text-stone-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span></span>
+                <button type="button" onclick="openAddCustomModal('sleep_factors')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigenen Schlaffaktor hinzufügen" data-i18n-title="addCustomSleepFactorTooltip">
+                  <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
                 </button>
               </div>
-              <div class="flex flex-wrap gap-1" id="sleep-factors-chips-container">
+              <div class="flex flex-wrap gap-1.5" id="sleep-factors-chips-container">
                 <!-- Dynamically populated -->
               </div>
             </div>
 
             <!-- POWER-NAP & NERVENSYSTEM-RESET (REST) -->
-            <div class="pt-2.5 border-t border-stone-200/60 dark:border-stone-800/80 space-y-2">
+            <div class="pt-2 border-t border-stone-200/60 dark:border-stone-800/80 space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-[11px] font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                <span class="text-[11px] font-medium text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
                   <span data-i18n="napTitle">Power-Nap & Nervensystem-Reset:</span>
                 </span>
-                <span id="nap-badge" class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200/50 dark:border-stone-700/50">
+                <span id="nap-badge" class="px-2 py-0.5 rounded-full text-[10px] font-medium">
                   0 min
                 </span>
               </div>
@@ -1663,14 +1956,14 @@
               <!-- Nap Duration Number & Rest Details -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <div>
-                  <label class="block text-[9px] font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napDurationLabel">Dauer (Minuten):</label>
+                  <label class="block text-[9px] font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napDurationLabel">Dauer (Minuten):</label>
                   <div class="flex items-center gap-1.5">
-                    <input type="number" id="input-nap-duration" min="0" max="360" step="5" placeholder="0" oninput="updateNapDisplay()" class="shadcn-input text-xs font-medium py-1.5 flex-1 min-w-0 block">
+                    <input type="number" id="input-nap-duration" min="0" max="360" step="5" placeholder="0" oninput="updateNapDisplay()" class="shadcn-input text-xs font-semibold py-1.5 flex-1 min-w-0 block">
                     <span class="text-xs font-medium text-stone-400 shrink-0">min</span>
                   </div>
                 </div>
                 <div class="sm:col-span-2">
-                  <label class="block text-[9px] font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napNotesLabel">Art des Resets / Notiz:</label>
+                  <label class="block text-[9px] font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1" data-i18n="napNotesLabel">Art des Resets / Notiz:</label>
                   <input type="text" id="input-nap-notes" placeholder="z. B. Power-Nap, NSDR / Yoga Nidra, Augen zu & Ruhen..." data-i18n-placeholder="napNotesPlaceholder" class="shadcn-input text-xs font-medium py-1.5 block w-full">
                 </div>
               </div>
@@ -1684,17 +1977,17 @@
       <!-- ======================================================== -->
       <!-- CARD 4: NEURO & BODY: ADHS, FOKUS & SCHRITTE              -->
       <!-- ======================================================== -->
-      <section id="card-diary-adhs" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-adhs" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('adhs')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard4Title">
+            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard4Title">
               4. Neuro & Body: ADHS, Fokus & Schritte
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
+            <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               Fokus 7/10 · 0 Steps
             </span>
             <svg id="chevron-adhs" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1702,46 +1995,46 @@
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-adhs" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-adhs" class="hidden space-y-3 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
           
-          <!-- FEATURE CONTAINER: ADHS, FOKUS & REIZE -->
-          <div id="feature-container-adhs" class="space-y-2.5">
-            <!-- 3 Sliders Grid: Focus, Restlessness, Brain Fog -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+          <!-- FEATURE CONTAINER: ADHS, FOKUS & REIZE (De-blocked, Cohesive Slider Deck) -->
+          <div id="feature-container-adhs" class="space-y-3">
+            <!-- 3 Sliders Deck: Focus, Restlessness, Brain Fog -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5">
               <!-- Focus -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2.5 sm:p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="adhsFocus">Fokus:</span>
-                  <span id="adhs-focus-badge" class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400">7 / 10</span>
+                  <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="adhsFocus">Fokus:</span>
+                  <span id="adhs-focus-badge" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">7 / 10</span>
                 </div>
-                <input type="range" id="input-adhs-focus" min="1" max="10" value="7" step="1" oninput="updateAdhsFocusScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                <div class="flex justify-between text-[9px] text-slate-400">
+                <input type="range" id="input-adhs-focus" min="1" max="10" value="7" step="1" oninput="updateAdhsFocusScore(this.value)" class="w-full h-1.5 appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-stone-400">
                   <span data-i18n="adhsFocusLow">Zerstreut</span>
                   <span data-i18n="adhsFocusHigh">Im Flow</span>
                 </div>
               </div>
 
               <!-- Restlessness -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2.5 sm:p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="adhsRestlessness">Unruhe:</span>
-                  <span id="adhs-restlessness-badge" class="text-xs font-extrabold text-amber-600 dark:text-amber-400">4 / 10</span>
+                  <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="adhsRestlessness">Unruhe:</span>
+                  <span id="adhs-restlessness-badge" class="text-xs font-semibold text-amber-600 dark:text-amber-400">4 / 10</span>
                 </div>
-                <input type="range" id="input-adhs-restlessness" min="1" max="10" value="4" step="1" oninput="updateAdhsRestlessnessScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                <div class="flex justify-between text-[9px] text-slate-400">
+                <input type="range" id="input-adhs-restlessness" min="1" max="10" value="4" step="1" oninput="updateAdhsRestlessnessScore(this.value)" class="w-full h-1.5 appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-stone-400">
                   <span data-i18n="adhsRestlessnessLow">Ruhig</span>
                   <span data-i18n="adhsRestlessnessHigh">Getrieben</span>
                 </div>
               </div>
 
               <!-- Brain Fog -->
-              <div class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-1">
+              <div class="p-2.5 sm:p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="adhsBrainfog">Brainfog:</span>
-                  <span id="adhs-brainfog-badge" class="text-xs font-extrabold text-sky-600 dark:text-sky-400">2 / 10</span>
+                  <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="adhsBrainfog">Brainfog:</span>
+                  <span id="adhs-brainfog-badge" class="text-xs font-semibold text-sky-600 dark:text-sky-400">2 / 10</span>
                 </div>
-                <input type="range" id="input-adhs-brainfog" min="1" max="10" value="2" step="1" oninput="updateAdhsBrainFogScore(this.value)" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                <div class="flex justify-between text-[9px] text-slate-400">
+                <input type="range" id="input-adhs-brainfog" min="1" max="10" value="2" step="1" oninput="updateAdhsBrainFogScore(this.value)" class="w-full h-1.5 appearance-none cursor-pointer">
+                <div class="flex justify-between text-[9px] text-stone-400">
                   <span data-i18n="adhsBrainfogLow">Klar</span>
                   <span data-i18n="adhsBrainfogHigh">Nebel</span>
                 </div>
@@ -1751,8 +2044,8 @@
             <!-- Executive Function & Sensory Overload (Single-Select Dropdowns) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
               <div class="space-y-1">
-                <label for="select-adhs-executive" class="block text-[10px] font-bold text-slate-500 uppercase" data-i18n="adhsExecutive">Exekutive Funktion (Einzelauswahl):</label>
-                <select id="select-adhs-executive" onchange="setExecutiveFunction(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                <label for="select-adhs-executive" class="block text-[10px] font-semibold text-stone-500 uppercase tracking-wider" data-i18n="adhsExecutive">Exekutive Funktion (Einzelauswahl):</label>
+                <select id="select-adhs-executive" onchange="setExecutiveFunction(this.value)" class="shadcn-input text-xs py-2 font-medium">
                   <option value="gut" selected data-i18n="adhsExecOptFlow">Flow & Fokussiert</option>
                   <option value="muehsam" data-i18n="adhsExecOptStruggle">Mühsam / Zerstreut</option>
                   <option value="paralysis" data-i18n="adhsExecOptParalysis">Paralysis / Blockade</option>
@@ -1761,8 +2054,8 @@
               </div>
 
               <div class="space-y-1">
-                <label for="select-adhs-sensory" class="block text-[10px] font-bold text-slate-500 uppercase" data-i18n="adhsSensory">Reizoffenheit (Einzelauswahl):</label>
-                <select id="select-adhs-sensory" onchange="setSensoryOverload(this.value)" class="shadcn-input text-xs py-2 font-semibold">
+                <label for="select-adhs-sensory" class="block text-[10px] font-semibold text-stone-500 uppercase tracking-wider" data-i18n="adhsSensory">Reizoffenheit (Einzelauswahl):</label>
+                <select id="select-adhs-sensory" onchange="setSensoryOverload(this.value)" class="shadcn-input text-xs py-2 font-medium">
                   <option value="keine" data-i18n="adhsSensoryOptLow">Reizarm / Entspannt</option>
                   <option value="gering" selected data-i18n="adhsSensoryOptMild">Leicht empfindlich</option>
                   <option value="mittel" data-i18n="adhsSensoryOptModerate">Hohe Reizoffenheit</option>
@@ -1773,59 +2066,60 @@
 
             <!-- ADHS Note / Win -->
             <div class="space-y-1 pt-0.5">
-              <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300" data-i18n="adhsNotesPrompt">
+              <label class="block text-[11px] font-medium text-stone-700 dark:text-stone-300" data-i18n="adhsNotesPrompt">
                 ADHS-Erkenntnis, Dopamin-Hack oder Tagessieg:
               </label>
-              <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat geholfen, Timer gestellt..." data-i18n-placeholder="adhsNotesPlaceholder" class="shadcn-input text-xs py-1.5">
+              <input type="text" id="input-adhs-notes" placeholder="z. B. 5-Minuten-Regel hat geholfen, Timer gestellt..." data-i18n-placeholder="adhsNotesPlaceholder" class="shadcn-input text-xs py-2">
             </div>
           </div>
 
           <!-- FEATURE CONTAINER: STEPS & AKTIVITÄTEN -->
-          <div id="feature-container-steps" class="p-2.5 rounded-xl border border-blue-100 dark:border-blue-900/40 bg-blue-50/30 dark:bg-blue-950/15 space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div id="feature-container-steps" class="p-3 sm:p-3.5 rounded-2xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 space-y-2.5 pt-2.5 border-t border-stone-200/60 dark:border-stone-800">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-blue-900 dark:text-blue-300" data-i18n="stepsTitle">
-                Schritte & Bewegung:
+              <span class="text-xs font-medium text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                <span data-i18n="stepsTitle">Schritte & Bewegung:</span>
               </span>
-              <span id="steps-display-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300" data-i18n="stepsBadgeInitial">
+              <span id="steps-display-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-medium" data-i18n="stepsBadgeInitial">
                 0 Schritte
               </span>
             </div>
 
-            <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div id="steps-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
+            <div class="w-full bg-stone-200/60 dark:bg-stone-800 h-2 rounded-full overflow-hidden">
+              <div id="steps-progress-bar" class="h-full bg-blue-500 transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
-            <div class="flex items-center justify-between text-[10px] text-slate-500">
+            <div class="flex items-center justify-between text-[10px] text-stone-500">
               <span id="steps-progress-percent" data-i18n="stepsPercentInitial">0% erreicht (0 / 10.000)</span>
               <span data-i18n="stepsDailyGoal">Tagesziel</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
               <div class="min-w-0">
-                <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="stepsToday">Schritte heute:</label>
-                <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-extrabold text-blue-600 dark:text-blue-400 py-1.5 block w-full">
+                <label class="block text-[9px] font-semibold text-stone-500 uppercase tracking-wider mb-1" data-i18n="stepsToday">Schritte heute:</label>
+                <input type="number" id="input-steps-count" min="0" step="100" value="0" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold py-1.5 block w-full">
               </div>
               <div class="min-w-0">
-                <label class="block text-[9px] font-bold text-slate-500 mb-0.5" data-i18n="stepsGoal">Ziel:</label>
-                <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-semibold py-1.5 block w-full">
+                <label class="block text-[9px] font-semibold text-stone-500 uppercase tracking-wider mb-1" data-i18n="stepsGoal">Ziel:</label>
+                <input type="number" id="input-steps-goal" min="1000" step="500" value="10000" oninput="updateStepsProgressDisplay()" class="shadcn-input text-xs font-medium py-1.5 block w-full">
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-1">
-              <button type="button" onclick="addSteps(500)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 500</button>
-              <button type="button" onclick="addSteps(1000)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 1k</button>
-              <button type="button" onclick="addSteps(2500)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition">+ 2.5k</button>
-              <button type="button" onclick="setSteps(10000)" class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-blue-600 text-white ml-auto transition shadow-xs" data-i18n="steps10kGoal">10k Ziel</button>
+            <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
+              <button type="button" onclick="addSteps(500)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 transition shadow-xs">+ 500</button>
+              <button type="button" onclick="addSteps(1000)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 transition shadow-xs">+ 1k</button>
+              <button type="button" onclick="addSteps(2500)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 transition shadow-xs">+ 2.5k</button>
+              <button type="button" onclick="setSteps(10000)" class="text-xs font-medium px-2.5 py-1 rounded-full border border-stone-300 dark:border-stone-600 bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 ml-auto transition shadow-xs" data-i18n="steps10kGoal">10k Ziel</button>
             </div>
 
             <!-- Sport & Aktivitäten Chips with (+) Button -->
-            <div class="space-y-1 pt-1 border-t border-blue-200/40 dark:border-blue-900/30">
+            <div class="space-y-1.5 pt-1.5 border-t border-stone-200/60 dark:border-stone-800/80">
               <div class="flex items-center justify-between">
-                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500"><span data-i18n="activitiesTitle">Aktivitäten & Sport:</span> <span class="text-[9px] text-slate-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span></span>
-                <button type="button" onclick="openAddCustomModal('activities')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigene Aktivität hinzufügen" data-i18n-title="addCustomActivityTooltip">
-                  <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+                <span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500"><span data-i18n="activitiesTitle">Aktivitäten & Sport:</span> <span class="text-[9px] text-stone-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span></span>
+                <button type="button" onclick="openAddCustomModal('activities')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigene Aktivität hinzufügen" data-i18n-title="addCustomActivityTooltip">
+                  <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
                 </button>
               </div>
-              <div class="flex flex-wrap gap-1" id="activities-chips-container">
+              <div class="flex flex-wrap gap-1.5" id="activities-chips-container">
                 <!-- Dynamically populated -->
               </div>
             </div>
@@ -1837,17 +2131,17 @@
       <!-- ======================================================== -->
       <!-- CARD 5: JOURNAL, 3 POSITIVE DINGE & SPEICHERN             -->
       <!-- ======================================================== -->
-      <section id="card-diary-mind" class="checkin-card shadcn-card p-3 sm:p-4 space-y-2.5 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mind" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
         <div onclick="toggleDiaryCard('mind')" class="flex items-center justify-between cursor-pointer select-none">
           <div class="flex items-center gap-2">
-            <h3 class="font-serif text-xs sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard5Title">
+            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard5Title">
               5. Journal, 3 Positive Dinge & Notizen
             </h3>
           </div>
           <div class="flex items-center gap-1.5">
-            <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200/60 dark:border-stone-700/60">
+            <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 / 3 Positiv
             </span>
             <svg id="chevron-mind" class="w-4 h-4 text-stone-400 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1855,72 +2149,72 @@
         </div>
 
         <!-- Accordion Body -->
-        <div id="body-diary-mind" class="hidden space-y-2.5 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <div id="body-diary-mind" class="hidden space-y-3 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
           
           <!-- FEATURE CONTAINER: 3 POSITIVE DINGE -->
-          <div id="feature-container-positive-things" class="space-y-1.5">
+          <div id="feature-container-positive-things" class="space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400" data-i18n="posThingsTitle">
+              <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="posThingsTitle">
                 3 Positive Dinge (Dopamin-Anker):
               </span>
-              <span id="positive-things-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+              <span id="positive-things-counter" class="text-xs font-semibold px-2 py-0.5 rounded-full">
                 0 / 3
               </span>
             </div>
 
-            <div class="space-y-1.5" id="positive-things-inputs-container">
+            <div class="space-y-2" id="positive-things-inputs-container">
               <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">1</span>
-                <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="Ein schöner Moment heute..." data-i18n-placeholder="posThing1Placeholder" class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
+                <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif font-semibold text-xs flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">1</span>
+                <input type="text" id="input-pos-1" oninput="updatePositiveThingsCounter()" placeholder="Ein schöner Moment heute..." data-i18n-placeholder="posThing1Placeholder" class="flex-1 min-w-0 shadcn-input py-2 px-3 text-xs block">
               </div>
               <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">2</span>
-                <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="Ein Erfolg oder Lob..." data-i18n-placeholder="posThing2Placeholder" class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
+                <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif font-semibold text-xs flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">2</span>
+                <input type="text" id="input-pos-2" oninput="updatePositiveThingsCounter()" placeholder="Ein Erfolg oder Lob..." data-i18n-placeholder="posThing2Placeholder" class="flex-1 min-w-0 shadcn-input py-2 px-3 text-xs block">
               </div>
               <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">3</span>
-                <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="Zeit genommen für mich..." data-i18n-placeholder="posThing3Placeholder" class="flex-1 min-w-0 shadcn-input py-1.5 px-2.5 text-xs block">
+                <span class="w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-serif font-semibold text-xs flex items-center justify-center shrink-0 border border-stone-200/80 dark:border-stone-700/80">3</span>
+                <input type="text" id="input-pos-3" oninput="updatePositiveThingsCounter()" placeholder="Zeit genommen für mich..." data-i18n-placeholder="posThing3Placeholder" class="flex-1 min-w-0 shadcn-input py-2 px-3 text-xs block">
               </div>
             </div>
 
             <div class="pt-0.5">
-              <button type="button" onclick="addAnotherPositiveThingInput()" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Weiteren positiven Moment hinzufügen" data-i18n-title="addCustomPosThingTooltip">
-                <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+              <button type="button" onclick="addAnotherPositiveThingInput()" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Weiteren positiven Moment hinzufügen" data-i18n-title="addCustomPosThingTooltip">
+                <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
               </button>
             </div>
           </div>
 
           <!-- FEATURE CONTAINER: HIGHLIGHTS & MEMORIES -->
-          <div id="feature-container-highlights" class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+          <div id="feature-container-highlights" class="space-y-1.5 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-800 dark:text-amber-400">
-                <span data-i18n="highlightsTitle">Highlights & Erlebnisse:</span> <span class="text-[10px] text-slate-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span>
+              <span class="text-xs font-medium text-stone-800 dark:text-stone-200">
+                <span data-i18n="highlightsTitle">Highlights & Erlebnisse:</span> <span class="text-[10px] text-stone-400 font-normal normal-case" data-i18n="diaryMultiSelectNoticeShort">(Mehrfachauswahl)</span>
               </span>
-              <button type="button" onclick="openAddCustomModal('memory_tags')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:border-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1" title="Eigenen Erlebnis-Tag hinzufügen" data-i18n-title="addCustomMemoryTagTooltip">
-                <span class="font-bold text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
+              <button type="button" onclick="openAddCustomModal('memory_tags')" class="add-custom-btn text-xs px-2.5 py-1 rounded-full border border-dashed border-stone-300 dark:border-stone-700 text-stone-600 dark:text-stone-300 font-medium hover:border-stone-500 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 transition inline-flex items-center gap-1" title="Eigenen Erlebnis-Tag hinzufügen" data-i18n-title="addCustomMemoryTagTooltip">
+                <span class="font-medium text-sm leading-none">+</span><span class="add-btn-label">Neu</span>
               </button>
             </div>
-            <textarea id="input-diary-highlights" rows="2" placeholder="Was waren heute die wichtigsten Momente deines Tages?..." data-i18n-placeholder="highlightsPlaceholder" class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
+            <textarea id="input-diary-highlights" rows="2" placeholder="Was waren heute die wichtigsten Momente deines Tages?..." data-i18n-placeholder="highlightsPlaceholder" class="shadcn-input text-xs py-2 leading-relaxed"></textarea>
 
-            <div class="flex flex-wrap gap-1 pt-0.5" id="memory-tags-container">
+            <div class="flex flex-wrap gap-1.5 pt-1" id="memory-tags-container">
               <!-- Dynamically populated -->
             </div>
           </div>
 
           <!-- FEATURE CONTAINER: BRAIN DUMP / NOTES -->
-          <div id="feature-container-notes" class="space-y-1 pt-1.5 border-t border-slate-100 dark:border-slate-800">
-            <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="notesTitle">
+          <div id="feature-container-notes" class="space-y-1.5 pt-2 border-t border-stone-200/60 dark:border-stone-800/80">
+            <span class="text-xs font-medium text-stone-800 dark:text-stone-200" data-i18n="notesTitle">
               Freie Gedanken & Brain Dump:
             </span>
-            <textarea id="input-diary-notes" rows="3" placeholder="Schreibe ungefiltert auf, was dich heute beschäftigt hat..." data-i18n-placeholder="notesPlaceholder" class="shadcn-input text-xs py-1.5 leading-relaxed"></textarea>
+            <textarea id="input-diary-notes" rows="3" placeholder="Schreibe ungefiltert auf, was dich heute beschäftigt hat..." data-i18n-placeholder="notesPlaceholder" class="shadcn-input text-xs py-2 leading-relaxed"></textarea>
           </div>
 
           <!-- ACTION FOOTER: SPEICHERN BUTTON -->
-          <div class="pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-2">
-            <div class="text-[10px] text-stone-400 flex items-center gap-1">
+          <div class="pt-2.5 border-t border-stone-200/60 dark:border-stone-800/80 flex items-center justify-between gap-2">
+            <div class="text-[10px] text-stone-400 flex items-center gap-1 font-medium">
               <span data-i18n="privacyNote">100% lokal & privat</span>
             </div>
-            <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
+            <button type="button" onclick="saveCurrentDiaryEntry()" class="btn-primary-theme py-2.5 px-6 rounded-full font-medium text-xs sm:text-sm shadow-xs transition active:scale-[0.99] flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
               <span data-i18n="saveEntry">Tages-Eintrag speichern</span>
             </button>
@@ -1933,10 +2227,10 @@
 
       <!-- Global Fallback Save Button (shown if Card 5 is hidden but at least one card is visible) -->
       <div id="diary-fallback-save-bar" class="hidden pt-2 flex items-center justify-between gap-2">
-        <div class="text-[10px] text-stone-400 flex items-center gap-1">
+        <div class="text-[10px] text-stone-400 flex items-center gap-1 font-medium">
           <span data-i18n="privacyNote">100% lokal & privat</span>
         </div>
-        <button type="button" onclick="saveCurrentDiaryEntry()" class="py-2.5 px-6 rounded-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white active:scale-[0.99] text-stone-100 dark:text-stone-900 font-medium text-xs sm:text-sm shadow-xs transition flex items-center justify-center gap-2">
+        <button type="button" onclick="saveCurrentDiaryEntry()" class="btn-primary-theme py-2.5 px-6 rounded-full font-medium text-xs sm:text-sm shadow-xs transition active:scale-[0.99] flex items-center justify-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span id="label-fallback-save-btn" data-i18n="saveEntry">Tages-Eintrag speichern</span>
         </button>
@@ -1949,7 +2243,7 @@
         </div>
         <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-800 dark:text-stone-200" id="all-disabled-title" data-i18n="allDisabledTitle">Alle Tracking-Module sind deaktiviert</h3>
         <p class="text-xs text-stone-500 max-w-sm mx-auto" id="all-disabled-desc" data-i18n="allDisabledDesc">Du hast momentan alle Bereiche im Tagebuch ausgeblendet. Aktiviere Module in den Einstellungen, um loszulegen.</p>
-        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-full bg-[#4A7264] hover:bg-[#3D5F53] text-white font-medium text-xs shadow-xs transition inline-flex items-center gap-1.5">
+        <button type="button" onclick="openSettingsModal()" class="px-4 py-2 rounded-full btn-primary-theme font-medium text-xs shadow-xs transition inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span id="all-disabled-btn" data-i18n="allDisabledBtn">Module anpassen</span>
         </button>
@@ -2162,7 +2456,7 @@
   <!-- ======================================================== -->
   <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
   <!-- ======================================================== -->
-  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-t border-stone-200/80 dark:border-stone-800/80 flex items-center justify-around px-2 py-1.5 shadow-xs">
+  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t flex items-center justify-around px-2 py-1.5 shadow-xs transition-colors duration-200">
     <!-- Populated dynamically via switchAppMode() -->
   </nav>
 
@@ -2176,7 +2470,7 @@
   <!-- MODAL: EIGENE OPTION PERMANENT HINZUFÜGEN (+)            -->
   <!-- ======================================================== -->
   <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95">
+    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl rounded-2xl animate-in fade-in zoom-in-95">
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800">
@@ -2204,10 +2498,10 @@
 
       <!-- Modal Action Buttons -->
       <div class="flex items-center justify-end gap-2 pt-1 border-t border-stone-100 dark:border-stone-800">
-        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-semibold hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 transition">
           <span data-i18n="btnCancel">Abbrechen</span>
         </button>
-        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-xs font-semibold transition shadow-xs">
+        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-full btn-primary-theme text-xs font-medium transition shadow-xs">
           <span data-i18n="btnSavePermanent">Dauerhaft speichern</span>
         </button>
       </div>
@@ -2219,7 +2513,7 @@
   <!-- MODAL: APP-EINSTELLUNGEN & MODUL-MANAGER (SETTINGS)       -->
   <!-- ======================================================== -->
   <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
+    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 shrink-0">
@@ -2441,7 +2735,7 @@
           <span class="text-emerald-500 font-bold">●</span>
           <span id="settings-footer-privacy" data-i18n="privacyNote">100% lokal & privat auf diesem Gerät</span>
         </span>
-        <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-xs">
+        <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-full btn-primary-theme text-xs font-medium transition shadow-xs">
           <span id="settings-btn-done" data-i18n="settingsDone">Fertig</span>
         </button>
       </div>
@@ -3582,10 +3876,10 @@
         const desc = isDe ? p.desc_de : p.desc_en;
 
         return `
-          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-stone-900 dark:border-stone-100 ring-2 ring-stone-900/15 dark:ring-stone-100/20 bg-white dark:bg-stone-800 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 bg-stone-50/70 dark:bg-stone-900/40 hover:bg-white dark:hover:bg-stone-800/60'}">
+          <button type="button" onclick="setColorProfile('${p.id}')" class="p-2 sm:p-2.5 rounded-xl border text-left transition relative flex flex-col justify-between gap-1.5 active:scale-[0.98] ${isSelected ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]/20 shadow-xs' : 'border-stone-200 dark:border-stone-700/80 hover:border-stone-400 dark:hover:border-stone-600'}">
             <div class="flex items-center justify-between gap-1 w-full">
-              <span class="font-serif font-semibold text-[11px] sm:text-xs text-stone-900 dark:text-stone-100 truncate">${escapeHtml(name)}</span>
-              ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 text-[9px] font-bold flex items-center justify-center shrink-0">✓</span>' : ''}
+              <span class="font-serif font-semibold text-[11px] sm:text-xs truncate" style="color: var(--app-text);">${escapeHtml(name)}</span>
+              ${isSelected ? '<span class="w-3.5 h-3.5 rounded-full text-white text-[9px] font-bold flex items-center justify-center shrink-0" style="background-color: var(--accent-primary);">✓</span>' : ''}
             </div>
 
             <!-- Mini Swatch Preview -->
@@ -3595,7 +3889,7 @@
               <span class="flex-1 h-1.5 rounded-full opacity-60" style="background-color: ${p.accent};"></span>
             </div>
 
-            <span class="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1 leading-tight">${escapeHtml(desc)}</span>
+            <span class="text-[10px] line-clamp-1 leading-tight" style="color: var(--text-muted);">${escapeHtml(desc)}</span>
           </button>
         `;
       }).join('');
@@ -3631,22 +3925,22 @@
       const t = I18N[appSettings.language || 'de'] || I18N.de;
 
       if (mode === 'schema') {
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
+        btnSchema.className = 'active flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs';
+        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 opacity-75 hover:opacity-100';
         titleEl.innerText = 'Schema-Memo';
         subTitleEl.innerText = t.brandSubtitle;
         headerNewBtnText.innerText = t.headerNewMemo;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
+        logoIcon.className = 'w-8 h-8 rounded-xl flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForSchema();
         switchView(targetView || 'edit');
       } else {
-        btnDiary.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 shadow-xs bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900';
-        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100';
+        btnDiary.className = 'active flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-xs';
+        btnSchema.className = 'flex-1 py-1.5 px-3 rounded-full text-xs font-medium transition-all flex items-center justify-center gap-1.5 opacity-75 hover:opacity-100';
         titleEl.innerText = 'Daily Diary & Neuro';
         subTitleEl.innerText = t.diarySubtitle;
         headerNewBtnText.innerText = t.headerNewCheckin;
-        logoIcon.className = 'w-8 h-8 rounded-xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 flex items-center justify-center shadow-xs shrink-0 transition-colors';
+        logoIcon.className = 'w-8 h-8 rounded-xl flex items-center justify-center shadow-xs shrink-0 transition-colors';
 
         renderBottomNavForDiary();
         switchView(targetView || 'diary-entry');
@@ -5111,19 +5405,15 @@
 
         if (isCustom) {
           if (isSelected) {
-            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border font-bold transition shadow-xs ${isChallenging ? 'border-rose-500 bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200' : 'border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200'}`;
+            chip.className = `emotion-chip-custom active ${isChallenging ? 'challenging-custom text-rose-700 dark:text-rose-300 border-rose-400/80' : 'pleasant-custom text-emerald-700 dark:text-emerald-300 border-emerald-500/80'} inline-flex items-center text-xs rounded-full border font-semibold transition shadow-xs`;
           } else {
-            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition`;
+            chip.className = `emotion-chip-custom ${isChallenging ? 'challenging-custom' : 'pleasant-custom'} inline-flex items-center text-xs rounded-full border font-medium transition`;
           }
         } else {
           if (isSelected) {
-            if (isChallenging) {
-              chip.className = 'emotion-chip challenging-emo text-xs px-2.5 py-1 rounded-full border border-rose-500 bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 font-bold transition shadow-xs';
-            } else {
-              chip.className = 'emotion-chip pleasant-emo text-xs px-2.5 py-1 rounded-full border border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 font-bold transition shadow-xs';
-            }
+            chip.className = `emotion-chip active ${isChallenging ? 'challenging-emo text-rose-700 dark:text-rose-300 border-rose-400/80' : 'pleasant-emo text-emerald-700 dark:text-emerald-300 border-emerald-500/80'} text-xs px-2.5 py-1 rounded-full border font-semibold transition shadow-xs`;
           } else {
-            chip.className = `emotion-chip ${isChallenging ? 'challenging-emo' : 'pleasant-emo'} text-xs px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition`;
+            chip.className = `emotion-chip ${isChallenging ? 'challenging-emo' : 'pleasant-emo'} text-xs px-2.5 py-1 rounded-full border font-medium transition`;
           }
         }
       });
@@ -5505,13 +5795,11 @@
 
     function filterCheckinSections(tab) {
       document.querySelectorAll('.sec-nav-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
-        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+        btn.classList.remove('active');
       });
       const activeBtn = document.getElementById(`sec-nav-${tab}`);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
-        activeBtn.classList.add('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+        activeBtn.classList.add('active');
       }
 
       const keys = ['mood', 'meds', 'vital', 'adhs', 'mind'];
@@ -5582,18 +5870,18 @@
       const customs = customOptions.meds || [];
 
       let html = defaults.map(m => `
-        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="text-xs px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/40 transition font-medium inline-flex items-center gap-1">
-          <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
+        <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="tag-chip text-xs px-2.5 py-1 rounded-full border transition font-medium inline-flex items-center gap-1 active:scale-95">
+          <span>${escapeHtml(m.name)}</span> <span class="opacity-60 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
         </button>
       `).join('');
 
       if (customs.length > 0) {
         html += customs.map(m => `
-          <span class="inline-flex items-center text-xs rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 transition font-medium">
-            <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:bg-emerald-100/60 transition inline-flex items-center gap-1 rounded-l-lg">
-              <span>${escapeHtml(m.name)}</span> <span class="opacity-75 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
+          <span class="inline-flex items-center text-xs rounded-full border border-stone-300 dark:border-stone-700 bg-stone-100/70 dark:bg-stone-800/70 text-stone-800 dark:text-stone-200 transition font-medium">
+            <button type="button" onclick="quickAddMedication('${escapeHtml(m.name)}', '${escapeHtml(m.dose)}')" class="py-1 pl-2.5 pr-1 hover:opacity-80 transition inline-flex items-center gap-1 rounded-l-full">
+              <span>${escapeHtml(m.name)}</span> <span class="opacity-60 font-normal text-[10px]">${escapeHtml(m.dose)}</span>
             </button>
-            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-slate-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
+            <button type="button" onclick="event.stopPropagation(); deleteCustomOptionByName('meds', '${escapeHtml(m.name)}')" class="pr-2 pl-0.5 py-1 text-stone-400 hover:text-rose-500 font-bold text-sm leading-none transition" title="${isEn ? 'Delete' : 'Löschen'}">×</button>
           </span>
         `).join('');
       }
@@ -7442,7 +7730,7 @@
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=26').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=27').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

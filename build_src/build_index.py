@@ -191,208 +191,390 @@ def get_head_and_styles():
     }
 
     /* ==========================================================
-       THEME COLOR PROFILES (CSS CUSTOM PROPERTIES)
+       THEME COLOR PROFILES (16-TOKEN COMPLETE PALETTES)
        ========================================================== */
     :root, [data-theme-profile="stoic"] {
       --app-bg: #FAF9F5;
       --app-text: #1C1917;
+      --text-muted: #78716C;
       --card-bg: #FFFFFF;
       --card-border: rgba(28, 25, 23, 0.08);
-      --input-bg: #F4F2EC;
-      --input-border: rgba(28, 25, 23, 0.1);
-      --accent-primary: #4A7264;
+      --surface-subtle: #F4F1EA;
+      --surface-subtle-hover: #EBE7DE;
+      --border-subtle: rgba(28, 25, 23, 0.06);
+      --input-bg: #F4F1EA;
+      --input-border: rgba(28, 25, 23, 0.12);
+      --accent-primary: #3D6352;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(61, 99, 82, 0.12);
+      --accent-soft-border: rgba(61, 99, 82, 0.28);
+      --badge-bg: #EAE6DD;
+      --badge-text: #3D6352;
     }
     .dark, .dark[data-theme-profile="stoic"], [data-theme-profile="stoic"].dark {
       --app-bg: #121110;
       --app-text: #F5F3EF;
-      --card-bg: #181715;
-      --card-border: rgba(245, 243, 239, 0.07);
-      --input-bg: #1F1E1B;
-      --input-border: rgba(245, 243, 239, 0.1);
-      --accent-primary: #6B9A88;
+      --text-muted: #A8A29E;
+      --card-bg: #191816;
+      --card-border: rgba(245, 243, 239, 0.08);
+      --surface-subtle: #22201D;
+      --surface-subtle-hover: #2A2723;
+      --border-subtle: rgba(245, 243, 239, 0.06);
+      --input-bg: #22201D;
+      --input-border: rgba(245, 243, 239, 0.12);
+      --accent-primary: #6E9E8B;
+      --accent-text: #121110;
+      --accent-soft: rgba(110, 158, 139, 0.18);
+      --accent-soft-border: rgba(110, 158, 139, 0.35);
+      --badge-bg: #252320;
+      --badge-text: #A1C9B9;
     }
 
     /* 2. Warm Sepia / Vintage Journal */
     [data-theme-profile="sepia"] {
       --app-bg: #F5EFE6;
-      --app-text: #2A1F18;
+      --app-text: #2D2015;
+      --text-muted: #826F5E;
       --card-bg: #FAF6F0;
-      --card-border: rgba(42, 31, 24, 0.09);
-      --input-bg: #EDE3D5;
-      --input-border: rgba(42, 31, 24, 0.12);
-      --accent-primary: #965B32;
+      --card-border: rgba(67, 45, 28, 0.1);
+      --surface-subtle: #EDE2D3;
+      --surface-subtle-hover: #E4D6C4;
+      --border-subtle: rgba(67, 45, 28, 0.07);
+      --input-bg: #EDE2D3;
+      --input-border: rgba(67, 45, 28, 0.14);
+      --accent-primary: #92542B;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(146, 84, 43, 0.14);
+      --accent-soft-border: rgba(146, 84, 43, 0.3);
+      --badge-bg: #E2D4C3;
+      --badge-text: #844A22;
     }
     .dark[data-theme-profile="sepia"], [data-theme-profile="sepia"].dark {
-      --app-bg: #1A1410;
-      --app-text: #EAE0D5;
-      --card-bg: #231B15;
-      --card-border: rgba(234, 224, 213, 0.08);
-      --input-bg: #2D231C;
-      --input-border: rgba(234, 224, 213, 0.12);
-      --accent-primary: #C57E47;
+      --app-bg: #17120E;
+      --app-text: #EFE5DC;
+      --text-muted: #A89686;
+      --card-bg: #221A14;
+      --card-border: rgba(239, 229, 220, 0.09);
+      --surface-subtle: #2D221A;
+      --surface-subtle-hover: #382B21;
+      --border-subtle: rgba(239, 229, 220, 0.06);
+      --input-bg: #2D221A;
+      --input-border: rgba(239, 229, 220, 0.14);
+      --accent-primary: #C9783D;
+      --accent-text: #17120E;
+      --accent-soft: rgba(201, 120, 61, 0.2);
+      --accent-soft-border: rgba(201, 120, 61, 0.38);
+      --badge-bg: #31251D;
+      --badge-text: #E09A67;
     }
 
     /* 3. Forest & Sage */
     [data-theme-profile="sage"] {
-      --app-bg: #EFF4F1;
-      --app-text: #16241C;
+      --app-bg: #EEF4F0;
+      --app-text: #12241A;
+      --text-muted: #5D7566;
       --card-bg: #F7FAF8;
-      --card-border: rgba(22, 36, 28, 0.09);
-      --input-bg: #E1ECE5;
-      --input-border: rgba(22, 36, 28, 0.12);
-      --accent-primary: #33614C;
+      --card-border: rgba(18, 36, 26, 0.1);
+      --surface-subtle: #DFEDE4;
+      --surface-subtle-hover: #D3E4D9;
+      --border-subtle: rgba(18, 36, 26, 0.07);
+      --input-bg: #DFEDE4;
+      --input-border: rgba(18, 36, 26, 0.14);
+      --accent-primary: #2D5F46;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(45, 95, 70, 0.14);
+      --accent-soft-border: rgba(45, 95, 70, 0.3);
+      --badge-bg: #D3E5DA;
+      --badge-text: #2D5F46;
     }
     .dark[data-theme-profile="sage"], [data-theme-profile="sage"].dark {
-      --app-bg: #0E1612;
-      --app-text: #DEEAE2;
-      --card-bg: #15201A;
-      --card-border: rgba(222, 234, 226, 0.08);
-      --input-bg: #1C2B23;
-      --input-border: rgba(222, 234, 226, 0.12);
-      --accent-primary: #59987A;
+      --app-bg: #0B140F;
+      --app-text: #DCE9E0;
+      --text-muted: #82A28F;
+      --card-bg: #121E17;
+      --card-border: rgba(220, 233, 224, 0.09);
+      --surface-subtle: #192B21;
+      --surface-subtle-hover: #22382C;
+      --border-subtle: rgba(220, 233, 224, 0.06);
+      --input-bg: #192B21;
+      --input-border: rgba(220, 233, 224, 0.14);
+      --accent-primary: #5BA47F;
+      --accent-text: #0B140F;
+      --accent-soft: rgba(91, 164, 127, 0.2);
+      --accent-soft-border: rgba(91, 164, 127, 0.38);
+      --badge-bg: #1E3328;
+      --badge-text: #86C5A4;
     }
 
     /* 4. Nordic Slate */
     [data-theme-profile="nordic"] {
-      --app-bg: #EEF2F6;
-      --app-text: #16202B;
+      --app-bg: #EDF2F7;
+      --app-text: #121E2C;
+      --text-muted: #5D748A;
       --card-bg: #F7FAFC;
-      --card-border: rgba(22, 32, 43, 0.09);
-      --input-bg: #E0E7EE;
-      --input-border: rgba(22, 32, 43, 0.12);
-      --accent-primary: #325B7E;
+      --card-border: rgba(18, 30, 44, 0.1);
+      --surface-subtle: #DFE7F0;
+      --surface-subtle-hover: #D2DEEB;
+      --border-subtle: rgba(18, 30, 44, 0.07);
+      --input-bg: #DFE7F0;
+      --input-border: rgba(18, 30, 44, 0.14);
+      --accent-primary: #2B5880;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(43, 88, 128, 0.14);
+      --accent-soft-border: rgba(43, 88, 128, 0.3);
+      --badge-bg: #D2DFEC;
+      --badge-text: #2B5880;
     }
     .dark[data-theme-profile="nordic"], [data-theme-profile="nordic"].dark {
-      --app-bg: #0D131A;
-      --app-text: #DDE5ED;
-      --card-bg: #141C24;
-      --card-border: rgba(221, 229, 237, 0.08);
-      --input-bg: #1C2631;
-      --input-border: rgba(221, 229, 237, 0.12);
-      --accent-primary: #5289B5;
+      --app-bg: #0A1118;
+      --app-text: #DBE5F0;
+      --text-muted: #7D98B2;
+      --card-bg: #111A24;
+      --card-border: rgba(219, 229, 240, 0.09);
+      --surface-subtle: #192533;
+      --surface-subtle-hover: #213042;
+      --border-subtle: rgba(219, 229, 240, 0.06);
+      --input-bg: #192533;
+      --input-border: rgba(219, 229, 240, 0.14);
+      --accent-primary: #5594C9;
+      --accent-text: #0A1118;
+      --accent-soft: rgba(85, 148, 201, 0.2);
+      --accent-soft-border: rgba(85, 148, 201, 0.38);
+      --badge-bg: #1C2B3B;
+      --badge-text: #82B5DE;
     }
 
     /* 5. Terracotta & Sand */
     [data-theme-profile="terracotta"] {
-      --app-bg: #F8F2EC;
-      --app-text: #2D1E16;
-      --card-bg: #FCF8F4;
-      --card-border: rgba(45, 30, 22, 0.09);
-      --input-bg: #EFE2D6;
-      --input-border: rgba(45, 30, 22, 0.12);
-      --accent-primary: #A8512C;
+      --app-bg: #F8EFE9;
+      --app-text: #2C180E;
+      --text-muted: #826353;
+      --card-bg: #FCF7F3;
+      --card-border: rgba(66, 32, 16, 0.1);
+      --surface-subtle: #EDE0D5;
+      --surface-subtle-hover: #E3D1C3;
+      --border-subtle: rgba(66, 32, 16, 0.07);
+      --input-bg: #EDE0D5;
+      --input-border: rgba(66, 32, 16, 0.14);
+      --accent-primary: #9E431E;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(158, 67, 30, 0.14);
+      --accent-soft-border: rgba(158, 67, 30, 0.3);
+      --badge-bg: #E2CEBF;
+      --badge-text: #9E431E;
     }
     .dark[data-theme-profile="terracotta"], [data-theme-profile="terracotta"].dark {
-      --app-bg: #19110B;
-      --app-text: #EFE0D5;
-      --card-bg: #221710;
-      --card-border: rgba(239, 224, 213, 0.08);
-      --input-bg: #2D1F16;
-      --input-border: rgba(239, 224, 213, 0.12);
-      --accent-primary: #D16E44;
+      --app-bg: #170D07;
+      --app-text: #EFE0D4;
+      --text-muted: #A58574;
+      --card-bg: #21130C;
+      --card-border: rgba(239, 224, 212, 0.09);
+      --surface-subtle: #2D1C12;
+      --surface-subtle-hover: #3A2519;
+      --border-subtle: rgba(239, 224, 212, 0.06);
+      --input-bg: #2D1C12;
+      --input-border: rgba(239, 224, 212, 0.14);
+      --accent-primary: #DB6C3F;
+      --accent-text: #170D07;
+      --accent-soft: rgba(219, 108, 63, 0.2);
+      --accent-soft-border: rgba(219, 108, 63, 0.38);
+      --badge-bg: #311F15;
+      --badge-text: #ECA17C;
     }
 
     /* 6. Lavender Dusk */
     [data-theme-profile="lavender"] {
-      --app-bg: #F4F1F7;
-      --app-text: #22192A;
-      --card-bg: #FAF8FC;
-      --card-border: rgba(34, 25, 42, 0.09);
-      --input-bg: #E9E1F0;
-      --input-border: rgba(34, 25, 42, 0.12);
-      --accent-primary: #634785;
+      --app-bg: #F4EEF7;
+      --app-text: #221430;
+      --text-muted: #735687;
+      --card-bg: #FAF5FC;
+      --card-border: rgba(45, 20, 68, 0.1);
+      --surface-subtle: #E9DCF0;
+      --surface-subtle-hover: #DFCBEA;
+      --border-subtle: rgba(45, 20, 68, 0.07);
+      --input-bg: #E9DCF0;
+      --input-border: rgba(45, 20, 68, 0.14);
+      --accent-primary: #643888;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(100, 56, 136, 0.14);
+      --accent-soft-border: rgba(100, 56, 136, 0.3);
+      --badge-bg: #DFCBEA;
+      --badge-text: #643888;
     }
     .dark[data-theme-profile="lavender"], [data-theme-profile="lavender"].dark {
-      --app-bg: #130E19;
-      --app-text: #E8DEEE;
-      --card-bg: #1C1523;
-      --card-border: rgba(232, 222, 238, 0.08);
-      --input-bg: #261D30;
-      --input-border: rgba(232, 222, 238, 0.12);
-      --accent-primary: #8E6BB8;
+      --app-bg: #110817;
+      --app-text: #EADEF0;
+      --text-muted: #9A7BAF;
+      --card-bg: #1A1023;
+      --card-border: rgba(234, 222, 240, 0.09);
+      --surface-subtle: #241631;
+      --surface-subtle-hover: #2F1E40;
+      --border-subtle: rgba(234, 222, 240, 0.06);
+      --input-bg: #241631;
+      --input-border: rgba(234, 222, 240, 0.14);
+      --accent-primary: #9D63CB;
+      --accent-text: #110817;
+      --accent-soft: rgba(157, 99, 203, 0.2);
+      --accent-soft-border: rgba(157, 99, 203, 0.38);
+      --badge-bg: #2B1A3A;
+      --badge-text: #C496E6;
     }
 
     /* 7. Matcha & Cream */
     [data-theme-profile="matcha"] {
-      --app-bg: #F2F5EC;
-      --app-text: #1E2517;
-      --card-bg: #F9FAF4;
-      --card-border: rgba(30, 37, 23, 0.09);
-      --input-bg: #E3E9D7;
-      --input-border: rgba(30, 37, 23, 0.12);
-      --accent-primary: #4A662C;
+      --app-bg: #F1F5EB;
+      --app-text: #192510;
+      --text-muted: #60734E;
+      --card-bg: #F8FAF3;
+      --card-border: rgba(25, 37, 16, 0.1);
+      --surface-subtle: #E1E9D5;
+      --surface-subtle-hover: #D5DFC7;
+      --border-subtle: rgba(25, 37, 16, 0.07);
+      --input-bg: #E1E9D5;
+      --input-border: rgba(25, 37, 16, 0.14);
+      --accent-primary: #466624;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(70, 102, 36, 0.14);
+      --accent-soft-border: rgba(70, 102, 36, 0.3);
+      --badge-bg: #D5DFC7;
+      --badge-text: #466624;
     }
     .dark[data-theme-profile="matcha"], [data-theme-profile="matcha"].dark {
-      --app-bg: #10150C;
-      --app-text: #E2E8D8;
-      --card-bg: #182012;
-      --card-border: rgba(226, 232, 216, 0.08);
-      --input-bg: #212B1A;
-      --input-border: rgba(226, 232, 216, 0.12);
-      --accent-primary: #759B46;
+      --app-bg: #0D1407;
+      --app-text: #E1EAD6;
+      --text-muted: #869B72;
+      --card-bg: #16200F;
+      --card-border: rgba(225, 234, 214, 0.09);
+      --surface-subtle: #1E2B15;
+      --surface-subtle-hover: #28381D;
+      --border-subtle: rgba(225, 234, 214, 0.06);
+      --input-bg: #1E2B15;
+      --input-border: rgba(225, 234, 214, 0.14);
+      --accent-primary: #77A34A;
+      --accent-text: #0D1407;
+      --accent-soft: rgba(119, 163, 74, 0.2);
+      --accent-soft-border: rgba(119, 163, 74, 0.38);
+      --badge-bg: #23321A;
+      --badge-text: #A5CC7C;
     }
 
     /* 8. Rose Quartz */
     [data-theme-profile="rose"] {
-      --app-bg: #F7F1F2;
-      --app-text: #2A191E;
-      --card-bg: #FBF7F8;
-      --card-border: rgba(42, 25, 30, 0.09);
-      --input-bg: #ECE0E3;
-      --input-border: rgba(42, 25, 30, 0.12);
-      --accent-primary: #8E3E53;
+      --app-bg: #F7EFF1;
+      --app-text: #2C141D;
+      --text-muted: #825766;
+      --card-bg: #FAF5F6;
+      --card-border: rgba(58, 20, 34, 0.1);
+      --surface-subtle: #EEDEE2;
+      --surface-subtle-hover: #E3CDD3;
+      --border-subtle: rgba(58, 20, 34, 0.07);
+      --input-bg: #EEDEE2;
+      --input-border: rgba(58, 20, 34, 0.14);
+      --accent-primary: #8E334D;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(142, 51, 77, 0.14);
+      --accent-soft-border: rgba(142, 51, 77, 0.3);
+      --badge-bg: #E3CDD3;
+      --badge-text: #8E334D;
     }
     .dark[data-theme-profile="rose"], [data-theme-profile="rose"].dark {
-      --app-bg: #180D11;
-      --app-text: #EEDEE2;
-      --card-bg: #221318;
-      --card-border: rgba(238, 222, 226, 0.08);
-      --input-bg: #2E1B21;
-      --input-border: rgba(238, 222, 226, 0.12);
-      --accent-primary: #BA5D75;
+      --app-bg: #16080E;
+      --app-text: #EEDFE3;
+      --text-muted: #A47786;
+      --card-bg: #211017;
+      --card-border: rgba(238, 223, 227, 0.09);
+      --surface-subtle: #2D1821;
+      --surface-subtle-hover: #3B202C;
+      --border-subtle: rgba(238, 223, 227, 0.06);
+      --input-bg: #2D1821;
+      --input-border: rgba(238, 223, 227, 0.14);
+      --accent-primary: #C7597A;
+      --accent-text: #16080E;
+      --accent-soft: rgba(199, 89, 122, 0.2);
+      --accent-soft-border: rgba(199, 89, 122, 0.38);
+      --badge-bg: #331C26;
+      --badge-text: #E595AE;
     }
 
     /* 9. OLED Obsidian (Pure Black) */
     [data-theme-profile="obsidian"] {
-      --app-bg: #F6F7F9;
-      --app-text: #050505;
+      --app-bg: #F4F5F7;
+      --app-text: #09090B;
+      --text-muted: #52525B;
       --card-bg: #FFFFFF;
-      --card-border: rgba(0, 0, 0, 0.1);
-      --input-bg: #EBEEF2;
-      --input-border: rgba(0, 0, 0, 0.14);
-      --accent-primary: #171717;
+      --card-border: rgba(0, 0, 0, 0.12);
+      --surface-subtle: #E9ECEF;
+      --surface-subtle-hover: #DFE2E6;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --input-bg: #E9ECEF;
+      --input-border: rgba(0, 0, 0, 0.16);
+      --accent-primary: #09090B;
+      --accent-text: #FFFFFF;
+      --accent-soft: rgba(9, 9, 11, 0.12);
+      --accent-soft-border: rgba(9, 9, 11, 0.25);
+      --badge-bg: #E2E5E9;
+      --badge-text: #09090B;
     }
     .dark[data-theme-profile="obsidian"], [data-theme-profile="obsidian"].dark {
       --app-bg: #000000;
-      --app-text: #F8F8F8;
+      --app-text: #FAFAFA;
+      --text-muted: #A1A1AA;
       --card-bg: #0A0A0A;
-      --card-border: rgba(255, 255, 255, 0.12);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --surface-subtle: #141416;
+      --surface-subtle-hover: #1F1F22;
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --input-bg: #141414;
       --input-border: rgba(255, 255, 255, 0.18);
       --accent-primary: #FFFFFF;
+      --accent-text: #000000;
+      --accent-soft: rgba(255, 255, 255, 0.16);
+      --accent-soft-border: rgba(255, 255, 255, 0.32);
+      --badge-bg: #1A1A1D;
+      --badge-text: #FAFAFA;
     }
 
     /* 10. E-Ink Pure Paper (Monochrome High Contrast) */
     [data-theme-profile="eink"] {
       --app-bg: #FFFFFF;
       --app-text: #000000;
+      --text-muted: #404040;
       --card-bg: #FFFFFF;
-      --card-border: #000000;
-      --input-bg: #F4F4F4;
+      --card-border: #111111;
+      --surface-subtle: #F2F2F2;
+      --surface-subtle-hover: #E5E5E5;
+      --border-subtle: #D0D0D0;
+      --input-bg: #F5F5F5;
       --input-border: #222222;
       --accent-primary: #000000;
+      --accent-text: #FFFFFF;
+      --accent-soft: #E2E2E2;
+      --accent-soft-border: #777777;
+      --badge-bg: #E8E8E8;
+      --badge-text: #000000;
     }
     .dark[data-theme-profile="eink"], [data-theme-profile="eink"].dark {
       --app-bg: #080808;
       --app-text: #FFFFFF;
+      --text-muted: #BBBBBB;
       --card-bg: #101010;
-      --card-border: #666666;
-      --input-bg: #1A1A1A;
+      --card-border: #888888;
+      --surface-subtle: #181818;
+      --surface-subtle-hover: #242424;
+      --border-subtle: #444444;
+      --input-bg: #181818;
       --input-border: #888888;
       --accent-primary: #FFFFFF;
+      --accent-text: #000000;
+      --accent-soft: #282828;
+      --accent-soft-border: #AAAAAA;
+      --badge-bg: #202020;
+      --badge-text: #FFFFFF;
     }
 
-    /* Core Dynamic Theming Binding */
+    /* ==========================================================
+       UNIVERSAL DYNAMIC THEMING OVERRIDES
+       ========================================================== */
     body {
       background-color: var(--app-bg) !important;
       color: var(--app-text) !important;
@@ -408,18 +590,46 @@ def get_head_and_styles():
       border-color: var(--card-border) !important;
     }
 
-    .shadcn-card {
+    /* Cards & Containers */
+    .shadcn-card,
+    .checkin-card,
+    .diary-page-card,
+    .notebook-container,
+    .sheet-paper {
       background-color: var(--card-bg) !important;
       border: 1px solid var(--card-border) !important;
+      color: var(--app-text) !important;
       border-radius: 1.25rem;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 8px 24px -4px rgba(0, 0, 0, 0.03);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .dark .shadcn-card {
+    .dark .shadcn-card,
+    .dark .checkin-card,
+    .dark .diary-page-card,
+    .dark .notebook-container,
+    .dark .sheet-paper {
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
 
-    .shadcn-input {
+    /* Subtle Inner Surfaces & Panels */
+    .theme-subtle,
+    .inner-panel,
+    #diary-customization-hint,
+    #settings-tab-modules > .p-3,
+    #settings-tab-general > .p-3,
+    #custom-option-modal .shadcn-card,
+    #settings-modal .shadcn-card {
+      background-color: var(--card-bg) !important;
+      border-color: var(--card-border) !important;
+      color: var(--app-text) !important;
+    }
+
+    /* Form Controls: Inputs, Textareas, Selects */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    select,
+    textarea,
+    .shadcn-input,
+    .notebook-input-area {
       display: block;
       width: 100%;
       max-width: 100%;
@@ -434,35 +644,130 @@ def get_head_and_styles():
       transition: all 0.2s ease;
       outline: none;
     }
-    .shadcn-input:focus {
+
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+    select:focus,
+    textarea:focus,
+    .shadcn-input:focus,
+    .notebook-input-area:focus {
       border-color: var(--accent-primary) !important;
-      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.15);
+      box-shadow: 0 0 0 3px var(--accent-soft) !important;
+      outline: none;
     }
 
     textarea.shadcn-input {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
       min-height: 4.5rem;
       resize: vertical;
       line-height: 1.6;
     }
 
-    .notebook-input-area {
-      width: 100%;
-      background-color: var(--input-bg) !important;
-      border: 1.5px solid var(--input-border) !important;
-      border-radius: 0.85rem;
-      padding: 0.7rem 0.9rem;
-      font-size: 0.9rem;
-      color: var(--app-text) !important;
-      transition: all 0.2s ease;
+    /* Primary Buttons */
+    .btn-primary-theme,
+    button[onclick*="saveCurrentDiaryEntry"],
+    button[onclick*="saveCurrentMemo"],
+    button[onclick*="saveCustomOptionFromModal"] {
+      background-color: var(--accent-primary) !important;
+      color: var(--accent-text) !important;
+      border-color: transparent !important;
     }
-    .notebook-input-area:focus {
-      outline: none;
+
+    /* Brand Logo Icon */
+    #brand-logo-icon {
+      background-color: var(--accent-primary) !important;
+      color: var(--accent-text) !important;
+    }
+
+    /* Mode Switcher at Top Header */
+    header .inline-flex.rounded-full {
+      background-color: var(--surface-subtle) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    #mode-btn-schema.active,
+    #mode-btn-diary.active {
+      background-color: var(--card-bg) !important;
+      color: var(--accent-primary) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Section Navigation Buttons */
+    .sec-nav-btn {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-muted) !important;
+    }
+    .sec-nav-btn.active {
+      background-color: var(--accent-primary) !important;
       border-color: var(--accent-primary) !important;
-      box-shadow: 0 0 0 3px rgba(74, 114, 100, 0.15);
+      color: var(--accent-text) !important;
+    }
+
+    /* Badges & Summary Counts */
+    [id^="badge-summary-"],
+    #nap-badge,
+    #meds-count-badge,
+    #positive-things-counter,
+    #caffeine-total-badge,
+    #steps-display-badge,
+    #current-profile-badge,
+    #current-lang-badge,
+    #diary-count-badge,
+    #settings-active-count-badge {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--accent-primary) !important;
+    }
+
+    /* Universal Tag Chips & Pill Buttons */
+    .tag-chip,
+    .emotion-chip,
+    .emotion-chip-custom,
+    .custom-schema-chip,
+    .qf-btn,
+    .nap-quick-btn,
+    #quick-meds-chips-container button,
+    #quick-meds-chips-container span,
+    #pleasant-emotions-chips button,
+    #challenging-emotions-chips button,
+    #meal-tags-container button,
+    #sleep-factors-chips-container button,
+    #memory-tags-container button,
+    #activities-chips-container button,
+    #schema-step1-chips button,
+    #schema-step2-chips button,
+    #schema-step3-chips button {
+      background-color: var(--surface-subtle) !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--app-text) !important;
+      transition: all 0.15s ease;
+    }
+    .tag-chip:hover,
+    .emotion-chip:hover,
+    .qf-btn:hover,
+    .nap-quick-btn:hover,
+    #quick-meds-chips-container button:hover,
+    #pleasant-emotions-chips button:hover,
+    #challenging-emotions-chips button:hover,
+    #meal-tags-container button:hover,
+    #sleep-factors-chips-container button:hover,
+    #memory-tags-container button:hover,
+    #activities-chips-container button:hover,
+    #schema-step1-chips button:hover,
+    #schema-step2-chips button:hover,
+    #schema-step3-chips button:hover {
+      background-color: var(--surface-subtle-hover) !important;
+      border-color: var(--card-border) !important;
+    }
+
+    /* Active Tag Chips */
+    .tag-chip.active,
+    .emotion-chip.active,
+    .qf-btn.active,
+    .nap-quick-btn.active,
+    button[data-tag].active {
+      background-color: var(--accent-soft) !important;
+      border-color: var(--accent-soft-border) !important;
+      color: var(--accent-primary) !important;
+      font-weight: 600 !important;
     }
 
     /* Range slider custom styling */
@@ -495,43 +800,16 @@ def get_head_and_styles():
       transform: scale(1.18);
     }
 
-    /* Worksheet Paper Styling */
-    .sheet-paper {
-      background-color: var(--card-bg) !important;
-      color: var(--app-text) !important;
-      box-shadow: 0 2px 14px -3px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--card-border) !important;
-      position: relative;
-    }
-
-    .dotted-rule {
-      border-bottom: 1.5px dotted #78716C;
-      min-height: 24px;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 2px;
-      width: 100%;
-    }
-    .dark .dotted-rule {
-      border-bottom-color: #57534E;
-    }
-
     /* Bottom Navigation Active State */
+    .bottom-nav-btn {
+      color: var(--text-muted) !important;
+    }
     .bottom-nav-btn.active {
-      color: var(--app-text);
+      color: var(--app-text) !important;
     }
     .bottom-nav-btn.active .nav-icon-wrapper {
-      background-color: rgba(74, 114, 100, 0.15);
-      color: var(--accent-primary);
-    }
-
-    /* Diary Book Entry Styling */
-    .diary-page-card {
-      background-color: var(--card-bg) !important;
-      border: 1px solid var(--card-border) !important;
-      border-radius: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px -4px rgba(0, 0, 0, 0.03);
-      position: relative;
+      background-color: var(--accent-soft) !important;
+      color: var(--accent-primary) !important;
     }
 
     /* Interactive Notebook Styling */

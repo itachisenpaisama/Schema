@@ -9,7 +9,7 @@ def get_bottom_nav_and_toast():
   <!-- ======================================================== -->
   <!-- NATIVE BOTTOM NAVIGATION BAR (DYNAMIC)                   -->
   <!-- ======================================================== -->
-  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 bg-[#FAF9F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-t border-stone-200/80 dark:border-stone-800/80 flex items-center justify-around px-2 py-1.5 shadow-xs">
+  <nav id="app-bottom-nav" class="no-print fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t flex items-center justify-around px-2 py-1.5 shadow-xs transition-colors duration-200">
     <!-- Populated dynamically via switchAppMode() -->
   </nav>
 
@@ -23,7 +23,7 @@ def get_bottom_nav_and_toast():
   <!-- MODAL: EIGENE OPTION PERMANENT HINZUFÜGEN (+)            -->
   <!-- ======================================================== -->
   <div id="custom-option-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95">
+    <div class="shadcn-card w-full max-w-sm p-4 space-y-3 shadow-2xl rounded-2xl animate-in fade-in zoom-in-95">
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between pb-2 border-b border-stone-100 dark:border-stone-800">
@@ -51,10 +51,10 @@ def get_bottom_nav_and_toast():
 
       <!-- Modal Action Buttons -->
       <div class="flex items-center justify-end gap-2 pt-1 border-t border-stone-100 dark:border-stone-800">
-        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-semibold hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+        <button type="button" onclick="closeCustomOptionModal()" class="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium hover:bg-stone-100 dark:hover:bg-stone-800 transition">
           <span data-i18n="btnCancel">Abbrechen</span>
         </button>
-        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-lg bg-[#4A7264] hover:bg-[#3D5F53] text-white text-xs font-semibold transition shadow-xs">
+        <button type="button" onclick="saveCustomOptionFromModal()" class="px-4 py-1.5 rounded-full btn-primary-theme text-xs font-medium transition shadow-xs">
           <span data-i18n="btnSavePermanent">Dauerhaft speichern</span>
         </button>
       </div>
@@ -66,7 +66,7 @@ def get_bottom_nav_and_toast():
   <!-- MODAL: APP-EINSTELLUNGEN & MODUL-MANAGER (SETTINGS)       -->
   <!-- ======================================================== -->
   <div id="settings-modal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/40 backdrop-blur-xs transition-opacity duration-200">
-    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-[#181715] text-stone-900 dark:text-stone-100 rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
+    <div class="shadcn-card w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl rounded-2xl animate-in fade-in zoom-in-95 overflow-hidden">
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 shrink-0">
@@ -288,7 +288,7 @@ def get_bottom_nav_and_toast():
           <span class="text-emerald-500 font-bold">●</span>
           <span id="settings-footer-privacy" data-i18n="privacyNote">100% lokal & privat auf diesem Gerät</span>
         </span>
-        <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-xs">
+        <button type="button" onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-full btn-primary-theme text-xs font-medium transition shadow-xs">
           <span id="settings-btn-done" data-i18n="settingsDone">Fertig</span>
         </button>
       </div>

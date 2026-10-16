@@ -140,7 +140,7 @@ def get_bottom_nav_and_toast():
               <button type="button" onclick="resetCardOrder()" class="text-[10px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition" data-i18n="cardOrderReset">Standard-Reihenfolge</button>
             </div>
             <p class="text-[11px] text-stone-500 dark:text-stone-400 leading-snug" data-i18n="cardOrderDesc">
-              Verschiebe die Karten mit den Pfeilen nach oben oder unten, um deinen Check-in genau an deine Routine anzupassen.
+              Verschiebe die Karten per Drag & Drop oder mit den Pfeilen, um deinen Check-in genau an deine Routine anzupassen.
             </p>
             <div id="settings-card-order-container" class="space-y-1.5 pt-0.5">
               <!-- Dynamically populated via renderSettingsCardOrderUI() -->
@@ -210,7 +210,13 @@ def get_bottom_nav_and_toast():
               <span class="text-xs font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
                 <span id="label-setting-color-profile" data-i18n="labelSettingColorProfile">Farbprofil (Hintergrund & Text):</span>
               </span>
-              <span id="current-profile-badge" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300">Stoic</span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="resetToDefaultTheme()" class="text-[10px] px-2 py-0.5 rounded-full border border-stone-300 dark:border-stone-700 hover:border-stone-400 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 transition flex items-center gap-1 shadow-2xs" title="Standard-Farben wiederherstellen" data-i18n="btnResetDefaultColors">
+                  <svg class="w-3 h-3 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  <span>Standard</span>
+                </button>
+                <span id="current-profile-badge" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300">Stoic</span>
+              </div>
             </div>
             <p class="text-[11px] text-stone-500 dark:text-stone-400 leading-snug" data-i18n="colorProfileDesc">
               Wähle aus verschiedenen beruhigenden Farbprofilen für Hintergrund, Karten, Text und Nuancen.

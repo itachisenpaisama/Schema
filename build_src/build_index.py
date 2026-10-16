@@ -192,24 +192,25 @@ def get_head_and_styles():
 
     /* ==========================================================
        THEME COLOR PROFILES (16-TOKEN COMPLETE PALETTES)
+       Rich, tangible, unmistakable tones in BOTH Light & Dark mode
        ========================================================== */
     :root, [data-theme-profile="stoic"] {
-      --app-bg: #FAF9F5;
+      --app-bg: #F7F5EE;
       --app-text: #1C1917;
       --text-muted: #78716C;
       --card-bg: #FFFFFF;
-      --card-border: rgba(28, 25, 23, 0.08);
-      --surface-subtle: #F4F1EA;
-      --surface-subtle-hover: #EBE7DE;
-      --border-subtle: rgba(28, 25, 23, 0.06);
-      --input-bg: #F4F1EA;
-      --input-border: rgba(28, 25, 23, 0.12);
-      --accent-primary: #3D6352;
+      --card-border: rgba(28, 25, 23, 0.12);
+      --surface-subtle: #EFECE3;
+      --surface-subtle-hover: #E5E1D5;
+      --border-subtle: rgba(28, 25, 23, 0.08);
+      --input-bg: #F4F1E9;
+      --input-border: rgba(28, 25, 23, 0.16);
+      --accent-primary: #385E4F;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(61, 99, 82, 0.12);
-      --accent-soft-border: rgba(61, 99, 82, 0.28);
-      --badge-bg: #EAE6DD;
-      --badge-text: #3D6352;
+      --accent-soft: rgba(56, 94, 79, 0.14);
+      --accent-soft-border: rgba(56, 94, 79, 0.32);
+      --badge-bg: #E8E4DA;
+      --badge-text: #284739;
     }
     .dark, .dark[data-theme-profile="stoic"], [data-theme-profile="stoic"].dark {
       --app-bg: #121110;
@@ -232,22 +233,22 @@ def get_head_and_styles():
 
     /* 2. Warm Sepia / Vintage Journal */
     [data-theme-profile="sepia"] {
-      --app-bg: #F5EFE6;
+      --app-bg: #EFE4D2;
       --app-text: #2D2015;
-      --text-muted: #826F5E;
-      --card-bg: #FAF6F0;
-      --card-border: rgba(67, 45, 28, 0.1);
-      --surface-subtle: #EDE2D3;
-      --surface-subtle-hover: #E4D6C4;
-      --border-subtle: rgba(67, 45, 28, 0.07);
-      --input-bg: #EDE2D3;
-      --input-border: rgba(67, 45, 28, 0.14);
-      --accent-primary: #92542B;
+      --text-muted: #7A624E;
+      --card-bg: #F8F2E7;
+      --card-border: rgba(110, 72, 40, 0.22);
+      --surface-subtle: #E5D5BF;
+      --surface-subtle-hover: #DAC7AD;
+      --border-subtle: rgba(110, 72, 40, 0.15);
+      --input-bg: #ECE0CE;
+      --input-border: rgba(110, 72, 40, 0.26);
+      --accent-primary: #8C4A1D;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(146, 84, 43, 0.14);
-      --accent-soft-border: rgba(146, 84, 43, 0.3);
-      --badge-bg: #E2D4C3;
-      --badge-text: #844A22;
+      --accent-soft: rgba(140, 74, 29, 0.16);
+      --accent-soft-border: rgba(140, 74, 29, 0.38);
+      --badge-bg: #DFCEB7;
+      --badge-text: #723712;
     }
     .dark[data-theme-profile="sepia"], [data-theme-profile="sepia"].dark {
       --app-bg: #17120E;
@@ -270,22 +271,22 @@ def get_head_and_styles():
 
     /* 3. Forest & Sage */
     [data-theme-profile="sage"] {
-      --app-bg: #EEF4F0;
+      --app-bg: #DCECE1;
       --app-text: #12241A;
-      --text-muted: #5D7566;
-      --card-bg: #F7FAF8;
-      --card-border: rgba(18, 36, 26, 0.1);
-      --surface-subtle: #DFEDE4;
-      --surface-subtle-hover: #D3E4D9;
-      --border-subtle: rgba(18, 36, 26, 0.07);
-      --input-bg: #DFEDE4;
-      --input-border: rgba(18, 36, 26, 0.14);
-      --accent-primary: #2D5F46;
+      --text-muted: #4F6E5A;
+      --card-bg: #ECF5EF;
+      --card-border: rgba(32, 75, 52, 0.22);
+      --surface-subtle: #D0E5D7;
+      --surface-subtle-hover: #C0DCC9;
+      --border-subtle: rgba(32, 75, 52, 0.15);
+      --input-bg: #D9EDE1;
+      --input-border: rgba(32, 75, 52, 0.26);
+      --accent-primary: #225F40;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(45, 95, 70, 0.14);
-      --accent-soft-border: rgba(45, 95, 70, 0.3);
-      --badge-bg: #D3E5DA;
-      --badge-text: #2D5F46;
+      --accent-soft: rgba(34, 95, 64, 0.16);
+      --accent-soft-border: rgba(34, 95, 64, 0.38);
+      --badge-bg: #C6DFCF;
+      --badge-text: #18472E;
     }
     .dark[data-theme-profile="sage"], [data-theme-profile="sage"].dark {
       --app-bg: #0B140F;
@@ -308,22 +309,22 @@ def get_head_and_styles():
 
     /* 4. Nordic Slate */
     [data-theme-profile="nordic"] {
-      --app-bg: #EDF2F7;
-      --app-text: #121E2C;
-      --text-muted: #5D748A;
-      --card-bg: #F7FAFC;
-      --card-border: rgba(18, 30, 44, 0.1);
-      --surface-subtle: #DFE7F0;
-      --surface-subtle-hover: #D2DEEB;
-      --border-subtle: rgba(18, 30, 44, 0.07);
-      --input-bg: #DFE7F0;
-      --input-border: rgba(18, 30, 44, 0.14);
-      --accent-primary: #2B5880;
+      --app-bg: #D9E6F2;
+      --app-text: #101E2E;
+      --text-muted: #4E6B88;
+      --card-bg: #EAF2F9;
+      --card-border: rgba(28, 68, 102, 0.22);
+      --surface-subtle: #CDDFEF;
+      --surface-subtle-hover: #BDD2E6;
+      --border-subtle: rgba(28, 68, 102, 0.15);
+      --input-bg: #D6E5F3;
+      --input-border: rgba(28, 68, 102, 0.26);
+      --accent-primary: #1D5584;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(43, 88, 128, 0.14);
-      --accent-soft-border: rgba(43, 88, 128, 0.3);
-      --badge-bg: #D2DFEC;
-      --badge-text: #2B5880;
+      --accent-soft: rgba(29, 85, 132, 0.16);
+      --accent-soft-border: rgba(29, 85, 132, 0.38);
+      --badge-bg: #C3D9EC;
+      --badge-text: #133E62;
     }
     .dark[data-theme-profile="nordic"], [data-theme-profile="nordic"].dark {
       --app-bg: #0A1118;
@@ -346,22 +347,22 @@ def get_head_and_styles():
 
     /* 5. Terracotta & Sand */
     [data-theme-profile="terracotta"] {
-      --app-bg: #F8EFE9;
+      --app-bg: #F3DFD2;
       --app-text: #2C180E;
-      --text-muted: #826353;
-      --card-bg: #FCF7F3;
-      --card-border: rgba(66, 32, 16, 0.1);
-      --surface-subtle: #EDE0D5;
-      --surface-subtle-hover: #E3D1C3;
-      --border-subtle: rgba(66, 32, 16, 0.07);
-      --input-bg: #EDE0D5;
-      --input-border: rgba(66, 32, 16, 0.14);
-      --accent-primary: #9E431E;
+      --text-muted: #7F5844;
+      --card-bg: #FBEEE5;
+      --card-border: rgba(130, 52, 22, 0.22);
+      --surface-subtle: #E8CEBD;
+      --surface-subtle-hover: #DDBFA9;
+      --border-subtle: rgba(130, 52, 22, 0.15);
+      --input-bg: #EFD5C5;
+      --input-border: rgba(130, 52, 22, 0.26);
+      --accent-primary: #A4421B;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(158, 67, 30, 0.14);
-      --accent-soft-border: rgba(158, 67, 30, 0.3);
-      --badge-bg: #E2CEBF;
-      --badge-text: #9E431E;
+      --accent-soft: rgba(164, 66, 27, 0.16);
+      --accent-soft-border: rgba(164, 66, 27, 0.38);
+      --badge-bg: #E2C3AF;
+      --badge-text: #823110;
     }
     .dark[data-theme-profile="terracotta"], [data-theme-profile="terracotta"].dark {
       --app-bg: #170D07;
@@ -384,22 +385,22 @@ def get_head_and_styles():
 
     /* 6. Lavender Dusk */
     [data-theme-profile="lavender"] {
-      --app-bg: #F4EEF7;
-      --app-text: #221430;
-      --text-muted: #735687;
-      --card-bg: #FAF5FC;
-      --card-border: rgba(45, 20, 68, 0.1);
-      --surface-subtle: #E9DCF0;
-      --surface-subtle-hover: #DFCBEA;
-      --border-subtle: rgba(45, 20, 68, 0.07);
-      --input-bg: #E9DCF0;
-      --input-border: rgba(45, 20, 68, 0.14);
-      --accent-primary: #643888;
+      --app-bg: #E8DBF4;
+      --app-text: #241334;
+      --text-muted: #6C4C82;
+      --card-bg: #F5ECFC;
+      --card-border: rgba(88, 38, 122, 0.22);
+      --surface-subtle: #DCC8F0;
+      --surface-subtle-hover: #CEB5E6;
+      --border-subtle: rgba(88, 38, 122, 0.15);
+      --input-bg: #E4D3F4;
+      --input-border: rgba(88, 38, 122, 0.26);
+      --accent-primary: #692E96;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(100, 56, 136, 0.14);
-      --accent-soft-border: rgba(100, 56, 136, 0.3);
-      --badge-bg: #DFCBEA;
-      --badge-text: #643888;
+      --accent-soft: rgba(105, 46, 150, 0.16);
+      --accent-soft-border: rgba(105, 46, 150, 0.38);
+      --badge-bg: #D5BCEE;
+      --badge-text: #4E1F72;
     }
     .dark[data-theme-profile="lavender"], [data-theme-profile="lavender"].dark {
       --app-bg: #110817;
@@ -422,22 +423,22 @@ def get_head_and_styles():
 
     /* 7. Matcha & Cream */
     [data-theme-profile="matcha"] {
-      --app-bg: #F1F5EB;
-      --app-text: #192510;
-      --text-muted: #60734E;
-      --card-bg: #F8FAF3;
-      --card-border: rgba(25, 37, 16, 0.1);
-      --surface-subtle: #E1E9D5;
-      --surface-subtle-hover: #D5DFC7;
-      --border-subtle: rgba(25, 37, 16, 0.07);
-      --input-bg: #E1E9D5;
-      --input-border: rgba(25, 37, 16, 0.14);
-      --accent-primary: #466624;
+      --app-bg: #DFEBCE;
+      --app-text: #1A2810;
+      --text-muted: #556E42;
+      --card-bg: #EEF6E3;
+      --card-border: rgba(58, 92, 26, 0.22);
+      --surface-subtle: #D2E4BD;
+      --surface-subtle-hover: #C2DAA8;
+      --border-subtle: rgba(58, 92, 26, 0.15);
+      --input-bg: #DBE9C9;
+      --input-border: rgba(58, 92, 26, 0.26);
+      --accent-primary: #447120;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(70, 102, 36, 0.14);
-      --accent-soft-border: rgba(70, 102, 36, 0.3);
-      --badge-bg: #D5DFC7;
-      --badge-text: #466624;
+      --accent-soft: rgba(68, 113, 32, 0.16);
+      --accent-soft-border: rgba(68, 113, 32, 0.38);
+      --badge-bg: #C7DEAE;
+      --badge-text: #2F5213;
     }
     .dark[data-theme-profile="matcha"], [data-theme-profile="matcha"].dark {
       --app-bg: #0D1407;
@@ -460,22 +461,22 @@ def get_head_and_styles():
 
     /* 8. Rose Quartz */
     [data-theme-profile="rose"] {
-      --app-bg: #F7EFF1;
-      --app-text: #2C141D;
-      --text-muted: #825766;
-      --card-bg: #FAF5F6;
-      --card-border: rgba(58, 20, 34, 0.1);
-      --surface-subtle: #EEDEE2;
-      --surface-subtle-hover: #E3CDD3;
-      --border-subtle: rgba(58, 20, 34, 0.07);
-      --input-bg: #EEDEE2;
-      --input-border: rgba(58, 20, 34, 0.14);
-      --accent-primary: #8E334D;
+      --app-bg: #F5D6DE;
+      --app-text: #2D141E;
+      --text-muted: #7E4B5C;
+      --card-bg: #FCE8ED;
+      --card-border: rgba(135, 42, 68, 0.22);
+      --surface-subtle: #EBC2CD;
+      --surface-subtle-hover: #DEAFBC;
+      --border-subtle: rgba(135, 42, 68, 0.15);
+      --input-bg: #F2CDD6;
+      --input-border: rgba(135, 42, 68, 0.26);
+      --accent-primary: #9E2D4D;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(142, 51, 77, 0.14);
-      --accent-soft-border: rgba(142, 51, 77, 0.3);
-      --badge-bg: #E3CDD3;
-      --badge-text: #8E334D;
+      --accent-soft: rgba(158, 45, 77, 0.16);
+      --accent-soft-border: rgba(158, 45, 77, 0.38);
+      --badge-bg: #E3B6C2;
+      --badge-text: #7D1E38;
     }
     .dark[data-theme-profile="rose"], [data-theme-profile="rose"].dark {
       --app-bg: #16080E;
@@ -498,22 +499,22 @@ def get_head_and_styles():
 
     /* 9. OLED Obsidian (Pure Black) */
     [data-theme-profile="obsidian"] {
-      --app-bg: #F4F5F7;
+      --app-bg: #E2E6EE;
       --app-text: #09090B;
-      --text-muted: #52525B;
-      --card-bg: #FFFFFF;
-      --card-border: rgba(0, 0, 0, 0.12);
-      --surface-subtle: #E9ECEF;
-      --surface-subtle-hover: #DFE2E6;
-      --border-subtle: rgba(0, 0, 0, 0.08);
-      --input-bg: #E9ECEF;
-      --input-border: rgba(0, 0, 0, 0.16);
-      --accent-primary: #09090B;
+      --text-muted: #4B5262;
+      --card-bg: #F1F4F9;
+      --card-border: rgba(15, 23, 42, 0.25);
+      --surface-subtle: #D4DCE8;
+      --surface-subtle-hover: #C3CDDC;
+      --border-subtle: rgba(15, 23, 42, 0.18);
+      --input-bg: #DCE3EF;
+      --input-border: rgba(15, 23, 42, 0.3);
+      --accent-primary: #0F172A;
       --accent-text: #FFFFFF;
-      --accent-soft: rgba(9, 9, 11, 0.12);
-      --accent-soft-border: rgba(9, 9, 11, 0.25);
-      --badge-bg: #E2E5E9;
-      --badge-text: #09090B;
+      --accent-soft: rgba(15, 23, 42, 0.16);
+      --accent-soft-border: rgba(15, 23, 42, 0.38);
+      --badge-bg: #CBD4E2;
+      --badge-text: #0F172A;
     }
     .dark[data-theme-profile="obsidian"], [data-theme-profile="obsidian"].dark {
       --app-bg: #000000;
@@ -536,21 +537,21 @@ def get_head_and_styles():
 
     /* 10. E-Ink Pure Paper (Monochrome High Contrast) */
     [data-theme-profile="eink"] {
-      --app-bg: #FFFFFF;
+      --app-bg: #ECECEC;
       --app-text: #000000;
-      --text-muted: #404040;
+      --text-muted: #333333;
       --card-bg: #FFFFFF;
-      --card-border: #111111;
-      --surface-subtle: #F2F2F2;
-      --surface-subtle-hover: #E5E5E5;
-      --border-subtle: #D0D0D0;
-      --input-bg: #F5F5F5;
-      --input-border: #222222;
+      --card-border: #000000;
+      --surface-subtle: #E0E0E0;
+      --surface-subtle-hover: #D0D0D0;
+      --border-subtle: #888888;
+      --input-bg: #FFFFFF;
+      --input-border: #000000;
       --accent-primary: #000000;
       --accent-text: #FFFFFF;
-      --accent-soft: #E2E2E2;
-      --accent-soft-border: #777777;
-      --badge-bg: #E8E8E8;
+      --accent-soft: #D4D4D4;
+      --accent-soft-border: #555555;
+      --badge-bg: #DDDDDD;
       --badge-text: #000000;
     }
     .dark[data-theme-profile="eink"], [data-theme-profile="eink"].dark {
@@ -617,11 +618,47 @@ def get_head_and_styles():
     #diary-customization-hint,
     #settings-tab-modules > .p-3,
     #settings-tab-general > .p-3,
-    #custom-option-modal .shadcn-card,
+    #settings-tab-appearance > .p-3,
+    .settings-panel-row,
+    #settings-card-order-container > div,
+    #custom-option-modal .shadcn-card {
+      background-color: var(--surface-subtle) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--app-text) !important;
+    }
+
     #settings-modal .shadcn-card {
       background-color: var(--card-bg) !important;
       border-color: var(--card-border) !important;
       color: var(--app-text) !important;
+    }
+
+    /* ==========================================================
+       DRAG AND DROP REORDERING STYLES
+       ========================================================== */
+    .diary-card-drag-handle,
+    .settings-drag-handle {
+      touch-action: none;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: grab;
+    }
+    .diary-card-drag-handle:active,
+    .settings-drag-handle:active {
+      cursor: grabbing;
+    }
+    .is-dragging {
+      opacity: 0.55 !important;
+      transform: scale(0.99) !important;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25) !important;
+      border: 2px dashed var(--accent-primary) !important;
+      transition: none !important;
+    }
+    .drop-target-above {
+      border-top: 3px solid var(--accent-primary) !important;
+    }
+    .drop-target-below {
+      border-bottom: 3px solid var(--accent-primary) !important;
     }
 
     /* Form Controls: Inputs, Textareas, Selects */

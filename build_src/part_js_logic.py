@@ -135,7 +135,10 @@ def get_javascript_code():
         presetMindfulness: 'Achtsamkeit',
         cardOrderTitle: 'Karten-Reihenfolge & Hauptbereiche:',
         cardOrderReset: 'Standard-Reihenfolge',
-        cardOrderDesc: 'Verschiebe die Karten mit den Pfeilen nach oben oder unten, um deinen Check-in genau an deine Routine anzupassen.',
+        cardOrderDesc: 'Verschiebe die Karten per Drag & Drop oder mit den Pfeilen, um deinen Check-in genau an deine Routine anzupassen.',
+        btnResetDefaultColors: 'Standard',
+        toastDefaultColorsRestored: 'Standardfarben wiederhergestellt',
+        toastOrderUpdated: 'Reihenfolge aktualisiert',
         subFeaturesTitle: 'Detail-Optionen pro Bereich:',
         navModuleSettings: 'Module',
         diaryHintTitle: 'Dein Check-in, deine Regeln',
@@ -484,7 +487,10 @@ def get_javascript_code():
         presetMindfulness: 'Mindfulness',
         cardOrderTitle: 'Card Order & Main Sections:',
         cardOrderReset: 'Default Order',
-        cardOrderDesc: 'Move cards up or down with the arrows to match your daily routine.',
+        cardOrderDesc: 'Drag and drop cards or use the arrows to arrange your check-in exactly how you want.',
+        btnResetDefaultColors: 'Default',
+        toastDefaultColorsRestored: 'Default colors restored',
+        toastOrderUpdated: 'Order updated',
         subFeaturesTitle: 'Detailed options per section:',
         navModuleSettings: 'Modules',
         diaryHintTitle: 'Your check-in, your rules',
@@ -981,6 +987,7 @@ def get_javascript_code():
       renderSchemaCustomChips();
       updateCardSummaryBadges();
       applyDiaryFeatureVisibility();
+      initDiaryDragAndDrop();
       
       // Determine startup mode & view based on user settings
       let targetMode = 'schema';
@@ -1083,19 +1090,24 @@ def get_javascript_code():
     // COLOR PROFILES SYSTEM (10 CALM PALETTES)
     // ==========================================
     const COLOR_PROFILES = [
-      { id: 'stoic', name_de: 'Stoic Naturpapier', name_en: 'Stoic Parchment', desc_de: 'Warmes Papier & tiefes Anthrazit (Standard)', desc_en: 'Warm natural paper & deep ink (Default)', lightBg: '#FAF9F5', darkBg: '#121110', text: '#1C1917', accent: '#4A7264' },
-      { id: 'sepia', name_de: 'Warm Sepia', name_en: 'Warm Sepia', desc_de: 'Vintage Notizbuch & warmer Kaffee', desc_en: 'Vintage journal & warm roasted coffee', lightBg: '#F5EFE6', darkBg: '#1A1410', text: '#2A1F18', accent: '#965B32' },
-      { id: 'sage', name_de: 'Wald & Salbei', name_en: 'Forest & Sage', desc_de: 'Beruhigende Kräuter- & Waldgrün-Nuancen', desc_en: 'Calming herbal & evergreen tones', lightBg: '#EFF4F1', darkBg: '#0E1612', text: '#16241C', accent: '#33614C' },
-      { id: 'nordic', name_de: 'Nordisch Schiefer', name_en: 'Nordic Slate', desc_de: 'Kühle, klare arktische Schiefertöne', desc_en: 'Cool, focused arctic slate', lightBg: '#EEF2F6', darkBg: '#0D131A', text: '#16202B', accent: '#325B7E' },
-      { id: 'terracotta', name_de: 'Terrakotta & Sand', name_en: 'Terracotta & Sand', desc_de: 'Warme Wüstenerde & sanfter Ton', desc_en: 'Warm desert clay & soft sand', lightBg: '#F8F2EC', darkBg: '#19110B', text: '#2D1E16', accent: '#A8512C' },
-      { id: 'lavender', name_de: 'Lavendel Dämmerung', name_en: 'Lavender Dusk', desc_de: 'Sanftes Abendlicht & Iris zur Entlastung', desc_en: 'Gentle twilight iris & evening violet', lightBg: '#F4F1F7', darkBg: '#130E19', text: '#22192A', accent: '#634785' },
-      { id: 'matcha', name_de: 'Matcha & Creme', name_en: 'Matcha & Cream', desc_de: 'Sanfte organische Grün- und Vanilletöne', desc_en: 'Organic matcha green & warm cream', lightBg: '#F2F5EC', darkBg: '#10150C', text: '#1E2517', accent: '#4A662C' },
-      { id: 'rose', name_de: 'Rosenquarz & Puder', name_en: 'Rose Quartz', desc_de: 'Milder Rosenholz-Ton für warmes Wohlbefinden', desc_en: 'Warm rosewood & soft blush', lightBg: '#F7F1F2', darkBg: '#180D11', text: '#2A191E', accent: '#8E3E53' },
-      { id: 'obsidian', name_de: 'OLED Tiefschwarz', name_en: 'OLED Obsidian', desc_de: 'Reines Schwarz für maximale Akku-Schonung', desc_en: 'True pitch black for deep focus & battery saver', lightBg: '#F6F7F9', darkBg: '#000000', text: '#050505', accent: '#171717' },
-      { id: 'eink', name_de: 'E-Ink Reines Papier', name_en: 'E-Ink Pure Paper', desc_de: 'Monochromer Maximal-Kontrast ohne Ablenkung', desc_en: 'Monochrome maximum contrast & razor sharp', lightBg: '#FFFFFF', darkBg: '#080808', text: '#000000', accent: '#000000' }
+      { id: 'stoic', name_de: 'Standard (Neutral)', name_en: 'Default (Neutral)', desc_de: 'Klassisches Naturpapier & dezentes Schiefer (Standard)', desc_en: 'Classic natural paper & subtle slate (Default)', lightBg: '#FAF8F3', darkBg: '#121110', text: '#1C1917', accent: '#385E4F' },
+      { id: 'sepia', name_de: 'Warm Sepia', name_en: 'Warm Sepia', desc_de: 'Vintage Notizbuch & warmer Kaffee', desc_en: 'Vintage journal & warm roasted coffee', lightBg: '#EFE4D2', darkBg: '#17120E', text: '#2D2015', accent: '#8C4A1D' },
+      { id: 'sage', name_de: 'Wald & Salbei', name_en: 'Forest & Sage', desc_de: 'Beruhigende Kräuter- & Waldgrün-Nuancen', desc_en: 'Calming herbal & evergreen tones', lightBg: '#DCECE1', darkBg: '#0B140F', text: '#12241A', accent: '#225F40' },
+      { id: 'nordic', name_de: 'Nordisch Schiefer', name_en: 'Nordic Slate', desc_de: 'Kühle, klare arktische Schiefertöne', desc_en: 'Cool, focused arctic slate', lightBg: '#D9E6F2', darkBg: '#0A1118', text: '#101E2E', accent: '#1D5584' },
+      { id: 'terracotta', name_de: 'Terrakotta & Sand', name_en: 'Terracotta & Sand', desc_de: 'Warme Wüstenerde & sanfter Ton', desc_en: 'Warm desert clay & soft sand', lightBg: '#F3DFD2', darkBg: '#170D07', text: '#2C180E', accent: '#A4421B' },
+      { id: 'lavender', name_de: 'Lavendel Dämmerung', name_en: 'Lavender Dusk', desc_de: 'Sanftes Abendlicht & Iris zur Entlastung', desc_en: 'Gentle twilight iris & evening violet', lightBg: '#E8DBF4', darkBg: '#110817', text: '#241334', accent: '#692E96' },
+      { id: 'matcha', name_de: 'Matcha & Creme', name_en: 'Matcha & Cream', desc_de: 'Sanfte organische Grün- und Vanilletöne', desc_en: 'Organic matcha green & warm cream', lightBg: '#DFEBCE', darkBg: '#0D1407', text: '#1A2810', accent: '#447120' },
+      { id: 'rose', name_de: 'Rosenquarz & Puder', name_en: 'Rose Quartz', desc_de: 'Milder Rosenholz-Ton für warmes Wohlbefinden', desc_en: 'Warm rosewood & soft blush', lightBg: '#F5D6DE', darkBg: '#16080E', text: '#2D141E', accent: '#9E2D4D' },
+      { id: 'obsidian', name_de: 'OLED Tiefschwarz', name_en: 'OLED Obsidian', desc_de: 'Reines Schwarz für maximale Akku-Schonung', desc_en: 'True pitch black for deep focus & battery saver', lightBg: '#E2E6EE', darkBg: '#000000', text: '#09090B', accent: '#0F172A' },
+      { id: 'eink', name_de: 'E-Ink Reines Papier', name_en: 'E-Ink Pure Paper', desc_de: 'Monochromer Maximal-Kontrast ohne Ablenkung', desc_en: 'Monochrome maximum contrast & razor sharp', lightBg: '#ECECEC', darkBg: '#080808', text: '#000000', accent: '#000000' }
     ];
 
+    function resetToDefaultTheme() {
+      setColorProfile('stoic', true);
+    }
+
     function setColorProfile(profileId, showToastNotification = true) {
+      if (profileId === 'default') profileId = 'stoic';
       if (!COLOR_PROFILES.some(p => p.id === profileId)) profileId = 'stoic';
       appSettings.colorProfile = profileId;
       saveAppSettings();
@@ -1768,20 +1780,25 @@ def get_javascript_code():
         const isLast = index === order.length - 1;
 
         html += `
-          <div class="flex items-center justify-between p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-2xs gap-2">
-            <div class="flex items-center gap-2 min-w-0">
-              <!-- Reorder Buttons -->
-              <div class="flex flex-col gap-0.5 shrink-0">
-                <button type="button" onclick="moveCardOrder('${cardKey}', 'up')" ${isFirst ? 'disabled' : ''} class="w-6 h-5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[10px] text-stone-600 dark:text-stone-300 ${isFirst ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach oben' : 'Move up'}">
-                  ▲
-                </button>
-                <button type="button" onclick="moveCardOrder('${cardKey}', 'down')" ${isLast ? 'disabled' : ''} class="w-6 h-5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[10px] text-stone-600 dark:text-stone-300 ${isLast ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach unten' : 'Move down'}">
-                  ▼
-                </button>
+          <div data-card-key="${cardKey}" class="settings-card-order-item flex items-center justify-between p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-2xs gap-2 transition-all">
+            <div class="flex items-center gap-2 min-w-0 flex-1">
+              <!-- Reorder Buttons & Drag Handle -->
+              <div class="flex items-center gap-1 shrink-0">
+                <span class="settings-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none" title="${isDe ? 'Ziehen zum Umsortieren' : 'Drag to reorder'}">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+                </span>
+                <div class="flex flex-col gap-0.5 shrink-0">
+                  <button type="button" onclick="moveCardOrder('${cardKey}', 'up')" ${isFirst ? 'disabled' : ''} class="w-5 h-4.5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[9px] text-stone-600 dark:text-stone-300 ${isFirst ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach oben' : 'Move up'}">
+                    ▲
+                  </button>
+                  <button type="button" onclick="moveCardOrder('${cardKey}', 'down')" ${isLast ? 'disabled' : ''} class="w-5 h-4.5 rounded border border-stone-200 dark:border-stone-700 flex items-center justify-center text-[9px] text-stone-600 dark:text-stone-300 ${isLast ? 'opacity-25 cursor-not-allowed' : 'hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer'} transition" title="${isDe ? 'Nach unten' : 'Move down'}">
+                    ▼
+                  </button>
+                </div>
               </div>
 
               <!-- Card Title & Status Badge -->
-              <div class="min-w-0">
+              <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-1.5">
                   <span class="w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-bold text-stone-700 dark:text-stone-300 flex items-center justify-center shrink-0">
                     ${index + 1}
@@ -1797,13 +1814,242 @@ def get_javascript_code():
             <!-- Master Card Toggle -->
             <div class="relative inline-flex items-center shrink-0">
               <input type="checkbox" onchange="toggleEntireCard('${cardKey}', this.checked)" ${isCardActive ? 'checked' : ''} class="sr-only peer">
-              <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#4A7264]"></div>
+              <div class="w-9 h-5 bg-stone-300 dark:bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[var(--accent-primary)]"></div>
             </div>
           </div>
         `;
       });
 
       container.innerHTML = html;
+      setupDragAndDropForContainer(container, '.settings-card-order-item', '.settings-drag-handle', finalizeCardOrderFromSettingsDom);
+    }
+
+    // ==========================================
+    // REUSABLE DRAG & DROP ENGINE (MOUSE & TOUCH)
+    // ==========================================
+    function setupDragAndDropForContainer(container, itemSelector, handleSelector, onReorderCallback) {
+      if (!container) return;
+
+      let draggedItem = null;
+
+      // Mouse Handle Draggable Activation (Delegated)
+      container.addEventListener('mouseover', (e) => {
+        const handle = e.target.closest(handleSelector);
+        if (handle) {
+          const item = handle.closest(itemSelector);
+          if (item) item.setAttribute('draggable', 'true');
+        }
+      });
+      container.addEventListener('mouseout', (e) => {
+        const handle = e.target.closest(handleSelector);
+        if (handle) {
+          const item = handle.closest(itemSelector);
+          if (item && !item.classList.contains('is-dragging')) {
+            item.removeAttribute('draggable');
+          }
+        }
+      });
+
+      // Desktop Mouse Drag Events
+      const onDragStart = (e) => {
+        const item = e.target.closest(itemSelector);
+        if (!item) return;
+        draggedItem = item;
+        item.classList.add('is-dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', item.getAttribute('data-card-key') || '');
+        }
+      };
+
+      const onDragOver = (e) => {
+        e.preventDefault();
+        if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+        if (!draggedItem) return;
+
+        const targetItem = e.target.closest(itemSelector);
+        if (!targetItem || targetItem === draggedItem || targetItem.parentElement !== container) return;
+
+        const rect = targetItem.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        if (e.clientY < midY) {
+          targetItem.classList.add('drop-target-above');
+          targetItem.classList.remove('drop-target-below');
+        } else {
+          targetItem.classList.add('drop-target-below');
+          targetItem.classList.remove('drop-target-above');
+        }
+      };
+
+      const onDragLeave = (e) => {
+        const targetItem = e.target.closest(itemSelector);
+        if (targetItem && !targetItem.contains(e.relatedTarget)) {
+          targetItem.classList.remove('drop-target-above', 'drop-target-below');
+        }
+      };
+
+      const onDrop = (e) => {
+        e.preventDefault();
+        if (!draggedItem) return;
+
+        const targetItem = e.target.closest(itemSelector);
+        if (targetItem && targetItem !== draggedItem && targetItem.parentElement === container) {
+          const rect = targetItem.getBoundingClientRect();
+          const midY = rect.top + rect.height / 2;
+          if (e.clientY < midY) {
+            container.insertBefore(draggedItem, targetItem);
+          } else {
+            container.insertBefore(draggedItem, targetItem.nextSibling);
+          }
+        }
+
+        container.querySelectorAll(itemSelector).forEach(c => {
+          c.classList.remove('drop-target-above', 'drop-target-below');
+          c.removeAttribute('draggable');
+        });
+
+        if (typeof onReorderCallback === 'function') {
+          onReorderCallback();
+        }
+      };
+
+      const onDragEnd = () => {
+        if (draggedItem) {
+          draggedItem.classList.remove('is-dragging');
+          draggedItem = null;
+        }
+        container.querySelectorAll(itemSelector).forEach(c => {
+          c.classList.remove('drop-target-above', 'drop-target-below');
+          c.removeAttribute('draggable');
+        });
+      };
+
+      if (container._dndMouseCleanups) {
+        container._dndMouseCleanups();
+      }
+
+      container.addEventListener('dragstart', onDragStart);
+      container.addEventListener('dragover', onDragOver);
+      container.addEventListener('dragleave', onDragLeave);
+      container.addEventListener('drop', onDrop);
+      container.addEventListener('dragend', onDragEnd);
+
+      container._dndMouseCleanups = () => {
+        container.removeEventListener('dragstart', onDragStart);
+        container.removeEventListener('dragover', onDragOver);
+        container.removeEventListener('dragleave', onDragLeave);
+        container.removeEventListener('drop', onDrop);
+        container.removeEventListener('dragend', onDragEnd);
+      };
+
+      // Touch Events (Smartphones & Tablets)
+      let touchDraggedItem = null;
+      let touchMoved = false;
+
+      const onTouchStart = (e) => {
+        const handle = e.target.closest(handleSelector);
+        if (!handle) return;
+        const item = handle.closest(itemSelector);
+        if (!item || item.parentElement !== container) return;
+        touchDraggedItem = item;
+        touchMoved = false;
+        item.classList.add('is-dragging');
+        if (navigator.vibrate) navigator.vibrate(25);
+      };
+
+      const onTouchMove = (e) => {
+        if (!touchDraggedItem) return;
+        const touch = e.touches[0];
+        if (!touch) return;
+        touchMoved = true;
+        e.preventDefault();
+
+        const elemUnder = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (!elemUnder) return;
+        const targetItem = elemUnder.closest(itemSelector);
+        if (targetItem && targetItem !== touchDraggedItem && targetItem.parentElement === container) {
+          const rect = targetItem.getBoundingClientRect();
+          const midY = rect.top + rect.height / 2;
+          if (touch.clientY < midY) {
+            container.insertBefore(touchDraggedItem, targetItem);
+          } else {
+            container.insertBefore(touchDraggedItem, targetItem.nextSibling);
+          }
+        }
+      };
+
+      const onTouchEnd = () => {
+        if (touchDraggedItem) {
+          touchDraggedItem.classList.remove('is-dragging');
+          touchDraggedItem = null;
+          if (touchMoved && typeof onReorderCallback === 'function') {
+            onReorderCallback();
+          }
+          touchMoved = false;
+        }
+      };
+
+      if (container._dndTouchCleanups) {
+        container._dndTouchCleanups();
+      }
+
+      container.addEventListener('touchstart', onTouchStart, { passive: true });
+      container.addEventListener('touchmove', onTouchMove, { passive: false });
+      container.addEventListener('touchend', onTouchEnd, { passive: true });
+      container.addEventListener('touchcancel', onTouchEnd, { passive: true });
+
+      container._dndTouchCleanups = () => {
+        container.removeEventListener('touchstart', onTouchStart);
+        container.removeEventListener('touchmove', onTouchMove);
+        container.removeEventListener('touchend', onTouchEnd);
+        container.removeEventListener('touchcancel', onTouchEnd);
+      };
+    }
+
+    function finalizeCardOrderFromDom() {
+      const container = document.getElementById('diary-cards-container');
+      if (!container) return;
+      const newOrder = [];
+      Array.from(container.children).forEach(child => {
+        const key = child.getAttribute('data-card-key');
+        if (key && !newOrder.includes(key)) newOrder.push(key);
+      });
+      const currentKeys = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      currentKeys.forEach(k => { if (!newOrder.includes(k)) newOrder.push(k); });
+
+      appSettings.cardOrder = newOrder;
+      saveAppSettings();
+      applyDiaryCardOrder();
+      updateCardHeadersNumbering();
+      renderSettingsCardOrderUI();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Reihenfolge aktualisiert' : 'Card order updated');
+    }
+
+    function finalizeCardOrderFromSettingsDom() {
+      const container = document.getElementById('settings-card-order-container');
+      if (!container) return;
+      const newOrder = [];
+      Array.from(container.children).forEach(child => {
+        const key = child.getAttribute('data-card-key');
+        if (key && !newOrder.includes(key)) newOrder.push(key);
+      });
+      const currentKeys = appSettings.cardOrder || ['mood', 'meds', 'vital', 'adhs', 'mind'];
+      currentKeys.forEach(k => { if (!newOrder.includes(k)) newOrder.push(k); });
+
+      appSettings.cardOrder = newOrder;
+      saveAppSettings();
+      applyDiaryCardOrder();
+      updateCardHeadersNumbering();
+      renderSettingsCardOrderUI();
+      const isDe = (appSettings.language || 'de') === 'de';
+      showToast(isDe ? 'Reihenfolge aktualisiert' : 'Card order updated');
+    }
+
+    function initDiaryDragAndDrop() {
+      const container = document.getElementById('diary-cards-container');
+      if (!container) return;
+      setupDragAndDropForContainer(container, '.checkin-card', '.diary-card-drag-handle', finalizeCardOrderFromDom);
     }
 
     function renderSettingsFeatureToggles() {
@@ -4989,7 +5235,7 @@ def get_javascript_code():
     // PWA Service Worker Registration
     function registerServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js?v=27').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=28').then((reg) => {
           reg.update().catch(() => {});
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;

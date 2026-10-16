@@ -101,16 +101,21 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 1: GEMÜT, ENERGIE & GEFÜHLE                          -->
       <!-- ======================================================== -->
-      <section id="card-diary-mood" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mood" data-card-key="mood" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
-        <div onclick="toggleDiaryCard('mood')" class="flex items-center justify-between cursor-pointer select-none">
-          <div class="flex items-center gap-2">
-            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard1Title">
-              1. Gemüt, Energie & Gefühle
-            </h3>
+        <div class="flex items-center justify-between select-none">
+          <div class="flex items-center gap-1.5 flex-1 min-w-0">
+            <span class="diary-card-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none shrink-0" title="Bereich verschieben (Drag & Drop)" aria-label="Drag to reorder">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+            </span>
+            <div class="flex-1 cursor-pointer min-w-0" onclick="toggleDiaryCard('mood')">
+              <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCard1Title">
+                1. Gemüt, Energie & Gefühle
+              </h3>
+            </div>
           </div>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 cursor-pointer shrink-0" onclick="toggleDiaryCard('mood')">
             <span id="badge-summary-mood" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               8/10 · Gut
             </span>
@@ -218,16 +223,21 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 2: MEDIKATION, WIRKUNG & REBOUND                     -->
       <!-- ======================================================== -->
-      <section id="card-diary-meds" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-meds" data-card-key="meds" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
-        <div onclick="toggleDiaryCard('meds')" class="flex items-center justify-between cursor-pointer select-none">
-          <div class="flex items-center gap-2">
-            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard2Title">
-              2. Medikation & Wirkung
-            </h3>
+        <div class="flex items-center justify-between select-none">
+          <div class="flex items-center gap-1.5 flex-1 min-w-0">
+            <span class="diary-card-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none shrink-0" title="Bereich verschieben (Drag & Drop)" aria-label="Drag to reorder">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+            </span>
+            <div class="flex-1 cursor-pointer min-w-0" onclick="toggleDiaryCard('meds')">
+              <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCard2Title">
+                2. Medikation & Wirkung
+              </h3>
+            </div>
           </div>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 cursor-pointer shrink-0" onclick="toggleDiaryCard('meds')">
             <span id="badge-summary-meds" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 erfasst
             </span>
@@ -325,16 +335,21 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 3: VITAL-HUB: ESSEN, TRINKEN & SCHLAF                 -->
       <!-- ======================================================== -->
-      <section id="card-diary-vital" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-vital" data-card-key="vital" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
-        <div onclick="toggleDiaryCard('vital')" class="flex items-center justify-between cursor-pointer select-none">
-          <div class="flex items-center gap-2">
-            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard3Title">
-              3. Vital-Hub: Mahlzeiten, Trinken & Schlaf
-            </h3>
+        <div class="flex items-center justify-between select-none">
+          <div class="flex items-center gap-1.5 flex-1 min-w-0">
+            <span class="diary-card-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none shrink-0" title="Bereich verschieben (Drag & Drop)" aria-label="Drag to reorder">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+            </span>
+            <div class="flex-1 cursor-pointer min-w-0" onclick="toggleDiaryCard('vital')">
+              <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCard3Title">
+                3. Vital-Hub: Mahlzeiten, Trinken & Schlaf
+              </h3>
+            </div>
           </div>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 cursor-pointer shrink-0" onclick="toggleDiaryCard('vital')">
             <span id="badge-summary-vital" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 ml · 7.5h
             </span>
@@ -577,16 +592,21 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 4: NEURO & BODY: ADHS, FOKUS & SCHRITTE              -->
       <!-- ======================================================== -->
-      <section id="card-diary-adhs" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-adhs" data-card-key="adhs" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
-        <div onclick="toggleDiaryCard('adhs')" class="flex items-center justify-between cursor-pointer select-none">
-          <div class="flex items-center gap-2">
-            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard4Title">
-              4. Neuro & Body: ADHS, Fokus & Schritte
-            </h3>
+        <div class="flex items-center justify-between select-none">
+          <div class="flex items-center gap-1.5 flex-1 min-w-0">
+            <span class="diary-card-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none shrink-0" title="Bereich verschieben (Drag & Drop)" aria-label="Drag to reorder">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+            </span>
+            <div class="flex-1 cursor-pointer min-w-0" onclick="toggleDiaryCard('adhs')">
+              <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCard4Title">
+                4. Neuro & Body: ADHS, Fokus & Schritte
+              </h3>
+            </div>
           </div>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 cursor-pointer shrink-0" onclick="toggleDiaryCard('adhs')">
             <span id="badge-summary-adhs" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               Fokus 7/10 · 0 Steps
             </span>
@@ -731,16 +751,21 @@ def get_diary_entry_view_html():
       <!-- ======================================================== -->
       <!-- CARD 5: JOURNAL, 3 POSITIVE DINGE & SPEICHERN             -->
       <!-- ======================================================== -->
-      <section id="card-diary-mind" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
+      <section id="card-diary-mind" data-card-key="mind" class="checkin-card shadcn-card p-3.5 sm:p-4 space-y-3 transition-all duration-200 scroll-mt-28">
         
         <!-- Accordion Header -->
-        <div onclick="toggleDiaryCard('mind')" class="flex items-center justify-between cursor-pointer select-none">
-          <div class="flex items-center gap-2">
-            <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight" data-i18n="diaryCard5Title">
-              5. Journal, 3 Positive Dinge & Notizen
-            </h3>
+        <div class="flex items-center justify-between select-none">
+          <div class="flex items-center gap-1.5 flex-1 min-w-0">
+            <span class="diary-card-drag-handle p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-grab active:cursor-grabbing touch-none select-none shrink-0" title="Bereich verschieben (Drag & Drop)" aria-label="Drag to reorder">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="6" r="1.5"/><circle cx="15.5" cy="6" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="15.5" cy="12" r="1.5"/><circle cx="8.5" cy="18" r="1.5"/><circle cx="15.5" cy="18" r="1.5"/></svg>
+            </span>
+            <div class="flex-1 cursor-pointer min-w-0" onclick="toggleDiaryCard('mind')">
+              <h3 class="font-serif text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100 tracking-tight truncate" data-i18n="diaryCard5Title">
+                5. Journal, 3 Positive Dinge & Notizen
+              </h3>
+            </div>
           </div>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 cursor-pointer shrink-0" onclick="toggleDiaryCard('mind')">
             <span id="badge-summary-mind" class="text-[10px] font-medium px-2 py-0.5 rounded-full">
               0 / 3 Positiv
             </span>
